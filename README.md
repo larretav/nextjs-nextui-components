@@ -1,4 +1,4 @@
-# Next.js & NextUI Boilerplate
+# Next.js & NextUI
 Este es un proyecto para la creación de componentes con NextJS y NextUI
 
 ## Ejecutar en desarrollo
