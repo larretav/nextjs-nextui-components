@@ -20,8 +20,8 @@ module.exports = {
         }
       },
       animation: {
-        expand: 'expand 500ms ease 1',
-        expand2: 'expand 200ms ease-out 1',
+        expand: 'expand 250ms cubic-bezier(.5,.21,.21,1) 1',
+        expand2: 'expand 250ms cubic-bezier(.5,.21,.21,1) 1',
         wiggle: 'wiggle 1s ease-in-out infinite',
       }
     },
