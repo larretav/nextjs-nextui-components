@@ -1,8 +1,12 @@
+import { BottomBar } from "./_components/BottomBar";
 
 export default function NavigationPage() {
   return (
-    <div>
-      <h1>Navigation Components</h1>
+    <div className="grid grid-cols-1 md:grid-cols-4">
+
+      <div>
+        <BottomBar />
+      </div>
     </div>
   );
 }
