@@ -33,11 +33,11 @@ export const BottomBar = () => {
   return (
     <div className="flex gap-4  p-2 rounded-2xl bg-default-200 overflow-auto no-scrollbar">
       {
-        items.slice(0,1).map(item => <div className="flex flex-col items-center w-fit gap-2 cursor-pointer  rounded-xl p-1 box-border transition-all" onClick={() => setIndex(item.index)} >
+        items.slice(0,1).map(item => <div key={item.index} className="flex flex-col items-center w-fit gap-2 cursor-pointer  rounded-xl p-1 box-border transition-all" onClick={() => setIndex(item.index)} >
           <span className="w-fit py-1 px-5 box-border flex justify-center relative  ">
             <div>{item.index === index ? item.selectedIcon : item.icon}</div>
             <span className={clsx(
-              "h-full box-border absolute top-0 bottom-0 m-auto bg-red-500 opacity-30 rounded-full animate-expand	",
+              "h-full box-border absolute top-0 bottom-0 m-auto bg-red-500 opacity-30 rounded-full animate-expand",
               {
                 "w-full": item.index === index,
                 "hidden": item.index !== index
@@ -52,7 +52,7 @@ export const BottomBar = () => {
         <span className="w-fit py-1 px-5 box-border flex justify-center relative  ">
           <div>{items[2].index === index ? items[2].selectedIcon : items[2].icon}</div>
           <span className={clsx(
-            "h-full box-border absolute top-0 bottom-0 m-auto bg-red-500 opacity-30 rounded-full animate-expand2	",
+            "h-full box-border absolute top-0 bottom-0 m-auto bg-red-500 opacity-30 rounded-full animate-expand2",
             {
               "w-full": items[2].index === index,
               "hidden": items[2].index !== index
