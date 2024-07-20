@@ -63,7 +63,8 @@ export const BottomNavigation = () => {
   return (
     <nav
       className={clsx(
-        "w-full py-1 flex justify-evenly box-border bottom-0 right-0 bg-default-100 overflow-auto no-scrollbar transition-all duration-500",
+        // "fixed bottom-0 right-0",
+        "w-full py-1 flex justify-evenly box-border  bg-default-100 overflow-auto no-scrollbar transition-all duration-500",
         {
           "translate-y-60 ": hidden
         }
