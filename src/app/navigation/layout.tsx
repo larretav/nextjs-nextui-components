@@ -6,8 +6,7 @@ export default function NavigationLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative flex flex-col h-screen">
-      <Navbar />
+    <div className="relative flex flex-col px-2">
       <main>
         {children}
       </main>
