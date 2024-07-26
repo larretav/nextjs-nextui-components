@@ -8,7 +8,7 @@ import { Navbar } from '@nextui-org/navbar';
 import { Button } from '@nextui-org/button';
 import { MdHome } from 'react-icons/md';
 
-export const BottomBar = () => {
+export const BottomNavigationBar = () => {
   const [index, setIndex] = useState(0)
   const [hidden, setHidden] = useState(false)
   const [prevScrollPosition, setPrevScrollPosition] = useState(0)
