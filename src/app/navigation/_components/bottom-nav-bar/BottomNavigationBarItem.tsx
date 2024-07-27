@@ -1,22 +1,22 @@
 import { Button } from '@nextui-org/button'
 import clsx from 'clsx'
-import React, { ReactElement } from 'react'
+import React, { cloneElement, ReactElement } from 'react'
 
 type Props = {
   label: string,
   icon: ReactElement,
-  activeIcon: ReactElement,
+  activeIcon?: ReactElement,
+  iconSize?: 24
 }
 
-const BottomNavigationItem = ({ label, icon, activeIcon }: Props) => {
-
+const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...props }: Props) => {
   const index = 0;
   const isActive = false;
 
   return (
     <Button
       disableAnimation
-      onClick={() => { }} className="flex-col py-2 px-0 h-fit min-w-fit bg-transparent" >
+      onClick={(e) => { }} className="flex-col py-2 px-0 h-fit min-w-fit bg-transparent" >
       <div className="w-fit py-1 px-5 box-border flex justify-center relative ">
 
         <span className={clsx(
@@ -27,7 +27,11 @@ const BottomNavigationItem = ({ label, icon, activeIcon }: Props) => {
           }
         )} />
         <span>
-          {index === index ? activeIcon : icon}
+          {
+            index === index
+              ? cloneElement(activeIcon ?? icon, { size: iconSize })
+              : cloneElement(icon, { size: iconSize })
+          }
         </span>
       </div>
 
@@ -42,4 +46,4 @@ const BottomNavigationItem = ({ label, icon, activeIcon }: Props) => {
   )
 }
 
-export default BottomNavigationItem
+export default BottomNavigationBarItem
