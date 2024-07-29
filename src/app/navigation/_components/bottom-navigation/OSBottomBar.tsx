@@ -7,18 +7,20 @@ import { BsHouse, BsHouseFill } from "react-icons/bs";
 
 const OSBottomBar = () => {
 
-  const [index, setIndex] = useState(0);
+  const [index, setIndex] = useState<string | number>(0);
+
+  const handleChange = (e: React.MouseEvent<HTMLButtonElement>, value: string | number) => {
+    setIndex(value)
+  }
 
   return (
-    <div>
-      <BottomNavigationBar value="asas" onChange={(value)=>{ console.log(value) }} >
-        <BottomNavigationBarItem label="Home" icon={<BsHouseFill/>} activeIcon={<BsHouse />} />
-        <BottomNavigationBarItem label="Home" icon={<BsHouseFill />} activeIcon={<BsHouse />} />
-        <BottomNavigationBarItem label="Home" icon={<BsHouseFill />} activeIcon={<BsHouse />} />
-        <BottomNavigationBarItem label="Home" icon={<BsHouseFill />} activeIcon={<BsHouse />} />
+    <>
+      <BottomNavigationBar value={index} onChange={handleChange} color="warning" >
+        <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
+        <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
+        <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
       </BottomNavigationBar>
-
-    </div>
+    </>
   )
 }
 

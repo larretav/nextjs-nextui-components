@@ -7,15 +7,18 @@ import { BsHouse, BsFillHouseFill } from "react-icons/bs";
 import { Navbar } from '@nextui-org/navbar';
 import { Button } from '@nextui-org/button';
 import { MdHome } from 'react-icons/md';
+import { ColorKeys } from '@/types';
 
 type Props = {
   value: string | number,
-  onChange: (value: string | number) => void,
+  onChange: (e: React.MouseEvent<HTMLButtonElement>, value: string | number) => void,
+  color?: ColorKeys,
   iconSize?: number,
+  className?: React.StyleHTMLAttributes<HTMLImageElement>['className'],
   children: ReactElement | ReactElement[]
 }
 
-export const BottomNavigationBar = ({ value, onChange, iconSize = 24, children }: Props) => {
+export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSize = 24, className = '', children }: Props) => {
 
   const isArray = Array.isArray(children);
 
@@ -74,27 +77,22 @@ export const BottomNavigationBar = ({ value, onChange, iconSize = 24, children }
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      console.log("removed")
     };
   }, []);
 
   return (
     <nav
       className={clsx(
-        // "fixed bottom-0 right-0",
-        "w-full py-1 flex justify-evenly box-border bg-default-100 overflow-auto no-scrollbar transition-all duration-500",
+        "w-full py-1 flex justify-evenly box-border bg-default-100 overflow-auto no-scrollbar transition-all duration-500 " + className,
         {
           "translate-y-60 ": hidden
         }
       )}>
       {
-        isArray
-          ? <>{children}</>
-          : Children.map(children, (child) => cloneElement(child, { iconSize, value }))
-
+        children && (isArray
+          ? Children.map(children, (child, index) => cloneElement(child, { iconSize, value, index, onClick: onChange, color }))
+          : cloneElement(children, { iconSize, value, index, color }))
       }
-
-
     </nav >
   )
 }

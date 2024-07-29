@@ -1,5 +1,8 @@
+import { getNextUiColorHex, getTailwindColorHex } from '@/app/utils'
 import { Button } from '@nextui-org/button'
+import { colors, semanticColors } from '@nextui-org/theme'
 import clsx from 'clsx'
+import { useTheme } from 'next-themes'
 import React, { cloneElement, ReactElement } from 'react'
 
 type Props = {
@@ -9,33 +12,40 @@ type Props = {
   iconSize?: 24
 }
 
+
+
 const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...props }: Props) => {
-  const index = 0;
-  const isActive = false;
+
+  const { index, value, onClick, color } = props as any;
+  const isActive = index === value;
+
+  const { theme = 'light' } = useTheme()
+  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color)
+
 
   return (
     <Button
       disableAnimation
-      onClick={(e) => { }} className="flex-col py-2 px-0 h-fit min-w-fit bg-transparent" >
+      onClick={(e) => { onClick ? onClick(e, index) : null }} className="flex-col py-2 px-0 h-fit min-w-fit bg-transparent" >
       <div className="w-fit py-1 px-5 box-border flex justify-center relative ">
 
         <span className={clsx(
-          "h-full box-border absolute top-0 bottom-0 m-auto bg-primary-500 opacity-30 rounded-full animate-expand",
+          "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-expand",
           {
-            "w-full": index === index,
-            "hidden": index !== index
+            "w-full": isActive,
+            "hidden": !isActive
           }
-        )} />
+        )} style={{ backgroundColor: hexColor }} />
         <span>
           {
-            index === index
+            isActive
               ? cloneElement(activeIcon ?? icon, { size: iconSize })
               : cloneElement(icon, { size: iconSize })
           }
         </span>
       </div>
 
-      <span className={clsx("transition-all box-border text-tiny ", {
+      <span className={clsx("transition-[font-weight] duration-100 box-border text-tiny", {
         "font-normal": !isActive,
         "font-extrabold": isActive
       }
