@@ -20,8 +20,7 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
   const isActive = index === value;
 
   const { theme = 'light' } = useTheme()
-  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color)
-
+  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
 
   return (
     <Button
@@ -30,7 +29,7 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
       <div className="w-fit py-1 px-5 box-border flex justify-center relative ">
 
         <span className={clsx(
-          "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-expand",
+          "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-bg-expand",
           {
             "w-full": isActive,
             "hidden": !isActive

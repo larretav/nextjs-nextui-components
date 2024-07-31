@@ -1,18 +1,14 @@
 'use client';
 
 import clsx from 'clsx'
-import React, { Children, cloneElement, ReactElement, useEffect, useState } from 'react'
-import { FaDashcube, FaHouse } from 'react-icons/fa6'
+import React, { Children, cloneElement, ReactElement, useCallback, useEffect, useState } from 'react'
 import { BsHouse, BsFillHouseFill } from "react-icons/bs";
-import { Navbar } from '@nextui-org/navbar';
-import { Button } from '@nextui-org/button';
-import { MdHome } from 'react-icons/md';
-import { ColorKeys } from '@/types';
+import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 
 type Props = {
   value: string | number,
   onChange: (e: React.MouseEvent<HTMLButtonElement>, value: string | number) => void,
-  color?: ColorKeys,
+  color?: NextUIColorKeys | TailwindColorKeys,
   iconSize?: number,
   className?: React.StyleHTMLAttributes<HTMLImageElement>['className'],
   children: ReactElement | ReactElement[]
@@ -23,8 +19,8 @@ export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSi
   const isArray = Array.isArray(children);
 
   const [index, setIndex] = useState(0)
-  const [hidden, setHidden] = useState(false)
-  const [prevScrollPosition, setPrevScrollPosition] = useState(0)
+  const [hidden, setHidden] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
 
   const items = [
     {
@@ -61,24 +57,23 @@ export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSi
   ]
 
 
-  const handleScroll = () => {
-    const currentScroll = window.scrollY;
+  const handleScroll = useCallback((e: any) => {
+    const currentScroll = window.scrollY
 
-    if (currentScroll >= 100) {
-      setPrevScrollPosition(currentScroll);
+    if (scrollY < currentScroll && currentScroll > 100) {
       setHidden(true);
-    } else if (prevScrollPosition < currentScroll) {
-      setPrevScrollPosition(currentScroll);
+    } else if (scrollY > currentScroll) {
       setHidden(false);
     }
-  };
+    setScrollY(currentScroll)
+  }, [scrollY]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
 
   return (
     <nav

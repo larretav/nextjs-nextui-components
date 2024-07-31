@@ -10,12 +10,12 @@ const OSBottomBar = () => {
   const [index, setIndex] = useState<string | number>(0);
 
   const handleChange = (e: React.MouseEvent<HTMLButtonElement>, value: string | number) => {
-    setIndex(value)
+    setIndex(value);
   }
 
   return (
     <>
-      <BottomNavigationBar value={index} onChange={handleChange} color="warning" >
+      <BottomNavigationBar value={index} onChange={handleChange} color="primary" >
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
