@@ -21,6 +21,7 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
 
   const { theme = 'light' } = useTheme()
   const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
+  const hexTextColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 700) : getTailwindColorHex(color, 700);
 
   return (
     <Button
@@ -44,11 +45,11 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
         </span>
       </div>
 
-      <span className={clsx("transition-[font-weight] duration-100 box-border text-tiny", {
+      <span className={clsx("transition-[font-weight] duration-100 box-border text-tiny ", {
         "font-normal": !isActive,
         "font-extrabold": isActive
       }
-      )}>{label}</span>
+      )} style={{color: hexTextColor }}>{label}</span>
 
 
     </Button>
