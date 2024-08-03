@@ -21,7 +21,8 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
 
   const { theme = 'light' } = useTheme()
   const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
-  const hexTextColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 700) : getTailwindColorHex(color, 700);
+  // const hexTextColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 600) : getTailwindColorHex(color, 600);
+  // const hexIconColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 700) : getTailwindColorHex(color, 700);
 
   return (
     <Button
@@ -33,7 +34,7 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
           "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-bg-expand",
           {
             "w-full": isActive,
-            "hidden": !isActive
+            "hidden": !isActive 
           }
         )} style={{ backgroundColor: hexColor }} />
         <span>
@@ -49,7 +50,7 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
         "font-normal": !isActive,
         "font-extrabold": isActive
       }
-      )} style={{color: hexTextColor }}>{label}</span>
+      )} >{label}</span>
 
 
     </Button>
