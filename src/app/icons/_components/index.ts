@@ -1,0 +1,1 @@
+export { GithubIconSolid } from "./GitHubIconSolid";
