@@ -1,1 +1,3 @@
-export { Logo } from "./LogoFilled";
+export * from "./SvgIcon";
+
+export * from "./LogoFilled";

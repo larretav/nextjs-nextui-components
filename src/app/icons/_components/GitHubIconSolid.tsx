@@ -1,4 +1,4 @@
-import SvgIcon from '@/app/navigation/_components/svg-icon/SvgIcon'
+import { SvgIcon } from '@/components/icons'
 import { IconSvgProps } from '@/types'
 import React from 'react'
 
