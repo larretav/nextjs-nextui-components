@@ -1,5 +1,5 @@
 'use client';
-import { Card } from '@nextui-org/react';
+import { Card } from '@nextui-org/card';
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { FaImage } from 'react-icons/fa6';

@@ -3,7 +3,7 @@ import { IconSvgProps } from '@/types'
 import React from 'react'
 
 
-export const GithubIconSolid = (props: IconSvgProps) => {
+export const OnSiteIconSolid = (props: IconSvgProps) => {
   return (
     <SvgIcon {...props}>
       <g id="OnSite">

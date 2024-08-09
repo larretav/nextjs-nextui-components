@@ -11,6 +11,7 @@ import {
 import NextLink from "next/link";
 
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
+import { OnSiteIconSolid } from "@/app/icons/_components";
 
 
 export const Navbar = () => {

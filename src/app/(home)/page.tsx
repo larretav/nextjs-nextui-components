@@ -1,4 +1,3 @@
-import { Card } from "@nextui-org/react";
 import { redirect } from "next/navigation";
 import { FaImage } from "react-icons/fa6"
 import { ComponentCategoriesList } from "./_components/ComponentCategoriesList";

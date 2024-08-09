@@ -1,8 +1,8 @@
 export type SiteConfig = typeof siteConfig;
 
 export const siteConfig = {
-	name: "Trellify",
-	description: "Este proyecto es un clon de Trello",
+	name: "NextUI components",
+	description: "Este proyecto es para la creación de componentes que no existen en NextUI",
 	navItems: [
 		
 	],

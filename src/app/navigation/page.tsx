@@ -1,4 +1,4 @@
-import { BottomNavigation } from "./_components";
+import { BottomNavigation, Sidebar } from "./_components";
 import { BottomNavigationBar } from "./_components/bottom-nav-bar/BottomNavigationBar";
 import OSBottomBar from "./_components/bottom-navigation/OSBottomBar";
 import { Button } from "@nextui-org/button";
@@ -9,10 +9,14 @@ export default function NavigationPage() {
       <div className=" box-border rounded-2xl overflow-hidden">
         <OSBottomBar />
       </div>
+
+      <div className="box-border rounded-2xl overflow-hidden">
+        <Sidebar />
+      </div>
       {/* <div className="p-2 box-border rounded-xl"> */}
         {/* <OSBottomBar /> */}
       {/* </div> */}
-      <div className="p-2 box-border flex flex-col gap-4">
+      {/* <div className="p-2 box-border flex flex-col gap-4">
         <Button color="primary" variant="bordered" fullWidth>Test</Button>
         <Button color="primary" variant="faded" fullWidth>Test</Button>
         <Button color="primary" variant="flat" fullWidth>Test</Button>
@@ -29,7 +33,7 @@ export default function NavigationPage() {
         <Button color="secondary" variant="light"   fullWidth>Test</Button>
         <Button color="secondary" variant="shadow" fullWidth>Test</Button>
         <Button color="secondary" variant="solid" fullWidth>Test</Button>
-      </div>
+      </div> */}
     </div>
   );
 }

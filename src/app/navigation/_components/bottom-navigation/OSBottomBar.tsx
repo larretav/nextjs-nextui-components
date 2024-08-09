@@ -15,7 +15,7 @@ const OSBottomBar = () => {
 
   return (
     <>
-      <BottomNavigationBar value={index} onChange={handleChange} color="secondary" >
+      <BottomNavigationBar value={index} onChange={handleChange} color="danger" >
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
         <BottomNavigationBarItem label="Home" icon={<BsHouse />} activeIcon={<BsHouseFill />} />
