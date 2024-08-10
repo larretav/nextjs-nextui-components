@@ -12,6 +12,7 @@ import NextLink from "next/link";
 
 import { ThemeSwitch } from "@/components/ui/ThemeSwitch";
 import { OnSiteIconSolid } from "@/app/icons/_components";
+import HamburguerButton from "./HamburguerButton";
 
 
 export const Navbar = () => {
@@ -21,6 +22,7 @@ export const Navbar = () => {
 		<NextUINavbar maxWidth="xl" position="sticky">
 			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
 				<NavbarBrand as="li" className="gap-3 max-w-fit">
+					<HamburguerButton />
 					<NextLink className="flex justify-start items-center gap-1" href="/">
 						<p className="font-bold text-inherit">Title App</p>
 					</NextLink>
@@ -35,6 +37,6 @@ export const Navbar = () => {
 					<ThemeSwitch />
 				</NavbarItem>
 			</NavbarContent>
-		</NextUINavbar>
+		</NextUINavbar >
 	);
 };
