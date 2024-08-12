@@ -1,9 +1,11 @@
+'use client';
 import { getNextUiColorHex, getTailwindColorHex } from '@/app/utils'
 import { Button } from '@nextui-org/button'
+import { Skeleton } from '@nextui-org/skeleton';
 import { colors, semanticColors } from '@nextui-org/theme'
 import clsx from 'clsx'
 import { useTheme } from 'next-themes'
-import React, { cloneElement, ReactElement } from 'react'
+import React, { cloneElement, ReactElement, useEffect, useState } from 'react'
 
 type Props = {
   label: string,
@@ -19,11 +21,17 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
   const { index, value, onClick, color } = props as any;
   const isActive = index === value;
 
-  const { theme = 'light' } = useTheme()
-  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
-  // const hexTextColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 600) : getTailwindColorHex(color, 600);
-  // const hexIconColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme, 700) : getTailwindColorHex(color, 700);
 
+  const [isLoaded, setIsLoaded] = useState(false);
+  const { theme = 'light' } = useTheme();
+  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
+
+  useEffect(() => {
+    setIsLoaded(true)
+  }, [])
+
+  if (!isLoaded) return <Skeleton className="rounded-xl size-14" />
+  
   return (
     <Button
       disableAnimation
@@ -34,9 +42,9 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
           "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-bg-expand",
           {
             "w-full": isActive,
-            "hidden": !isActive 
+            "hidden": !isActive
           }
-        )} style={{ backgroundColor: hexColor }} />
+        )} style={{ backgroundColor: hexColor ?? null }} />
         <span>
           {
             isActive

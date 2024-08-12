@@ -1,5 +1,4 @@
 import { BaseColors, ThemeColors } from "@nextui-org/theme";
-// import tailwindColors from "tailwindcss/colors";
 import type { DefaultColors } from 'tailwindcss/types/generated/colors'
 
 

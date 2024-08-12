@@ -1,3 +1,4 @@
+import { Sidebar } from "../navigation/_components";
 
 export default function HomeLayout({
   children

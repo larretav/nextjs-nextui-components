@@ -1,5 +1,5 @@
 import React, { HTMLProps, StyleHTMLAttributes } from "react";
-import { GithubIconSolid, OnSiteIconSolid } from "./_components";
+import { GithubIconSolid, OnSiteIconSolid } from "@/components/icons";
 
 export default function IconsPage() {
 

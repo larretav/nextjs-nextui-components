@@ -6,6 +6,7 @@ import { Providers } from "./providers";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import { Navbar } from "@/components";
+import { Sidebar } from "./navigation/_components";
 
 export const metadata: Metadata = {
 	title: {
@@ -42,6 +43,7 @@ export default function RootLayout({
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
 						<Navbar />
+						<Sidebar />
 						<main className="container mx-auto max-w-7xl">
 							{children}
 						</main>
