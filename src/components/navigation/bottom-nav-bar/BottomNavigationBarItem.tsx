@@ -16,7 +16,7 @@ type Props = {
 
 
 
-const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...props }: Props) => {
+export const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...props }: Props) => {
 
   const { index, value, onClick, color } = props as any;
   const isActive = index === value;
@@ -64,5 +64,3 @@ const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24, ...pr
     </Button>
   )
 }
-
-export default BottomNavigationBarItem

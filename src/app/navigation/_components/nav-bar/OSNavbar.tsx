@@ -4,42 +4,40 @@ import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navb
 import { Link } from '@nextui-org/link';
 import { Button } from '@nextui-org/button';
 import { OnSiteIconSolid } from '@/components/icons';
-import HamburguerButton from '@/components/ui/nav-bar/HamburguerButton';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import { Avatar } from '@nextui-org/avatar';
 import { FaBars, FaBell, FaUser } from 'react-icons/fa6';
 import { Badge } from '@nextui-org/badge';
+import { HamburguerButton } from '@/components';
 
-type Props = {}
 
-const OSNavbar = (props: Props) => {
+export const OSNavbar = () => {
+
   return (
-    <Navbar>
-      <NavbarBrand>
-        <HamburguerButton > <FaBars size={24} /> </HamburguerButton>
-        <OnSiteIconSolid size={56} />
-      </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="#">
-            Dashboard
-          </Link>
-        </NavbarItem>
+    <Navbar maxWidth="xl" position="sticky" classNames={{wrapper: "pl-2 pr-3 bg-default-50 rounded-xl"}}>
+      <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
+        <NavbarBrand>
+          <HamburguerButton > <FaBars /> </HamburguerButton>
+          <OnSiteIconSolid size={56} />
+        </NavbarBrand>
+      </NavbarContent>
 
+      <NavbarContent justify="center" >
+        <NavbarItem>Dashboard</NavbarItem>
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
         <Badge color="danger" content={5} shape="circle">
-          <FaBell size={24} className="text-default-600" />
+          <FaBell />
         </Badge>
         <Dropdown placement="bottom-end">
           <DropdownTrigger>
             <Avatar
               as="button"
               className="transition-transform"
-              classNames={{base: "bg-blue-500", icon: "text-white"}}
               size="sm"
-              icon={<FaUser />}
+              color="primary"
+              icon={<FaUser size={15} />}
             />
           </DropdownTrigger>
           <DropdownMenu aria-label="Profile Actions" variant="flat" >
@@ -53,5 +51,3 @@ const OSNavbar = (props: Props) => {
   );
 
 }
-
-export default OSNavbar

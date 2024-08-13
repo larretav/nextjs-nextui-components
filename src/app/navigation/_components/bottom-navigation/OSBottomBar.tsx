@@ -1,11 +1,10 @@
 'use client';
 
 import { useState } from "react";
-import { BottomNavigationBar } from "../bottom-nav-bar/BottomNavigationBar";
-import BottomNavigationBarItem from "../bottom-nav-bar/BottomNavigationBarItem";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
+import { BottomNavigationBar, BottomNavigationBarItem } from "@/components";
 
-const OSBottomBar = () => {
+export const OSBottomNavBar = () => {
 
   const [index, setIndex] = useState<string | number>(0);
 
@@ -23,5 +22,3 @@ const OSBottomBar = () => {
     </>
   )
 }
-
-export default OSBottomBar

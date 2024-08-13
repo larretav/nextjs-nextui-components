@@ -1,17 +1,19 @@
-import { BottomNavigation, Sidebar } from "./_components";
-import { BottomNavigationBar } from "./_components/bottom-nav-bar/BottomNavigationBar";
-import OSBottomBar from "./_components/bottom-navigation/OSBottomBar";
 import { Button } from "@nextui-org/button";
-import OSNavbar from "./_components/nav-bar/OSNavbar";
+import { DrawerButtons } from "./_components/drawer/DrawerButtons";
+import { OSBottomNavBar } from "./_components";
+import { OSNavbar } from "./_components/nav-bar/OSNavbar";
 
 export default function NavigationPage() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
       <div className=" box-border rounded-2xl overflow-hidden">
-        <OSBottomBar />
+        <OSBottomNavBar />
       </div>
-      <div className=" box-border rounded-2xl overflow-scroll no-scrollbar">
+      <div>
         <OSNavbar />
+      </div>
+      <div >
+        <DrawerButtons />
       </div>
       {/* <div className="p-2 box-border rounded-xl"> */}
         {/* <OSBottomBar /> */}
