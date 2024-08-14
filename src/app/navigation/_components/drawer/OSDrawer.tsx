@@ -4,7 +4,7 @@ import React from 'react'
 
 export const OSDrawer = () => {
   return (
-    <Drawer  >
+    <Drawer >
       <h3>Hola we</h3>
     </Drawer>
   )

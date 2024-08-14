@@ -1,3 +1,3 @@
-export {OSDrawer} from "./drawer/OSDrawer";
+export * from "./drawer/OSDrawer";
 
 export { OSBottomNavBar } from "./bottom-navigation/OSBottomBar";
