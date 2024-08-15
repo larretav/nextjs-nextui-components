@@ -16,7 +16,7 @@ export default function NavigationPage() {
         <DrawerButtons />
       </div>
       {/* <div className="p-2 box-border rounded-xl"> */}
-        {/* <OSBottomBar /> */}
+      {/* <OSBottomBar /> */}
       {/* </div> */}
       {/* <div className="p-2 box-border flex flex-col gap-4">
         <Button color="primary" variant="bordered" fullWidth>Test</Button>
