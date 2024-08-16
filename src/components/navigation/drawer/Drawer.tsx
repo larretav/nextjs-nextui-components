@@ -1,4 +1,5 @@
 'use client';
+import { Button } from '@nextui-org/button';
 import {
   Modal,
   ModalBody,
@@ -11,19 +12,20 @@ import {
 
 import React, { ReactNode, useEffect } from 'react'
 
-type Props = {
-  children?: ReactNode | ReactNode[],
+interface ExtendedModalProps {
   anchor: 'left' | 'right' | 'top' | 'bottom' | string,
   open: boolean,
-  onOpen: (isOpen: boolean) => void,
+  onOpen?: (isOpen: boolean) => void,
   onClose: (isOpen: boolean) => void,
   hideCloseButton?: boolean
 }
 
-export const Drawer = ({ children, anchor = 'top', open, onOpen, onClose, hideCloseButton = true, ...props }: ModalProps & Props) => {
+type Props = Omit<ModalProps, keyof ExtendedModalProps> & ExtendedModalProps
+
+export const Drawer = ({ children, anchor = 'top', open, onOpen = () => { }, onClose = () => { }, hideCloseButton = true, ...props }: Props) => {
 
 
-  const { isOpen: localIsOpen, onOpen: localOnOpen, onClose: localOnClose } = useDisclosure();
+  const { isOpen: localIsOpen, onOpen: localOnOpen, onClose: localOnClose } = useDisclosure({isOpen: open});
 
   const anchors: Record<typeof anchor, any> = {
     left: {
@@ -76,32 +78,28 @@ export const Drawer = ({ children, anchor = 'top', open, onOpen, onClose, hideCl
     }
   }
 
-  useEffect(() => {
-    if (open) {
+  const toggle = () => {
+    if (localIsOpen) {
       localOnOpen();
-      onOpen(localIsOpen);
     }
 
-    if (!open) {
-      localOnClose()
-      onClose(localIsOpen)
+    if (!localIsOpen) {
+      localOnClose();
+      onClose(localIsOpen);
     }
+  }
 
+  useEffect(() => {
+    toggle();
   }, [open])
-
 
 
   return (
     <>
-      {/* <div className="p-4 w-full flex items-center justify-center" >
-        <Button onClick={() => onOpen()} className="max-w-24" >Open</Button>
-      </div> */}
-
       <Modal
         size="full"
         isOpen={localIsOpen}
         onClose={localOnClose}
-        hideCloseButton={hideCloseButton}
         motionProps={{
           variants: {
             enter: {
@@ -126,9 +124,7 @@ export const Drawer = ({ children, anchor = 'top', open, onOpen, onClose, hideCl
         classNames={anchors[anchor].classNames}
         as="aside"
       >
-        {/* <ModalContent > */}
         {children}
-        {/* </ModalContent> */}
       </Modal >
     </>
   )

@@ -37,21 +37,25 @@ export const DrawerButtons = () => {
   ]
 
   const toggleDrawer = (anchor: string, open: boolean) => {
-    console.log({ anchor, open })
     setState({ ...state, [anchor]: open })
   }
 
-  console.log({ state })
   return (
     <div className="p-2 flex items-center justify-center gap-4 bg-default-100 rounded-xl">
       {
-        buttonList.map(item => <div key={item.anchor}>
+        buttonList.slice(0,1).map(item => <div key={item.anchor}>
           <Button key={item.anchor} isIconOnly onClick={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
           <Drawer anchor={item.anchor} open={state[item.anchor]} onClose={(isOpen) => {
-            toggleDrawer(item.anchor, isOpen)
+            toggleDrawer(item.anchor, false)
           }}>
             <DrawerContent >
-              Modal y asi
+              {
+                (onClose) => {
+                  return <>
+                    <Button color="danger" onPress={onClose} >Close</Button>
+                  </>
+                }
+              }
             </DrawerContent>
           </Drawer>
         </div>)
