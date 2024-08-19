@@ -16,6 +16,7 @@ type Props = {
 
 export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSize = 24, className = '', children }: Props) => {
 
+
   const isArray = Array.isArray(children);
 
   const [index, setIndex] = useState(0)

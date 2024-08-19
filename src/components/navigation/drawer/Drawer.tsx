@@ -15,17 +15,16 @@ import React, { ReactNode, useEffect } from 'react'
 interface ModalPropsExtended {
   anchor: 'left' | 'right' | 'top' | 'bottom',
   open: boolean,
-  onOpen?: (isOpen: boolean) => void,
-  onClose?: (isOpen: boolean) => void,
+  onOpen?: () => void,
   hideCloseButton?: boolean
 }
 
 type Props = Omit<ModalProps, keyof ModalPropsExtended> & ModalPropsExtended
 
-export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => { }, onClose = () => { }, hideCloseButton = true, closeButton,  ...props }: Props) => {
+export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => { }, onClose = () => { }, hideCloseButton = true, closeButton, ...props }: Props) => {
 
 
-  const { isOpen: localIsOpen, onOpen: localOnOpen, onClose: localOnClose } = useDisclosure({ isOpen: open });
+  const { isOpen: localIsOpen, onOpen: localOnOpen, onClose: localOnClose, } = useDisclosure({ isOpen: open });
 
   const anchors: Record<typeof anchor, any> = {
     left: {
@@ -81,18 +80,18 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
   const toggle = () => {
     if (localIsOpen) {
       localOnOpen();
-      onOpen(localIsOpen);
+      onOpen();
     }
 
     if (!localIsOpen) {
       localOnClose();
-      onClose(localIsOpen);
+      onClose();
     }
   }
 
   const handleClose = () => {
     localOnClose()
-    onClose(!localIsOpen)
+    onClose()
   }
 
   useEffect(() => {
@@ -127,7 +126,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
             },
           }
         }}
-        
+
         {...props}
 
         classNames={{

@@ -2,6 +2,7 @@ import { Button } from "@nextui-org/button";
 import { DrawerButtons } from "./_components/drawer/DrawerButtons";
 import { OSBottomNavBar } from "./_components";
 import { OSNavbar } from "./_components/nav-bar/OSNavbar";
+import BreakpointsTest from "@/components/test/BreakpointsTest";
 
 export default function NavigationPage() {
   return (
@@ -14,6 +15,9 @@ export default function NavigationPage() {
       </div>
       <div >
         <DrawerButtons />
+      </div>
+      <div >
+        <BreakpointsTest />
       </div>
       {/* <div className="p-2 box-border rounded-xl"> */}
       {/* <OSBottomBar /> */}
