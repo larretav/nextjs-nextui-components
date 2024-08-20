@@ -49,7 +49,7 @@ export const DrawerButtons = () => {
       {
         buttonList.slice().map(item => <div key={item.anchor}>
           <Button key={item.anchor} isIconOnly onClick={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
-          <Drawer anchor={item.anchor} open={state[item.anchor]} closeButton={<FaXmark />} hideCloseButton={false} onClose={(isOpen) => toggleDrawer(item.anchor, false)}>
+          <Drawer anchor={item.anchor} open={state[item.anchor]} closeButton={<FaXmark />} hideCloseButton={false} onClose={() => toggleDrawer(item.anchor, false)}>
             <DrawerContent className="p-2 pt-12">
               {
                 (onClose) => <>

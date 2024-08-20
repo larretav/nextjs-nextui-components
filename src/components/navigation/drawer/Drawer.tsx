@@ -133,10 +133,8 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
           ...props.classNames,
           wrapper: anchors[anchor].classNames.wrapper + ' ' + props.classNames?.wrapper,
           base: anchors[anchor].classNames.base + ' ' + props.classNames?.base,
-          // closeButton: "size-8"
         }}
         as="aside"
-
       >
         {children}
       </Modal >

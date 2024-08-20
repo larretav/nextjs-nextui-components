@@ -6,7 +6,7 @@ import { Providers } from "./providers";
 import { Link } from "@nextui-org/link";
 import clsx from "clsx";
 import {  GlobalNavbar, Sidebar } from "@/components";
-import { OSDrawer } from "./navigation/_components";
+import { OSSidebar } from "./navigation/_components";
 
 export const metadata: Metadata = {
 	title: {
@@ -43,13 +43,11 @@ export default function RootLayout({
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="relative flex flex-col h-screen">
 						<GlobalNavbar />
-						{/* <OSNavbar /> */}
-						<Sidebar />
 						<main className="container mx-auto max-w-7xl">
 							{children}
 						</main>
 
-						<OSDrawer />
+						<OSSidebar />
 					</div>
 				</Providers>
 			</body>

@@ -1,5 +1,5 @@
 'use client';
-import { Drawer } from '@/components'
+import { Drawer, List, ListItem, ThemeSwitch } from '@/components'
 import { OnSiteIconSolid } from '@/components/icons';
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useUIStore } from '@/store'
@@ -12,39 +12,48 @@ import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
 import tailwindTheme from "tailwindcss/defaultTheme";
 
+type SidebarOption = {
+  key: string
+  label: string
+  isActive: boolean
+}
 
-export const OSDrawer = () => {
-  const screens = Object.keys(tailwindTheme.screens) ;
-  console.log(screens)
+
+export const OSSidebar = () => {
+  const screens = Object.keys(tailwindTheme.screens);
 
   const isOpen = useUIStore.use.isSideMenuOpen();
   const onOpen = useUIStore.use.openSideMenu();
   const onClose = useUIStore.use.closeSideMenu();
 
 
-  const items = [
+  const items: SidebarOption[] = [
     {
       key: "new",
       label: "New file",
+      isActive: true
     },
     {
       key: "copy",
       label: "Copy link",
+      isActive: false
     },
     {
       key: "edit",
       label: "Edit file",
+      isActive: false
     },
     {
       key: "delete",
       label: "Delete file",
+      isActive: false
     }
   ];
 
   return (
     <Drawer
       anchor="left"
-      open={isOpen}
+      open={true}
       closeButton={<FaChevronLeft size={16} />}
       hideCloseButton={false}
       onOpenChange={(isOpen) => isOpen ? onOpen() : onClose()}
@@ -60,7 +69,7 @@ export const OSDrawer = () => {
                 name="Juan Perez"
                 description="Cliente"
                 avatarProps={{
-                  src: "https://i.pravatar.cc/150?u=a04258114e29026702d"
+                  src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
                 }}
                 className="justify-start"
               />
@@ -70,35 +79,28 @@ export const OSDrawer = () => {
                 startContent={<FaMagnifyingGlass color="grey" size={20} />}
                 placeholder="Buscar..."
               />
-              <Listbox
-                items={items}
-                aria-label="Dynamic Actions"
+
+              <List
+                // items={items}
+                aria-label="Sidebar items"
                 onAction={(key) => console.log(key)}
-                classNames={{ list: "gap-1" }}
               >
-                {(item) => (
-                  <ListboxItem
+                <ListItem key="item" >Item 1</ListItem>
+                <ListboxItem key="item2" >Item 2</ListboxItem>
+
+                {/* {(item: any) => (
+                  <ListItem
                     key={item.key}
-                    className="text"
-                    classNames={{
-                      base: clsx(
-                        "py-2 transition-colors ", {
-                        "py-2 border-0 bg-green-600/20 text-green-700 data-[hover=true]:bg-green-600/20 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": true
-                      }
-                      ),
-                      title: clsx(
-                        "text-medium",
-                        {
-                          "font-semibold": !true
-                        })
-                    }}
                   >
                     {item.label}
-                  </ListboxItem>
-                )}
-              </Listbox>
+                  </ListItem>
+                )} */}
+              </List>
+
+
             </DrawerBody>
             <DrawerFooter>
+              <ThemeSwitch />
               <Button color="danger" onPress={onClose}>Cerrar</Button>
             </DrawerFooter>
 
