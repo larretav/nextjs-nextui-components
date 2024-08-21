@@ -4,6 +4,5 @@ export { Drawer } from "./navigation/drawer/Drawer";
 export { GlobalNavbar } from "./navigation/nav-bar/GlobalNavbar";
 export { HamburguerButton } from "./navigation/nav-bar/HamburguerButton";
 export { List } from "./data-display/list/List";
-export { ListItem } from "./data-display/list/ListItem";
 export { Sidebar } from "./navigation/sidebar/Sidebar";
 export { ThemeSwitch } from "./navigation/ThemeSwitch";

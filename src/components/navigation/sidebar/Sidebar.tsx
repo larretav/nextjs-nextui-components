@@ -14,6 +14,8 @@ type Props = {}
 export const Sidebar = (props: Props) => {
 
   const open = false // useUIStore.use.isSideMenuOpen();
+
+  
   
   return (
     <aside className={clsx(

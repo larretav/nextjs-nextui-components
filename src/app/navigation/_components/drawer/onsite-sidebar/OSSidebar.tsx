@@ -1,5 +1,5 @@
 'use client';
-import { Drawer, List, ListItem, ThemeSwitch } from '@/components'
+import { Drawer, List, ThemeSwitch } from '@/components'
 import { OnSiteIconSolid } from '@/components/icons';
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useUIStore } from '@/store'
@@ -11,12 +11,8 @@ import clsx from 'clsx';
 import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
 import tailwindTheme from "tailwindcss/defaultTheme";
+import OSSidebarList from './OSSidebarList';
 
-type SidebarOption = {
-  key: string
-  label: string
-  isActive: boolean
-}
 
 
 export const OSSidebar = () => {
@@ -27,28 +23,7 @@ export const OSSidebar = () => {
   const onClose = useUIStore.use.closeSideMenu();
 
 
-  const items: SidebarOption[] = [
-    {
-      key: "new",
-      label: "New file",
-      isActive: true
-    },
-    {
-      key: "copy",
-      label: "Copy link",
-      isActive: false
-    },
-    {
-      key: "edit",
-      label: "Edit file",
-      isActive: false
-    },
-    {
-      key: "delete",
-      label: "Delete file",
-      isActive: false
-    }
-  ];
+  
 
   return (
     <Drawer
@@ -74,28 +49,9 @@ export const OSSidebar = () => {
                 className="justify-start"
               />
             </DrawerHeader>
+
             <DrawerBody>
-              <Input
-                startContent={<FaMagnifyingGlass color="grey" size={20} />}
-                placeholder="Buscar..."
-              />
-
-              <List
-                // items={items}
-                aria-label="Sidebar items"
-                onAction={(key) => console.log(key)}
-              >
-                <ListItem key="item" >Item 1</ListItem>
-                <ListboxItem key="item2" >Item 2</ListboxItem>
-
-                {/* {(item: any) => (
-                  <ListItem
-                    key={item.key}
-                  >
-                    {item.label}
-                  </ListItem>
-                )} */}
-              </List>
+              <OSSidebarList />
 
 
             </DrawerBody>
