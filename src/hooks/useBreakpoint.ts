@@ -13,7 +13,6 @@ function useBreakpoint(key: Breakpoints) {
 
   useEffect(() => {
     const mediaQuery = screens[key];
-    console.log({matches})
 
     if (!mediaQuery) return;
 

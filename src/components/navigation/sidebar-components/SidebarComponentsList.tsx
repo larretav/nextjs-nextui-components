@@ -1,9 +1,11 @@
 'use client';
 import useDebounce from '@/hooks/useDebounce';
+import { useUIStore } from '@/store';
 import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
 import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
+import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
@@ -77,6 +79,7 @@ export const SidebarComponentsList = () => {
     },
   ]), []);
 
+  const toggleSidebar = useUIStore.use.toggleSidebar();
 
   const [sidebarItems, setSidebarItems] = useState(componentSections);
   const [inputSearch, setInputSearch] = useState("")
@@ -121,7 +124,7 @@ export const SidebarComponentsList = () => {
       <Listbox
         items={sidebarItems}
         aria-label="Sidebar items"
-        onAction={(key) => console.log(key)}
+        onAction={toggleSidebar}
         emptyContent="Sin resultados"
       >
         {({ items, section }) => (
@@ -130,6 +133,8 @@ export const SidebarComponentsList = () => {
               (item) => <ListboxItem
                 key={item.key}
                 href={item.path}
+                as={Link}
+                onClick={() => { console.log(item.path) }}
                 classNames={{
                   base: clsx(
                     "px-2 transition-colors", {

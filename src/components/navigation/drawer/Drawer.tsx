@@ -96,7 +96,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
 
   useEffect(() => {
     toggle();
-  }, [toggle, open])
+  }, [open])
 
 
   return (
