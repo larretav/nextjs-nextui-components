@@ -133,7 +133,7 @@ export const SidebarComponentsList = () => {
               (item) => <ListboxItem
                 key={item.key}
                 href={item.path}
-                as={Link}
+                // as={Link}
                 onClick={() => { console.log(item.path) }}
                 classNames={{
                   base: clsx(
