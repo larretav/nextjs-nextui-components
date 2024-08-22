@@ -1,5 +1,5 @@
 'use client';
-import { useUIStore } from '@/store';
+import { useComponentsStore } from '@/store';
 import { Button } from '@nextui-org/button';
 import React, { ReactNode } from 'react'
 import { FaBars, FaXmark } from 'react-icons/fa6';
@@ -8,10 +8,10 @@ type Props = {
   children?: ReactNode
 }
 
-export const HamburguerButton = ({ children }: Props) => {
+export const OSHamburguerButton = ({ children }: Props) => {
 
-  const isOpen = useUIStore.use.isSideMenuOpen();
-  const toggleSidebar = useUIStore.use.toggleSidebar();
+  const isOpen = useComponentsStore.use.isOSSidebarOpen();
+  const toggleSidebar = useComponentsStore.use.toggleOSSidebar();
 
   return (
     <Button isIconOnly variant="light" radius="full" onPress={toggleSidebar}>

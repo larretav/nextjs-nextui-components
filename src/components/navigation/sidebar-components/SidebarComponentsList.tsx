@@ -4,86 +4,85 @@ import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
 import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
+import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 
-type Props = {}
-
-
 type SidebarOption = {
-  sectionTitle: string;
+  section: string;
+  description: string;
   items: {
     key: string
     label: string
-    isActive: boolean
+    path: string
   }[]
 }
 
-const OSSidebarList = (props: Props) => {
+export const SidebarComponentsList = () => {
 
-
-  const sidebarItemsInit: SidebarOption[] = [
+  const componentSections: SidebarOption[] = [
     {
-      sectionTitle: "Dashboard",
+      section: 'Data display',
+      description: 'Avatar, Chip, Badge, etc.',
       items: [
         {
-          key: "dashboard",
-          label: "Resumen",
-          isActive: false
+          key: "avatar",
+          label: "Avatar",
+          path: '/data-display/avatar'
         },
         {
-          key: "quotation",
-          label: "Cotizar",
-          isActive: false
+          key: "icons",
+          label: "Icons",
+          path: '/data-display/icons'
+        }
+      ]
+    },
+    {
+      section: 'Feedback',
+      description: 'Alerts, Snackbars, etc.',
+      items: [
+        {
+          key: "alerts",
+          label: "Alerts",
+          path: '/feedback/alerts'
         },
       ]
     },
     {
-      sectionTitle: "Catálogos",
+      section: 'Inputs',
+      description: 'Inputs, Toggles, etc.',
       items: [
         {
-          key: "customer",
-          label: "Cliente",
-          isActive: false
-        },
-        {
-          key: "boxes",
-          label: "Cajas",
-          isActive: false
-        },
-        {
-          key: "postal-codes",
-          label: "Códigos postales",
-          isActive: false
-        },
+          key: "swtich",
+          label: "Swtich",
+          path: '/inputs/switch'
+        }
       ]
     },
     {
-      sectionTitle: "Salidas",
+      section: 'Navigation',
+      description: 'Drawer, Bottom Navigation, etc.',
       items: [
+        // {
+        //   key: "drawer",
+        //   label: "Drawer",
+        //   path: '/navigation/drawer'
+        // }
         {
-          key: "output-list",
-          label: "Listado de salidas",
-          isActive: false
-        },
-        {
-          key: "delivery-notifications",
-          label: "Notificación de entregas",
-          isActive: false
-        },
-        {
-          key: "pickup-request",
-          label: "Solicitud de recolección",
-          isActive: false
-        },
+          key: "drawer",
+          label: "Drawer",
+          path: '/navigation'
+        }
       ]
     },
-  ]
+  ];
 
 
-  const [sidebarItems, setSidebarItems] = useState(sidebarItemsInit);
+  const [sidebarItems, setSidebarItems] = useState(componentSections);
   const [inputSearch, setInputSearch] = useState("")
   const debounceValue = useDebounce(inputSearch, 500);
+  const pathname = usePathname();
+  console.log(pathname)
 
   const handleChangeInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => setInputSearch(e.target.value)
 
@@ -92,14 +91,18 @@ const OSSidebarList = (props: Props) => {
     const term = debounceValue;
 
     if (!term || !term.trim())
-      setSidebarItems([...sidebarItemsInit]);
+      setSidebarItems([...componentSections]);
 
-    const result = sidebarItemsInit.map(section => {
+    const result = componentSections.map(section => {
       const itemsFiltered = section.items.filter(item => removeAccents(item.label).toLowerCase().includes(removeAccents(term).toLowerCase()));
       return itemsFiltered.length > 0 ? { ...section, items: itemsFiltered } : null;
     }).filter(section => section != null)
 
     setSidebarItems([...result])
+  }
+
+  const isActive = (url: string) => {
+    return url === pathname
   }
 
   useEffect(() => {
@@ -122,18 +125,19 @@ const OSSidebarList = (props: Props) => {
         onAction={(key) => console.log(key)}
         emptyContent="Sin resultados"
       >
-        {({ items, sectionTitle }) => (
-          <ListboxSection key={sectionTitle} title={sectionTitle} items={items} classNames={{ group: "flex flex-col gap-1" }}>
+        {({ items, section }) => (
+          <ListboxSection key={section} title={section} items={items} classNames={{ group: "flex flex-col gap-1" }}>
             {
               (item) => <ListboxItem
                 key={item.key}
+                href={isActive(item.path) ? undefined : item.path}
                 classNames={{
                   base: clsx(
-                    "py-2 px-4 transition-colors", {
-                    "border-0 bg-green-600/20 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": item.isActive
+                    "px-2 transition-colors", {
+                    "border-0 bg-green-600/20 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": isActive(item.path)
                   }),
                   title: clsx({
-                    "font-semibold": item.isActive
+                    "font-semibold": isActive(item.path)
                   })
                 }}
               >
@@ -147,5 +151,3 @@ const OSSidebarList = (props: Props) => {
     </>
   )
 }
-
-export default OSSidebarList

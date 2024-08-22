@@ -11,11 +11,11 @@ import { HamburguerButton } from '../nav-bar/HamburguerButton';
 
 type Props = {}
 
-export const Sidebar = (props: Props) => {
+export const SidebarPrototype = (props: Props) => {
 
-  const open = false // useUIStore.use.isSideMenuOpen();
+  const open = true // useUIStore.use.isSideMenuOpen();
 
-  
+
   
   return (
     <aside className={clsx(

@@ -1,5 +1,5 @@
 'use client';
-import { getNextUiColorHex, getTailwindColorHex } from '@/app/utils'
+import { getNextUiColorHex, getTailwindColorHex } from '@/utils'
 import { Button } from '@nextui-org/button'
 import { Skeleton } from '@nextui-org/skeleton';
 import { colors, semanticColors } from '@nextui-org/theme'

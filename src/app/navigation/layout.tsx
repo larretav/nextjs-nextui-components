@@ -1,4 +1,5 @@
 import { Navbar } from "@nextui-org/navbar";
+import { OSSidebar } from "./_components";
 
 export default function NavigationLayout({
   children
@@ -10,6 +11,8 @@ export default function NavigationLayout({
       <main>
         {children}
       </main>
+
+      <OSSidebar/>
     </div>
   );
 }

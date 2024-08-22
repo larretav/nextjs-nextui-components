@@ -10,28 +10,22 @@ import { User } from '@nextui-org/user';
 import clsx from 'clsx';
 import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
-import tailwindTheme from "tailwindcss/defaultTheme";
 import OSSidebarList from './OSSidebarList';
-
+import { useComponentsStore } from '@/store/ui/components-store';
 
 
 export const OSSidebar = () => {
-  const screens = Object.keys(tailwindTheme.screens);
 
-  const isOpen = useUIStore.use.isSideMenuOpen();
-  const onOpen = useUIStore.use.openSideMenu();
-  const onClose = useUIStore.use.closeSideMenu();
-
-
-  
+  const isOpen = useComponentsStore.use.isOSSidebarOpen();
+  const toggleSidebar = useComponentsStore.use.toggleOSSidebar();
 
   return (
     <Drawer
       anchor="left"
-      open={true}
+      open={isOpen}
       closeButton={<FaChevronLeft size={16} />}
       hideCloseButton={false}
-      onOpenChange={(isOpen) => isOpen ? onOpen() : onClose()}
+      onOpenChange={(isOpen) => { toggleSidebar() }}
       className="w-full sm:w-80"
       classNames={{ body: "px-4 w-full sm:w-80", closeButton: "top-3 right-3" }}
     >

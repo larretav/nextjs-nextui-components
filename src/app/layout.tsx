@@ -3,10 +3,8 @@ import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
-import { Link } from "@nextui-org/link";
 import clsx from "clsx";
-import {  GlobalNavbar, Sidebar } from "@/components";
-import { OSSidebar } from "./navigation/_components";
+import {  GlobalNavbar, SidebarComponents } from "@/components";
 
 export const metadata: Metadata = {
 	title: {
@@ -47,7 +45,7 @@ export default function RootLayout({
 							{children}
 						</main>
 
-						<OSSidebar />
+						<SidebarComponents />
 					</div>
 				</Providers>
 			</body>

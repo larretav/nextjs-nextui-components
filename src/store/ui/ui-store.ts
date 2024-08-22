@@ -6,17 +6,19 @@ interface State {
   isSideMenuOpen: boolean,
 }
 
-type Action = {
+type Actions = {
   openSideMenu: () => void,
   closeSideMenu: () => void,
-
+  toggleSidebar: () => void,
 }
 
-const uiStore = create<State & Action>()(immer((set) => ({
+const uiStore = create<State & Actions>()(immer((set) => ({
   isSideMenuOpen: false,
 
   openSideMenu: () => set((state) => { state.isSideMenuOpen = true }),
   closeSideMenu: () => set((state) => { state.isSideMenuOpen = false }),
+
+  toggleSidebar: ()=> set((state) => { state.isSideMenuOpen = !state.isSideMenuOpen }),
 
 })))
 

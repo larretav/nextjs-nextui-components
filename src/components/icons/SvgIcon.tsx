@@ -1,5 +1,5 @@
 'use client';
-import { getNextUiColorHex, getTailwindColorHex } from '@/app/utils';
+import { getNextUiColorHex, getTailwindColorHex } from '@/utils';
 import { IconSvgProps } from '@/types'
 import { useTheme } from 'next-themes';
 import React from 'react'

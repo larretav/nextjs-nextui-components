@@ -1,9 +1,10 @@
+
 import { useState, useEffect } from 'react';
 
 import tailwindThemeConfig from "tailwindcss/defaultTheme";
 
 
-const screens = {...tailwindThemeConfig.screens};
+const screens = { ...tailwindThemeConfig.screens };
 
 type Breakpoints = keyof typeof screens
 
@@ -12,7 +13,8 @@ function useBreakpoint(key: Breakpoints) {
 
   useEffect(() => {
     const mediaQuery = screens[key];
-    
+    console.log({matches})
+
     if (!mediaQuery) return;
 
     const query = `(min-width: ${mediaQuery})`;
@@ -30,8 +32,8 @@ function useBreakpoint(key: Breakpoints) {
       // Cleanup al desmontar el componente
       return () => media.removeEventListener('change', listener);
     }
+    
   }, [key, matches]);
-
   return matches;
 }
 

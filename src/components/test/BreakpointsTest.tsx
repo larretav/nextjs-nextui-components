@@ -5,6 +5,7 @@ import useBreakpoint from "@/hooks/useBreakpoint";
 const BreakpointsTest = () => {
 
   const test = useBreakpoint("sm")
+  
   console.log(test)
 
   return (
