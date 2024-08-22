@@ -6,8 +6,6 @@ const BreakpointsTest = () => {
 
   const test = useBreakpoint("sm")
   
-  console.log(test)
-
   return (
     <div>
       {

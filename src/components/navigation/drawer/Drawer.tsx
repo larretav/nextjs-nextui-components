@@ -10,7 +10,7 @@ import {
   useDisclosure
 } from '@nextui-org/modal'
 
-import React, { ReactNode, useEffect } from 'react'
+import React, { ReactNode, useCallback, useEffect } from 'react'
 
 interface ModalPropsExtended {
   anchor: 'left' | 'right' | 'top' | 'bottom',
@@ -77,7 +77,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     }
   }
 
-  const toggle = () => {
+  const toggle = useCallback(() => {
     if (localIsOpen) {
       localOnOpen();
       onOpen();
@@ -87,7 +87,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
       localOnClose();
       onClose();
     }
-  }
+  }, [localOnOpen, localOnClose, onClose, onOpen, localIsOpen])
 
   const handleClose = () => {
     localOnClose()
@@ -96,7 +96,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
 
   useEffect(() => {
     toggle();
-  }, [open])
+  }, [toggle, open])
 
 
   return (

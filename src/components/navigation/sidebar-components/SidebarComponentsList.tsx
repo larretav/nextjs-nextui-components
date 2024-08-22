@@ -5,7 +5,7 @@ import { Input } from '@nextui-org/input'
 import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 
 type SidebarOption = {
@@ -20,7 +20,7 @@ type SidebarOption = {
 
 export const SidebarComponentsList = () => {
 
-  const componentSections: SidebarOption[] = [
+  const componentSections: SidebarOption[] = useMemo(() => ([
     {
       section: 'Data display',
       description: 'Avatar, Chip, Badge, etc.',
@@ -53,8 +53,8 @@ export const SidebarComponentsList = () => {
       description: 'Inputs, Toggles, etc.',
       items: [
         {
-          key: "swtich",
-          label: "Swtich",
+          key: "switch",
+          label: "Switch",
           path: '/inputs/switch'
         }
       ]
@@ -75,18 +75,17 @@ export const SidebarComponentsList = () => {
         }
       ]
     },
-  ];
+  ]), []);
 
 
   const [sidebarItems, setSidebarItems] = useState(componentSections);
   const [inputSearch, setInputSearch] = useState("")
   const debounceValue = useDebounce(inputSearch, 500);
   const pathname = usePathname();
-  console.log(pathname)
 
   const handleChangeInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => setInputSearch(e.target.value)
 
-  const handleSearch = () => {
+  const handleSearch = useCallback(() => {
 
     const term = debounceValue;
 
@@ -96,10 +95,10 @@ export const SidebarComponentsList = () => {
     const result = componentSections.map(section => {
       const itemsFiltered = section.items.filter(item => removeAccents(item.label).toLowerCase().includes(removeAccents(term).toLowerCase()));
       return itemsFiltered.length > 0 ? { ...section, items: itemsFiltered } : null;
-    }).filter(section => section != null)
+    }).filter(section => section != null) as SidebarOption[]
 
-    setSidebarItems([...result])
-  }
+    setSidebarItems(result)
+  }, [debounceValue, componentSections])
 
   const isActive = (url: string) => {
     return url === pathname
@@ -107,7 +106,7 @@ export const SidebarComponentsList = () => {
 
   useEffect(() => {
     handleSearch()
-  }, [debounceValue])
+  }, [handleSearch, debounceValue])
 
 
   return (
@@ -130,7 +129,7 @@ export const SidebarComponentsList = () => {
             {
               (item) => <ListboxItem
                 key={item.key}
-                href={isActive(item.path) ? undefined : item.path}
+                href={item.path}
                 classNames={{
                   base: clsx(
                     "px-2 transition-colors", {
