@@ -77,25 +77,22 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     }
   }
 
-  const toggle = useCallback(() => {
-    if (localIsOpen) {
-      localOnOpen();
-      onOpen();
-    }
-
-    if (!localIsOpen) {
-      localOnClose();
-      onClose();
-    }
-  }, [localOnOpen, localOnClose, onClose, onOpen, localIsOpen])
-
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     localOnClose()
     onClose()
-  }
+  }, [localOnClose, onClose])
+
+  const handleOpen = useCallback(() => {
+    localOnOpen();
+    onOpen();
+  }, [localOnOpen, onOpen])
 
   useEffect(() => {
-    toggle();
+    if (open) {
+      handleOpen();
+    } else {
+      handleClose();
+    }
   }, [open])
 
 

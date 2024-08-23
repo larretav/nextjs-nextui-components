@@ -4,7 +4,7 @@ import { Drawer } from '@/components';
 import { DrawerContent } from '@/components/navigation/drawer/Drawer';
 import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input';
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { BsPerson } from 'react-icons/bs';
 import { FaChevronLeft, FaXmark } from 'react-icons/fa6';
 import { MdClose } from 'react-icons/md';
@@ -47,13 +47,20 @@ export const DrawerButtons = () => {
   return (
     <div className="p-2 flex items-center justify-center gap-4 bg-default-100 rounded-xl">
       {
-        buttonList.slice().map(item => <div key={item.anchor}>
+        buttonList.map(item => <div key={item.anchor}>
           <Button key={item.anchor} isIconOnly onClick={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
-          <Drawer anchor={item.anchor} open={state[item.anchor]} closeButton={<FaXmark />} hideCloseButton={false} onClose={() => toggleDrawer(item.anchor, false)}>
+          <Drawer
+            anchor={item.anchor}
+            open={state[item.anchor]}
+            closeButton={<FaXmark />}
+            hideCloseButton={false}
+            onClose={() => {
+              toggleDrawer(item.anchor, false)
+            }}>
             <DrawerContent className="p-2 pt-12">
               {
                 (onClose) => <>
-                  <Button color="danger" onPress={onClose}>Cerrar</Button>
+                  <Button color="danger" onClick={onClose}>Cerrar</Button>
                 </>
               }
             </DrawerContent>
