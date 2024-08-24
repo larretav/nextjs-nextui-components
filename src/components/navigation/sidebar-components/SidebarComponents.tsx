@@ -1,6 +1,6 @@
 'use client';
 import { Drawer, ThemeSwitch } from '@/components'
-import { OnSiteIconSolid } from '@/components/icons';
+import { OnSiteLogoSolid } from '@/components/icons';
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useComponentsStore, useUIStore } from '@/store'
 import { Button } from '@nextui-org/button'

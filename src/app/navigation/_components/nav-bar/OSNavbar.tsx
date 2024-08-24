@@ -1,7 +1,7 @@
 'use client';
 import React from 'react'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
-import { OnSiteIconSolid, OnSiteIconSolid2 } from '@/components/icons';
+import { OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from '@/components/icons';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import { Avatar } from '@nextui-org/avatar';
 import { FaBars, FaBell, FaUser } from 'react-icons/fa6';
@@ -18,8 +18,7 @@ export const OSNavbar = () => {
         <NavbarBrand>
           <OSHamburguerButton > <FaBars /> </OSHamburguerButton>
           <Link href="/">
-            <OnSiteIconSolid size={50} className="inline-flex md:hidden" />
-            <OnSiteIconSolid2 size={80} className="hidden md:inline-block" />
+            <OnSiteLogoSolid2 width={70} />
           </Link>
         </NavbarBrand >
       </NavbarContent>

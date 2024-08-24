@@ -19,11 +19,11 @@ export const SvgIcon = ({
 
   return (
     <svg
-      height={size || height}
-      width={size || width}
+      height={height || size}
+      width={width || size}
       viewBox={viewBox}
       {...props}
-      style={{color: hexColor}}
+      style={{ color: hexColor }}
     >{children}</svg>
   )
 }

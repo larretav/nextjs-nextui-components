@@ -1,6 +1,6 @@
 'use client';
 import { Drawer, List, ThemeSwitch } from '@/components'
-import { OnSiteIconSolid } from '@/components/icons';
+import { OnSiteLogoSolid2 } from '@/components/icons';
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useUIStore } from '@/store'
 import { Button } from '@nextui-org/button'
@@ -24,18 +24,21 @@ export const OSSidebar = () => {
       anchor="left"
       open={isOpen}
       closeButton={<FaChevronLeft size={16} />}
-      hideCloseButton={false}
       onOpenChange={(isOpen) => { toggleSidebar() }}
       className="w-full sm:w-80"
-      classNames={{ body: "px-4 w-full sm:w-80", closeButton: "top-3 right-3" }}
+      classNames={{ body: "px-4 w-full sm:w-80" }}
+    // hideCloseButton={false}
     >
       <DrawerContent>
         {
           (onClose) => <>
-            <DrawerHeader className="flex-col gap-4">
-              <OnSiteIconSolid size={56} />
+            <DrawerHeader className="flex-col gap-8 mt-2">
+              <div className="w-full flex justify-between items-center">
+                <OnSiteLogoSolid2 width={90} height={30} className="py-px px-2 box-content dark:bg-neutral-700 rounded-lg" viewBox="0 0 23 6.15512" />
+                <Button isIconOnly variant="light" radius="full" size="sm" onPress={onClose} > <FaChevronLeft size={18} /> </Button>
+              </div>
               <User
-                name="Juan Perez"
+                name="Maria Antonieta de las Nieves"
                 description="Cliente"
                 avatarProps={{
                   src: "https://i.pravatar.cc/150?u=a04258114e29026702d",
@@ -44,10 +47,8 @@ export const OSSidebar = () => {
               />
             </DrawerHeader>
 
-            <DrawerBody>
+            <DrawerBody className="overflow-y-auto">
               <OSSidebarList />
-
-
             </DrawerBody>
             <DrawerFooter>
               <ThemeSwitch />

@@ -26,12 +26,6 @@ export const ComponentCategoriesList = () => {
     },
     {
       icon: <FaImage size={40} />,
-      title: 'Layout',
-      subtitle: 'Grid, Stack, etc.',
-      url: '/layout'
-    },
-    {
-      icon: <FaImage size={40} />,
       title: 'Navigation',
       subtitle: 'Sidebar, Bottom Navigation, etc.',
       url: '/navigation'

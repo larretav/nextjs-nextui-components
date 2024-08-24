@@ -120,6 +120,7 @@ const OSSidebarList = (props: Props) => {
         placeholder="Buscar..."
         value={inputSearch}
         onChange={handleChangeInputSearch}
+        className="sticky top-0 z-10"
       />
 
       <Listbox
