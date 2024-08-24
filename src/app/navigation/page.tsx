@@ -16,7 +16,7 @@ export default function NavigationPage() {
       <div >
         <DrawerButtons />
       </div>
-      <div >
+      <div className="sm:col-span-2 ">
         <BreakpointsTest />
       </div>
       {/* <div className="p-2 box-border rounded-xl"> */}

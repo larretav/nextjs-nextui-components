@@ -8,6 +8,7 @@ import { User } from '@nextui-org/user';
 import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
 import { SidebarComponentsList } from './SidebarComponentsList';
+import useBreakpoint from '@/hooks/useBreakpoint';
 
 
 
@@ -16,15 +17,16 @@ export const SidebarComponents = () => {
   const isOpen = useUIStore.use.isSideMenuOpen();
   const toggleSidebar = useUIStore.use.toggleSidebar();
 
+  const desktopMatch = useBreakpoint('sm')
+
   return (
     <Drawer
-      anchor="left"
+      anchor={desktopMatch ? 'left' : 'top'}
       open={isOpen}
       closeButton={<FaChevronLeft size={16} />}
       hideCloseButton={false}
       onOpenChange={(isOpen) => toggleSidebar()}
-      className="w-full sm:w-80"
-      classNames={{ body: "px-4 w-full sm:w-80", closeButton: "top-3 right-3" }}
+      classNames={{ body: "px-4", base: 'h-full', closeButton: "top-3 right-3" }}
     >
       <DrawerContent className="pt-10">
         {

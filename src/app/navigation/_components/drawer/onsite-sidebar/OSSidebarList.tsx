@@ -29,7 +29,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'dashboard',
           label: 'Resumen',
-          path: '/'
+          path: '/navigation'
         },
         {
           key: 'quotatio',
@@ -136,7 +136,7 @@ const OSSidebarList = (props: Props) => {
                 classNames={{
                   base: clsx(
                     "py-2 px-4 transition-colors", {
-                    "border-0 bg-green-600/20 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": isActive(item.path)
+                    "border-0 bg-green-600/10 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": isActive(item.path)
                   }),
                   title: clsx({
                     "font-semibold": isActive(item.path)
