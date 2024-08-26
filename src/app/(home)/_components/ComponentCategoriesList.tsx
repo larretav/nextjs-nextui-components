@@ -24,12 +24,7 @@ export const ComponentCategoriesList = () => {
       subtitle: 'Inputs, Toggles, etc.',
       url: '/inputs'
     },
-    {
-      icon: <FaImage size={40} />,
-      title: 'Layout',
-      subtitle: 'Grid, Stack, etc.',
-      url: '/layout'
-    },
+
     {
       icon: <FaImage size={40} />,
       title: 'Navigation',
@@ -44,7 +39,7 @@ export const ComponentCategoriesList = () => {
     <div className="w-full grid grid-cols-1 sm:grid-cols-4 gap-4">
       {
         categories.map((item, idx) => (
-          <Card key={idx} isPressable onPress={()=> router.push(item.url)} className=" p-4 rounded-2xl  bg-zinc-100 dark:bg-zinc-800 text-slate-800 dark:text-slate-100 gap-3 items-center">
+          <Card key={idx} isPressable onPress={() => router.push(item.url)} className="p-4 rounded-2xl  bg-zinc-100 dark:bg-zinc-800 text-slate-800 dark:text-slate-100 gap-3 items-center">
             <div>{item.icon}</div>
             <div className="flex flex-col">
               <span className="text-3xl">{item.title}</span>

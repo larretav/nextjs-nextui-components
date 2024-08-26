@@ -1,6 +1,5 @@
 export { SidebarComponents } from "./navigation/sidebar-components/SidebarComponents";
 export { SidebarComponentsList } from "./navigation/sidebar-components/SidebarComponentsList";
-
 export { BottomNavigationBar } from "./navigation/bottom-nav-bar/BottomNavigationBar";
 export { BottomNavigationBarItem } from "./navigation/bottom-nav-bar/BottomNavigationBarItem";
 export { Drawer } from "./navigation/drawer/Drawer";
