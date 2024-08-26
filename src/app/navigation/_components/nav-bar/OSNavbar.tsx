@@ -1,23 +1,26 @@
 'use client';
 import React from 'react'
 import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
-import { OnSiteIconSolid } from '@/components/icons';
+import { OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from '@/components/icons';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import { Avatar } from '@nextui-org/avatar';
 import { FaBars, FaBell, FaUser } from 'react-icons/fa6';
 import { Badge } from '@nextui-org/badge';
 import { OSHamburguerButton } from '../drawer/OSHamburguerButton';
+import Link from 'next/link';
 
 
 export const OSNavbar = () => {
 
   return (
-    <Navbar maxWidth="xl" position="sticky" classNames={{wrapper: "pl-2 pr-3 bg-default-50 rounded-xl"}}>
+    <Navbar maxWidth="xl" position="sticky" classNames={{ wrapper: "pl-2 pr-3 bg-default-50 rounded-xl" }}>
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand>
           <OSHamburguerButton > <FaBars /> </OSHamburguerButton>
-          <OnSiteIconSolid size={56} />
-        </NavbarBrand>
+          <Link href="/">
+            <OnSiteLogoSolid2 width={70} />
+          </Link>
+        </NavbarBrand >
       </NavbarContent>
 
       <NavbarContent justify="center" >
@@ -25,7 +28,7 @@ export const OSNavbar = () => {
       </NavbarContent>
 
       <NavbarContent as="div" justify="end">
-        <Badge color="danger" content={5} shape="circle">
+        <Badge color="danger" content={5} shape="circle" >
           <FaBell />
         </Badge>
         <Dropdown placement="bottom-end">

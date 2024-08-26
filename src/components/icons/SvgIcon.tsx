@@ -3,7 +3,6 @@ import { getNextUiColorHex, getTailwindColorHex } from '@/utils';
 import { IconSvgProps } from '@/types'
 import { useTheme } from 'next-themes';
 import React from 'react'
-import { IconType } from 'react-icons'
 
 export const SvgIcon = ({
   size = 24,
@@ -15,16 +14,16 @@ export const SvgIcon = ({
   ...props
 }: IconSvgProps) => {
 
-  const { theme = 'light' } = useTheme()
+  const { theme = 'light' } = useTheme();
   const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
 
   return (
     <svg
-      height={size || height}
-      width={size || width}
+      height={height || size}
+      width={width || size}
       viewBox={viewBox}
       {...props}
-      style={{color: hexColor}}
+      style={{ color: hexColor }}
     >{children}</svg>
   )
 }

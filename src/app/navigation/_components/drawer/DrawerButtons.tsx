@@ -48,7 +48,7 @@ export const DrawerButtons = () => {
     <div className="p-2 flex items-center justify-center gap-4 bg-default-100 rounded-xl">
       {
         buttonList.map(item => <div key={item.anchor}>
-          <Button key={item.anchor} isIconOnly onClick={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
+          <Button key={item.anchor} isIconOnly onPress={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
           <Drawer
             anchor={item.anchor}
             open={state[item.anchor]}
@@ -60,7 +60,7 @@ export const DrawerButtons = () => {
             <DrawerContent className="p-2 pt-12">
               {
                 (onClose) => <>
-                  <Button color="danger" onClick={onClose}>Cerrar</Button>
+                  <Button color="danger" onPress={onClose}>Cerrar</Button>
                 </>
               }
             </DrawerContent>

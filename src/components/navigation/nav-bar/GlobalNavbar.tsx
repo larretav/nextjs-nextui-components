@@ -19,19 +19,16 @@ export const GlobalNavbar = () => {
 
 
 	return (
-		<Navbar maxWidth="xl" position="sticky">
-			<NavbarContent className="basis-1/5 sm:basis-full" justify="start">
-				<NavbarBrand >
+		<Navbar maxWidth="xl" position="sticky" >
+			<NavbarContent className="basis-1/5 sm:basis-full" justify="start" >
+				<NavbarBrand className="flex gap-3" >
 					<HamburguerButton > <FaBars size={24} /> </HamburguerButton>
-
-					<NextLink className="flex justify-start items-center gap-1" href="/">
-						<p className="font-bold text-inherit">Title App</p>
-					</NextLink>
+					<NextLink href="/" className="text-xl font-bold" >Componentes NextUI</NextLink>
 				</NavbarBrand>
 			</NavbarContent>
 
-			<NavbarContent className="basis-1/5 sm:basis-full" justify="end">
-				<NavbarItem className="flex gap-2">
+			<NavbarContent className="basis-1/5 sm:basis-full" justify="end" >
+				<NavbarItem className="flex gap-2" >
 					<ThemeSwitch />
 				</NavbarItem>
 			</NavbarContent>

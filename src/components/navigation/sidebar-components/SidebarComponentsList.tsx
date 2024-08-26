@@ -128,19 +128,18 @@ export const SidebarComponentsList = () => {
         emptyContent="Sin resultados"
       >
         {({ items, section }) => (
-          <ListboxSection key={section} title={section} items={items} classNames={{ group: "flex flex-col gap-1" }}>
+          <ListboxSection  key={section} title={section} items={items} classNames={{ group: "flex flex-col gap-1" }}>
             {
               (item) => <ListboxItem
                 key={item.key}
                 href={item.path}
-                // as={Link}
                 onClick={() => { console.log(item.path) }}
                 classNames={{
                   base: clsx(
-                    "px-2 transition-colors", {
-                    "border-0 bg-green-600/20 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": isActive(item.path)
+                    "px-4 transition-colors text-default-400", {
+                    "text-green-600 dark:text-white data-[hover=true]:text-green-500 transition-colors": isActive(item.path)
                   }),
-                  title: clsx({
+                  title: clsx("text-medium",{
                     "font-semibold": isActive(item.path)
                   })
                 }}
