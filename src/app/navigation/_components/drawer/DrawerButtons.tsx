@@ -14,59 +14,71 @@ import { TbLayoutSidebarFilled, TbLayoutSidebarRightFilled, TbLayoutNavbarFilled
 
 export const DrawerButtons = () => {
 
-  const [state, setState] = useState<Record<string, any>>({
+  const [anchors, setAnchors] = useState<Record<string, any>>({
     top: false,
     left: false,
     bottom: false,
     right: false,
   })
 
-  const buttonList: Record<string, any>[] = [
+  const [pressData, setPressData] = useState([JSON.stringify(anchors)])
+  const [rightSidebar, setRightSidebar] = useState(false)
+
+  const buttonList: Record<string, any>[] = useMemo(() => ([
     {
       anchor: 'left',
       icon: <TbLayoutSidebarFilled />
-    },
-    {
-      anchor: 'right',
-      icon: <TbLayoutSidebarRightFilled />
     },
     {
       anchor: 'top',
       icon: <TbLayoutNavbarFilled />
     },
     {
+      anchor: 'right',
+      icon: <TbLayoutSidebarRightFilled />
+    },
+    {
       anchor: 'bottom',
       icon: <TbLayoutNavbarFilled className="rotate-180" />
     },
-  ]
+  ]), [])
 
   const toggleDrawer = (anchor: string, open: boolean) => {
-    setState({ ...state, [anchor]: open })
+    setAnchors({ ...anchors, [anchor]: open })
   }
 
   return (
-    <div className="p-2 flex items-center justify-center gap-4 bg-default-100 rounded-xl">
-      {
-        buttonList.map(item => <div key={item.anchor}>
-          <Button key={item.anchor} isIconOnly onPress={() => { toggleDrawer(item.anchor, true) }}> {item.icon} </Button>
-          <Drawer
-            anchor={item.anchor}
-            open={state[item.anchor]}
-            closeButton={<FaXmark />}
-            hideCloseButton={false}
-            onClose={() => {
-              toggleDrawer(item.anchor, false)
-            }}>
-            <DrawerContent className="p-2 pt-12">
-              {
-                (onClose) => <>
-                  <Button color="danger" onPress={onClose}>Cerrar</Button>
-                </>
-              }
-            </DrawerContent>
-          </Drawer>
-        </div>)
-      }
+    <div className="p-2 flex flex-col items-center justify-center gap-4 bg-default-100 rounded-xl">
+      <div className="flex gap-5 items-center">
+        {
+          buttonList.map(item => <div key={item.anchor}>
+            <Button key={item.anchor} isIconOnly onPress={(e) => {
+              toggleDrawer(item.anchor, true);
+              setPressData([...pressData, JSON.stringify({ ...anchors, [item.anchor]: true })]);
+            }}> {item.icon} </Button>
+            <Drawer
+              anchor={item.anchor}
+              open={anchors[item.anchor]}
+              closeButton={<FaXmark />}
+              hideCloseButton={false}
+              onClose={() => {
+                toggleDrawer(item.anchor, false)
+              }}>
+              <DrawerContent className="p-2 pt-12">
+                {
+                  (onClose) => <>
+                    <Button color="danger" onPress={onClose}>Cerrar</Button>
+                  </>
+                }
+              </DrawerContent>
+            </Drawer>
+          </div>)
+        }
+
+      </div>
+      {/* <div>
+        {pressData.map(item => <p key={item}>{item}</p>)}
+      </div> */}
     </div>
   )
 }

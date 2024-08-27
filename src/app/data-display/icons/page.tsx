@@ -1,5 +1,5 @@
 import React, { HTMLProps, StyleHTMLAttributes } from "react";
-import { GithubIconSolid, OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from "@/components/icons";
+import { ShipOutputSolid, OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from "@/components/icons";
 import { PageTitle } from "@/components";
 import Image from "next/image";
 
@@ -16,7 +16,7 @@ export default function IconsPage() {
         </div>
 
         <div className="p-2 bg-default-200 rounded-xl ">
-          <GithubIconSolid size={30} viewBox="0 0 15 15" />
+          <ShipOutputSolid size={30} viewBox="0 0 15 15" />
         </div>
 
         <div className="p-2 bg-default-200 rounded-xl ">

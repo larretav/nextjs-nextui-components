@@ -22,7 +22,7 @@ export const OSSidebar = () => {
   return (
     <Drawer
       anchor="left"
-      open={isOpen}
+      open={true}
       closeButton={<FaChevronLeft size={16} />}
       onOpenChange={(isOpen) => { toggleSidebar() }}
       className="w-full sm:w-80"
@@ -47,7 +47,7 @@ export const OSSidebar = () => {
               />
             </DrawerHeader>
 
-            <DrawerBody className="overflow-y-auto">
+            <DrawerBody className="overflow-y-auto no-scrollbar">
               <OSSidebarList />
             </DrawerBody>
             <DrawerFooter>

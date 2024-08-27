@@ -4,11 +4,11 @@ import { IconSvgProps } from '@/types'
 
 export const OnSiteLogoSolid2 = (props: IconSvgProps) => {
 
-  const {className = "", ...restProps } = props
+  const { className = "", ...restProps } = props
 
   return (
     <>
-      <SvgIcon  width={90} height={30} className={ "py-px px-2 box-content dark:bg-neutral-700 rounded-lg " + className} viewBox="0 0 23 6.15512" {...restProps}>
+      <SvgIcon width={90} height={30} className={"py-px px-2 box-content dark:bg-neutral-700 rounded-lg " + className} viewBox="0 0 23 6.15512" {...restProps}>
         <path
           d="M.5,12.28889A2.60127,2.60127,0,0,1,3.05181,9.50021a2.6008,2.6008,0,0,1,2.55181,2.78868,2.60078,2.60078,0,0,1-2.55181,2.78867A2.60125,2.60125,0,0,1,.5,12.28889Zm4.011,0a1.5493,1.5493,0,0,0-1.45914-1.7256,1.5493,1.5493,0,0,0-1.45914,1.7256,1.5493,1.5493,0,0,0,1.45914,1.72559A1.5493,1.5493,0,0,0,4.511,12.28889Z"
           transform="translate(-0.5 -8.92244)" fill="#151b4e" />

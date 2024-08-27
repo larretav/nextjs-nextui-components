@@ -5,7 +5,8 @@ import { SvgIcon } from "./SvgIcon";
 export const DashboardSolid = (props: IconSvgProps) => {
   return (
     <SvgIcon {...props}>
-      <path d="M8 18H2C0.9 18 0 17.1 0 16V2C0 0.9 0.9 0 2 0H8V18ZM10 18H16C17.1 18 18 17.1 18 16V9H10V18ZM18 7V2C18 0.9 17.1 0 16 0H10V7H18Z" fill="currentColor" />
+      <path
+        d="M11,21H5a2.00588,2.00588,0,0,1-2-2V5A2.00588,2.00588,0,0,1,5,3h6Zm2,0h6a2.00588,2.00588,0,0,0,2-2V12H13Zm8-11V5a2.00588,2.00588,0,0,0-2-2H13v7Z" fill="currentColor" />
     </SvgIcon>
   )
 }
