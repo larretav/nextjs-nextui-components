@@ -1,5 +1,5 @@
 'use client';
-import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid } from '@/components/icons';
+import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid } from '@/components/icons';
 import useDebounce from '@/hooks/useDebounce';
 import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
@@ -7,7 +7,8 @@ import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
-import { FaBoxOpen, FaFileInvoice, FaMagnifyingGlass } from 'react-icons/fa6'
+import { BsFillMegaphoneFill, BsMegaphone, BsMegaphoneFill } from 'react-icons/bs';
+import { FaBoxOpen, FaFileInvoice, FaFileInvoiceDollar, FaMagnifyingGlass } from 'react-icons/fa6'
 import { MdGroups } from 'react-icons/md';
 
 type Props = {}
@@ -32,7 +33,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'dashboard',
           label: 'Resumen',
-          icon: <ShipmentsSolid />,
+          icon: <DashboardSolid />,
           path: '/navigation'
         },
         {
@@ -113,7 +114,59 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'notices',
           label: 'Avisos',
-          icon: <PickupRequestSolid />,
+          icon: <MegaphoneSolid />,
+          path: '/'
+        },
+      ]
+    },
+    {
+      sectionTitle: 'Estado de cuenta',
+      items: [
+        {
+          key: 'account-summary',
+          label: 'Resumen de cuenta',
+          icon: <FaFileInvoiceDollar />,
+          path: '/'
+        },
+        {
+          key: 'recharges',
+          label: 'Recargas',
+          icon: <RechargesSolid />,
+          path: '/'
+        },
+        {
+          key: 'payment-invoices',
+          label: 'Facturas de pago',
+          icon: <FaFileInvoice />,
+          path: '/'
+        },
+      ]
+    },
+    {
+      sectionTitle: 'Reportes',
+      items: [
+        {
+          key: 'delivered-shipments',
+          label: 'Envíos entregados',
+          icon: <ShipmentsSolid />,
+          path: '/'
+        },
+        {
+          key: 'detailed-shipments',
+          label: 'Envíos (detallado)',
+          icon: <FaFileInvoice />,
+          path: '/'
+        },
+        {
+          key: 'concentrated-shipments',
+          label: 'Envíos (concentrado)',
+          icon: <BranchOfficeShipmentsSolid />,
+          path: '/'
+        },
+        {
+          key: 'custom-shipments',
+          label: 'Envíos (personalizado)',
+          icon: <MegaphoneSolid />,
           path: '/'
         },
       ]
@@ -171,7 +224,7 @@ const OSSidebarList = (props: Props) => {
         emptyContent="Sin resultados"
       >
         {({ items, sectionTitle }) => (
-          <ListboxSection key={sectionTitle} title={sectionTitle} items={items} classNames={{ group: "flex flex-col gap-1" }}>
+          <ListboxSection key={sectionTitle} title={sectionTitle} items={items} classNames={{ group: "flex flex-col gap-1",heading: "uppercase" }}>
             {
               (item) => <ListboxItem
                 key={item.key}
