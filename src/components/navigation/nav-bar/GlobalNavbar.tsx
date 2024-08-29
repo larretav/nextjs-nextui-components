@@ -8,11 +8,11 @@ import {
 
 import NextLink from "next/link";
 
-import { ThemeSwitch } from "@/components/navigation/ThemeSwitch";
 import { FaBars, FaBell, FaUser } from "react-icons/fa6";
 import { Badge } from "@nextui-org/badge";
 import { Avatar } from "@nextui-org/avatar";
 import { HamburguerButton } from "./HamburguerButton";
+import { ThemeSwitch } from "@/components/inputs/ThemeSwitch";
 
 
 export const GlobalNavbar = () => {

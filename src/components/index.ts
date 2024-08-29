@@ -1,3 +1,4 @@
+export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { CBadge } from "./data-display/badge/CBadge";
 export { BottomNavigationBar } from "./navigation/bottom-nav-bar/BottomNavigationBar";
 export { BottomNavigationBarItem } from "./navigation/bottom-nav-bar/BottomNavigationBarItem";
@@ -9,4 +10,5 @@ export { PageTitle } from "./typography/PageTitle";
 export { SidebarComponents } from "./navigation/sidebar-components/SidebarComponents";
 export { SidebarComponentsList } from "./navigation/sidebar-components/SidebarComponentsList";
 export { SidebarPrototype } from "./navigation/sidebar/SidebarPrototype";
-export { ThemeSwitch } from "./navigation/ThemeSwitch";
+export { ThemeSwitch } from "./inputs/ThemeSwitch";
+
