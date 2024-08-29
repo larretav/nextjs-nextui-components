@@ -1,5 +1,6 @@
 'use client';
-import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid } from '@/components/icons';
+import { CBadge } from '@/components';
+import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid, DeliveredShipmentsReportSolid, DetailedShipmentsReportSolid, ConcentratedShipmentsReportSolid, CustomizedShipmentsReportSolid, FaqSolid, FileInvoiceDollarSolid, FileInvoiceSolid, BoxOpenSolid, BookSolid, HeadsetSolid } from '@/components/icons';
 import useDebounce from '@/hooks/useDebounce';
 import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
@@ -7,8 +8,8 @@ import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
-import { BsFillMegaphoneFill, BsMegaphone, BsMegaphoneFill } from 'react-icons/bs';
-import { FaBoxOpen, FaFileInvoice, FaFileInvoiceDollar, FaMagnifyingGlass } from 'react-icons/fa6'
+import { BsFillMegaphoneFill, BsHeadset, BsMegaphone, BsMegaphoneFill } from 'react-icons/bs';
+import { FaBook, FaBoxOpen, FaFileInvoice, FaFileInvoiceDollar, FaHeadset, FaMagnifyingGlass } from 'react-icons/fa6'
 import { MdGroups } from 'react-icons/md';
 
 type Props = {}
@@ -21,6 +22,7 @@ type SidebarOption = {
     icon: React.JSX.Element,
     label: string;
     path: string;
+    badge?: ReactElement;
   }[]
 }
 
@@ -48,15 +50,15 @@ const OSSidebarList = (props: Props) => {
       sectionTitle: 'Catálogos',
       items: [
         {
-          key: 'customer',
-          label: 'Cliente',
+          key: 'customers',
+          label: 'Clientes',
           icon: <MdGroups />,
           path: '/'
         },
         {
           key: 'boxes',
           label: 'Cajas',
-          icon: <FaBoxOpen />,
+          icon: <BoxOpenSolid />,
           path: '/'
         },
         {
@@ -80,13 +82,15 @@ const OSSidebarList = (props: Props) => {
           key: 'delivery-notifications',
           label: 'Notificación de entregas',
           icon: <NotifDeliverySolid />,
-          path: '/'
+          path: '/',
+          badge: <CBadge content="5" />
         },
         {
           key: 'pickup-request',
           label: 'Solicitud de recolección',
           icon: <PickupRequestSolid />,
-          path: '/'
+          path: '/',
+          badge: <CBadge content="new" />
         },
       ]
     },
@@ -102,8 +106,9 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'invoices',
           label: 'Facturas',
-          icon: <FaFileInvoice />,
-          path: '/'
+          icon: <FileInvoiceSolid />,
+          path: '/',
+          badge: <CBadge content="5" />
         },
         {
           key: 'branch-office-shipments',
@@ -125,7 +130,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'account-summary',
           label: 'Resumen de cuenta',
-          icon: <FaFileInvoiceDollar />,
+          icon: <FileInvoiceDollarSolid />,
           path: '/'
         },
         {
@@ -137,7 +142,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'payment-invoices',
           label: 'Facturas de pago',
-          icon: <FaFileInvoice />,
+          icon: <FileInvoiceSolid />,
           path: '/'
         },
       ]
@@ -148,25 +153,48 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'delivered-shipments',
           label: 'Envíos entregados',
-          icon: <ShipmentsSolid />,
+          icon: <DeliveredShipmentsReportSolid />,
           path: '/'
         },
         {
           key: 'detailed-shipments',
           label: 'Envíos (detallado)',
-          icon: <FaFileInvoice />,
+          icon: <DetailedShipmentsReportSolid />,
           path: '/'
         },
         {
           key: 'concentrated-shipments',
           label: 'Envíos (concentrado)',
-          icon: <BranchOfficeShipmentsSolid />,
+          icon: <ConcentratedShipmentsReportSolid />,
           path: '/'
         },
         {
           key: 'custom-shipments',
           label: 'Envíos (personalizado)',
-          icon: <MegaphoneSolid />,
+          icon: <CustomizedShipmentsReportSolid />,
+          path: '/'
+        },
+      ]
+    },
+    {
+      sectionTitle: 'Ayuda',
+      items: [
+        {
+          key: 'manual',
+          label: 'Manuales',
+          icon: <BookSolid />,
+          path: '/'
+        },
+        {
+          key: 'faq',
+          label: 'Preguntas frecuentes',
+          icon: <FaqSolid />,
+          path: '/'
+        },
+        {
+          key: 'support',
+          label: 'Soporte',
+          icon: <HeadsetSolid />,
           path: '/'
         },
       ]
@@ -224,19 +252,21 @@ const OSSidebarList = (props: Props) => {
         emptyContent="Sin resultados"
       >
         {({ items, sectionTitle }) => (
-          <ListboxSection key={sectionTitle} title={sectionTitle} items={items} classNames={{ group: "flex flex-col gap-1",heading: "uppercase" }}>
+          <ListboxSection key={sectionTitle} title={sectionTitle} items={items} classNames={{ group: "flex flex-col gap-1", heading: "uppercase font-semibold", }}>
             {
               (item) => <ListboxItem
                 key={item.key}
                 startContent={item.icon}
+                endContent={item?.badge}
                 classNames={{
                   base: clsx(
-                    "py-2 px-4 transition-colors", {
-                    "border-0 bg-green-600/10 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 border-0 transition-colors": isActive(item.path)
+                    "py-2 px-4 transition-colors text-slate-600 dark:text-slate-100 data-[hover=true]:text-slate-600 data-[hover=true]:bg-default-200", {
+                    "bg-green-600/10 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 transition-colors": isActive(item.path)
                   }),
                   title: clsx({
                     "font-semibold": isActive(item.path)
-                  })
+                  }),
+
                 }}
               >
                 {item.label}

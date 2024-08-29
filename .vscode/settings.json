@@ -2,5 +2,8 @@
   "typescript.tsdk": "node_modules/typescript/lib",
   "exportall.config.folderListener": [
     "/src/components/icons"
+  ],
+  "exportall.config.relExclusion": [
+    "/src/components/icons"
   ]
 }

@@ -33,7 +33,7 @@ module.exports = {
       themes: {
         light: {
           colors: {
-            primary: {
+            onsite: {
               50: "#E5FBD4",
               100: "#E5FBD4",
               200: "#C7F7AB",
@@ -65,7 +65,7 @@ module.exports = {
         },
         dark: {
           colors: {
-            primary: {
+            onsite: {
               50: "#085316",
               100: "#0D6517",
               200: "#157D18",

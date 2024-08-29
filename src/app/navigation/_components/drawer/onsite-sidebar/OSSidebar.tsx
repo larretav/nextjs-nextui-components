@@ -4,14 +4,17 @@ import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/compone
 import { useUIStore } from '@/store'
 import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input';
-import { Listbox, ListboxItem } from '@nextui-org/listbox';
+import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox';
 import { User } from '@nextui-org/user';
 import clsx from 'clsx';
 import React from 'react'
-import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
+import { FaChevronLeft, FaMagnifyingGlass, FaMoon } from 'react-icons/fa6'
 import OSSidebarList from './OSSidebarList';
 import { useComponentsStore } from '@/store/ui/components-store';
 import { OnSiteLogoSolid2 } from '@/components/icons';
+import { IoLogOut } from "react-icons/io5";
+import { MdLogout } from 'react-icons/md';
+import { OSSidebarThemeSwitch } from './OSSidebarThemeSwitch';
 
 
 export const OSSidebar = () => {
@@ -50,9 +53,34 @@ export const OSSidebar = () => {
             <DrawerBody className="overflow-y-auto no-scrollbar">
               <OSSidebarList />
             </DrawerBody>
-            <DrawerFooter>
-              <ThemeSwitch />
-              <Button color="danger" onPress={onClose}>Cerrar</Button>
+            
+            <DrawerFooter className="pt-1">
+              <Listbox aria-label="Sidebar Footer">
+                <ListboxItem
+                  key="logout"
+                  startContent={<IoLogOut className="rotate-180" />}
+                  classNames={{
+                    base: clsx(
+                      "py-2 transition-colors text-slate-600 dark:text-slate-100 data-[hover=true]:text-slate-600 data-[hover=true]:bg-default-200", {
+                    }),
+                  }}
+                >
+                  Cerrar sesión
+                </ListboxItem>
+                <ListboxItem
+                  key="theme-switch"
+                  startContent={<FaMoon size={20} />}
+                  endContent={ <OSSidebarThemeSwitch size="sm" />}
+                  classNames={{
+                    base: clsx(
+                      "p-2 pl-4 transition-colors text-slate-600 dark:text-slate-100 data-[hover=true]:text-slate-600 data-[hover=true]:bg-default-200", {
+                    }),
+                  }}
+                >
+                  Tema oscuro
+                </ListboxItem>
+
+              </Listbox>
             </DrawerFooter>
 
           </>

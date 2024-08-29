@@ -1,3 +1,4 @@
+export { CBadge } from "./data-display/badge/CBadge";
 export { BottomNavigationBar } from "./navigation/bottom-nav-bar/BottomNavigationBar";
 export { BottomNavigationBarItem } from "./navigation/bottom-nav-bar/BottomNavigationBarItem";
 export { Drawer } from "./navigation/drawer/Drawer";
