@@ -9,7 +9,7 @@ import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
 import { SidebarComponentsList } from './SidebarComponentsList';
 import useBreakpoint from '@/hooks/useBreakpoint';
-import { ThemeSwitchTab } from '@/app/inputs/components/TabsExample';
+import { ThemeSwitchTabs } from '@/components/inputs/ThemeSwitchTabs';
 
 
 
@@ -36,7 +36,7 @@ export const SidebarComponents = () => {
               <SidebarComponentsList />
             </DrawerBody>
             <DrawerFooter>
-              <ThemeSwitchTab />
+              <ThemeSwitchTabs />
             </DrawerFooter>
 
           </>

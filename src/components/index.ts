@@ -1,3 +1,4 @@
+export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { CBadge } from "./data-display/badge/CBadge";
 export { BottomNavigationBar } from "./navigation/bottom-nav-bar/BottomNavigationBar";
@@ -11,4 +12,3 @@ export { SidebarComponents } from "./navigation/sidebar-components/SidebarCompon
 export { SidebarComponentsList } from "./navigation/sidebar-components/SidebarComponentsList";
 export { SidebarPrototype } from "./navigation/sidebar/SidebarPrototype";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
-

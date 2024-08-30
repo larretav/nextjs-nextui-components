@@ -1,5 +1,5 @@
 'use client';
-import { Drawer, List, ThemeSwitch } from '@/components'
+import { Drawer, List, ThemeSwitch, ThemeSwitchTabs } from '@/components'
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useUIStore } from '@/store'
 import { Button } from '@nextui-org/button'
@@ -25,7 +25,7 @@ export const OSSidebar = () => {
   return (
     <Drawer
       anchor="left"
-      open={true}
+      open={isOpen}
       closeButton={<FaChevronLeft size={16} />}
       onOpenChange={(isOpen) => { toggleSidebar() }}
       className="w-full sm:w-80"
@@ -53,8 +53,8 @@ export const OSSidebar = () => {
             <DrawerBody className="overflow-y-auto no-scrollbar">
               <OSSidebarList />
             </DrawerBody>
-            
-            <DrawerFooter className="pt-1">
+
+            <DrawerFooter className="pt-1 pb-4 md:pb-6 flex-col">
               <Listbox aria-label="Sidebar Footer">
                 <ListboxItem
                   key="logout"
@@ -67,20 +67,9 @@ export const OSSidebar = () => {
                 >
                   Cerrar sesión
                 </ListboxItem>
-                <ListboxItem
-                  key="theme-switch"
-                  startContent={<FaMoon size={20} />}
-                  endContent={ <OSSidebarThemeSwitch size="sm" />}
-                  classNames={{
-                    base: clsx(
-                      "p-2 pl-4 transition-colors text-slate-600 dark:text-slate-100 data-[hover=true]:text-slate-600 data-[hover=true]:bg-default-200", {
-                    }),
-                  }}
-                >
-                  Tema oscuro
-                </ListboxItem>
 
               </Listbox>
+              <ThemeSwitchTabs />
             </DrawerFooter>
 
           </>

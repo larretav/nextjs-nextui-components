@@ -3,6 +3,10 @@ import { DrawerButtons } from "./_components/drawer/DrawerButtons";
 import { OSBottomNavBar } from "./_components";
 import { OSNavbar } from "./_components/nav-bar/OSNavbar";
 import BreakpointsTest from "@/components/test/BreakpointsTest";
+import { FaImage, FaMusic } from "react-icons/fa6";
+import { TabsFilters } from "@/components/navigation/tabs/TabsFilters";
+import { TabFilter } from "@/components/navigation/tabs/TabFilter";
+import OSTabsFilters from "./_components/tabs-filters/OSTabsFilters";
 
 export default function NavigationPage() {
   return (
@@ -18,6 +22,9 @@ export default function NavigationPage() {
       </div>
       <div className="sm:col-span-2 ">
         <BreakpointsTest />
+      </div>
+      <div className="">
+        <OSTabsFilters />
       </div>
       {/* <div className="p-2 box-border rounded-xl"> */}
       {/* <OSBottomBar /> */}
