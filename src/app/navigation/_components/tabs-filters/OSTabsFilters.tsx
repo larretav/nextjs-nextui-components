@@ -6,10 +6,10 @@ import React, { cloneElement } from 'react'
 
 const OSTabsFilters = () => {
   return (
-    <TabsFilters >
-      <TabFilter key="photos" text="Todos" value={100} />
-      <TabFilter key="delivered" text="Enviados" value={45} />
-      <TabFilter key="pendings" text="Pendientes" value={55} />
+    <TabsFilters  >
+      <TabFilter key="photos" text="Todos" value={100} activeColor="amber" />
+      <TabFilter key="delivered" text="Enviados" value={45} activeColor="red" />
+      <TabFilter key="pendings" text="Pendientes" value={55} activeColor="blue" />
     </TabsFilters>
   )
 }
