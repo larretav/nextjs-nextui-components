@@ -29,6 +29,18 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
     setSelected(key)
   }
 
+  const getBgColorChip = (color: string = 'primary') => {
+    return !getTailwindColorHex(color)
+      ? getNextUiColorHex(color, theme, 500)
+      : getTailwindColorHex(color, theme === 'dark' ? 900 : 100)
+  }
+
+  const getBgTextChip = (color: string = 'primary') => {
+    return !getTailwindColorHex(color)
+      ? getNextUiColorHex(color, theme, 600)
+      : getTailwindColorHex(color, theme === 'dark' ? 100 : 600)
+  }
+
   useEffect(() => {
     const colors = [...childrenArr].reduce((prev: any, curr: any) => {
       const color = curr.props.activeColor;
@@ -69,8 +81,8 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
                 <span>{props.text}</span>
                 <Chip size="sm" variant="flat"
                   style={{
-                    backgroundColor: !getTailwindColorHex(props?.activeColor ?? 'primary') ? getNextUiColorHex(props?.activeColor ?? 'primary', theme, 100) : getTailwindColorHex(props?.activeColor ?? 'primary', 100),
-                    color: !getTailwindColorHex(props?.activeColor ?? 'primary') ? getNextUiColorHex(props?.activeColor ?? 'primary', theme, 700) : getTailwindColorHex(props?.activeColor ?? 'primary', 700),
+                    backgroundColor: getBgColorChip(props?.activeColor),
+                    color: getBgTextChip(props?.activeColor),
                   }}
                 >{props.value}</Chip>
               </div>
