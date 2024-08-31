@@ -1,5 +1,5 @@
 'use client';
-import { getNextUiColorHex, getTailwindColorHex } from '@/utils';
+import { getNextUiColor, getTailwindColorHex } from '@/utils';
 import { IconSvgProps } from '@/types'
 import { useTheme } from 'next-themes';
 import React from 'react'
@@ -15,7 +15,7 @@ export const SvgIcon = ({
 }: IconSvgProps) => {
 
   const { theme = 'light' } = useTheme();
-  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
+  const hexColor = !getTailwindColorHex(color) ? getNextUiColor(color, theme) : getTailwindColorHex(color);
 
   return (
     <svg

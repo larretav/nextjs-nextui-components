@@ -1,5 +1,5 @@
 'use client';
-import { getNextUiColorHex, getTailwindColorHex } from '@/utils'
+import { getNextUiColor, getTailwindColorHex } from '@/utils'
 import { Button } from '@nextui-org/button'
 import { Skeleton } from '@nextui-org/skeleton';
 import { colors, semanticColors } from '@nextui-org/theme'
@@ -24,7 +24,7 @@ export const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24
 
   const [isLoaded, setIsLoaded] = useState(false);
   const { theme = 'light' } = useTheme();
-  const hexColor = !getTailwindColorHex(color) ? getNextUiColorHex(color, theme) : getTailwindColorHex(color);
+  const hexColor = !getTailwindColorHex(color) ? getNextUiColor(color, theme) : getTailwindColorHex(color);
 
   useEffect(() => {
     setIsLoaded(true)
