@@ -32,52 +32,45 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
     ...item.props,
   }));
 
+  const colorKeys = tabProps.reduce(
+    (prev: any, curr: any) => {
+      const color = curr.activeColor;
+
+      return {
+        ...prev,
+        [curr.key]: `bg-${color}-500 dark:bg-${color}-900`,
+      };
+    },
+    {} as Record<string, any>,
+  );
+
   const [selected, setSelected] = React.useState<string>("");
   const [colors, setColors] = useState<Record<string, any>>({});
   const { theme = "light" } = useTheme();
   const isSSR = useIsSSR();
 
   const colorScale = theme === "dark" ? 900 : 100;
-  const colorOpacity = theme === "dark" ? 40 : 100;
-
-  const color = () => {
-    return colors[selected.replace(".$", "")];
-  };
+  const colorOpacity = theme === "dark" ? 30 : 100;
 
   const handleChange = (key: any) => {
     setSelected(key);
   };
 
   const getBgColorChip = (color: string = "primary") => {
-    return (
-      getNextUiColor(color, theme, colorScale, "rgba", colorOpacity) ||
-      getTailwindColorHex(color, colorScale, "rgba", colorOpacity)
-    );
+    return getNextUiColor(color, theme, colorScale, "rgba", colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
   };
 
   const getBgTextChip = (color: string = "primary") => {
     return getNextUiColor(color, theme, 600) || getTailwindColorHex(color, 600);
   };
 
-  useEffect(() => {
-    const colors = [...childrenArr].reduce(
-      (prev: any, curr: any) => {
-        const color = curr.props.activeColor;
+  const getCursorColor = (color: string) => {
+    return getNextUiColor(color, theme, 500, undefined, colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
+  }
 
-        return {
-          ...prev,
-          [curr.key]: `bg-${color}-500 dark:bg-${color}-900`,
-        };
-      },
-      {} as Record<string, any>,
-    );
 
-    setColors(colors);
-  }, []);
 
-  console.log(Object.keys(colors).length);
-
-  if (Object.keys(colors).length === 0) return null;
+  if (isSSR) return null;
 
   return (
     <NextUITabs
@@ -85,36 +78,35 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
       variant="underlined"
       classNames={{
         tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-        cursor: "w-full " + color(),
+        cursor: "w-full dark:bg-opacity-50 " + colorKeys[selected.replace(".$", "")],
         tab: "max-w-fit px-0 h-12",
       }}
       {...restProps}
       selectedKey={selected}
       onSelectionChange={handleChange}
     >
-      {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => {
-        const color = `bg-${activeColor}-500/30 dark:bg-${activeColor}-500/30`;
-        return (
-          <Tab
-            {...rest}
-            title={
-              <div className="flex items-center space-x-2">
-                <span>{text}</span>
-                <Chip
-                  size="sm"
-                  variant="flat"
-                  style={{
-                    backgroundColor: getBgColorChip(activeColor),
-                    color: getBgTextChip(activeColor),
-                  }}
-                >
-                  {value}
-                </Chip>
-              </div>
-            }
-          />
-        );
-      })}
+      {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => (
+        <Tab
+          key={key}
+          {...rest}
+          title={
+            <div className="flex items-center space-x-2 ">
+              <span>{text}</span>
+              <Chip
+                size="sm"
+                variant="flat"
+                style={{
+                  backgroundColor: getBgColorChip(activeColor),
+                  color: getBgTextChip(activeColor),
+                }}
+              >
+                {value}
+              </Chip>
+            </div>
+          }
+        />
+      )
+      )}
     </NextUITabs>
   );
 };
