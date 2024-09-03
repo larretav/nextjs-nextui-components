@@ -1,4 +1,4 @@
-export { StyledTabsFilter, StyledTabFilter, StyledButton } from "./navigation/styled-tabs/StyledTabsFilter";
+export { StyledTabsFilter, StyledTabFilter, CustomTab } from "./navigation/styled-tabs/StyledTabsFilter";
 
 export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";

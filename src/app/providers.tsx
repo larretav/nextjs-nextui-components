@@ -19,13 +19,13 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 	return (
 		<NextUIProvider navigate={router.push}>
-			<NextThemesProvider {...themeProps}>
-				<IconContext.Provider value={{ size: "1.5rem" }}>
-					<StyledComponentsRegistry >
+			<StyledComponentsRegistry >
+				<NextThemesProvider {...themeProps}>
+					<IconContext.Provider value={{ size: "1.5rem" }}>
 						{children}
-					</StyledComponentsRegistry>
-				</IconContext.Provider>
-			</NextThemesProvider>
+					</IconContext.Provider>
+				</NextThemesProvider>
+			</StyledComponentsRegistry>
 		</NextUIProvider>
 	);
 }

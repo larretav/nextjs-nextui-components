@@ -1,7 +1,8 @@
 'use client';
 import { getNextUiColor, getTailwindColorHex } from '@/utils';
 import { Button } from '@nextui-org/button';
-import { Tab, Tabs } from '@nextui-org/tabs';
+import { Tab, TabItemProps, Tabs } from '@nextui-org/tabs';
+import { FC, ReactNode } from 'react';
 import styled from 'styled-components';
 
 const getActiveColor = (color: string = "blue") => {
@@ -9,7 +10,9 @@ const getActiveColor = (color: string = "blue") => {
 }
 
 export const StyledTabsFilter = styled(Tabs).attrs((props) => ({
-  classNames: {}
+  classNames: {
+    // cursor: "dark:bg-red-500 text-green-600"
+  }
 }))`
   /* &[data-slot="base"] > [data-slot="tabList"] > [data-slot="tab"] > span {
     background-color: green;
@@ -20,9 +23,10 @@ export const StyledTabsFilter = styled(Tabs).attrs((props) => ({
 `;
 
 export const StyledTabFilter = styled(Tab) <{ $activeColor: string }>`
-  && {
+  &&[data-slot="cursor"]  {
     /* background-color: ${prop => getActiveColor(prop.$activeColor)}; */
-    outline: 1px red solid !important;
+    background-color: red;
+    outline: 1px red solid;
   }
 `;
 //   styled(Tab).attrs<{ $activeColor: string }>((props) => ({
@@ -33,7 +37,12 @@ export const StyledTabFilter = styled(Tab) <{ $activeColor: string }>`
 //     outline: 1px red solid;
 //   }
 // `;
+type Props = {
+  title: string;
+  children: ReactNode
+}
 
-export const StyledButton = styled(Button) <{ $customcolor: string }>`
-  background-color: ${prop => getActiveColor(prop.$customcolor)};
-`;
+export const CustomTab = ({ title, children }: Props) => {
+  // Aquí puedes agregar lógica o estilos adicionales
+  return <Tab title={title}>{children}</Tab>;
+};
