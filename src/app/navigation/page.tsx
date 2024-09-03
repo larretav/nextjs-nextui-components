@@ -8,6 +8,7 @@ import { TabsFilters } from "@/components/navigation/tabs/TabsFilters";
 import { TabFilter } from "@/components/navigation/tabs/TabFilter";
 import OSTabsFilters from "./_components/tabs-filters/OSTabsFilters";
 import { BsPerson } from "react-icons/bs";
+import OSStyledTabsFilters from "./_components/tabs-filters/OSStyledTabsFilters";
 
 export default function NavigationPage() {
   return (
@@ -27,14 +28,11 @@ export default function NavigationPage() {
       <div className="">
         <OSTabsFilters />
       </div>
+      <div className="">
+        <OSStyledTabsFilters />
+      </div>
 
-      <button className="text-green-500 rounded-lg border-green-500 border-1 flex items-center gap-2 max-w-[200px] p-2 [&_span]:text-red-500">
-        <BsPerson size={24} />
-        <span>Hola we</span>
-        <span>Hola we</span>
-        <span>Hola we</span>
-        <span>Hola we</span>
-      </button>
+      
       {/* <div className="p-2 box-border rounded-xl"> */}
       {/* <OSBottomBar /> */}
       {/* </div> */}

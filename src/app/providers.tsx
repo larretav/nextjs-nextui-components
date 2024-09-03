@@ -1,11 +1,13 @@
-"use client";
 
+"use client";
 import * as React from "react";
 import { NextUIProvider } from "@nextui-org/system";
 import { useRouter } from 'next/navigation'
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
 import { IconContext } from "react-icons";
+import StyledComponentsRegistry from "@/lib/registry";
+
 
 export interface ProvidersProps {
 	children: React.ReactNode;
@@ -19,7 +21,9 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 		<NextUIProvider navigate={router.push}>
 			<NextThemesProvider {...themeProps}>
 				<IconContext.Provider value={{ size: "1.5rem" }}>
-					{children}
+					<StyledComponentsRegistry >
+						{children}
+					</StyledComponentsRegistry>
 				</IconContext.Provider>
 			</NextThemesProvider>
 		</NextUIProvider>

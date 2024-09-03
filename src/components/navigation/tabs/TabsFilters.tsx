@@ -24,6 +24,11 @@ type Props = TabsProps & {
 };
 
 export const TabsFilters = ({ children, ...restProps }: Props) => {
+
+  const { theme = "light" } = useTheme();
+  const colorScale = theme === "dark" ? 900 : 100;
+  const colorOpacity = theme === "dark" ? 30 : 100;
+
   const isArray = Array.isArray(children);
   const childrenArr = isArray ? children : [children];
 
@@ -34,11 +39,12 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
 
   const colorKeys = tabProps.reduce(
     (prev: any, curr: any) => {
-      const color = curr.activeColor;
-
+      const color = getNextUiColor(curr.activeColor, theme, 500, "hex", curr.activeColorOpacity) || getTailwindColorHex(curr.activeColor, colorScale, "hex", colorOpacity)
+      console.log(color)
       return {
         ...prev,
-        [curr.key]: `bg-${color}-500 dark:bg-${color}-900`,
+        // [curr.key]: `bg-secondary-500 dark:bg-${color}-900`,
+        [curr.key]: `bg-[${color}]`,
       };
     },
     {} as Record<string, any>,
@@ -46,21 +52,20 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
 
   const [selected, setSelected] = React.useState<string>("");
   const [colors, setColors] = useState<Record<string, any>>({});
-  const { theme = "light" } = useTheme();
+
   const isSSR = useIsSSR();
 
-  const colorScale = theme === "dark" ? 900 : 100;
-  const colorOpacity = theme === "dark" ? 30 : 100;
+
 
   const handleChange = (key: any) => {
     setSelected(key);
   };
 
   const getBgColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, theme, colorScale, "rgba", colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
+    return getNextUiColor(color, "light", colorScale, "rgba", colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
   };
 
-  const getBgTextChip = (color: string = "primary") => {
+  const getTextColorChip = (color: string = "primary") => {
     return getNextUiColor(color, theme, 600) || getTailwindColorHex(color, 600);
   };
 
@@ -78,7 +83,7 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
       variant="underlined"
       classNames={{
         tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-        cursor: "w-full dark:bg-opacity-50 " + colorKeys[selected.replace(".$", "")],
+        cursor: "w-full dark:bg-opacity-70 " + colorKeys[selected.replace(".$", "")],
         tab: "max-w-fit px-0 h-12",
       }}
       {...restProps}
@@ -95,9 +100,10 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
               <Chip
                 size="sm"
                 variant="flat"
+                radius="sm"
                 style={{
                   backgroundColor: getBgColorChip(activeColor),
-                  color: getBgTextChip(activeColor),
+                  color: getTextColorChip(activeColor),
                 }}
               >
                 {value}
