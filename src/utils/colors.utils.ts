@@ -1,15 +1,15 @@
 import tailwindColors from 'tailwindcss/colors'
 import { semanticColors } from '@nextui-org/theme'
 import tailwindTheme from '@/tailwind-theme'
+import { nextuiConfig } from '@/nextui.config';
 
-type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
-type Type = "hex" | "rgba";
-
+export type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
+export type Type = "hex" | "rgba";
 
 export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, type: Type = "hex", opacity: number = 100): string => {
   const colors = { ...tailwindColors } as Record<string, any>
   if (!colors?.[colorName]?.[scale]) return '';
-  
+
   if (type === "rgba")
     return hexToRGBA(colors[colorName][scale], opacity)
 
@@ -18,19 +18,23 @@ export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, 
 
 export const getNextUiColor = (
   colorName: string,
-  theme: string,
+  theme: string = 'dark',
   scale: ColorScale = 500,
   type: Type = "hex",
   opacity: number = 100
 ): string => {
-  const colors = { ...semanticColors } as Record<string, any>
+  const colors = { ...semanticColors } as Record<string, any>;
 
-  if (!colors?.[theme]?.[colorName]?.[scale]) return '';
+  const color =  nextuiConfig.themes?.[theme]?.colors[colorName]?.[scale] || colors?.[theme]?.[colorName]?.[scale];
+  const thme: string = 'dark'
+  const color2 = nextuiConfig.themes[thme]
+
+  if (!color) return '';
 
   if (type === "rgba")
-    return hexToRGBA(colors[theme][colorName][scale], opacity);
+    return hexToRGBA(color, opacity);
 
-  return colors[theme][colorName][scale];
+  return color;
 };
 
 

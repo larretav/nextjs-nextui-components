@@ -8,3 +8,5 @@ export type NextUIColorKeys = { [K in keyof ThemeColorsWithoutBase]: K }[keyof T
 
 type DefaulTailwindtColorsUpdated = Omit<DefaulTailwindtColors, "lightBlue" | "warmGray" | "trueGray" | "coolGray" | "blueGray">
 export type TailwindColorKeys = { [K in keyof DefaulTailwindtColorsUpdated]: K }[keyof DefaulTailwindtColorsUpdated]
+
+export type NextUIColorKeys2 = { [K in keyof ThemeColorsWithoutBase]: K } [keyof ThemeColorsWithoutBase]

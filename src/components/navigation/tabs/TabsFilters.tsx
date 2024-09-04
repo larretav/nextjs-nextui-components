@@ -15,7 +15,7 @@ import React, {
   useState,
 } from "react";
 import { TabFilter, TabFilterProps } from "./TabFilter";
-import { getNextUiColor, getTailwindColorHex } from "@/utils";
+import { getNextUiColor, getTailwindColorHex, ThemeName } from "@/utils";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 
@@ -39,8 +39,7 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
 
   const colorKeys = tabProps.reduce(
     (prev: any, curr: any) => {
-      const color = getNextUiColor(curr.activeColor, theme, 500, "hex", curr.activeColorOpacity) || getTailwindColorHex(curr.activeColor, colorScale, "hex", colorOpacity)
-      console.log(color)
+      const color = getNextUiColor(curr.activeColor, theme as ThemeName, 500, "hex", curr.activeColorOpacity) || getTailwindColorHex(curr.activeColor, colorScale, "hex", colorOpacity)
       return {
         ...prev,
         // [curr.key]: `bg-secondary-500 dark:bg-${color}-900`,
@@ -66,11 +65,11 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
   };
 
   const getTextColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, theme, 600) || getTailwindColorHex(color, 600);
+    return getNextUiColor(color, theme as ThemeName, 600) || getTailwindColorHex(color, 600);
   };
 
   const getCursorColor = (color: string) => {
-    return getNextUiColor(color, theme, 500, undefined, colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
+    return getNextUiColor(color, theme as ThemeName, 500, undefined, colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
   }
 
 
