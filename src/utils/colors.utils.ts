@@ -5,6 +5,8 @@ import { nextuiConfig } from '@/nextui.config';
 
 export type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 export type Type = "hex" | "rgba";
+export type ThemeName = keyof typeof nextuiConfig.themes;
+export type ColorName = keyof typeof nextuiConfig.themes.dark.colors;
 
 export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, type: Type = "hex", opacity: number = 100): string => {
   const colors = { ...tailwindColors } as Record<string, any>
@@ -18,16 +20,17 @@ export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, 
 
 export const getNextUiColor = (
   colorName: string,
-  theme: string = 'dark',
+  theme: ThemeName = 'dark',
   scale: ColorScale = 500,
   type: Type = "hex",
   opacity: number = 100
 ): string => {
   const colors = { ...semanticColors } as Record<string, any>;
 
-  const color =  nextuiConfig.themes?.[theme]?.colors[colorName]?.[scale] || colors?.[theme]?.[colorName]?.[scale];
-  const thme: string = 'dark'
-  const color2 = nextuiConfig.themes[thme]
+  const colorName2 = colorName as ColorName
+
+  const color = nextuiConfig.themes[theme].colors["primary"]?.[scale] || colors?.[theme]?.[colorName]?.[scale];
+  const color2 = nextuiConfig.themes[theme]
 
   if (!color) return '';
 
