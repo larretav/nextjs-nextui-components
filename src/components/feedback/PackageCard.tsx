@@ -11,22 +11,22 @@ type Props = {
 
 export default function PackageCard({ title, subtitle, weightMeasures, quantity }: Props) {
     return (
-        <Card className='flex flex-row max-w-[410px] p-3'>
-            <div className='flex mx-3'>
+        <Card className='flex-row h-fit shadow-md gap-2 pl-2 p-5 py-0' >
+            <div className='flex '>
                 <Image
                     className="self-center"
                     alt='caja'
-                    width={60}
-                    height={60}
+                    width={40}
+                    height={40}
                     src={boxImage} />
             </div>
             <CardBody className='flex flex-row'>
                 <div className='w-full'>
-                    <p className='font-semibold text-sm'>{title}</p>
+                    <p className='font-semibold text-sm '>{title}</p>
                     <p className='text-gray-400 text-xs'>{subtitle}</p>
                     <p className='font-bold text-xs tracking-widest'>{weightMeasures}</p>
                 </div>
-                <div className='self-center text-2xl font-bold'>
+                <div className='self-center text-base font-bold'>
                     X{quantity}
                 </div>
             </CardBody>
