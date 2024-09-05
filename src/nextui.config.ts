@@ -4,13 +4,13 @@ import { ColorScale, ConfigThemes, NextUIPluginConfig, ThemeColors } from "@next
 type ExtendedColors = Partial<ThemeColors> & Record<string, ColorScale>;
 
 type NextUIPluginConfigExtended = NextUIPluginConfig & {
-  themes?: ConfigThemes & {
-    light: { colors?: ExtendedColors },
-    dark: { colors?: ExtendedColors }
+  themes: ConfigThemes & {
+    light: { colors: ExtendedColors },
+    dark: { colors: ExtendedColors }
   }
 }
 
-export const nextuiConfig = {
+export const nextuiConfig: NextUIPluginConfig = {
   themes: {
     light: {
       colors: {

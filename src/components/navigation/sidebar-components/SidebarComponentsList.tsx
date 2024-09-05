@@ -24,6 +24,27 @@ export const SidebarComponentsList = () => {
 
   const componentSections: SidebarOption[] = useMemo(() => ([
     {
+      section: 'Páginas',
+      description: 'Paginas OnSite V2',
+      items: [
+        {
+          key: "os-landing",
+          label: "OnSite Landing",
+          path: '/os-pages/landing'
+        },
+        {
+          key: "os-login",
+          label: "OnSite Login",
+          path: '/os-pages/login'
+        },
+        {
+          key: "os-register",
+          label: "OnSite Register",
+          path: '/os-pages/register'
+        },
+      ]
+    },
+    {
       section: 'Data display',
       description: 'Avatar, Chip, Badge, etc.',
       items: [

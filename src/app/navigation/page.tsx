@@ -28,31 +28,8 @@ export default function NavigationPage() {
       <div className="">
         <OSTabsFilters />
       </div>
-      <div className="">
+      {/* <div className="">
         <OSStyledTabsFilters />
-      </div>
-
-      
-      {/* <div className="p-2 box-border rounded-xl"> */}
-      {/* <OSBottomBar /> */}
-      {/* </div> */}
-      {/* <div className="p-2 box-border flex flex-col gap-4">
-        <Button color="primary" variant="bordered" fullWidth>Test</Button>
-        <Button color="primary" variant="faded" fullWidth>Test</Button>
-        <Button color="primary" variant="flat" fullWidth>Test</Button>
-        <Button color="primary" variant="ghost" fullWidth>Test</Button>
-        <Button color="primary" variant="light" fullWidth>Test</Button>
-        <Button color="primary" variant="shadow" fullWidth>Test</Button>
-        <Button color="primary" variant="solid" fullWidth>Test</Button>
-      </div>
-      <div className="p-2 box-border flex flex-col gap-4">
-      <Button color="secondary" variant="bordered"   fullWidth>Test</Button>
-        <Button color="secondary" variant="faded"   fullWidth>Test</Button>
-        <Button color="secondary" variant="flat"  fullWidth>Test</Button>
-        <Button color="secondary" variant="ghost"   fullWidth>Test</Button>
-        <Button color="secondary" variant="light"   fullWidth>Test</Button>
-        <Button color="secondary" variant="shadow" fullWidth>Test</Button>
-        <Button color="secondary" variant="solid" fullWidth>Test</Button>
       </div> */}
     </div>
   );

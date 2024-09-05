@@ -2,7 +2,7 @@
 import React, { ReactNode } from 'react';
 import { Tabs, Tab } from '@nextui-org/tabs';
 import { Chip } from '@nextui-org/chip';
-import { ColorScale, getNextUiColor, getTailwindColorHex, ThemeName } from '@/utils';
+import { ColorScale, getNextUiColor, getNextUIOrTailwindColor, getTailwindColorHex, ThemeName } from '@/utils';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { useTheme } from 'next-themes';
 import { useIsSSR } from '@react-aria/ssr';
@@ -15,7 +15,7 @@ type TabProps = {
 }
 
 
-const CustomTab = ({ title, value = 0, activeColor, ...rest }: TabProps) => {
+const CustomTab = ({ title, value = 0, activeColor, key, ...rest }: TabProps) => {
 
   const { theme = "light" } = useTheme();
   const colorScale = theme === "dark" ? 900 : 100;
@@ -24,11 +24,11 @@ const CustomTab = ({ title, value = 0, activeColor, ...rest }: TabProps) => {
   const isSSR = useIsSSR();
 
   const getBgColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, "light", colorScale, "rgba", colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
+    return getNextUIOrTailwindColor(color, "light", colorScale, "rgba", colorOpacity)
   };
 
   const getTextColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, theme as ThemeName, 600) || getTailwindColorHex(color, 600);
+    return getNextUIOrTailwindColor(color, theme as ThemeName, 600)
   };
 
   if (isSSR) return null;
@@ -36,6 +36,7 @@ const CustomTab = ({ title, value = 0, activeColor, ...rest }: TabProps) => {
 
   return <Tab
     {...rest}
+    key={key}
     title={
       <div className="flex items-center space-x-2 ">
         <span>{title}</span>

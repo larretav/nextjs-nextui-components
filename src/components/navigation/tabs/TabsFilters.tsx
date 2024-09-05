@@ -15,15 +15,17 @@ import React, {
   useState,
 } from "react";
 import { TabFilter, TabFilterProps } from "./TabFilter";
-import { getNextUiColor, getTailwindColorHex, ThemeName } from "@/utils";
+import { getNextUiColor, getNextUIOrTailwindColor, getTailwindColorHex, ThemeName } from "@/utils";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
 
 type Props = TabsProps & {
-  children: ReactElement<TabFilterProps> | ReactElement<TabFilterProps>[];
+  // children: ReactElement<TabFilterProps> | ReactElement<TabFilterProps>[];
 };
 
 export const TabsFilters = ({ children, ...restProps }: Props) => {
+
+  // console.log(typeof children === "function" && children({}))
 
   const { theme = "light" } = useTheme();
   const colorScale = theme === "dark" ? 900 : 100;
@@ -42,37 +44,28 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
       const color = getNextUiColor(curr.activeColor, theme as ThemeName, 500, "hex", curr.activeColorOpacity) || getTailwindColorHex(curr.activeColor, colorScale, "hex", colorOpacity)
       return {
         ...prev,
-        // [curr.key]: `bg-secondary-500 dark:bg-${color}-900`,
-        [curr.key]: `bg-[${color}]`,
+        [curr.key]: `bg-${curr.activeColor}-500`,
+        // [curr.key]: `bg-${color}-500`,
       };
     },
     {} as Record<string, any>,
   );
 
   const [selected, setSelected] = React.useState<string>("");
-  const [colors, setColors] = useState<Record<string, any>>({});
 
   const isSSR = useIsSSR();
-
-
 
   const handleChange = (key: any) => {
     setSelected(key);
   };
 
   const getBgColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, "light", colorScale, "rgba", colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
+    return getNextUIOrTailwindColor(color, "light", colorScale, "rgba", colorOpacity);
   };
 
   const getTextColorChip = (color: string = "primary") => {
-    return getNextUiColor(color, theme as ThemeName, 600) || getTailwindColorHex(color, 600);
+    return getNextUIOrTailwindColor(color, theme as ThemeName, 500, "hex", 100);
   };
-
-  const getCursorColor = (color: string) => {
-    return getNextUiColor(color, theme as ThemeName, 500, undefined, colorOpacity) || getTailwindColorHex(color, colorScale, "rgba", colorOpacity);
-  }
-
-
 
   if (isSSR) return null;
 
@@ -89,7 +82,17 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
       selectedKey={selected}
       onSelectionChange={handleChange}
     >
-      {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => (
+
+      {
+
+        typeof children == "function" && ((item: any) => {
+          const childs = cloneElement(children(item))
+          return <Tab key={item.key} title={item.text} />
+        })
+      }
+
+
+      {/* {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => (
         <Tab
           key={key}
           {...rest}
@@ -111,7 +114,7 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
           }
         />
       )
-      )}
+      )} */}
     </NextUITabs>
   );
 };

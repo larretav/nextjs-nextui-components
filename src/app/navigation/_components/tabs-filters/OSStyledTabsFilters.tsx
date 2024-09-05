@@ -21,7 +21,7 @@ const OSStyledTabsFilters = () => {
         {/* <CustomTab title="Tab 1">Contenido de la pestaña 1</CustomTab>
         <CustomTab title="Tab 2">Contenido de la pestaña 2</CustomTab> */}
         {CustomTab({ key: "tab-1", title: "Tab 1", value: 40, activeColor: "primary" })}
-        {CustomTab({ key: "tab-2", title: "Tab 1", value: 40, activeColor: "sky" })}
+        {CustomTab({ key: "tab-2", title: "Tab 1", value: 40, activeColor: "secondary" })}
 
 
       </CustomTabs>

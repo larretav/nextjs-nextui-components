@@ -5,7 +5,7 @@ import { nextuiConfig } from '@/nextui.config';
 
 export type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 export type Type = "hex" | "rgba";
-export type ThemeName = keyof typeof nextuiConfig.themes;
+export type ThemeName = keyof NonNullable<typeof nextuiConfig.themes>;
 
 export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, type: Type = "hex", opacity: number = 100): string => {
   const colors = { ...tailwindColors } as Record<string, any>
@@ -26,15 +26,16 @@ export const getNextUiColor = (
 ): string => {
   const colors = { ...semanticColors } as Record<string, any>;
 
-  let colorFromConfigObj = undefined;
-  const colorsFromConfigObj = nextuiConfig.themes[theme]?.colors;
+  let colorFromConfigObj: string | undefined = undefined;
+  const colorsFromConfigObj = nextuiConfig.themes?.[theme]?.colors;
+
   // Existe el nombre?
   if (colorsFromConfigObj && colorName in colorsFromConfigObj) {
-    const colorScales = colorsFromConfigObj[colorName as keyof typeof colorsFromConfigObj];
+    const colorScales = colorsFromConfigObj[colorName as keyof typeof colorsFromConfigObj] as Record<ColorScale, string> | undefined;
 
     // Existe la escala de color?
     if (colorScales && scale in colorScales) {
-      colorFromConfigObj = colorScales[scale as keyof typeof colorScales];
+      colorFromConfigObj = colorScales[scale as keyof typeof colorScales]
     }
   }
 
@@ -48,6 +49,10 @@ export const getNextUiColor = (
 
   return color;
 };
+
+export const getNextUIOrTailwindColor = (colorName: string, theme: ThemeName = 'dark', scale: ColorScale = 500, type: Type = "hex", opacity: number = 100 ) => {
+  return getNextUiColor(colorName, theme, scale, type, opacity) || getTailwindColorHex(colorName, scale, type, opacity);
+}
 
 
 export const hexToRGBA = (hex: string, alpha: number = 100) => {
