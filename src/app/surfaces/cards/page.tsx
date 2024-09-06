@@ -1,5 +1,6 @@
 import { PageTitle } from "@/components";
 import BoxCard from "@/components/surfaces/cards/BoxCard";
+import ContentSummaryCard from "@/components/surfaces/cards/ContentSummaryCard";
 import CustomerCard from "@/components/surfaces/cards/CustomerCard";
 import InvoiceCard from "@/components/surfaces/cards/InvoiceCard";
 import ListTitle from "@/components/surfaces/cards/ListTitle";
@@ -56,6 +57,10 @@ export default function CardsPage() {
       <p>Box Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <BoxCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20}width={20}weight={1}/>
+      </div>
+      <p>Content Summary Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <ContentSummaryCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3}/>
       </div>
     </div>
   )
