@@ -8,7 +8,6 @@ import { TabsFilters } from "@/components/navigation/tabs/TabsFilters";
 import { TabFilter } from "@/components/navigation/tabs/TabFilter";
 import OSTabsFilters from "./_components/tabs-filters/OSTabsFilters";
 import { BsPerson } from "react-icons/bs";
-import OSStyledTabsFilters from "./_components/tabs-filters/OSStyledTabsFilters";
 
 export default function NavigationPage() {
   return (

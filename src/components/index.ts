@@ -1,5 +1,3 @@
-export { StyledTabsFilter, StyledTabFilter, CustomTab } from "./navigation/styled-tabs/StyledTabsFilter";
-
 export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { CBadge } from "./data-display/badge/CBadge";
