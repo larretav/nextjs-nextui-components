@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .container-component-item {
-  @apply py-2 flex justify-center items-center rounded-xl bg-default-100
+  @apply py-2 flex justify-center items-center rounded-xl bg-default-100;
 }

@@ -22,8 +22,6 @@ export const TabFilter = ({ text, value, activeColor = "blue", ...restProps }: T
 
 
 
-
-
 export const TabFilter2 = ({ text, value, activeColor = "blue", key, ...restProps }: TabFilterProps) => {
 
   const { theme = "light" } = useTheme();
