@@ -1,4 +1,5 @@
 import { PageTitle } from "@/components";
+import CustomerCard from "@/components/surfaces/cards/CustomerCard";
 import InvoiceCard from "@/components/surfaces/cards/InvoiceCard";
 import ListTitle from "@/components/surfaces/cards/ListTitle";
 import PackageCard from "@/components/surfaces/cards/PackageCard";
@@ -45,6 +46,12 @@ export default function CardsPage() {
         <InvoiceCard folio="LMAO-01" date="02/04/2024" payment="Tarjeta de crédito" amount={1000} status="paid" />
         <InvoiceCard folio="LMAO-02" date="02/04/2024" payment="Tarjeta de debito" amount={500.99} status="canceled" />
         <InvoiceCard folio="LMAO-03" date="02/04/2024" payment="Tarjeta de crédito" amount={88.99} status="pending" />
+      </div>
+      <p>Customer Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <CustomerCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530"/>
+        <CustomerCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351"/>
+
       </div>
     </div>
   )
