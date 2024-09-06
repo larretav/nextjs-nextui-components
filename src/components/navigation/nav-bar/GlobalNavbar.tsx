@@ -14,13 +14,20 @@ import { Avatar } from "@nextui-org/avatar";
 import { HamburguerButton } from "./HamburguerButton";
 import { ThemeSwitch } from "@/components/inputs/ThemeSwitch";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 
 export const GlobalNavbar = () => {
 
+	const hideInPaths = useMemo(() => ([
+		'/os-pages/landing',
+		'/os-pages/login',
+		'/os-pages/register'
+	]), [])
+
 	const pathname = usePathname();
 
-	if (pathname === '/os-pages/landing') return null
+	if (hideInPaths.includes(pathname)) return null;
 
 	return (
 		<Navbar maxWidth="xl" position="sticky" >
