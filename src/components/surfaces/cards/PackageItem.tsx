@@ -23,10 +23,10 @@ export default function PackageItem({ content, packageType }: Props) {
                         <p className='font-semibold'>{content}</p>
                     </div>
                     <div className="flex gap-2 mt-2">
-                        <Input className='w-12' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12' size='sm' description="kg" variant='bordered' type='number' />
+                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
+                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
+                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
+                        <Input className='w-12 no-arrows' size='sm' description="kg" variant='bordered' type='number' />
                     </div>
                 </div>
                 <div className="flex flex-col ml-auto justify-center">
@@ -38,7 +38,7 @@ export default function PackageItem({ content, packageType }: Props) {
                                 }}
                             />
                         </Button>
-                        <Input variant='faded' size='sm' className='w-14' type='number'
+                        <Input variant='faded' size='sm' className='w-14 no-arrows' type='number'
                             value={count.toString()}
                             onChange={(e) => setCount(Number(e.target.value))}
                         />
