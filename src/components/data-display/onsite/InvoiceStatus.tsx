@@ -1,20 +1,20 @@
 import React from 'react'
-
+import {Chip} from "@nextui-org/chip";
 
 const statusStyles = {
     pending: {
-        textColor: 'text-amber-600',
-        bgColor: 'bg-amber-100',
+        textColor: 'text-amber-600 dark:text-amber-300',
+        bgColor: 'bg-amber-100 dark:bg-amber-500/30',
         text: 'Pendiente',
     },
-    paid: {
-        textColor: 'text-green-600',
-        bgColor: 'bg-green-100',
+    paid: {        
+        textColor: 'text-green-600 dark:text-green-300',
+        bgColor: 'bg-green-100 dark:bg-green-500/30',
         text: 'Pagado',
     },
     canceled: {
-        textColor: 'text-red-600',
-        bgColor: 'bg-red-200',
+        textColor: 'text-red-600 dark:text-red-300',
+        bgColor: 'bg-red-200 dark:bg-red-500/30',
         text: 'Cancelado',
     },
 };
@@ -23,14 +23,12 @@ type Props = {
 }
 
 export default function InvoiceStatus({ status }: Props) {
-    const { textColor, bgColor, text } = statusStyles[status] || {
-        textColor: 'text-gray-600',
-        bgColor: 'bg-gray-100',
-        text: 'Desconocido', // Fallback text for unexpected status
-    };
+    const { textColor, bgColor, text } = statusStyles[status]
     return (
-        <div className={`${bgColor} rounded-xl p-1 w-min h-min ml-auto`}>
+        <> 
+            <Chip className={`${bgColor} ml-auto`}>
             <p className={`${textColor} capitalize text-xs`}>{text}</p>
-        </div>
+            </Chip>
+        </>
     )
 }

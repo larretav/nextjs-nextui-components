@@ -21,7 +21,9 @@ export default function InvoiceCard({ folio, date, payment, amount, status }: Pr
         <p className='text-xs text-default-500'>{payment}</p>
       </div>
       <div className="ml-auto">
-        <div className=""><InvoiceStatus status={status} /></div>
+        <div className="flex ml-auto">
+          <InvoiceStatus status={status} />
+          </div>
         <div className="font-bold sm:text-xl mt-3">${amount.toFixed(2)}MXN</div>
       </div>
     </Card>
