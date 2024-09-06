@@ -6,6 +6,7 @@ import InvoiceCard from "@/components/surfaces/cards/InvoiceCard";
 import InvoiceDetailsCard from "@/components/surfaces/cards/InvoiceDetailsCard";
 import ListTitle from "@/components/surfaces/cards/ListTitle";
 import PackageCard from "@/components/surfaces/cards/PackageCard";
+import PackageItem from "@/components/surfaces/cards/PackageItem";
 
 export default function CardsPage() { 
   return (
@@ -43,6 +44,12 @@ export default function CardsPage() {
         <ListTitle title="Envío de documentos " subtitle="Total de sobres" leadingIcon="envelope" />
         <ListTitle title="Envío de documentos" subtitle="Total de sobres" leadingIcon="envelope" showTrailing />
         <ListTitle title="Base de datos" subtitle="Base subtítulos" showTrailing />
+      </div>
+      <p>Package Item</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <PackageItem content="Informativo" packageType="box"/>
+      <PackageItem content="Documentos" packageType="envelope"/>
+      <PackageItem content="Pallets" packageType="pallet"/>
       </div>
       <p>Invoice Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
