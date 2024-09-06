@@ -6,7 +6,7 @@ import { Link } from "@nextui-org/link";
 export default function OsLandingPage() {
   return (
     <div className="w-dvw h-dvh relative bg-gradient-to-b from-green-600 to-green-500 z-0">
-      <div className="w-full h-full absolute bg-onsite-pattern bg-contain opacity-10 -z-10" />
+      <div className="w-full h-full absolute bg-onsite-pattern bg-cover opacity-10 -z-10" />
 
       <div className="flex flex-col items-center gap-12 pt-16 px-5 text-white">
 

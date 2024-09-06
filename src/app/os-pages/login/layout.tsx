@@ -5,7 +5,7 @@ export default function LoginLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="h-screen w-screen bg-white light">
+    <main className="w-dvw h-dvh bg-white light text-neutral-50">
       {children}
     </main>
   );

@@ -4,25 +4,22 @@ import { Input } from '@nextui-org/input'
 import { Link } from '@nextui-org/link'
 import React from 'react'
 
-type Props = {}
-
-const LoginForm = (props: Props) => {
+export const LoginForm = () => {
   return (
-    <div className="w-full flex flex-col px-5 py-10 gap-5 bg-white shadow-lg rounded-2xl md:px-10 md:min-w-[500px] text-neutral-800">
+    <div className="w-full flex flex-col px-5 py-10 gap-6 bg-white shadow-lg rounded-3xl md:px-10 md:min-w-[500px] text-neutral-800">
       <span className="text-3xl text-center ">Inicia sesión</span>
-      <Input label="Usuario" />
-      <Input label="Contraseña" />
+      <div className="flex flex-col gap-4">
+        <Input label="Usuario" />
+        <Input label="Contraseña" />
+        <Checkbox defaultSelected>Recuérdame</Checkbox>
+      </div>
 
-      <Checkbox defaultSelected>Recuérdame</Checkbox>
-
-      <Button color="primary" >Iniciar Sesión</Button>
+      <Button color="primary" className="bg-green-600">Iniciar Sesión</Button>
 
       <div className="flex flex-col ">
         <Link href="#" className="text-blue-500">Olvidé mi contraseña</Link>
-        <span >¿No tienes una cuenta?, <Link href="#" className="text-blue-500">¡Solicita una!</Link></span>
+        <span >¿No tienes una cuenta?, <Link href="/os-pages/register" className="text-blue-500">¡Solicita una!</Link></span>
       </div>
     </div>
   )
 }
-
-export default LoginForm

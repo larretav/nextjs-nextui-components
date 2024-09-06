@@ -6,7 +6,7 @@
 		"dev": "next dev --turbo",
 		"build": "next build",
 		"start": "next start",
-		"dev:start": "next start --port 3002",
+		"dev:start": "next start --port 3005",
 		"lint": "eslint . --ext .ts,.tsx -c .eslintrc.json --fix"
 	},
 	"dependencies": {
@@ -24,6 +24,7 @@
 		"@nextui-org/listbox": "2.1.25",
 		"@nextui-org/modal": "^2.0.39",
 		"@nextui-org/navbar": "2.0.36",
+		"@nextui-org/select": "^2.2.5",
 		"@nextui-org/skeleton": "^2.0.31",
 		"@nextui-org/snippet": "2.0.41",
 		"@nextui-org/switch": "2.0.33",
