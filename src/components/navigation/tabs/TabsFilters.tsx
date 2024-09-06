@@ -4,6 +4,7 @@ import {
   Tabs as NextUITabs,
   Tab,
   TabItemProps,
+  Tabs,
   TabsProps,
 } from "@nextui-org/tabs";
 import React, {
@@ -14,7 +15,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { TabFilter, TabFilterProps } from "./TabFilter";
+import { TabFilter, TabFilter2, TabFilterProps } from "./TabFilter";
 import { getNextUiColor, getNextUIOrTailwindColor, getTailwindColorHex, ThemeName } from "@/utils";
 import { useTheme } from "next-themes";
 import { useIsSSR } from "@react-aria/ssr";
@@ -23,9 +24,7 @@ type Props = TabsProps & {
   // children: ReactElement<TabFilterProps> | ReactElement<TabFilterProps>[];
 };
 
-export const TabsFilters = ({ children, ...restProps }: Props) => {
-
-  // console.log(typeof children === "function" && children({}))
+export const TabsFilters = ({ selectedKey, children, ...restProps }: Props) => {
 
   const { theme = "light" } = useTheme();
   const colorScale = theme === "dark" ? 900 : 100;
@@ -51,13 +50,9 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
     {} as Record<string, any>,
   );
 
-  const [selected, setSelected] = React.useState<string>("");
-
   const isSSR = useIsSSR();
 
-  const handleChange = (key: any) => {
-    setSelected(key);
-  };
+
 
   const getBgColorChip = (color: string = "primary") => {
     return getNextUIOrTailwindColor(color, "light", colorScale, "rgba", colorOpacity);
@@ -75,24 +70,20 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
       variant="underlined"
       classNames={{
         tabList: "gap-6 w-full relative rounded-none p-0 border-b border-divider",
-        cursor: "w-full dark:bg-opacity-70 " + colorKeys[selected.replace(".$", "")],
+        cursor: "w-full dark:bg-opacity-70 " + colorKeys[(selectedKey as string)?.replace(".$", "")],
         tab: "max-w-fit px-0 h-12",
       }}
       {...restProps}
-      selectedKey={selected}
-      onSelectionChange={handleChange}
     >
 
-      {
-
+      {/* {
         typeof children == "function" && ((item: any) => {
           const childs = cloneElement(children(item))
           return <Tab key={item.key} title={item.text} />
         })
-      }
+      } */}
 
-
-      {/* {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => (
+      {tabProps.map(({ value, text, key, activeColor, ...rest }, index) => (
         <Tab
           key={key}
           {...rest}
@@ -114,7 +105,9 @@ export const TabsFilters = ({ children, ...restProps }: Props) => {
           }
         />
       )
-      )} */}
+      )}
     </NextUITabs>
   );
 };
+
+

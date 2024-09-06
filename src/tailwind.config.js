@@ -10,6 +10,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'onsite-pattern': "url('/assets/onsite-pattern.png')",
+      },
 
       keyframes: {
         'bg-expand': {

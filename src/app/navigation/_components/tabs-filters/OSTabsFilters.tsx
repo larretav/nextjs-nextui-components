@@ -2,7 +2,7 @@
 import { TabFilter, TabFilter2 } from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { Tab } from '@nextui-org/tabs';
-import React, { cloneElement } from 'react'
+import React, { cloneElement, Key, useState } from 'react'
 
 type TabsExample = {
   key: string;
@@ -11,6 +11,9 @@ type TabsExample = {
   activeColor: string;
 }
 const OSTabsFilters = () => {
+
+  const [selectedKey, setSelectedKey] = useState<string>("")
+
   const tabsTest: TabsExample[] = [
     {
       key: "pendings",
@@ -32,14 +35,16 @@ const OSTabsFilters = () => {
     },
   ]
 
+  const handleChange = (key: Key) => {
+    setSelectedKey(key as string);
+  };
+
 
   return (
-    <TabsFilters fullWidth items={tabsTest} >
-      {/* <TabFilter key="photos" text="Todos" value={100} activeColor="primary" />
+    <TabsFilters fullWidth items={tabsTest} selectedKey={selectedKey} onSelectionChange={handleChange} >
+      <TabFilter key="photos" text="Todos" value={100} activeColor="primary" />
       <TabFilter key="delivered" text="Enviados" value={45} activeColor="red" />
-      <TabFilter key="pendings" text="Pendientes" value={55} activeColor="blue" /> */}
-      {/* {(item: any) => (<TabFilter2 key={item.key} text={item.text } value={item.value} activeColor="blue" />)} */}
-      {(item: any) => (<Tab key={item.key} title={item.text }  />)}
+      <TabFilter key="pendings" text="Pendientes" value={55} activeColor="blue" />
     </TabsFilters>
   )
 }

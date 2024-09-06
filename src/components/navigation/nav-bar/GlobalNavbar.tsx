@@ -1,3 +1,4 @@
+'use client';
 
 import {
 	Navbar,
@@ -7,16 +8,26 @@ import {
 } from "@nextui-org/navbar";
 
 import NextLink from "next/link";
-
 import { FaBars, FaBell, FaUser } from "react-icons/fa6";
 import { Badge } from "@nextui-org/badge";
 import { Avatar } from "@nextui-org/avatar";
 import { HamburguerButton } from "./HamburguerButton";
 import { ThemeSwitch } from "@/components/inputs/ThemeSwitch";
+import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 
 
 export const GlobalNavbar = () => {
 
+	const hideInPaths = useMemo(() => ([
+		'/os-pages/landing',
+		'/os-pages/login',
+		'/os-pages/register'
+	]), [])
+
+	const pathname = usePathname();
+
+	if (hideInPaths.includes(pathname)) return null;
 
 	return (
 		<Navbar maxWidth="xl" position="sticky" >
