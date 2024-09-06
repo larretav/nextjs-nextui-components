@@ -51,6 +51,14 @@ module.exports = {
         ".scrollbar-visible": {
           "-ms-overflow-style": "auto", /* IE and Edge */
           "scrollbar-width": "auto" /* Firefox */
+        },
+        ".no-arrows input[type='number']::-webkit-inner-spin-button": {
+          '-webkit-appearance': 'none',
+          margin: '0',
+        },
+        ".no-arrows input[type='number']::-webkit-outer-spin-button": {
+          '-webkit-appearance': 'none',
+          margin: '0',
         }
       }
       addUtilities(newUtilities)

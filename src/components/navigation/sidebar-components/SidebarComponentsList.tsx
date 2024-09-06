@@ -98,6 +98,17 @@ export const SidebarComponentsList = () => {
         }
       ]
     },
+    {
+      section: 'Surfaces',
+      description: 'Accordion, Cards, etc.',
+      items: [
+        {
+          key: "surfaces",
+          label: "Cards",
+          path: '/surfaces/cards'
+        }
+      ]
+    },
   ]), []);
 
   const toggleSidebar = useUIStore.use.toggleSidebar();

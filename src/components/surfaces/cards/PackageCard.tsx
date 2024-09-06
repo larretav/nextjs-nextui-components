@@ -1,6 +1,6 @@
 import React from 'react'
 import { Card, CardBody } from "@nextui-org/card";
-import PackageType from '../icons/composed/PackageType';
+import PackageType from '../../data-display/onsite/PackageType';
 type Props = {
     leadingIcon: "box" | "envelope" | "pallet"
     title: string
