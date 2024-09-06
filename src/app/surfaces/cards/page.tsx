@@ -3,6 +3,7 @@ import BoxCard from "@/components/surfaces/cards/BoxCard";
 import ContentSummaryCard from "@/components/surfaces/cards/ContentSummaryCard";
 import CustomerCard from "@/components/surfaces/cards/CustomerCard";
 import InvoiceCard from "@/components/surfaces/cards/InvoiceCard";
+import InvoiceDetailsCard from "@/components/surfaces/cards/InvoiceDetailsCard";
 import ListTitle from "@/components/surfaces/cards/ListTitle";
 import PackageCard from "@/components/surfaces/cards/PackageCard";
 
@@ -62,6 +63,11 @@ export default function CardsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <ContentSummaryCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3}/>
       </div>
+      <p>Invoice Details Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <InvoiceDetailsCard number="0043123" date="23/05/2024" amount={230}/>
+      </div>
+      
     </div>
   )
 }
