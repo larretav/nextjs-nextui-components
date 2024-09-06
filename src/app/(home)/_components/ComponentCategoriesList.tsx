@@ -30,6 +30,12 @@ export const ComponentCategoriesList = () => {
       subtitle: 'Sidebar, Bottom Navigation, etc.',
       url: '/navigation'
     },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Surfaces',
+      subtitle: 'Accordion, Cards, etc.',
+      url: '/surfaces'
+    },
   ];
 
   const router = useRouter();
