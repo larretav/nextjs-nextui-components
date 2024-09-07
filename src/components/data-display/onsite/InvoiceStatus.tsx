@@ -1,5 +1,5 @@
 import React from 'react'
-import {Chip} from "@nextui-org/chip";
+import { Chip } from "@nextui-org/chip";
 
 const statusStyles = {
     pending: {
@@ -7,7 +7,7 @@ const statusStyles = {
         bgColor: 'bg-amber-100 dark:bg-amber-500/30',
         text: 'Pendiente',
     },
-    paid: {        
+    paid: {
         textColor: 'text-green-600 dark:text-green-300',
         bgColor: 'bg-green-100 dark:bg-green-500/30',
         text: 'Pagado',
@@ -25,9 +25,9 @@ type Props = {
 export default function InvoiceStatus({ status }: Props) {
     const { textColor, bgColor, text } = statusStyles[status]
     return (
-        <> 
+        <>
             <Chip className={`${bgColor} ml-auto`}>
-            <p className={`${textColor} capitalize text-xs`}>{text}</p>
+                <p className={`${textColor} capitalize text-xs`}>{text}</p>
             </Chip>
         </>
     )
