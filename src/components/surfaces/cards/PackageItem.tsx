@@ -23,28 +23,25 @@ export default function PackageItem({ content, packageType }: Props) {
                         <p className='font-semibold'>{content}</p>
                     </div>
                     <div className="flex gap-2 mt-2">
-                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12 no-arrows' size='sm' description="cm" variant='bordered' type='number' />
-                        <Input className='w-12 no-arrows' size='sm' description="kg" variant='bordered' type='number' />
+                        <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
+                        <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
+                        <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
+                        <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="kg" variant='bordered' type='number' />
                     </div>
                 </div>
-                <div className="flex flex-col ml-auto justify-center">
+                <div className="flex flex-col ml-auto justify-center gap-2">
                     <div className="flex items-center gap-2">
-                        <Button isIconOnly size='sm' radius='full' className='bg-gray-50'                        >
-                            <FaMinus className='text-slate-500'
-                                onClick={() => {
-                                    count <= 0 ? setCount(0) : setCount(count - 1)
-                                }}
+                        <Button isIconOnly size='sm' radius='full' variant='faded'
+                            onPress={() => { count <= 0 ? setCount(0) : setCount(count - 1) }}                       >
+                            <FaMinus className='text-slate-500 dark:text-slate-200' size={14}
                             />
                         </Button>
-                        <Input variant='faded' size='sm' className='w-14 no-arrows' type='number'
+                        <Input variant='faded' size='sm' className='w-14 no-arrows' type='number' classNames={{ input: "text-center" }}
                             value={count.toString()}
                             onChange={(e) => setCount(Number(e.target.value))}
                         />
-                        <Button isIconOnly size='sm' radius='full' className='bg-gray-50'>
-                            <FaPlus className='text-slate-500'
-                                onClick={() => setCount(count + 1)}
+                        <Button isIconOnly size='sm' radius='full' variant='faded' onPress={() => setCount(count + 1)}>
+                            <FaPlus className='text-slate-500 dark:text-slate-200' size={14}
                             />
                         </Button>
                     </div>

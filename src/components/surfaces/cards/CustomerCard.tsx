@@ -13,20 +13,20 @@ export default function CustomerCard({ customerName, address }: Props) {
     return (
         <Card className='flex-row shadow-md '>
             <CardBody className='flex-row py-4'>
-            <div className="flex self-center">
-                <span className='bg-gray-100 rounded-full flex w-10 h-10 justify-center'>
-                    <BsBuildingsFill className='self-center text-slate-600' />
-                </span>
-            </div>
-            <div className='max-w-[65%] ml-3'>
-                <p className="font-bold text-base">{customerName}</p>
-                <p className="font-medium text-xs text-table-base">{address}</p>
-            </div>
-            <div className='flex ml-auto'>
-                <Button isIconOnly variant="light" size='sm' className='self-center' >
-                    <IoEllipsisHorizontal className='self-center text-slate-600' />
-                </Button>
-            </div>
+                <div className="flex self-center">
+                    <span className='bg-gray-100 dark:bg-slate-600/50 rounded-full flex w-10 h-10 justify-center'>
+                        <BsBuildingsFill className='self-center text-slate-600 dark:text-slate-100' />
+                    </span>
+                </div>
+                <div className='max-w-[65%] ml-3'>
+                    <p className="font-bold text-base">{customerName}</p>
+                    <p className="font-medium text-xs text-table-base">{address}</p>
+                </div>
+                <div className='flex ml-auto'>
+                    <Button isIconOnly variant="light" size='sm' className='self-center' radius='full'>
+                        <IoEllipsisHorizontal className='self-center text-slate-600 dark:text-slate-200' />
+                    </Button>
+                </div>
             </CardBody>
         </Card>
     )
