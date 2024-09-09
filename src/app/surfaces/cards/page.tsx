@@ -2,11 +2,14 @@ import { PageTitle } from "@/components";
 import BoxCard from "@/components/surfaces/cards/BoxCard";
 import ContentSummaryCard from "@/components/surfaces/cards/ContentSummaryCard";
 import CustomerCard from "@/components/surfaces/cards/CustomerCard";
+import DashboardCard from "@/components/surfaces/cards/DashboardCard";
 import InvoiceCard from "@/components/surfaces/cards/InvoiceCard";
 import InvoiceDetailsCard from "@/components/surfaces/cards/InvoiceDetailsCard";
 import ListTitle from "@/components/surfaces/cards/ListTitle";
+import OriginDestinationCard from "@/components/surfaces/cards/OriginDestinationCard";
 import PackageCard from "@/components/surfaces/cards/PackageCard";
 import PackageItem from "@/components/surfaces/cards/PackageItem";
+import RechargeCard from "@/components/surfaces/cards/RechargeCard";
 
 export default function CardsPage() { 
   return (
@@ -74,6 +77,22 @@ export default function CardsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <InvoiceDetailsCard number="0043123" date="23/05/2024" amount={230}/>
       </div>
+      <p>Dashboard Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+       <DashboardCard text="En sitio" quantity={250}/>
+      </div>
+      <p>OriginDestination Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <OriginDestinationCard title="Origen" postalCode="81200" address="Centro, Los Mochis, Sin" />
+      </div>
+      <p>Recharge Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200}/>
+      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted/>
+      <RechargeCard title="Básico" highlighted customizedCost/>
+      <RechargeCard title="Básico" customizedCost/>
+      </div>
+      
       
     </div>
   )
