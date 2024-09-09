@@ -1,3 +1,4 @@
+"use client"
 import PackageType from '@/components/data-display/onsite/PackageType'
 import { Card } from '@nextui-org/card'
 import { Button } from "@nextui-org/button";

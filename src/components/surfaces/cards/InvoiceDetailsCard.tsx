@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardBody } from '@nextui-org/card'
 import React from 'react'
 

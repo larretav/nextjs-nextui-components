@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { Card, CardBody } from '@nextui-org/card';
 import { FaMapLocationDot } from "react-icons/fa6";

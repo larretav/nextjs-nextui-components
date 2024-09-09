@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import InvoiceStatus from '@/components/data-display/onsite/InvoiceStatus'
 import { Card } from '@nextui-org/card'

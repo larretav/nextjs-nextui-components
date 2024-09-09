@@ -1,3 +1,4 @@
+"use client"
 import { Badge } from '@nextui-org/badge';
 import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 import React from 'react'

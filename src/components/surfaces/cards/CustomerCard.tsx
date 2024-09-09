@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardBody } from '@nextui-org/card'
 import { BsBuildingsFill } from 'react-icons/bs'
 import { IoEllipsisHorizontal } from 'react-icons/io5'

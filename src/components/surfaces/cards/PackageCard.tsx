@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import { Card, CardBody } from "@nextui-org/card";
 import PackageType from '../../data-display/onsite/PackageType';
