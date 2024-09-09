@@ -87,8 +87,8 @@ export default function CardsPage() {
       </div>
       <p>Recharge Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200}/>
-      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted/>
+      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} badgeQuantity={5}/>
+      <RechargeCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={10}/>
       <RechargeCard title="Básico" highlighted customizedCost/>
       <RechargeCard title="Básico" customizedCost/>
       </div>
