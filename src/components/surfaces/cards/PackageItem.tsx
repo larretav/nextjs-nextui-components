@@ -31,9 +31,7 @@ export default function PackageItem({ content, packageType }: Props) {
                 {/* <div className="ml-auto mt-8">
                     <SimpleCounter />
                 </div> */}
-
                 <SimpleCounter />
-
             </CardBody>
 
         </Card>
