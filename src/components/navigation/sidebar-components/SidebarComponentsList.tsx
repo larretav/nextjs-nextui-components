@@ -57,6 +57,11 @@ export const SidebarComponentsList = () => {
           key: "icons",
           label: "Icons",
           path: '/data-display/icons'
+        },
+        {
+          key: "badges",
+          label: "Badges",
+          path: '/data-display/badges'
         }
       ]
     },
