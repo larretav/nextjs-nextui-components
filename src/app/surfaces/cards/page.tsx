@@ -9,7 +9,8 @@ import ListTitleMobileCard from "@/components/surfaces/cards/mobile/ListTitleMob
 import OriginDestinationMobileCard from "@/components/surfaces/cards/mobile/OriginDestinationMobileCard";
 import PackageMobileCard from "@/components/surfaces/cards/mobile/PackageMobileCard";
 import PackageItemMobileCard from "@/components/surfaces/cards/mobile/PackageItemMobileCard";
-import RechargeMobileCard from "@/components/surfaces/cards/mobile/RechargeMobileCard";
+import RechargeMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeMobileCard";
+import RechargeCustomAmountMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeCustomAmountMobileCard";
 
 export default function CardsPage() { 
   return (
@@ -89,8 +90,12 @@ export default function CardsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
       <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} badgeQuantity={5}/>
       <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={10}/>
-      <RechargeMobileCard title="Otra Cantidad" highlighted customizedCost/>
-      <RechargeMobileCard title="Otra Cantidad" customizedCost/>
+      </div> 
+      <p>Recharge Custom Amount Mobile Card</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+   
+      <RechargeCustomAmountMobileCard  title="Otra Cantidad"/>
+      <RechargeCustomAmountMobileCard  title="Otra Cantidad" highlighted/>
       </div> 
     </div>
   )
