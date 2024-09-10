@@ -12,7 +12,7 @@ import PackageItemMobileCard from "@/components/surfaces/cards/mobile/PackageIte
 import RechargeMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeMobileCard";
 import RechargeCustomAmountMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeCustomAmountMobileCard";
 
-export default function CardsPage() { 
+export default function CardsPage() {
   return (
     <div className="flex flex-col gap-3 px-6 py-3">
       <PageTitle text="Cards Components" />
@@ -51,9 +51,9 @@ export default function CardsPage() {
       </div>
       <p>Package Item Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      <PackageItemMobileCard content="Informativo" packageType="box"/>
-      <PackageItemMobileCard content="Documentos" packageType="envelope"/>
-      <PackageItemMobileCard content="Pallets" packageType="pallet"/>
+        <PackageItemMobileCard content="Informativo" packageType="box" />
+        <PackageItemMobileCard content="Documentos" packageType="envelope" />
+        <PackageItemMobileCard content="Pallets" packageType="pallet" />
       </div>
       <p>Invoice Card Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
@@ -63,40 +63,40 @@ export default function CardsPage() {
       </div>
       <p>Customer Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530"/>
-        <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351"/>
+        <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530" />
+        <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351" />
       </div>
       <p>Box Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <BoxMobileCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20}width={20}weight={1}/>
+        <BoxMobileCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20} width={20} weight={1} />
       </div>
       <p>Content Summary Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3}/>
+        <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3} />
       </div>
       <p>Invoice Details Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230}/>
+        <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230} />
       </div>
       <p>Dashboard Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-       <DashboardMobileCard text="En sitio" quantity={250}/>
+        <DashboardMobileCard text="En sitio" quantity={250} />
       </div>
       <p>OriginDestination Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      <OriginDestinationMobileCard title="Origen" postalCode="81200" address="Centro, Los Mochis, Sin" />
+        <OriginDestinationMobileCard title="Origen" postalCode="81200" address="Centro, Los Mochis, Sin" />
       </div>
       <p>Recharge Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={5} paymentMethods={["cash"]}/>
-      <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash","transfer"]}/>
-      <RechargeMobileCard title="Pro" description="Puedes realizar hasta 2 envíos" cost={1000} highlighted badgeQuantity={200} paymentMethods={["cash","transfer","card"]}/>
-      </div> 
+        <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={5} paymentMethods={["cash"]} />
+        <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash", "transfer"]} />
+        <RechargeMobileCard title="Pro" description="Puedes realizar hasta 2 envíos" cost={1000} highlighted badgeQuantity={200} paymentMethods={["cash", "transfer", "card"]} />
+      </div>
       <p>Recharge Custom Amount Mobile Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">   
-      <RechargeCustomAmountMobileCard  title="Otra Cantidad" highlighted/>
-      <RechargeCustomAmountMobileCard  title="Otra Cantidad"/>
-      </div> 
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <RechargeCustomAmountMobileCard title="Otra Cantidad" highlighted />
+        <RechargeCustomAmountMobileCard title="Otra Cantidad" />
+      </div>
     </div>
   )
 }

@@ -10,7 +10,13 @@ export default function SurfacesPage() {
       icon: <FaImage size={40} />,
       title: 'Cards',
       subtitle: 'Mobile Cards',
-      url: '/surfaces/cards'
+      url: '/surfaces/mobile-cards'
+    },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Cards',
+      subtitle: 'Desktop Cards',
+      url: '/surfaces/desktop-cards'
     },
 
   ];

@@ -108,9 +108,14 @@ export const SidebarComponentsList = () => {
       description: 'Accordion, Cards, etc.',
       items: [
         {
-          key: "surfaces",
-          label: "Cards",
-          path: '/surfaces/cards'
+          key: "mobile-cards",
+          label: "Mobile Cards",
+          path: '/surfaces/mobile-cards'
+        },
+        {
+          key: "desktop-cards",
+          label: "Desktop Cards",
+          path: '/surfaces/desktop-cards'
         }
       ]
     },
