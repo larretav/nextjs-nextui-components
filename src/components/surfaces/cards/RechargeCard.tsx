@@ -38,7 +38,7 @@ export default function RechargeCard({ title, description, cost, highlighted, cu
         <Card className='relative px-2 h-min'>
             {customizedCost ? <>
                 <CardHeader>
-                    <p className='font-semibold text-xl mt-5'>Otra Cantidad</p>
+                    <p className='font-semibold text-xl mt-5'>{title}</p>
                 </CardHeader>
                 <CardBody>
                     <Input startContent={<MdAttachMoney />} />
