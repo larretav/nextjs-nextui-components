@@ -22,7 +22,7 @@ export default function PackageItem({ content, packageType }: Props) {
                         <PackageType type={packageType} width={30} height={30} />
                         <p className='font-semibold'>{content}</p>
                     </div>
-                    <div className="flex gap-2 mt-2">
+                    <div className="flex gap-2 mt-2 ">
                         <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
                         <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
                         <Input classNames={{ input: "text-center", base: "w-12 no-arrows", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />

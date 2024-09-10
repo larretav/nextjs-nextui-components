@@ -1,3 +1,4 @@
+export * from './BackClick';
 export * from './BookSolid';
 export * from './BoxSolid';
 export * from './BranchOfficeShipmentsSolid';

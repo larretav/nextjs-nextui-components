@@ -1,6 +1,6 @@
 'use client';
 import { CBadge } from '@/components';
-import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid, DeliveredShipmentsReportSolid, DetailedShipmentsReportSolid, ConcentratedShipmentsReportSolid, CustomizedShipmentsReportSolid, FaqSolid, FileInvoiceDollarSolid, FileInvoiceSolid, BoxOpenSolid, BookSolid, HeadsetSolid } from '@/components/icons';
+import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid, DeliveredShipmentsReportSolid, DetailedShipmentsReportSolid, BagClickSolid, CustomizedShipmentsReportSolid, FaqSolid, FileInvoiceDollarSolid, FileInvoiceSolid, BoxOpenSolid, BookSolid, HeadsetSolid } from '@/components/icons';
 import useDebounce from '@/hooks/useDebounce';
 import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
@@ -165,7 +165,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'concentrated-shipments',
           label: 'Envíos (concentrado)',
-          icon: <ConcentratedShipmentsReportSolid />,
+          icon: <BagClickSolid />,
           path: '/'
         },
         {

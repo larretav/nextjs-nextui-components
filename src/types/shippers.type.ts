@@ -1,0 +1,1 @@
+export type Shippers = "pkt1" | "paquetexpress" | "fedex" | "dhl" | "ups"

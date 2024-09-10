@@ -1,3 +1,8 @@
+export { MoreOptionsShipment } from "./surfaces/cards/shipments/MoreOptionsShipment";
+
+export { IconEcommerce } from "./data-display/onsite/IconEcommerce";
+export { ShipperType } from "./data-display/onsite/ShipperType";
+export { Status } from "./data-display/onsite/Status";
 export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { CBadge } from "./data-display/badge/CBadge";
@@ -12,3 +17,5 @@ export { SidebarComponents } from "./navigation/sidebar-components/SidebarCompon
 export { SidebarComponentsList } from "./navigation/sidebar-components/SidebarComponentsList";
 export { SidebarPrototype } from "./navigation/sidebar/SidebarPrototype";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
+
+

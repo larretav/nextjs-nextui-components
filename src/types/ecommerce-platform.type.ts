@@ -1,0 +1,1 @@
+export type EcommercePlatforms = "jumpseller" | "onsite" | "prestashop" | "shopify" | "woocommerce"
