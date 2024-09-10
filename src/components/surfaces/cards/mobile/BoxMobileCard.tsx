@@ -13,7 +13,7 @@ type Props = {
     weight: number
 }
 
-export default function BoxCard({ description, content, length, height, width, weight }: Props) {
+export default function BoxMobileCard({ description, content, length, height, width, weight }: Props) {
     const weightAndMeasures = `${length} X ${height} X ${width} - ${weight}kg`
     return (
         <Card>

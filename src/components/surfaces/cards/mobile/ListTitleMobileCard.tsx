@@ -11,7 +11,7 @@ type Props = {
     showTrailing?: boolean
 }
 
-export default function ListTitle({ title, subtitle, leadingIcon, showTrailing }: Props) {
+export default function ListTitleMobileCard({ title, subtitle, leadingIcon, showTrailing }: Props) {
     return (
         <Card className='py-3 px-4 flex-row'>
             {leadingIcon &&

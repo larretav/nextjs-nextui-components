@@ -33,7 +33,7 @@ type Props = {
     badgeQuantity?: number
 }
 
-export default function RechargeCard({ title, description, cost, highlighted, customizedCost, badgeQuantity }: Props) {
+export default function RechargeMobileCard({ title, description, cost, highlighted, customizedCost, badgeQuantity }: Props) {
     return (
         <Card className='relative px-2 h-min'>
             {customizedCost ? <>

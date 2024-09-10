@@ -11,7 +11,7 @@ type Props = {
     address: string
 }
 
-export default function OriginDestinationCard({ title, postalCode, address }: Props) {
+export default function OriginDestinationMobileCard({ title, postalCode, address }: Props) {
     return (
         <Card className='w-min px-3'>
             <CardHeader className='p-0 py-2'>

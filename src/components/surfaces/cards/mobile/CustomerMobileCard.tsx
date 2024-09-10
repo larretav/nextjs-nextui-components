@@ -10,7 +10,7 @@ type Props = {
     address: string
 }
 
-export default function CustomerCard({ customerName, address }: Props) {
+export default function CustomerMobileCard({ customerName, address }: Props) {
     return (
         <Card className='flex-row shadow-md '>
             <CardBody className='flex-row py-4'>

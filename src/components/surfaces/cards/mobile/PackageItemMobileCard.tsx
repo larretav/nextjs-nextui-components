@@ -11,7 +11,7 @@ type Props = {
     packageType: "box" | "envelope" | "pallet",
 }
 
-export default function PackageItem({ content, packageType }: Props) {
+export default function PackageItemMobileCard({ content, packageType }: Props) {
     return (
         <Card >
             <CardBody className='flex-row gap-2 items-center'>
