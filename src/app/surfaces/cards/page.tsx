@@ -88,14 +88,14 @@ export default function CardsPage() {
       </div>
       <p>Recharge Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-      <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} badgeQuantity={5}/>
-      <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={10}/>
+      <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={5} paymentMethods={["cash"]}/>
+      <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash","transfer"]}/>
+      <RechargeMobileCard title="Pro" description="Puedes realizar hasta 2 envíos" cost={1000} highlighted badgeQuantity={200} paymentMethods={["cash","transfer","card"]}/>
       </div> 
       <p>Recharge Custom Amount Mobile Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-   
-      <RechargeCustomAmountMobileCard  title="Otra Cantidad"/>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">   
       <RechargeCustomAmountMobileCard  title="Otra Cantidad" highlighted/>
+      <RechargeCustomAmountMobileCard  title="Otra Cantidad"/>
       </div> 
     </div>
   )
