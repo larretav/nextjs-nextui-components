@@ -8,7 +8,7 @@ type Props = {}
 export default function SimpleCounter({ }: Props) {
     const [count, setCount] = useState(0)
     return (
-        <div className="flex flex-col gap-2 justify-center h-full pt-3">
+        <div className="flex flex-col gap-2 justify-center h-full">
             <div className="flex gap-1 ">
                 <Button isIconOnly size='sm' radius='full' variant='flat'
                     onPress={() => { count <= 0 ? setCount(0) : setCount(count - 1) }}                       >

@@ -28,10 +28,9 @@ export default function PackageItemMobileCard({ content, packageType }: Props) {
                     </div>
                 </div>
                 <Divider orientation="vertical" className="h-3/5" />
-                {/* <div className="ml-auto mt-8">
+                <div className="ml-auto pt-8">
                     <SimpleCounter />
-                </div> */}
-                <SimpleCounter />
+                </div>               
             </CardBody>
 
         </Card>
