@@ -13,9 +13,9 @@ type Props = {
 
 export default function OriginDestinationMobileCard({ title, postalCode, address }: Props) {
     return (
-        <Card className='w-min px-3'>
+        <Card className='px-3 w-min'>
             <CardHeader className='p-0 py-2'>
-                <div className="flex items-center gap-2">
+                <div className="flex gap-2 items-center">
                     <p className="font-semibold text-default-400">{title}:</p>
                     <Button isIconOnly size='sm' radius='full' variant='light'>
                         <RiUserSearchFill className='text-default-600' size={18} />
@@ -26,10 +26,10 @@ export default function OriginDestinationMobileCard({ title, postalCode, address
                 </div>
             </CardHeader>
             <CardBody className='justify-center items-center p-0'>
-                <p className='border-2 rounded-xl p-3 text-4xl font-base'>{postalCode}</p>
+                <p className='p-3 text-4xl rounded-xl border-2 font-base'>{postalCode}</p>
             </CardBody>
-            <CardFooter className='pb-4 px-2'>
-                <p className='font-medium text-sm py-1'>{address}</p>
+            <CardFooter className='px-2 pb-4'>
+                <p className='py-1 text-sm font-medium'>{address}</p>
             </CardFooter>
         </Card>
     )

@@ -13,7 +13,7 @@ export default function Page() {
       <PageTitle text="Badges Componentes" />
       <p>BoxBadge</p>
       <CBadge content='23' />
-      <div className="relative w-full grid grid-cols-9  gap-4 px-6 py-2">
+      <div className="grid relative grid-cols-9 gap-4 py-2 px-6 w-full">
         <BoxBadge quantity={10} />
         <BoxBadge quantity={20} badgeSize='lg' boxSize={20} badgeVariant='faded' padding='md' />
         <BoxBadge quantity={50} badgeSize='lg' boxSize={50} badgeVariant='faded' />

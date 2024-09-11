@@ -31,10 +31,10 @@ const paymentMethodsOptions = {
 export default function RechargeDesktopCard({ title, description, cost, paymentMethods = [],highlighted }: Props) {
     return (
         <Card className={`shadow-md w-72 ${highlighted ? "border-2 border-emerald-500 "  : ""}`}>
-            <CardHeader className='justify-center flex-col'>
+            <CardHeader className='flex-col justify-center'>
                 <BoxBadge quantity={1} boxSize={40} padding="md" badgeSize='lg' />
-                <p className='text-5xl font-semibold py-4'><span className='text-2xl'>$</span>{cost}</p>
-                <span className='w-14 flex bg-green-500 h-2 rounded-lg'></span>                
+                <p className='py-4 text-5xl font-semibold'><span className='text-2xl'>$</span>{cost}</p>
+                <span className='flex w-14 h-2 bg-green-500 rounded-lg'></span>                
             </CardHeader>
             <CardBody className='items-center'>
                 <p className='text-2xl font-medium'>{title}</p>
@@ -51,8 +51,8 @@ export default function RechargeDesktopCard({ title, description, cost, paymentM
             </CardBody>
             <CardFooter>
             {highlighted
-                    ? <Button className='w-full text-white bg-emerald-600 font-semibold' variant='solid'>Recargar</Button>
-                    : <Button className='w-full text-emerald-600 border-emerald-600 font-semibold' variant='flat'>Recargar</Button>}
+                    ? <Button className='w-full font-semibold text-white bg-emerald-600' variant='solid'>Recargar</Button>
+                    : <Button className='w-full font-semibold text-emerald-600 border-emerald-600' variant='flat'>Recargar</Button>}
             </CardFooter>
         </Card>
     )

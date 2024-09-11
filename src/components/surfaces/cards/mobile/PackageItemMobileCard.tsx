@@ -15,12 +15,12 @@ export default function PackageItemMobileCard({ content, packageType }: Props) {
     return (
         <Card >
             <CardBody className='flex-row gap-2 items-center'>
-                <div className="flex flex-col justify-center gap-2">
+                <div className="flex flex-col gap-2 justify-center">
                     <div className="flex gap-2 items-center">
                         <PackageType type={packageType} width={30} height={30} />
                         <span className='font-semibold'>{content}</span>
                     </div>
-                    <div className="flex gap-1 mt-1 flex-nowrap">
+                    <div className="flex flex-nowrap gap-1 mt-1">
                         <Input classNames={{ inputWrapper: "p-0", input: "text-center text-xs", base: " no-arrows ", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
                         <Input classNames={{ inputWrapper: "p-0", input: "text-center text-xs", base: " no-arrows ", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
                         <Input classNames={{ inputWrapper: "p-0", input: "text-center text-xs", base: " no-arrows ", helperWrapper: "text-center" }} size='sm' description="cm" variant='bordered' type='number' />
@@ -28,7 +28,7 @@ export default function PackageItemMobileCard({ content, packageType }: Props) {
                     </div>
                 </div>
                 <Divider orientation="vertical" className="h-3/5" />
-                <div className="ml-auto pt-8">
+                <div className="pt-8 ml-auto">
                     <SimpleCounter />
                 </div>               
             </CardBody>

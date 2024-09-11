@@ -15,10 +15,10 @@ import AccountBalanceCard from "@/components/surfaces/cards/desktop-mobile/Accou
 
 export default function CardsPage() {
   return (
-    <div className="flex flex-col gap-3 px-6 py-3">
+    <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Cards Components" />
       <p>PackageMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <PackageMobileCard
           leadingIcon="box"
           title="Nike Air Force"
@@ -42,7 +42,7 @@ export default function CardsPage() {
         />
       </div>
       <p>ListTitleMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <ListTitleMobileCard title="Título" subtitle="SubTítulo" />
         <ListTitleMobileCard title="Título" subtitle="SubTítulo" leadingIcon="box" />
         <ListTitleMobileCard title="Título" subtitle="SubTítulo" leadingIcon="pallet" />
@@ -51,55 +51,55 @@ export default function CardsPage() {
         <ListTitleMobileCard title="Base de datos" subtitle="Base subtítulos" showTrailing />
       </div>
       <p>PackageItemMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <PackageItemMobileCard content="Informativo" packageType="box" />
         <PackageItemMobileCard content="Documentos" packageType="envelope" />
         <PackageItemMobileCard content="Pallets" packageType="pallet" />
       </div>
       <p>InvoiceMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <InvoiceMobileCard folio="LMAO-01" date="02/04/2024" payment="Tarjeta de crédito" amount={1000} status="paid" />
         <InvoiceMobileCard folio="LMAO-02" date="02/04/2024" payment="Tarjeta de debito" amount={500.99} status="canceled" />
         <InvoiceMobileCard folio="LMAO-03" date="02/04/2024" payment="Tarjeta de crédito" amount={88.99} status="pending" />
       </div>
       <p>CustomerMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530" />
         <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351" />
       </div>
       <p>BoxMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <BoxMobileCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20} width={20} weight={1} />
       </div>
       <p>ContentSummaryMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3} />
       </div>
       <p>InvoiceDetailsMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230} />
       </div>
       <p>DashboardCard (Desktop-Mobile)</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <DashboardCard text="En sitio" quantity={250} />
       </div>
       <p>OriginDestinationMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <OriginDestinationMobileCard title="Origen" postalCode="81200" address="Centro, Los Mochis, Sin" />
       </div>
       <p>RechargeMobileCard</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={5} paymentMethods={["cash"]} />
         <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash", "transfer"]} />
         <RechargeMobileCard title="Pro" description="Puedes realizar hasta 2 envíos" cost={1000} highlighted badgeQuantity={200} paymentMethods={["cash", "transfer", "card"]} />
       </div>
       <p>RechargeCustomAmountCard (Mobile-Desktop)</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <RechargeCustomAmountCard title="Otra Cantidad" highlighted />
         <RechargeCustomAmountCard title="Otra Cantidad" />
       </div>
       <p>AccountBalanceCard (Mobile-Desktop)</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <AccountBalanceCard balance={1200} trackingGuidesQuantity={5}/>
       </div>
     </div>

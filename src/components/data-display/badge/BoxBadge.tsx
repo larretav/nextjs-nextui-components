@@ -14,7 +14,7 @@ export default function BadgeIcon({ quantity, className = "", boxSize: size=30, 
         <div className={className}>
             <Badge  content={quantity} shape="circle" size={badgeSize} variant={badgeVariant}  classNames={{badge: "font-semibold text-green-500 bg-green-200"}} >
                 <div className={`flex items-center gap-3 rounded-full bg-green-100 dark:bg-green-500/30 ${padding=="sm" ? "p-3" : "p-5"}`}>
-                    <BsFillBoxSeamFill className="fill-current text-green-600 dark:text-green-200" size={size} />
+                    <BsFillBoxSeamFill className="text-green-600 fill-current dark:text-green-200" size={size} />
                 </div>
             </Badge>
         </div>

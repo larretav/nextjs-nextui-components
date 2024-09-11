@@ -24,10 +24,10 @@ export default function SurfacesPage() {
   return (
     <div className="flex flex-col p-3">
     <PageTitle text="Surfaces Componentes" />
-    <div className="w-full grid grid-cols-1 sm:grid-cols-4 gap-4 px-6 py-2">
+    <div className="grid grid-cols-1 gap-4 py-2 px-6 w-full sm:grid-cols-4">
       {
         categories.map((item, idx) => (
-          <Card key={idx} isPressable onPress={() => router.push(item.url)} className="p-4 rounded-2xl  bg-zinc-100 dark:bg-zinc-800 text-slate-800 dark:text-slate-100 gap-3 items-center">
+          <Card key={idx} isPressable onPress={() => router.push(item.url)} className="gap-3 items-center p-4 rounded-2xl bg-zinc-100 text-slate-800 dark:bg-zinc-800 dark:text-slate-100">
             <div>{item.icon}</div>
             <div className="flex flex-col">
               <span className="text-3xl">{item.title}</span>

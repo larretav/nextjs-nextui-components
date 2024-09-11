@@ -29,8 +29,8 @@ export default function RechargeMobileCard({ title, description, cost, highlight
                 <p className='font-medium'>{title}</p>
             </CardHeader>
             <CardBody>
-                <p className='font-bold text-3xl'>${cost?.toFixed(2)}MXN</p>
-                <p className='p-1  bg-zinc-100 dark:bg-zinc-500 rounded-lg my-4'>{description}</p>
+                <p className='text-3xl font-bold'>${cost?.toFixed(2)}MXN</p>
+                <p className='p-1 my-4 rounded-lg bg-zinc-100 dark:bg-zinc-500'>{description}</p>
                 <div className="flex gap-2">
                     {paymentMethods.map((method, index) => <div key={method + index}>
                         {paymentMethodsIcon[method]}
@@ -39,8 +39,8 @@ export default function RechargeMobileCard({ title, description, cost, highlight
             </CardBody>
             <CardFooter>
                 {highlighted
-                    ? <Button className='w-full text-white bg-emerald-600 font-semibold' variant='solid'>Recargar</Button>
-                    : <Button className='w-full text-emerald-600 border-emerald-600 font-semibold' variant='flat'>Recargar</Button>}
+                    ? <Button className='w-full font-semibold text-white bg-emerald-600' variant='solid'>Recargar</Button>
+                    : <Button className='w-full font-semibold text-emerald-600 border-emerald-600' variant='flat'>Recargar</Button>}
             </CardFooter>
         </Card>
     )
