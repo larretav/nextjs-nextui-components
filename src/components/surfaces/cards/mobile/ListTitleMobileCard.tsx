@@ -1,3 +1,4 @@
+"use client"
 import PackageType from '@/components/data-display/onsite/PackageType'
 import { Card } from '@nextui-org/card'
 import { Button } from "@nextui-org/button";
@@ -10,7 +11,7 @@ type Props = {
     showTrailing?: boolean
 }
 
-export default function ListTitle({ title, subtitle, leadingIcon, showTrailing }: Props) {
+export default function ListTitleMobileCard({ title, subtitle, leadingIcon, showTrailing }: Props) {
     return (
         <Card className='flex-row py-3 px-4'>
             {leadingIcon &&

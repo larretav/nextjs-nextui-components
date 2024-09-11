@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardBody } from '@nextui-org/card'
 import React from 'react'
 
@@ -7,7 +8,7 @@ type Props = {
     amount: number
 }
 
-export default function InvoiceDetailsCard({ number, date, amount }: Props) {
+export default function InvoiceDetailsMobileCard({ number, date, amount }: Props) {
     return (
         <Card>
             <CardBody className='flex-row'>

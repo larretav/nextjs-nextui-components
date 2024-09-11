@@ -62,6 +62,11 @@ export const SidebarComponentsList = () => {
           key: "os-components",
           label: "OnSite components",
           path: '/data-display/os-components'
+        },
+        {
+          key: "badges",
+          label: "Badges",
+          path: '/data-display/badges'
         }
       ]
     },
@@ -118,9 +123,14 @@ export const SidebarComponentsList = () => {
       description: 'Accordion, Cards, etc.',
       items: [
         {
-          key: "surfaces",
-          label: "Cards",
-          path: '/surfaces/cards'
+          key: "mobile-cards",
+          label: "Mobile Cards",
+          path: '/surfaces/mobile-cards'
+        },
+        {
+          key: "desktop-cards",
+          label: "Desktop Cards",
+          path: '/surfaces/desktop-cards'
         }
       ]
     },
@@ -175,7 +185,7 @@ export const SidebarComponentsList = () => {
         emptyContent="Sin resultados"
       >
         {({ items, section }) => (
-          <ListboxSection  key={section} title={section} items={items} classNames={{ group: "flex flex-col gap-1" }}>
+          <ListboxSection key={section} title={section} items={items} classNames={{ group: "flex flex-col gap-1" }}>
             {
               (item) => <ListboxItem
                 key={item.key}
@@ -186,7 +196,7 @@ export const SidebarComponentsList = () => {
                     "px-4 transition-colors text-default-400", {
                     "text-green-600 dark:text-white data-[hover=true]:text-green-500 transition-colors": isActive(item.path)
                   }),
-                  title: clsx("text-medium",{
+                  title: clsx("text-medium", {
                     "font-semibold": isActive(item.path)
                   })
                 }}

@@ -1,3 +1,4 @@
+"use client"
 import { Card, CardBody } from '@nextui-org/card'
 import React from 'react'
 
@@ -8,7 +9,7 @@ type Props = {
     quantity: number
 }
 
-export default function ContentSummaryCard({ content, type, dimensions, quantity }: Props) {
+export default function ContentSummaryMobileCard({ content, type, dimensions, quantity }: Props) {
     return (
         <Card>
             <CardBody className='flex-row py-6 px-5'>
