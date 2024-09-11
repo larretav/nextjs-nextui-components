@@ -5,11 +5,11 @@ import { IconEcommerce, PageTitle, ShipperType } from "@/components";
 export default function OSComponentsPage() {
 
   return (
-    <div className="flex flex-col gap-3 px-2 md:px-6 ">
+    <div className="flex flex-col gap-3 px-2 md:px-6">
       <PageTitle text="OnSite components" />
       <div className="flex flex-col gap-8">
-        <div className="grid grid-cols-3 md:grid-cols-12 gap-2 ">
-          <span className="text-xl text-default-500 col-span-full" >Shippers</span>
+        <div className="grid grid-cols-3 gap-2 md:grid-cols-12">
+          <span className="col-span-full text-xl text-default-500" >Shippers</span>
           <ShipperType shipper="fedex" isEcommerce />
           <ShipperType shipper="paquetexpress" isEcommerce />
           <ShipperType shipper="dhl" />
@@ -18,13 +18,13 @@ export default function OSComponentsPage() {
         </div>
 
 
-        <div className="flex gap-2 flex-wrap">
-          <span className="w-full text-xl text-default-500 " >Ecommerce platforms</span>
-          <IconEcommerce ecommerce="jumpseller" className="size-10 bg-default-300 p-1 rounded-xl " />
-          <IconEcommerce ecommerce="onsite" className="size-10 bg-default-300 p-1 rounded-xl " />
-          <IconEcommerce ecommerce="prestashop" className="size-10 bg-default-300 p-1 rounded-xl " />
-          <IconEcommerce ecommerce="shopify" className="size-10 bg-default-300 p-1 rounded-xl " />
-          <IconEcommerce ecommerce="woocommerce" className="size-10 bg-default-300 p-1 rounded-xl " />
+        <div className="flex flex-wrap gap-2">
+          <span className="w-full text-xl text-default-500" >Ecommerce platforms</span>
+          <IconEcommerce ecommerce="jumpseller" className="p-1 rounded-xl size-10 bg-default-300" />
+          <IconEcommerce ecommerce="onsite" className="p-1 rounded-xl size-10 bg-default-300" />
+          <IconEcommerce ecommerce="prestashop" className="p-1 rounded-xl size-10 bg-default-300" />
+          <IconEcommerce ecommerce="shopify" className="p-1 rounded-xl size-10 bg-default-300" />
+          <IconEcommerce ecommerce="woocommerce" className="p-1 rounded-xl size-10 bg-default-300" />
         </div>
       </div>
     </div>

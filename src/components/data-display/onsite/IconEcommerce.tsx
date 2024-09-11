@@ -26,7 +26,7 @@ export const IconEcommerce = ({ ecommerce, className, imageProps }: Props) => {
         alt={ecommerce}
         width={20}
         height={20}
-        className="w-full h-full object-contain"
+        className="object-contain w-full h-full"
       />
     </div>
   )

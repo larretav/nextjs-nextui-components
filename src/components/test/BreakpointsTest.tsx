@@ -24,21 +24,21 @@ const BreakpointsTest = () => {
 
   return (
     <div className="flex flex-col gap-3">
-      {/* <div className="grid grid-cols-2 gap-1 px-2 py-3 rounded-2xl">
+      {/* <div className="grid grid-cols-2 gap-1 py-3 px-2 rounded-2xl">
         <div className="flex gap-2">
-          <span className="w-fit bg-default-100 px-2 py-1 rounded-md">XS (0px): {xsMatch ? "true" : "false"}</span>
-          <span className="w-fit bg-default-100 px-2 py-1 rounded-md">{screenWidth}</span>
+          <span className="py-1 px-2 rounded-md w-fit bg-default-100">XS (0px): {xsMatch ? "true" : "false"}</span>
+          <span className="py-1 px-2 rounded-md w-fit bg-default-100">{screenWidth}</span>
         </div>
 
         <div className="flex gap-2" >
-          <span className="w-fit bg-default-100 px-2 py-1 rounded-md">MD (768px): {mdMatch ? "true" : "false"}</span>
-          <span className="w-fit bg-default-100 px-2 py-1 rounded-md">{screenWidth}</span>
+          <span className="py-1 px-2 rounded-md w-fit bg-default-100">MD (768px): {mdMatch ? "true" : "false"}</span>
+          <span className="py-1 px-2 rounded-md w-fit bg-default-100">{screenWidth}</span>
         </div>
       </div>
 
       {mdMatch && <span className="text-xl font-bold">Esto es con el hook</span>} */}
 
-      <span className="text-xl font-bold hidden sm:block">Esto es con tailwind</span>
+      <span className="hidden text-xl font-bold sm:block">Esto es con tailwind</span>
     </div>
   )
 }

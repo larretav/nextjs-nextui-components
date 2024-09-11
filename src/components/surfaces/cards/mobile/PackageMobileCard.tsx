@@ -14,15 +14,15 @@ type Props = {
 
 export default function PackageMobileCard({ leadingIcon, title, subtitle, weightMeasures, quantity }: Props) {
     return (
-        <Card className='flex-row shadow-md  gap-2 pl-2 p-5 py-0' >
+        <Card className='flex-row gap-2 p-5 py-0 pl-2 shadow-md' >
             <div className='flex'>
                 <PackageType type={leadingIcon} className='self-center' />
             </div>
             <CardBody className='flex flex-row'>
                 <div className='w-full'>
-                    <p className='font-semibold text-sm'>{title}</p>
-                    <p className='text-gray-400 text-xs'>{subtitle}</p>
-                    <p className='font-bold text-xs tracking-widest'>{weightMeasures}</p>
+                    <p className='text-sm font-semibold'>{title}</p>
+                    <p className='text-xs text-gray-400'>{subtitle}</p>
+                    <p className='text-xs font-bold tracking-widest'>{weightMeasures}</p>
                 </div>
                 <div className='self-center text-base font-bold'>
                     X{quantity}

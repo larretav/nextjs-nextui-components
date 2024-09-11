@@ -9,9 +9,9 @@ import React from 'react'
 
 export const RegisterForm = () => {
   return (
-    <div className="w-full flex flex-col px-5 py-10 gap-6 bg-white shadow-lg rounded-3xl md:px-10 md:min-w-[500px] text-neutral-800">
+    <div className="flex flex-col gap-6 py-10 px-5 w-full bg-white rounded-3xl shadow-lg md:px-10 text-neutral-800 md:min-w-[500px]">
 
-      <span className="text-3xl text-center ">Nuevo usuario</span>
+      <span className="text-3xl text-center">Nuevo usuario</span>
 
       <div className="flex flex-col gap-4">
         <Input label="Nombre completo o Razón social" />
@@ -34,7 +34,7 @@ export const RegisterForm = () => {
         <Checkbox defaultSelected>He leído y estoy de acuerdo con el <Link href="#" className="text-blue-500">Aviso de privacidad</Link></Checkbox>
       </div>
 
-      <Button color="primary" className="bg-green-600 ">Enviar</Button>
+      <Button color="primary" className="bg-green-600">Enviar</Button>
 
       <span >¿Ya tienes una cuenta? <Link href="/os-pages/login" className="text-blue-500">¡Inicia sesión!</Link></span>
     </div>

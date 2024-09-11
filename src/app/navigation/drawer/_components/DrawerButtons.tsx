@@ -48,7 +48,7 @@ export const DrawerButtons = () => {
   }
 
   return (
-    <div className="p-2 flex flex-col items-center justify-center gap-4 bg-default-100 rounded-xl">
+    <div className="flex flex-col gap-4 justify-center items-center p-2 rounded-xl bg-default-100">
       <div className="flex gap-5 items-center">
         {
           buttonList.map(item => <div key={item.anchor}>

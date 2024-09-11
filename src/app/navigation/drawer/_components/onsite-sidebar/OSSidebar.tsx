@@ -36,8 +36,8 @@ export const OSSidebar = () => {
         {
           (onClose) => <>
             <DrawerHeader className="flex-col gap-8 mt-2">
-              <div className="w-full flex justify-between items-center">
-                <OnSiteLogoSolid2 width={90} height={30} className="py-px px-2 box-content dark:bg-neutral-700 rounded-lg" viewBox="0 0 23 6.15512" />
+              <div className="flex justify-between items-center w-full">
+                <OnSiteLogoSolid2 width={90} height={30} className="box-content py-px px-2 rounded-lg dark:bg-neutral-700" viewBox="0 0 23 6.15512" />
                 <Button isIconOnly variant="light" radius="full" size="sm" onPress={onClose} > <FaChevronLeft size={18} /> </Button>
               </div>
               <User
@@ -54,7 +54,7 @@ export const OSSidebar = () => {
               <OSSidebarList />
             </DrawerBody>
 
-            <DrawerFooter className="pt-1 pb-4 md:pb-6 flex-col">
+            <DrawerFooter className="flex-col pt-1 pb-4 md:pb-6">
               <Listbox aria-label="Sidebar Footer">
                 <ListboxItem
                   key="logout"

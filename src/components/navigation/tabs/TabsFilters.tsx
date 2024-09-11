@@ -88,7 +88,7 @@ export const TabsFilters = ({ selectedKey, children, ...restProps }: Props) => {
           key={key}
           {...rest}
           title={
-            <div className="flex items-center space-x-2 ">
+            <div className="flex items-center space-x-2">
               <span>{text}</span>
               <Chip
                 size="sm"

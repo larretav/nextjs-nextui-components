@@ -12,16 +12,16 @@ type Props = {
 
 export default function CustomerMobileCard({ customerName, address }: Props) {
     return (
-        <Card className='flex-row shadow-md '>
+        <Card className='flex-row shadow-md'>
             <CardBody className='flex-row py-4'>
                 <div className="flex self-center">
-                    <span className='bg-gray-100 dark:bg-slate-600/50 rounded-full flex w-10 h-10 justify-center'>
+                    <span className='flex justify-center w-10 h-10 bg-gray-100 rounded-full dark:bg-slate-600/50'>
                         <BsBuildingsFill className='self-center text-slate-600 dark:text-slate-100' />
                     </span>
                 </div>
                 <div className='max-w-[65%] ml-3'>
-                    <p className="font-bold text-base">{customerName}</p>
-                    <p className="font-medium text-xs text-table-base">{address}</p>
+                    <p className="text-base font-bold">{customerName}</p>
+                    <p className="text-xs font-medium text-table-base">{address}</p>
                 </div>
                 <div className='flex ml-auto'>
                     <Button isIconOnly variant="light" size='sm' className='self-center' radius='full'>

@@ -30,13 +30,13 @@ export default function OsPagesPage() {
   ]
 
   return (
-    <div className="flex flex-col gap-3 mt-4 p-2">
+    <div className="flex flex-col gap-3 p-2 mt-4">
       <div >
         <Button variant="light" as={Link} href="/" startContent={<FaChevronLeft />}>
           Menu principal
         </Button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mt-3 p-2">
+      <div className="grid grid-cols-1 gap-3 p-2 mt-3 sm:grid-cols-3">
         {
           pages.map(item => <Button
             key={item.href}

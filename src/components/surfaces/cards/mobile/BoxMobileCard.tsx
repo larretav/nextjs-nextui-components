@@ -18,13 +18,13 @@ export default function BoxMobileCard({ description, content, length, height, wi
     return (
         <Card>
             <CardBody>
-                <div className="border-b mx-2">
+                <div className="mx-2 border-b">
                     <p className='text-base font-semibold'>{description}</p>
                     <p className='text-sm'>{content}</p>
-                    <p className='text-xs font-semibold text-slate-400 mb-2'>{weightAndMeasures}</p>
+                    <p className='mb-2 text-xs font-semibold text-slate-400'>{weightAndMeasures}</p>
                 </div>
             </CardBody>
-            <CardFooter className='justify-end gap-2 pt-0'>
+            <CardFooter className='gap-2 justify-end pt-0'>
                 <Button isIconOnly className='bg-blue-100 dark:bg-blue-600/50'>
                     <FaEdit className='text-blue-600 dark:text-blue-100' size={18} />
                 </Button>

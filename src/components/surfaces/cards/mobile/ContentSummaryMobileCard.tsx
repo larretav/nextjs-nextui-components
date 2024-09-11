@@ -12,7 +12,7 @@ type Props = {
 export default function ContentSummaryMobileCard({ content, type, dimensions, quantity }: Props) {
     return (
         <Card>
-            <CardBody className='flex-row px-5 py-6'>
+            <CardBody className='flex-row py-6 px-5'>
                 <div className="flex flex-col text-sm">
                     <p >
                         <span className='font-semibold'>Contenido:  </span>
@@ -27,7 +27,7 @@ export default function ContentSummaryMobileCard({ content, type, dimensions, qu
                         {dimensions}
                     </p>
                 </div>
-                <div className="ml-auto flex mr-3">
+                <div className="flex mr-3 ml-auto">
                     <p className='self-center font-semibold'>x{quantity}</p>
                 </div>
             </CardBody>

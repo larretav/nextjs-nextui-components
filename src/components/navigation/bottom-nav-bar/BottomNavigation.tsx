@@ -78,7 +78,7 @@ export const BottomNavigation = () => {
             onClick={() => setIndex(item.index)} className={clsx(
               "flex-col py-2 px-0 h-fit min-w-fit bg-transparent",
             )}>
-            <div className="w-fit py-1 px-5 box-border flex justify-center relative ">
+            <div className="flex relative justify-center py-1 px-5 w-fit box-border">
 
               <span className={clsx(
                 "h-full box-border absolute top-0 bottom-0 m-auto bg-primary-500 opacity-30 rounded-full animate-expand",

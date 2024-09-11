@@ -41,7 +41,7 @@ export const TabFilter2 = ({ text, value, activeColor = "blue", key, ...restProp
       key={key}
       {...restProps}
       title={
-        <div className="flex items-center space-x-2 ">
+        <div className="flex items-center space-x-2">
           <span>{text}</span>
           <Chip
             size="sm"

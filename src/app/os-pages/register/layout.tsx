@@ -5,7 +5,7 @@ export default function Layout({
   children: React.ReactNode;
 }) { 
   return (
-    <main className="w-dvw h-dvh bg-white light text-neutral-50 overflow-y-auto pb-40 md:pb-0">
+    <main className="overflow-y-auto pb-40 bg-white md:pb-0 w-dvw h-dvh light text-neutral-50">
       {children}
     </main>
   );

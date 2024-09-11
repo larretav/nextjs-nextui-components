@@ -8,7 +8,7 @@ export default function NavbarsPage() {
     <div className="flex flex-col gap-3 px-2 md:px-6">
       <PageTitle text="Navbar" />
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-2">
+      <div className="grid grid-cols-1 gap-3 mt-2 md:grid-cols-3">
         <OSNavbar />
         <MobileToolbar title="Detalles" endContent={<FaPlus size={24} className="text-blue-500" />} />
         <OSSidebar />
