@@ -11,6 +11,7 @@ import PackageMobileCard from "@/components/surfaces/cards/mobile/PackageMobileC
 import PackageItemMobileCard from "@/components/surfaces/cards/mobile/PackageItemMobileCard";
 import RechargeMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeMobileCard";
 import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile/RechargeCustomAmountCard";
+import AccountBalanceCard from "@/components/surfaces/cards/desktop-mobile/AccountBalanceCard";
 
 export default function CardsPage() {
   return (
@@ -96,6 +97,10 @@ export default function CardsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         <RechargeCustomAmountCard title="Otra Cantidad" highlighted />
         <RechargeCustomAmountCard title="Otra Cantidad" />
+      </div>
+      <p>AccountBalanceCard (Mobile-Desktop)</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+        <AccountBalanceCard balance={1200} trackingGuidesQuantity={5}/>
       </div>
     </div>
   )
