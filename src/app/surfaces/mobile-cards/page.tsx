@@ -10,7 +10,7 @@ import OriginDestinationMobileCard from "@/components/surfaces/cards/mobile/Orig
 import PackageMobileCard from "@/components/surfaces/cards/mobile/PackageMobileCard";
 import PackageItemMobileCard from "@/components/surfaces/cards/mobile/PackageItemMobileCard";
 import RechargeMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeMobileCard";
-import RechargeCustomAmountMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeCustomAmountMobileCard";
+import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile/RechargeCustomAmountCard";
 
 export default function CardsPage() {
   return (
@@ -94,8 +94,8 @@ export default function CardsPage() {
       </div>
       <p>Recharge Custom Amount Mobile Card</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <RechargeCustomAmountMobileCard title="Otra Cantidad" highlighted />
-        <RechargeCustomAmountMobileCard title="Otra Cantidad" />
+        <RechargeCustomAmountCard mode="mobile" title="Otra Cantidad" highlighted />
+        <RechargeCustomAmountCard mode="mobile" title="Otra Cantidad" />
       </div>
     </div>
   )
