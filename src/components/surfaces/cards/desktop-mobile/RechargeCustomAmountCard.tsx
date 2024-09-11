@@ -6,15 +6,13 @@ import React from 'react'
 import { MdAttachMoney } from 'react-icons/md'
 
 type Props = {
-    title: string
-    mode:"desktop" | "mobile"
-    highlighted?: boolean
-    
+    title: string    
+    highlighted?: boolean    
 }
 
-export default function RechargeCustomAmountMobileCard({ title,highlighted, mode }: Props) {
+export default function RechargeCustomAmountMobileCard({ title,highlighted }: Props) {
     return (
-        <Card className={`px-2 h-min ${mode === "desktop" ? "w-72" : "w-full"}`}>
+        <Card className={`px-2 h-min max-w-72`}>
             <CardHeader>
                 <p className='font-semibold text-xl mt-5'>{title}</p>
             </CardHeader>

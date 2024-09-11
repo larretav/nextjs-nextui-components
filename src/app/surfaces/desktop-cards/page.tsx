@@ -3,6 +3,7 @@ import RechargeDesktopCard from '@/components/surfaces/cards/desktop/RechargeDes
 import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile/RechargeCustomAmountCard"
 import React from 'react'
 import DashboardCard from '@/components/surfaces/cards/desktop-mobile/DashboardCard'
+import AccountBalanceCard from '@/components/surfaces/cards/desktop-mobile/AccountBalanceCard'
 
 
 
@@ -23,8 +24,12 @@ export default function Page() {
       </div>
       <p>RechargeCustomAmountCard (Mobile-Desktop)</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
-      <RechargeCustomAmountCard title='Otra Cantidad' mode='desktop'/>
-      <RechargeCustomAmountCard title='Otra Cantidad' mode='desktop' highlighted/>
+      <RechargeCustomAmountCard title='Otra Cantidad'/>
+      <RechargeCustomAmountCard title='Otra Cantidad' highlighted/>
+      </div>
+      <p>AccountBalanceCard (Mobile-Desktop)</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        <AccountBalanceCard balance={5300} trackingGuidesQuantity={12} />
       </div>
   </div>
   )

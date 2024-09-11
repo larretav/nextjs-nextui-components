@@ -94,8 +94,8 @@ export default function CardsPage() {
       </div>
       <p>RechargeCustomAmountCard (Mobile-Desktop)</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
-        <RechargeCustomAmountCard mode="mobile" title="Otra Cantidad" highlighted />
-        <RechargeCustomAmountCard mode="mobile" title="Otra Cantidad" />
+        <RechargeCustomAmountCard title="Otra Cantidad" highlighted />
+        <RechargeCustomAmountCard title="Otra Cantidad" />
       </div>
     </div>
   )
