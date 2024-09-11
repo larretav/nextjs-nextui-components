@@ -7,7 +7,7 @@ type Props = {
     quantity:number
 }
 
-export default function DashboardMobileCard({text,quantity}: Props) {
+export default function DashboardCard({text,quantity}: Props) {
   return (
     <Card className='w-min pr-14'>
         <CardBody className='flex-row gap-2 p-5 sm:flex-col'>

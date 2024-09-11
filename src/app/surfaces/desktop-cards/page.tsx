@@ -1,8 +1,8 @@
 import { PageTitle } from '@/components'
 import RechargeDesktopCard from '@/components/surfaces/cards/desktop/RechargeDesktopCard'
 import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile/RechargeCustomAmountCard"
-
 import React from 'react'
+import DashboardCard from '@/components/surfaces/cards/desktop-mobile/DashboardCard'
 
 
 
@@ -10,6 +10,10 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-3 px-6 py-3">
     <PageTitle text="Desktop Cards Components" />
+    <p>DashboardCard (Desktop-Mobile)</p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
+        <DashboardCard text="Total" quantity={100} />
+      </div>
     <p>RechargeDesktopCard</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
       <RechargeDesktopCard title="Básico" cost={200} badgeQuantity={2} paymentMethods={["card"]} description='Puedes realizar hasta 2 envíos' highlighted/>
