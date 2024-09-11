@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import InvoiceStatus from '@/components/data-display/onsite/InvoiceStatus'
 import { Card } from '@nextui-org/card'
@@ -9,7 +10,7 @@ type Props = {
   status: "pending" | "paid" | "canceled"
 }
 
-export default function InvoiceCard({ folio, date, payment, amount, status }: Props) {
+export default function InvoiceMobileCard({ folio, date, payment, amount, status }: Props) {
   return (
     <Card className='flex-row px-3 py-4 shadow-md'>
       <div className="">

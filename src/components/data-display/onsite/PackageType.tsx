@@ -1,8 +1,8 @@
 import React, { useMemo } from 'react'
 import Image from 'next/image'
-import box from "@/assets/box.png"
-import envelope from "@/assets/envelope.png"
-import pallet from "@/assets/pallet.png"
+import box from "../../../../public/assets/package-type/box.png"
+import envelope from "../../../../public/assets/package-type/envelope.png"
+import pallet from "../../../../public/assets/package-type/pallet.png"
 
 type Props = {
     type: "box" | "envelope" | "pallet"

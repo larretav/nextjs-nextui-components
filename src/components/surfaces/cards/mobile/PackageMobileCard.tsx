@@ -1,6 +1,7 @@
+"use client"
 import React from 'react'
 import { Card, CardBody } from "@nextui-org/card";
-import PackageType from '../../data-display/onsite/PackageType';
+import PackageType from '../../../data-display/onsite/PackageType';
 type Props = {
     leadingIcon: "box" | "envelope" | "pallet"
     title: string
@@ -9,7 +10,9 @@ type Props = {
     quantity: number
 }
 
-export default function PackageCard({ leadingIcon, title, subtitle, weightMeasures, quantity }: Props) {
+
+
+export default function PackageMobileCard({ leadingIcon, title, subtitle, weightMeasures, quantity }: Props) {
     return (
         <Card className='flex-row shadow-md  gap-2 pl-2 p-5 py-0' >
             <div className='flex'>
