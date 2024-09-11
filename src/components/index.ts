@@ -1,3 +1,5 @@
+export { MobileToolbar } from "./navigation/mobile-toolbar/MobileToolbar";
+
 export { MoreOptionsShipment } from "./surfaces/cards/shipments/MoreOptionsShipment";
 
 export { IconEcommerce } from "./data-display/onsite/IconEcommerce";

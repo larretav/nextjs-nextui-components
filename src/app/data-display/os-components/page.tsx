@@ -1,35 +1,31 @@
-import React, { HTMLProps, StyleHTMLAttributes } from "react";
-import { ShipOutputSolid, OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from "@/components/icons";
-import { IconEcommerce, PageTitle, ShipperType, Status } from "@/components";
-import Image from "next/image";
-import ShipmentCard from "@/components/surfaces/cards/shipments/ShipmentCard";
+import React from "react";
+import { IconEcommerce, PageTitle, ShipperType } from "@/components";
 
 
 export default function OSComponentsPage() {
 
   return (
-    <div className="flex flex-col gap-3 px-6 py-3">
-      <PageTitle text="OnSite Data Display" />
+    <div className="flex flex-col gap-3 px-2 md:px-6 ">
+      <PageTitle text="OnSite components" />
+      <div className="flex flex-col gap-8">
+        <div className="grid grid-cols-3 md:grid-cols-12 gap-2 ">
+          <span className="text-xl text-default-500 col-span-full" >Shippers</span>
+          <ShipperType shipper="fedex" isEcommerce />
+          <ShipperType shipper="paquetexpress" isEcommerce />
+          <ShipperType shipper="dhl" />
+          <ShipperType shipper="pkt1" />
+          <ShipperType shipper="ups" />
+        </div>
 
-      <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 ">
-        <ShipperType shipper="fedex" isEcommerce />
-        <ShipperType shipper="paquetexpress" isEcommerce />
-        <ShipperType shipper="dhl" />
-        <ShipperType shipper="pkt1" />
-        <ShipperType shipper="ups" />
-      </div>
 
-
-      <div className="flex gap-2">
-        <IconEcommerce ecommerce="jumpseller" className="bg-slate-200 p-px " />
-        <IconEcommerce ecommerce="onsite" className="bg-slate-200 p-px " />
-        <IconEcommerce ecommerce="prestashop" className="bg-slate-200 p-px " />
-        <IconEcommerce ecommerce="shopify" className="bg-slate-200 p-px " />
-        <IconEcommerce ecommerce="woocommerce" className="bg-slate-200 p-px " />
-      </div>
-
-      <div className="flex gap-2">
-        <ShipmentCard cost={200} customer="Miguel Angel"  date="23/02/2024" origin="Los Mochis" destination="Acapulco" orderNumber="1234" status="en tránsito" ecommerce="prestashop"  />
+        <div className="flex gap-2 flex-wrap">
+          <span className="w-full text-xl text-default-500 " >Ecommerce platforms</span>
+          <IconEcommerce ecommerce="jumpseller" className="size-10 bg-default-300 p-1 rounded-xl " />
+          <IconEcommerce ecommerce="onsite" className="size-10 bg-default-300 p-1 rounded-xl " />
+          <IconEcommerce ecommerce="prestashop" className="size-10 bg-default-300 p-1 rounded-xl " />
+          <IconEcommerce ecommerce="shopify" className="size-10 bg-default-300 p-1 rounded-xl " />
+          <IconEcommerce ecommerce="woocommerce" className="size-10 bg-default-300 p-1 rounded-xl " />
+        </div>
       </div>
     </div>
   );

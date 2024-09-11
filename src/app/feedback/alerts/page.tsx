@@ -2,8 +2,8 @@ import { PageTitle } from "@/components";
 
 export default function AlertsPage() {
   return (
-    <div className="flex flex-col gap-3 px-6 py-3">
-      <PageTitle text="Iconos" />
+    <div className="flex flex-col gap-3 px-2 md:px-6">
+      <PageTitle text="Alerts" />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-2 ">
         <div className="flex flex-col px-3 py-2 rounded-2xl bg-blue-500 text-white col-span-4 shadow-lg">
           <h6 className=" font-bold">This is the Alert Title</h6>

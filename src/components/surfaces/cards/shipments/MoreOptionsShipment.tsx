@@ -1,5 +1,4 @@
 'use client';
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
 import { Button } from '@nextui-org/button'
 import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/dropdown'
 import React from 'react'
@@ -13,19 +12,19 @@ export const MoreOptionsShipment = (props: Props) => {
     <Dropdown>
       <DropdownTrigger>
         <Button
-          variant="flat"
+          variant="light"
           radius="full"
           size="sm"
           isIconOnly
         >
-          <FaEllipsisV size={18} className="text-slate-600" />
+          <FaEllipsisV size={18} className="text-default-500" />
         </Button>
       </DropdownTrigger>
-      <DropdownMenu aria-label="Más acciones de envío">
-        <DropdownSection showDivider>
-          <DropdownItem key="new" startContent={<FaHandshakeSimple size={18} />} className="text-slate-600" >Clausulado</DropdownItem>
-          <DropdownItem key="copy" startContent={<FaReceipt size={18} />} className="text-slate-600">Guía</DropdownItem>
-          <DropdownItem key="edit" startContent={<FaMapLocationDot size={18} />} className="text-slate-600">Rastreo</DropdownItem>
+      <DropdownMenu aria-label="Más acciones de envío" >
+        <DropdownSection showDivider className="text-default-500">
+          <DropdownItem key="new" startContent={<FaHandshakeSimple size={18} />}  >Clausulado</DropdownItem>
+          <DropdownItem key="copy" startContent={<FaReceipt size={18} />} >Guía</DropdownItem>
+          <DropdownItem key="edit" startContent={<FaMapLocationDot size={18} />} >Rastreo</DropdownItem>
         </DropdownSection>
 
         <DropdownSection>

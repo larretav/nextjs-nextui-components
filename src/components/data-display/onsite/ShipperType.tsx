@@ -11,10 +11,10 @@ type Props = {
 }
 
 const shippers: Record<Shippers, any> = {
-  pkt1: '/assets/shippers/shipper-dhl.png',
+  pkt1: '/assets/shippers/shipper-pkt1.png',
   paquetexpress: '/assets/shippers/shipper-paquetexpress.png',
   fedex: '/assets/shippers/shipper-fedex.png',
-  dhl: '/assets/shippers/shipper-pkt1.png',
+  dhl: '/assets/shippers/shipper-dhl.png',
   ups: '/assets/shippers/shipper-ups.png',
 }
 

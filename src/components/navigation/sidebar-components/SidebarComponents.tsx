@@ -32,13 +32,12 @@ export const SidebarComponents = () => {
       <DrawerContent className="pt-10">
         {
           (onClose) => <>
-            <DrawerBody>
+            <DrawerBody  className="overflow-y-auto no-scrollbar">
               <SidebarComponentsList />
             </DrawerBody>
-            <DrawerFooter>
+            <DrawerFooter className="pt-1 pb-4 md:pb-6">
               <ThemeSwitchTabs />
             </DrawerFooter>
-
           </>
         }
       </DrawerContent>

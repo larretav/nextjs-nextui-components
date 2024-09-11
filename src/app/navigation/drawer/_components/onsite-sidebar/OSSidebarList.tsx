@@ -1,6 +1,6 @@
 'use client';
 import { CBadge } from '@/components';
-import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid, DeliveredShipmentsReportSolid, DetailedShipmentsReportSolid, BagClickSolid, CustomizedShipmentsReportSolid, FaqSolid, FileInvoiceDollarSolid, FileInvoiceSolid, BoxOpenSolid, BookSolid, HeadsetSolid } from '@/components/icons';
+import { ZipCodeSolid, QuotationSolid, NotifDeliverySolid, ShipOutputSolid, ShipmentsSolid, PickupRequestSolid, BranchOfficeShipmentsSolid, RechargesSolid, MegaphoneSolid, DashboardSolid, DeliveredShipmentsReportSolid, DetailedShipmentsReportSolid, BoxPackageSolid, CustomizedShipmentsReportSolid, FaqSolid, FileInvoiceDollarSolid, FileInvoiceSolid, BoxOpenSolid, RouteLineSolid, HeadsetSolid, ConcentratedShipmentsReportSolid, BookSolid } from '@/components/icons';
 import useDebounce from '@/hooks/useDebounce';
 import { removeAccents } from '@/utils/strings.utils';
 import { Input } from '@nextui-org/input'
@@ -8,8 +8,7 @@ import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
 import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
-import { BsFillMegaphoneFill, BsHeadset, BsMegaphone, BsMegaphoneFill } from 'react-icons/bs';
-import { FaBook, FaBoxOpen, FaFileInvoice, FaFileInvoiceDollar, FaHeadset, FaMagnifyingGlass } from 'react-icons/fa6'
+import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { MdGroups } from 'react-icons/md';
 
 type Props = {}
@@ -165,7 +164,7 @@ const OSSidebarList = (props: Props) => {
         {
           key: 'concentrated-shipments',
           label: 'Envíos (concentrado)',
-          icon: <BagClickSolid />,
+          icon: <ConcentratedShipmentsReportSolid />,
           path: '/'
         },
         {

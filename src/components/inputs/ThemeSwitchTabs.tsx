@@ -30,30 +30,27 @@ export const ThemeSwitchTabs = () => {
   if (!isLoaded) return null;
 
   return (
-    <div className="flex w-full flex-col">
-
-      <Tabs
-        aria-label="Theme Switch"
-        selectedKey={selected}
-        onSelectionChange={handleChange}
-        classNames={{ tabList: 'w-full' }}
-        radius="sm"
-      >
-        <Tab
-          key="dark"
-          title={
-            <div className="flex items-center space-x-2">
-              <FaMoon size={20} />
-              <span>Dark</span>
-            </div>}
-
-        />
-        <Tab key="light" title={
+    <Tabs
+      aria-label="Theme Switch"
+      selectedKey={selected}
+      onSelectionChange={handleChange}
+      classNames={{ tabList: 'w-full', base: "w-full" }}
+      radius="sm"
+    >
+      <Tab
+        key="dark"
+        title={
           <div className="flex items-center space-x-2">
-            <MdOutlineWbSunny size={20} />
-            <span>Light</span>
-          </div>} />
-      </Tabs>
-    </div>
+            <FaMoon size={20} />
+            <span>Dark</span>
+          </div>}
+
+      />
+      <Tab key="light" title={
+        <div className="flex items-center space-x-2">
+          <MdOutlineWbSunny size={20} />
+          <span>Light</span>
+        </div>} />
+    </Tabs>
   );
 }

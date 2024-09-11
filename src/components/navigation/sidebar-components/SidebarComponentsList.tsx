@@ -57,6 +57,11 @@ export const SidebarComponentsList = () => {
           key: "icons",
           label: "Icons",
           path: '/data-display/icons'
+        },
+        {
+          key: "os-components",
+          label: "OnSite components",
+          path: '/data-display/os-components'
         }
       ]
     },
@@ -86,16 +91,26 @@ export const SidebarComponentsList = () => {
       section: 'Navigation',
       description: 'Drawer, Bottom Navigation, etc.',
       items: [
-        // {
-        //   key: "drawer",
-        //   label: "Drawer",
-        //   path: '/navigation/drawer'
-        // }
+        {
+          key: "navbars",
+          label: "Navbars",
+          path: '/navigation/navbars'
+        },
         {
           key: "drawer",
           label: "Drawer",
-          path: '/navigation'
-        }
+          path: '/navigation/drawer'
+        },
+        {
+          key: "tabs",
+          label: "Tabs",
+          path: '/navigation/tabs'
+        },
+        {
+          key: "bottom-nav-bar",
+          label: "Bottom Nav Bar",
+          path: '/navigation/bottom-nav-bar'
+        },
       ]
     },
     {

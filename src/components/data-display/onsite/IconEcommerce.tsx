@@ -19,7 +19,7 @@ const ecommercePlatforms: Record<EcommercePlatforms, any> = {
 
 export const IconEcommerce = ({ ecommerce, className, imageProps }: Props) => {
   return (
-    <div className={"size-5 rounded-md " + className}>
+    <div className={"size-5 " + className}>
       <Image
         {...imageProps}
         src={ecommercePlatforms[ecommerce]}

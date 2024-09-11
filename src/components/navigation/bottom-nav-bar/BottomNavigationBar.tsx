@@ -23,41 +23,6 @@ export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSi
   const [hidden, setHidden] = useState(false);
   const [scrollY, setScrollY] = useState(0);
 
-  const items = [
-    {
-      index: 0,
-      text: "Cotización",
-      icon: <BsHouse size={24} />,
-      selectedIcon: <BsFillHouseFill size={24} />,
-    },
-    {
-      index: 1,
-      text: "Cotización",
-      icon: <BsHouse size={24} />,
-      selectedIcon: <BsFillHouseFill size={24} />,
-    },
-    {
-      index: 2,
-      text: "Cotización",
-      icon: <BsHouse size={24} />,
-      selectedIcon: <BsFillHouseFill size={24} />,
-    },
-    {
-      index: 3,
-      text: "Cotización",
-      icon: <BsHouse size={24} />,
-      selectedIcon: <BsFillHouseFill size={24} />,
-    },
-    {
-      index: 4,
-      text: "Cotización",
-      icon: <BsHouse size={24} />,
-      selectedIcon: <BsFillHouseFill size={24} />,
-    },
-
-  ]
-
-
   const handleScroll = useCallback((e: any) => {
     const currentScroll = window.scrollY
 
@@ -79,7 +44,7 @@ export const BottomNavigationBar = ({ value, onChange, color = 'primary', iconSi
   return (
     <nav
       className={clsx(
-        "w-full py-1 flex justify-evenly box-border bg-default-100 overflow-auto no-scrollbar transition-all duration-500 " + className,
+        "w-full py-1 flex justify-evenly box-border bg-default-100 overflow-auto no-scrollbar transition-all duration-500 fixed bottom-0 left-0 z-10 " + className,
         {
           "translate-y-60 ": hidden
         }
