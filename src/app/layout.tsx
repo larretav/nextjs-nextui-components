@@ -39,7 +39,7 @@ export default function RootLayout({
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="relative flex flex-col h-dvh w-dvw overflow-auto">
+					<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
 						<GlobalNavbar />
 						<main className="container">
 							{children}

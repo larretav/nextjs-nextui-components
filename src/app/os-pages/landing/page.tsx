@@ -5,19 +5,19 @@ import { Link } from "@nextui-org/link";
 
 export default function OsLandingPage() {
   return (
-    <div className="w-dvw h-dvh relative bg-gradient-to-b from-green-600 to-green-500 z-0">
-      <div className="w-full h-full absolute bg-onsite-pattern bg-cover opacity-10 -z-10" />
+    <div className="relative z-0 bg-gradient-to-b from-green-600 to-green-500 w-dvw h-dvh">
+      <div className="absolute w-full h-full bg-cover opacity-10 bg-onsite-pattern -z-10" />
 
-      <div className="flex flex-col items-center gap-12 pt-16 px-5 text-white">
+      <div className="flex flex-col gap-12 items-center px-5 pt-16 text-white">
 
-        <div className="flex flex-col  gap-1">
+        <div className="flex flex-col gap-1">
           <span className="text-2xl text-center md:text-3xl">¡Hola!</span>
           <span className="text-xl text-center md:text-2xl">Que gusto tenerte por aquí</span>
         </div>
 
-        <div className="flex flex-col items-center gap-2 py-7">
+        <div className="flex flex-col gap-2 items-center py-7">
           <span className="text-2xl font-semibold text-center md:text-3xl">Bienvenido a</span>
-          <div className="p-5 rounded-2xl bg-white">
+          <div className="p-5 bg-white rounded-2xl">
             <Image
               width={200}
               height={50}
@@ -30,8 +30,8 @@ export default function OsLandingPage() {
         </div>
 
         <div className="flex flex-col gap-1">
-          <span className="text-center text-xl font-semibold md:text-2xl">El primer centro de envíos cero emisiones de México</span>
-          <span className="text-center text-lg md:text-xl">Cotiza, administra y envía</span>
+          <span className="text-xl font-semibold text-center md:text-2xl">El primer centro de envíos cero emisiones de México</span>
+          <span className="text-lg text-center md:text-xl">Cotiza, administra y envía</span>
         </div>
 
         <Button
@@ -41,7 +41,7 @@ export default function OsLandingPage() {
           radius="sm"
           as={Link}
           href="/os-pages/login"
-          className="bg-white text-black">
+          className="text-black bg-white">
           ¡Comienza ya!
         </Button>
       </div>

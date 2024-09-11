@@ -10,10 +10,10 @@ import PackageItem from "@/components/surfaces/cards/PackageItem";
 
 export default function CardsPage() { 
   return (
-    <div className="flex flex-col gap-3 px-6 py-3">
+    <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Cards Components" />
       <p>Package Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <PackageCard
           leadingIcon="box"
           title="Nike Air Force"
@@ -37,7 +37,7 @@ export default function CardsPage() {
         />
       </div>
       <p>List Title</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <ListTitle title="Título" subtitle="SubTítulo" />
         <ListTitle title="Título" subtitle="SubTítulo" leadingIcon="box" />
         <ListTitle title="Título" subtitle="SubTítulo" leadingIcon="pallet" />
@@ -46,32 +46,32 @@ export default function CardsPage() {
         <ListTitle title="Base de datos" subtitle="Base subtítulos" showTrailing />
       </div>
       <p>Package Item</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
       <PackageItem content="Informativo" packageType="box"/>
       <PackageItem content="Documentos" packageType="envelope"/>
       <PackageItem content="Pallets" packageType="pallet"/>
       </div>
       <p>Invoice Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <InvoiceCard folio="LMAO-01" date="02/04/2024" payment="Tarjeta de crédito" amount={1000} status="paid" />
         <InvoiceCard folio="LMAO-02" date="02/04/2024" payment="Tarjeta de debito" amount={500.99} status="canceled" />
         <InvoiceCard folio="LMAO-03" date="02/04/2024" payment="Tarjeta de crédito" amount={88.99} status="pending" />
       </div>
       <p>Customer Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <CustomerCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530"/>
         <CustomerCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351"/>
       </div>
       <p>Box Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <BoxCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20}width={20}weight={1}/>
       </div>
       <p>Content Summary Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <ContentSummaryCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3}/>
       </div>
       <p>Invoice Details Card</p>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <InvoiceDetailsCard number="0043123" date="23/05/2024" amount={230}/>
       </div>
       

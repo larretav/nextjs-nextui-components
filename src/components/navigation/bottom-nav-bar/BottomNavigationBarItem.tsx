@@ -35,8 +35,8 @@ export const BottomNavigationBarItem = ({ label, icon, activeIcon, iconSize = 24
   return (
     <Button
       disableAnimation
-      onClick={(e) => { onClick ? onClick(e, index) : null }} className="flex-col py-2 px-0 h-fit min-w-fit bg-transparent" >
-      <div className="w-fit py-1 px-5 box-border flex justify-center relative ">
+      onClick={(e) => { onClick ? onClick(e, index) : null }} className="flex-col py-2 px-0 bg-transparent h-fit min-w-fit" >
+      <div className="flex relative justify-center py-1 px-5 w-fit box-border">
 
         <span className={clsx(
           "h-full box-border absolute top-0 bottom-0 m-auto opacity-30 rounded-full animate-bg-expand",

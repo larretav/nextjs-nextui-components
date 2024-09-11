@@ -8,18 +8,18 @@ import OnSiteLogoSVG from '@/assets/onsite-logo-complete3.svg'
 export default function IconsPage() {
 
   return (
-    <div className="flex flex-col gap-3 px-6 py-3">
+    <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Iconos" />
       <div className="flex flex-row gap-3 text-slate-600 dark:text-slate-300">
-        <div className="p-2 bg-default-200 rounded-xl ">
+        <div className="p-2 rounded-xl bg-default-200">
           <OnSiteIconSolid size={30} viewBox="0 0 24 24 " />
         </div>
 
-        <div className="p-2 bg-default-200 rounded-xl ">
+        <div className="p-2 rounded-xl bg-default-200">
           <ShipOutputSolid size={30} viewBox="0 0 15 15" />
         </div>
 
-        <div className="p-2 bg-default-200 rounded-xl ">
+        <div className="p-2 rounded-xl bg-default-200">
           <OnSiteLogoSolid size={30}  />
         </div>
 

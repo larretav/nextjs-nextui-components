@@ -22,11 +22,11 @@ type Props = {
 
 const ShipmentCard = ({ cost, customer, date, destination, orderNumber, origin, status, ecommerce, shipper }: Props) => {
   return (
-    <Card className="min-w-[300px] px-2 shadow-md text-default-600">
+    <Card className="px-2 shadow-md min-w-[300px] text-default-600">
       <CardHeader className="justify-between">
-        <div className="flex gap-4 items-center ">
+        <div className="flex gap-4 items-center">
           <IconEcommerce ecommerce={ecommerce} className="size-7" />
-          <span className="text-xl font-bold items-center">#{orderNumber}</span>
+          <span className="items-center text-xl font-bold">#{orderNumber}</span>
           <Status color="blue" variant="dot" />
         </div>
         <MoreOptionsShipment />
@@ -38,12 +38,12 @@ const ShipmentCard = ({ cost, customer, date, destination, orderNumber, origin, 
           <span className="text-base">{date}</span>
         </div>
 
-        <div className="flex justify-between items-center ">
+        <div className="flex justify-between items-center">
           {/* Origin - Destination */}
           <OriginDestination origin={origin}  destination={destination} />
 
           {/* IconShipper & Cost */}
-          <div className="flex flex-col justify-between items-end  gap-3">
+          <div className="flex flex-col gap-3 justify-between items-end">
             <ShipperType shipper={shipper} />
             <span className="text-3xl font-semibold">${cost.toFixed(2)}</span>
           </div>
