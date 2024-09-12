@@ -12,6 +12,7 @@ import PackageItemMobileCard from "@/components/surfaces/cards/mobile/PackageIte
 import RechargeMobileCard from "@/components/surfaces/cards/mobile/recharge-card/RechargeMobileCard";
 import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile/RechargeCustomAmountCard";
 import AccountBalanceCard from "@/components/surfaces/cards/desktop-mobile/AccountBalanceCard";
+import AccountStateCard from "@/components/surfaces/cards/desktop-mobile/AccountStateCard";
 
 export default function CardsPage() {
   return (
@@ -101,6 +102,12 @@ export default function CardsPage() {
       <p>AccountBalanceCard (Mobile-Desktop)</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <AccountBalanceCard balance={1200} trackingGuidesQuantity={5}/>
+      </div>
+      <p>AccountStateCard (Mobile-Desktop)</p>
+      <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+      <AccountStateCard type="pending"amount={100} date="22 Junio"/>
+      <AccountStateCard type="expired"amount={200} date="22 Abril"/>
+      <AccountStateCard type="congrats"/>
       </div>
     </div>
   )
