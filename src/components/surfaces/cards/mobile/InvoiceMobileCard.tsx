@@ -13,7 +13,7 @@ type Props = {
 export default function InvoiceMobileCard({ folio, date, payment, amount, status }: Props) {
   return (
     <Card className='flex-row py-4 px-3 shadow-md'>
-      <div className="">
+      <div>
         <div className="flex gap-2">
           <p className='text-xs font-semibold'>{folio}</p>
           <span className='border-r'></span>
