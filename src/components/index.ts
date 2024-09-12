@@ -1,3 +1,5 @@
+export {AddressCard} from "./surfaces/cards/addresses/AddressCard";
+
 export { MobileToolbar } from "./navigation/mobile-toolbar/MobileToolbar";
 
 export { MoreOptionsShipment } from "./surfaces/cards/shipments/MoreOptionsShipment";
@@ -19,5 +21,4 @@ export { SidebarComponents } from "./navigation/sidebar-components/SidebarCompon
 export { SidebarComponentsList } from "./navigation/sidebar-components/SidebarComponentsList";
 export { SidebarPrototype } from "./navigation/sidebar/SidebarPrototype";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
-
 

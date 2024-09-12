@@ -1,4 +1,4 @@
-import { PageTitle } from "@/components";
+import { AddressCard, PageTitle } from "@/components";
 import BoxMobileCard from "@/components/surfaces/cards/mobile/BoxMobileCard";
 import ContentSummaryMobileCard from "@/components/surfaces/cards/mobile/ContentSummaryMobileCard";
 import CustomerMobileCard from "@/components/surfaces/cards/mobile/CustomerMobileCard";
@@ -8,8 +8,9 @@ import ListTitleMobileCard from "@/components/surfaces/cards/mobile/ListTitleMob
 import PackageMobileCard from "@/components/surfaces/cards/mobile/PackageMobileCard";
 
 import PackageItem from "@/components/surfaces/cards/PackageItem";
+import { OSAddressCard } from "./_components/OSAddressCard";
 
-export default function CardsPage() { 
+export default function CardsPage() {
   return (
     <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Cards Components" />
@@ -48,9 +49,9 @@ export default function CardsPage() {
       </div>
       <p>Package Item</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-      <PackageItem content="Informativo" packageType="box"/>
-      <PackageItem content="Documentos" packageType="envelope"/>
-      <PackageItem content="Pallets" packageType="pallet"/>
+        <PackageItem content="Informativo" packageType="box" />
+        <PackageItem content="Documentos" packageType="envelope" />
+        <PackageItem content="Pallets" packageType="pallet" />
       </div>
       <p>Invoice Card</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
@@ -60,22 +61,26 @@ export default function CardsPage() {
       </div>
       <p>Customer Card</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530"/>
-        <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351"/>
+        <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530" />
+        <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351" />
       </div>
       <p>Box Card</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <BoxMobileCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20}width={20}weight={1}/>
+        <BoxMobileCard description="Caja chica" content="Hdmi, tarjeta de video y equipo de computo" length={20} height={20} width={20} weight={1} />
       </div>
       <p>Content Summary Card</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3}/>
+        <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3} />
       </div>
       <p>Invoice Details Card</p>
       <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-        <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230}/>
+        <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230} />
       </div>
-      
+
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <OSAddressCard />
+      </div>
     </div>
   )
 }
