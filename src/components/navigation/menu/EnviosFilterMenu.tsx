@@ -10,8 +10,8 @@ type Props = {}
 export default function EnviosFilterMenu({}: Props) {
 
   return (
-    <Card className='flex-row gap-2 p-2'>
-      <DatePicker size='lg' onKeyDown={(e)=> e.preventDefault()} className='w-min' aria-label='Calendario'/>
+    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-2 p-2'>
+      <DatePicker size='lg' onKeyDown={(e)=> e.preventDefault()}  aria-label='Calendario'/>
       <Select
       classNames={{label:"text-xs"}}           
       size='sm'
@@ -58,6 +58,6 @@ export default function EnviosFilterMenu({}: Props) {
           </SelectItem>
       </Select>
       <Input startContent={<IoIosSearch/>} placeholder='Buscar por cliente o # de cliente' size='lg' classNames={{input:"text-xs"}}/>
-    </Card>
+    </div>
   )
 }

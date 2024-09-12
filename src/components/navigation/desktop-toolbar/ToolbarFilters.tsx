@@ -82,14 +82,14 @@ export default function ToolbarFilters() {
     return (
         <div className='flex flex-col w-full'>
             <div className="flex w-full">
-                <div className='flex w-full'>
+                <div className='flex w-8/12 md:w-10/12 xl:w-11/12 '>
                     <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={handleChange} >
                         {tabs.map((tab, index) => (
                             <TabFilter key={index + tab.text} text={tab.text} value={tab.value} activeColor={tab.activeColor} />
                         ))}
                     </TabsFilters>
                 </div>
-                <div className="flex ml-2">
+                <div className="flex ml-2 w-full">
                     <Button variant='light' radius='full' isIconOnly
                         onPress={() => {
                             setDisplayViewMenu(!displayViewMenu)
