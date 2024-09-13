@@ -1,3 +1,4 @@
+"use client"
 import { Card } from '@nextui-org/card';
 import React from 'react'
 import { SiCashapp } from "react-icons/si";

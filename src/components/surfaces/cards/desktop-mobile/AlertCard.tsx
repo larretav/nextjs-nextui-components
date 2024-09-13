@@ -1,3 +1,4 @@
+"use client"
 import { Button } from '@nextui-org/button';
 import { Card } from '@nextui-org/card'
 import React from 'react'
