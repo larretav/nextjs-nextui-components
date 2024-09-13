@@ -14,6 +14,8 @@ import RechargeCustomAmountCard from "@/components/surfaces/cards/desktop-mobile
 import AccountBalanceCard from "@/components/surfaces/cards/desktop-mobile/AccountBalanceCard";
 import AccountStateCard from "@/components/surfaces/cards/desktop-mobile/AccountStateCard";
 import RechargeDesktopCard from "@/components/surfaces/cards/desktop/RechargeDesktopCard";
+import DashAlertCard from "@/components/surfaces/cards/desktop-mobile/DashAlertCard";
+import AlertCard from "@/components/surfaces/cards/desktop-mobile/AlertCard";
 
 export default function CardsPage() {
     return (
@@ -115,6 +117,36 @@ export default function CardsPage() {
                     <AccountStateCard type="expired" amount={200} date="22 Abril" />
                     <AccountStateCard type="congrats" />
                 </div>
+                <p className="font-medium p-2">DashAlertCard (Mobile-Desktop)</p>
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+                    <DashAlertCard type="pendingRecharge" size="md" />
+                    <DashAlertCard type="lowCreditPkt1" size="md" />
+                    <DashAlertCard type="lowCredit" size="md" />
+                </div>
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+                    <DashAlertCard type="pendingRecharge" size="sm" />
+                    <DashAlertCard type="lowCreditPkt1" size="sm" />
+                    <DashAlertCard type="lowCredit" size="sm" />
+                </div>
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+                    <DashAlertCard type="invoices" size="md" />
+                    <DashAlertCard type="congrats" size="md" />
+                </div>
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
+                    <DashAlertCard type="invoices" size="sm" />
+                    <DashAlertCard type="congrats" size="sm" />
+                </div>
+            </div>
+            <p className="font-medium p-2">AlertCard (Mobile-Desktop)</p>
+            <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
+                <AlertCard severity="success" description="Descripción de la alerta" />
+                <AlertCard severity="success" description="Descripción de la alerta" variant="filled" />
+                <AlertCard severity="info" description="Descripción de la alerta" />
+                <AlertCard severity="info" description="Descripción de la alerta" variant="filled" />
+                <AlertCard severity="warning" description="Descripción de la alerta" />
+                <AlertCard severity="warning" description="Descripción de la alerta" variant="filled" />                
+                <AlertCard severity="error" description="Descripción de la alerta" />
+                <AlertCard severity="error" description="Descripción de la alerta" variant="filled" />
             </div>
 
             <div className="flex flex-col gap-3 py-3 px-6">
