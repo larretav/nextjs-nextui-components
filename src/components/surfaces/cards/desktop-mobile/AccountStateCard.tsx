@@ -40,7 +40,7 @@ export default function AccountStateCard({ type, date, amount }: Props) {
   return (
     <Card className={`${bgColor} ${textColor}`}>
       
-      <CardBody className='flex-row h-min'>
+      <CardBody className='flex-row pb-0'>
         <div className="flex py-2 pr-2">     
           {icon}
         </div>
@@ -53,8 +53,8 @@ export default function AccountStateCard({ type, date, amount }: Props) {
           {type !== "congrats" && <p className='font-bold text-4xl'>${amount}</p>}
         </div>
       </CardBody>
-      <CardFooter>
-        <div className='ml-auto'><span className='font-medium'>{datePrefix}</span> <span className='font-bold'> {date}</span></div>
+      <CardFooter className='pt-0'>
+        <div className='ml-auto text-nowrap'><span className='font-medium'>{datePrefix}</span> <span className='font-bold'> {date}</span></div>
       </CardFooter>
     </Card>
   )
