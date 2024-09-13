@@ -23,7 +23,7 @@ const paymentMethodsIcon = {
 
 export default function RechargeMobileCard({ title, description, cost, highlighted, badgeQuantity, paymentMethods = [] }: Props) {
     return (
-        <Card className='relative px-2 h-min shadow-md'>
+        <Card className='relative px-2 shadow-md h-min'>
             <CardHeader>
                 <BadgeIcon className='absolute top-4 right-4' quantity={badgeQuantity || 0} />
                 <p className='font-medium'>{title}</p>

@@ -51,7 +51,7 @@ export default function DashAlertCard({size,type }: Props) {
     const {text,bgColor,textColor,iconMd,iconSm} = typeOptions[type]
     return (
         <Card className={`h-min p-0 justify-center px-2 pl-4 ${bgColor} ${size === "md"?"py-4":"py-2"}`}>
-            <div className='flex items-center gap-2'>
+            <div className='flex gap-2 items-center'>
                 <div>{size === "md"? iconMd:iconSm}</div>
                 <div className={`${textColor} ${size == "md"?"text-2xl":"text-base"} font-semibold`}>{text}</div>
             </div>

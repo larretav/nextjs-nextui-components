@@ -10,7 +10,7 @@ type Props = {}
 export default function EnviosFilterMenu({}: Props) {
 
   return (
-    <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5 gap-2 p-2'>
+    <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-5'>
       <DatePicker size='lg' onKeyDown={(e)=> e.preventDefault()}  aria-label='Calendario'/>
       <Select
       classNames={{label:"text-xs"}}           

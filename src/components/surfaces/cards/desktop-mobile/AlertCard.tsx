@@ -31,7 +31,7 @@ const severityOptions = {
         defaultTextColor: "text-black",
         filledTextColor: "text-white",
         buttonTextColor: "text-sky-500",
-        defaultIcon: <CiCircleAlert size={25} className='text-sky-500 ' />,
+        defaultIcon: <CiCircleAlert size={25} className='text-sky-500' />,
         filledIcon: <CiCircleAlert size={25} className='text-white' />,
         defaultXIcon: <FaXmark size={20} className='text-sky-500' />,
         filledXIcon: <FaXmark size={20} className='text-white' />,
@@ -69,7 +69,7 @@ export default function AlertCard({ severity, description, variant = "default", 
                     <p className='font-bold'>Alerta</p>
                     <p >{description}</p>
                 </div>
-                <div className=" flex ml-auto items-center px-1 gap-1">
+                <div className="flex gap-1 items-center px-1 ml-auto">
                     <Button size='sm'
                         variant={variant === "default" ? "light" : 'faded'}
                         className={`border-0 ${buttonTextColor}`}>

@@ -20,9 +20,9 @@ export default function EnviosShowMoreColumnsMenu({ }: Props) {
     const result = switchList.filter((item) => item.option.toLowerCase().includes(filter))
 
     return (
-        <Card className='max-w-72 p-2'>
+        <Card className='p-2 max-w-72'>
             <Input fullWidth placeholder='Tipo de columna' value={filter} onChange={(e) => setFilter(e.target.value.toLowerCase())} />
-            <div className="flex flex-col mt-2 gap-2 p-2">
+            <div className="flex flex-col gap-2 p-2 mt-2">
                 {result?.map((item, index) => (
                     <Switch key={item.option + index} isSelected={item.isActive} size='sm' classNames={{ label: "ml-3" }} 
                     onChange={() => {

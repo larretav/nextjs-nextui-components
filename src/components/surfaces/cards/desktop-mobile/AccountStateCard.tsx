@@ -47,10 +47,10 @@ export default function AccountStateCard({ type, date, amount }: Props) {
         <div>
         <p className='font-medium'>{text}</p>
         {type === "congrats" && <div className='flex flex-col'>
-            <p className='font-bold text-2xl'>Tus cuentas están al día</p>
+            <p className='text-2xl font-bold'>Tus cuentas están al día</p>
             <p className='text-sm'>Valoramos tu compromiso en mantener tus saldos en orden</p>
           </div>}
-          {type !== "congrats" && <p className='font-bold text-4xl'>${amount}</p>}
+          {type !== "congrats" && <p className='text-4xl font-bold'>${amount}</p>}
         </div>
       </CardBody>
       <CardFooter className='pt-0'>

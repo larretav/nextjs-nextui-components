@@ -82,7 +82,7 @@ export default function ToolbarFilters() {
     return (
         <div className='flex flex-col w-full'>
             <div className="flex w-full">
-                <div className='flex w-8/12 md:w-10/12 xl:w-11/12 '>
+                <div className='flex w-8/12 md:w-10/12 xl:w-11/12'>
                     <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={handleChange} >
                         {tabs.map((tab, index) => (
                             <TabFilter key={index + tab.text} text={tab.text} value={tab.value} activeColor={tab.activeColor} />
@@ -113,7 +113,7 @@ export default function ToolbarFilters() {
                     </Button>
                 </div>
             </div>
-            <div className="flex relative h-min w-full">
+            <div className="flex relative w-full h-min">
                 <div className={`absolute right-0 w-full transition-all duration-300 ${displayFilterMenu ? "opacity-100" : "opacity-0 -z-10"}`}>
                     <EnviosFilterMenu />
                 </div>
