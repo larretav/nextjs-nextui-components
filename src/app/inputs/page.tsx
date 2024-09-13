@@ -15,6 +15,7 @@ export default function InputsPage() {
       <div className="w-min">
       <BoxCounter/>
       </div>
+      <p className="font-medium p-2">Switch</p>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-12">
         <div className="container-component-item"><ThemeSwitch /></div>
         <div className="container-component-item"><Switch /></div>
