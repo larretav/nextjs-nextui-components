@@ -14,24 +14,24 @@ const cardTypes = {
   pending: {
     text: "Tienes una factura pendiente de:",
     datePrefix: "Vence",
-    textColor: "text-violet-600",
-    bgColor: "bg-violet-50",
-    icon: <IoIosAlert className='text-violet-600' size={60}/>
+    textColor: "text-violet-600 dark:text-violet-50",
+    bgColor: "bg-violet-50 dark:bg-violet-600",
+    icon: <IoIosAlert className='text-violet-600 dark:text-violet-100' size={60}/>
   },
   expired: {
     text: "Tienes una factura vencida de:",
     datePrefix: "Venció el",
-    textColor: "text-red-600",
-    bgColor: "bg-red-50",
-    icon: <MdOutlineSdCardAlert className='text-red-600' size={60}/>
+    textColor: "text-red-600 dark:text-red-100",
+    bgColor: "bg-red-50 dark:bg-red-600",
+    icon: <MdOutlineSdCardAlert className='text-red-600 dark:text-red-100' size={60}/>
 
   },
   congrats: {
     text: "¡Felicidades!",
     datePrefix: "",
-    textColor: "text-green-600",
-    bgColor: "bg-green-50",
-    icon: <FaCheckCircle className='text-green-600' size={60}/>
+    textColor: "text-green-600 dark:text-green-100",
+    bgColor: "bg-green-50 dark:bg-green-600",
+    icon: <FaCheckCircle className='text-green-600 dark:text-green-100' size={60}/>
 
   }
 }
