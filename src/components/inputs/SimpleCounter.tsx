@@ -1,11 +1,11 @@
+"use client"
 import { Button } from '@nextui-org/button'
 import { Input } from '@nextui-org/input'
 import React, { useState } from 'react'
 import { FaMinus, FaPlus } from 'react-icons/fa6'
 
-type Props = {}
 
-export default function SimpleCounter({ }: Props) {
+export default function SimpleCounter() {
     const [count, setCount] = useState(0)
     return (
         <div className="flex flex-col gap-2 justify-center h-full">

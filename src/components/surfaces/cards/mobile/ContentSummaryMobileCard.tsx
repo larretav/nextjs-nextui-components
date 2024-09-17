@@ -11,7 +11,7 @@ type Props = {
 
 export default function ContentSummaryMobileCard({ content, type, dimensions, quantity }: Props) {
     return (
-        <Card>
+        <Card className='shadow-sm'>
             <CardBody className='flex-row py-6 px-5'>
                 <div className="flex flex-col text-sm">
                     <p >
