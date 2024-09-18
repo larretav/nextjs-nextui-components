@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { useShipmentTableStore } from '@/store/shipment-table/shipment-table-store'
+import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
 import { FaEye } from 'react-icons/fa6'
