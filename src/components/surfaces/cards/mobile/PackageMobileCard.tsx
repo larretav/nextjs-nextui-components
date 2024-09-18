@@ -14,7 +14,7 @@ type Props = {
 
 export default function PackageMobileCard({ leadingIcon, title, subtitle, weightMeasures, quantity }: Props) {
     return (
-        <Card className='flex-row gap-2 p-5 py-0 pl-2 shadow-md' >
+        <Card className='flex-row gap-2 p-5 py-0 pl-2 shadow-md min-h-20' >
             <div className='flex'>
                 <PackageType type={leadingIcon} className='self-center' />
             </div>
