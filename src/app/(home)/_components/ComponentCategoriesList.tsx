@@ -36,6 +36,13 @@ export const ComponentCategoriesList = () => {
       subtitle: 'Accordion, Cards, etc.',
       url: '/surfaces'
     },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Tables',
+      subtitle: 'Tables.',
+      url: '/tables'
+    },
+    
   ];
 
   const router = useRouter();
