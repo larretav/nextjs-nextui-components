@@ -1,6 +1,6 @@
 import { EcommercePlatforms } from "./ecommerce-platform.type"
 import { ShipmentStatus } from "./shipments.types"
-
+import {Shippers} from "./shippers.type"
 type ShipmentItem = {
     title: string,
     subTitle: string,
@@ -16,5 +16,6 @@ export type ShipmentOrder = {
     destination: string,
     cost: number,
     status: ShipmentStatus,
+    shipper: Shippers,
     shipmentItems: ShipmentItem[]
   }
