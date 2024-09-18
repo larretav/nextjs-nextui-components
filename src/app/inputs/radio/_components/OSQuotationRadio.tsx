@@ -2,7 +2,7 @@ import { QuotationRadio } from '@/components'
 import { RadioGroup } from '@nextui-org/radio'
 import React from 'react'
 
-const OSQuotationRadio = () => {
+export const OSQuotationRadio = () => {
   return (
     <RadioGroup>
       <QuotationRadio value="fedex" cost={250.5} normalCost={200.0} deliveredType="Standard" estimateDate="Miercoles 8 de septiembre" shipper="fedex"  />
@@ -13,5 +13,3 @@ const OSQuotationRadio = () => {
     </RadioGroup>
   )
 }
-
-export default OSQuotationRadio
