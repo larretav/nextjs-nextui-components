@@ -1,11 +1,11 @@
 import {create} from "zustand"
 import createSelectors from "../selectors"
-import type { ShipmentOrder } from "@/types/shipment-order"
+import type { ShipmentOrder } from "@/types/shipment-order.type"
 import { Key } from "react"
 type State ={
     isDetailsOpen: boolean
     shipmentOrder: ShipmentOrder
-    selectedTabKey:Key | string
+    selectedTabKey:Key 
 }
 
 type Actions = {
