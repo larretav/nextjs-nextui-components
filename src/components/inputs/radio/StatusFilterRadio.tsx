@@ -2,28 +2,16 @@
 import { cn } from '@/lib/utils';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { getNextUIOrTailwindColor } from '@/utils';
+import { css } from '@emotion/css';
 import { Radio, RadioProps, useRadio } from '@nextui-org/radio'
 import { useIsSSR } from '@react-aria/ssr';
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useTheme } from 'next-themes';
 import React from 'react'
-import styled from 'styled-components';
 
 type Props = RadioProps & {
   activeColor?: NextUIColorKeys | TailwindColorKeys,
 }
-
-
-const StyledLabel = styled('label').attrs<{ hoverColor: string, bgColor: string }>((props) => ({
-  $activeColor: props.hoverColor,
-  className: "group inline-flex items-center justify-between hover:bg-default-400 flex-row-reverse transition-[border-color] cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2",
-}))`
-  background-color:${prop => prop.bgColor};
-  &:hover {
-    background-color:${prop => prop.hoverColor};
-
-  }
-`;
 
 
 export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
@@ -51,20 +39,20 @@ export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
   if (isSSR) return null
 
   return (
-    <StyledLabel
-      // {...getBaseProps()}
+    <Component
+      {...getBaseProps()}
 
       className={cn(
-        "group inline-flex items-center justify-between hover:bg-default-400 flex-row-reverse transition-[border-color] ",
-        "cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2",
+        "group inline-flex items-center justify-between hover:bg-default-100 flex-row-reverse transition-all cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2 ",
+        css({
+          backgroundColor: bgColor,
+          borderColor: isSelected ? accentColor : 'transparent',
+          '&:hover': {
+            backgroundColor: hoverColor
+          }
+        })
       )}
 
-      hoverColor={hoverColor}
-      bgColor={bgColor}
-
-      style={{
-        borderColor: isSelected ? accentColor : 'transparent',
-      }}
 
     >
       <VisuallyHidden>
@@ -81,6 +69,6 @@ export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
           <span className="text-small text-foreground opacity-70">{description}</span>
         )}
       </div>
-    </StyledLabel>
+    </Component >
   );
 }

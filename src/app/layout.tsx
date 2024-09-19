@@ -1,10 +1,12 @@
+
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
-import {  GlobalNavbar, SidebarComponents } from "@/components";
+import { GlobalNavbar, SidebarComponents } from "@/components";
+import { constructStyleTagsFromChunks, extractCriticalToChunks } from "@/lib/emotion-ssr";
 
 export const metadata: Metadata = {
 	title: {
@@ -29,6 +31,25 @@ export default function RootLayout({
 }: {
 	children: React.ReactNode;
 }) {
+
+	if (typeof window === 'undefined') {
+		const emotionChunks = extractCriticalToChunks(children);
+		const emotionStyleTags = constructStyleTagsFromChunks(emotionChunks);
+
+		return (
+			<html lang="en">
+				<head>
+					<style
+						data-emotion-css={emotionChunks.ids.join(' ')}
+						dangerouslySetInnerHTML={{ __html: emotionChunks.css }}
+					/>
+					{emotionStyleTags}
+				</head>
+				<body className={inter.className}>{children}</body>
+			</html>
+		);
+	}
+
 	return (
 		<html lang="en" suppressHydrationWarning>
 			<head />
