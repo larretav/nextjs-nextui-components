@@ -13,6 +13,8 @@ import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import AddressTableCard from '@/components/surfaces/cards/desktop/AddressTableCard'
+import { PageTitle } from '@/components'
+import { TiUserAdd } from "react-icons/ti";
 const dataMock1: Client[] = [
     {
         id: "173826",
@@ -191,73 +193,82 @@ export default function Page() {
     const setSelectedKey = useClientTableStore.use.setSelectedTabKey()
 
     return (
-        <div className='flex'>
-            <div className="flex flex-col w-full">
-                <div className="flex px-5">
-                    <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
-                        <TabFilter key={1} text="Todos" value="1080" activeColor="amber" />
-                        <TabFilter key={2} text="Activos" value="100" activeColor="green" />
-                        <TabFilter key={3} text="Eliminados" value="80" activeColor="red" />
-                    </TabsFilters>
-                    <div className='ml-auto'>
-                        <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18} /></Button>
-                    </div>
-                </div>
-                <Table aria-label="Tabla de clientes" >
-                    <TableHeader>
-                        <TableColumn>Nombre</TableColumn>
-                        <TableColumn>Código Postal</TableColumn>
-                        <TableColumn>Ubicación</TableColumn>
-                        <TableColumn>País</TableColumn>
-                        <TableColumn>Acciones</TableColumn>
-                    </TableHeader>
-                    <TableBody>
-                        {dataMock.map((row, index) =>
-                            <TableRow key={`${row.id} - ${index}`}>
-                                <TableCell className='flex gap-3'>
-                                    {row.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{row.name}
-                                </TableCell>
-                                <TableCell>{row.postalCode} </TableCell>
-                                <TableCell>{row.location} </TableCell>
-                                <TableCell>{row.country} </TableCell>
-                                <TableCell>
-                                    <Button isIconOnly radius='full' size='sm' variant='light'
-                                        onPress={() => {
-                                            selectClient(row)
-                                            toggleDetails(true)
-                                        }}
-                                    >
-                                        <FaEye size={18} className='text-blue-500' />
-                                    </Button>
-                                </TableCell>
-                            </TableRow>
-                        )}
-                    </TableBody>
-                </Table>
+        <div className='bg-zinc-100 dark:bg-zinc-800'>
+            <div className="flex p-2 px-4 rounded-lg">
+                <PageTitle text='Clientes' />
+                <Button startContent={<TiUserAdd className='text-white' />} size='sm' className='ml-auto text-white bg-blue-950 shadow-blue-400 shadow-md mt-1'>Nuevo</Button>
             </div>
-            {isDetailsOpen &&
-                <Card className="flex min-w-72 flex-col p-2  mx-1 sticky top-28 max-h-96">
-                    <Button isIconOnly radius='full' size='sm' variant='light'
-                        className='absolute top-3 right-3'
-                        onPress={() => toggleDetails(false)}
-                    >
-                        <RxCross2 size={18} className='text-red-500' />
-                    </Button>
-                    <p className='font-semibold pt-2 px-2'>ID: {selectedClient.id}</p>
-                    <p className='font-medium text-sm px-3'>Direcciones: {selectedClient.addressList.length}</p>
-                    <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
-                        {selectedClient?.addressList?.map((item, index) =>
-                            <AddressTableCard
-                                key={`${item.address} - ${index}`}
-                                address={item.address}
-                                location={item.location}
-                                country={item.country}
-                                postalCode={item.postalCode}
-                            />
-                        )}
+            <div className='flex p-3'>
+                <div className="flex flex-col w-full  rounded-xl bg-white dark:bg-zinc-900">
+                    <div className="flex px-5 ">
+                        <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
+                            <TabFilter key={1} text="Todos" value="1080" activeColor="amber" />
+                            <TabFilter key={2} text="Activos" value="100" activeColor="green" />
+                            <TabFilter key={3} text="Eliminados" value="80" activeColor="red" />
+                        </TabsFilters>
+                        <div className='ml-auto flex items-center'>
+                            <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18} /></Button>
+                        </div>
                     </div>
-                </Card>}
+                    <Table aria-label="Tabla de clientes" >
+                        <TableHeader>
+                            <TableColumn>Nombre</TableColumn>
+                            <TableColumn>Código Postal</TableColumn>
+                            <TableColumn>Ubicación</TableColumn>
+                            <TableColumn>País</TableColumn>
+                            <TableColumn>Acciones</TableColumn>
+                        </TableHeader>
+                        <TableBody>
+                            {dataMock.map((row, index) =>
+                                <TableRow key={`${row.id} - ${index}`}>
+                                    <TableCell className='flex gap-3'>
+                                        {row.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{row.name}
+                                    </TableCell>
+                                    <TableCell>{row.postalCode} </TableCell>
+                                    <TableCell>{row.location} </TableCell>
+                                    <TableCell>{row.country} </TableCell>
+                                    <TableCell>
+                                        <Button isIconOnly radius='full' size='sm' variant='light'
+                                            onPress={() => {
+                                                selectClient(row)
+                                                toggleDetails(true)
+                                            }}
+                                        >
+                                            <FaEye size={18} className='text-blue-500' />
+                                        </Button>
+                                    </TableCell>
+                                </TableRow>
+                            )}
+                        </TableBody>
+                    </Table>
+                </div>
+                <div>
+                    {isDetailsOpen &&
+                        <Card className="flex min-w-72 flex-col p-2  mx-2 sticky top-[130px] max-h-96 bg-zinc-100 dark:bg-zinc-800">
+                            <Button isIconOnly radius='full' size='sm' variant='light'
+                                className='absolute top-3 right-3'
+                                onPress={() => toggleDetails(false)}
+                            >
+                                <RxCross2 size={18} className='text-red-500' />
+                            </Button>
+                            <p className='font-semibold pt-2 px-2'>ID: {selectedClient.id}</p>
+                            <p className='font-medium text-sm px-3'>Direcciones: {selectedClient.addressList.length}</p>
+                            <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
+                                {selectedClient?.addressList?.map((item, index) =>
+                                    <AddressTableCard
+                                        key={`${item.address} - ${index}`}
+                                        address={item.address}
+                                        location={item.location}
+                                        country={item.country}
+                                        postalCode={item.postalCode}
+                                    />
+                                )}
+                            </div>
+                        </Card>}
+                </div>
+            </div>
         </div>
 
     )
 }
+
