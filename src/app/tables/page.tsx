@@ -12,6 +12,12 @@ export default function SurfacesPage() {
       subtitle: 'Tabla de envíos',
       url: '/tables/envios'
     },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Table',
+      subtitle: 'Tabla de Clientes',
+      url: '/tables/clientes'
+    },
   ];
 
   return (
