@@ -9,6 +9,7 @@ import PackageMobileCard from "@/components/surfaces/cards/mobile/PackageMobileC
 
 import PackageItem from "@/components/surfaces/cards/PackageItem";
 import { OSAddressCard } from "./_components/OSAddressCard";
+import ShipmentCard from "@/components/surfaces/cards/shipments/ShipmentCard";
 
 export default function CardsPage() {
   return (
@@ -80,6 +81,14 @@ export default function CardsPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
         <OSAddressCard />
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
+        <ShipmentCard  cost={200} customer="Juan manuel" date="06/05/2024" origin="Los Mochis" destination="Culiacan" ecommerce="jumpseller" orderNumber="124213"  shipper="paquetexpress" status="en tránsito"/>
+        <ShipmentCard  cost={200} customer="Juan manuel" date="06/05/2024" origin="Los Mochis" destination="Culiacan" ecommerce="jumpseller" orderNumber="124213"  shipper="paquetexpress" status="en tránsito"/>
+        <ShipmentCard  cost={200} customer="Juan manuel" date="06/05/2024" origin="Los Mochis" destination="Culiacan" ecommerce="jumpseller" orderNumber="124213"  shipper="paquetexpress" status="en tránsito"/>
+        <ShipmentCard  cost={200} customer="Juan manuel" date="06/05/2024" origin="Los Mochis" destination="Culiacan" ecommerce="jumpseller" orderNumber="124213"  shipper="paquetexpress" status="en tránsito"/>
+        <ShipmentCard  cost={200} customer="Juan manuel" date="06/05/2024" origin="Los Mochis" destination="Culiacan" ecommerce="jumpseller" orderNumber="124213"  shipper="paquetexpress" status="en tránsito"/>
       </div>
     </div>
   )

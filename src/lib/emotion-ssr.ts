@@ -2,11 +2,7 @@
 import createCache from '@emotion/cache';
 import createEmotionServer from '@emotion/server/create-instance';
 
-export default function createEmotionCache() {
-  return createCache({ key: 'css', prepend: true });
-}
-
-const cache = createEmotionCache();
+export const cache = createCache({ key: 'css', prepend: true });
 
 export const extractCriticalToChunks = (html: any) => {
   const { extractCriticalToChunks } = createEmotionServer(cache);

@@ -6,7 +6,7 @@ import { fontSans } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import { GlobalNavbar, SidebarComponents } from "@/components";
-import { constructStyleTagsFromChunks, extractCriticalToChunks } from "@/lib/emotion-ssr";
+import {  extractCriticalToChunks } from "@/lib/emotion-ssr";
 
 export const metadata: Metadata = {
 	title: {
@@ -26,37 +26,28 @@ export const viewport: Viewport = {
 	],
 }
 
-export default function RootLayout({
-	children,
-}: {
-	children: React.ReactNode;
-}) {
-
-	if (typeof window === 'undefined') {
-		const emotionChunks = extractCriticalToChunks(children);
-		const emotionStyleTags = constructStyleTagsFromChunks(emotionChunks);
-
-		return (
-			<html lang="en">
-				<head>
-					<style
-						data-emotion-css={emotionChunks.ids.join(' ')}
-						dangerouslySetInnerHTML={{ __html: emotionChunks.css }}
-					/>
-					{emotionStyleTags}
-				</head>
-				<body className={inter.className}>{children}</body>
-			</html>
-		);
-	}
+export default function RootLayout({ children }: { children: React.ReactNode }) {
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<head />
+			{
+				typeof window !== 'undefined'
+					? <head />
+					: <head>
+						{extractCriticalToChunks(children).styles.map((style) => (
+							<style
+								key={style.key}
+								data-emotion={`${style.key} ${style.ids.join(' ')}`}
+								dangerouslySetInnerHTML={{ __html: style.css }}
+							/>
+						))}
+					</head>
+			}
+
 			<body
 				className={clsx(
 					"bg-background font-sans antialiased",
-					fontSans.variable
+					fontSans.className
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>

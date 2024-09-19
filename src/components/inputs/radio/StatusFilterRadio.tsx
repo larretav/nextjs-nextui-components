@@ -43,10 +43,13 @@ export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
       {...getBaseProps()}
 
       className={cn(
-        "group inline-flex items-center justify-between hover:bg-default-100 flex-row-reverse transition-all cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2 ",
+        "group inline-flex items-center justify-between flex-row-reverse transition-all cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2",
         css({
           backgroundColor: bgColor,
-          borderColor: isSelected ? accentColor : 'transparent',
+          borderColor: 'transparent',
+          '&[data-selected="true"]': {
+            borderColor:  accentColor 
+          },
           '&:hover': {
             backgroundColor: hoverColor
           }

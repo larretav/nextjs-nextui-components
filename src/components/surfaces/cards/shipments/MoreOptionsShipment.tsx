@@ -9,7 +9,7 @@ type Props = {}
 
 export const MoreOptionsShipment = (props: Props) => {
   return (
-    <Dropdown>
+    <Dropdown backdrop='opaque'>
       <DropdownTrigger>
         <Button
           variant="light"
