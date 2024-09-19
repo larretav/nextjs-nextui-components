@@ -8,7 +8,7 @@ import type { ShipmentOrder } from "@/types/shipment-order.type"
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
 import { Card } from '@nextui-org/card'
 import { RxCross2 } from "react-icons/rx";
-import { IconEcommerce, ShipperType } from '@/components'
+import { IconEcommerce, PageTitle, ShipperType } from '@/components'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
@@ -114,8 +114,12 @@ export default function Page() {
   const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
   const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
   return (
-    <div className='flex'>
-      <div className="flex flex-col w-full">
+    <div className='bg-zinc-100 dark:bg-zinc-800'>
+    <div className='ml-5'>
+    <PageTitle text='Envíos'/>
+    </div>
+    <div className='flex p-3'>
+      <div className="flex flex-col w-full bg-white dark:bg-zinc-900 rounded-xl">
         <div className="flex px-5">
           <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
             <TabFilter key={1} text="Todos" value="200" activeColor="green" />
@@ -125,7 +129,7 @@ export default function Page() {
             <TabFilter key={5} text="Entregado" value="10" activeColor="green" />
             <TabFilter key={6} text="Cancelado" value="2" activeColor="red" />
           </TabsFilters>
-          <div className='ml-auto'>
+          <div className='ml-auto flex items-center'>
             <Button  isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18}/></Button>
             </div>          
         </div>
@@ -170,7 +174,7 @@ export default function Page() {
         </Table>
       </div>
       {isDetailsOpen &&
-        <Card className="flex min-w-72 flex-col p-2  mx-1 sticky top-28 max-h-96">
+        <Card className="flex min-w-72 flex-col p-2  mx-3 sticky top-[110px] max-h-96 bg-zinc-100 dark:bg-zinc-800">
           <Button isIconOnly radius='full' size='sm' variant='light'
             className='absolute top-3 right-3'
             onPress={() => toggleDetails(false)}
@@ -190,6 +194,7 @@ export default function Page() {
             )}
           </div>
         </Card>}
+    </div>
     </div>
 
   )
