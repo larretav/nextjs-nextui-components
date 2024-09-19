@@ -82,7 +82,7 @@ export default function CardsPage() {
                 </div>
                 <p className="font-medium p-2">InvoiceDetailsMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-                    <InvoiceDetailsMobileCard number="0043123" date="23/05/2024" amount={230} />
+                    <InvoiceDetailsMobileCard id="0043123" date="23/05/2024" amount={230} />
                 </div>
                 <p className="font-medium p-2">OriginDestinationMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">

@@ -18,6 +18,12 @@ export default function SurfacesPage() {
       subtitle: 'Tabla de Clientes',
       url: '/tables/clientes'
     },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Table',
+      subtitle: 'Tabla de Facturas',
+      url: '/tables/facturas'
+    },
   ];
 
   return (
