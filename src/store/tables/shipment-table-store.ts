@@ -4,7 +4,7 @@ import type { ShipmentOrder } from "@/types/shipment-order.type"
 import { Key } from "react"
 type State ={
     isDetailsOpen: boolean
-    shipmentOrder: ShipmentOrder
+    selectedShipmentOrder: ShipmentOrder
     selectedTabKey:Key 
 }
 
@@ -16,10 +16,10 @@ type Actions = {
 
 const ShipmentTableStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
-    shipmentOrder: {} as ShipmentOrder, 
+    selectedShipmentOrder: {} as ShipmentOrder, 
     selectedTabKey:"",
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectShipmentOrder: (shipmentOrder: ShipmentOrder) => set({ shipmentOrder }),
+    selectShipmentOrder: (shipmentOrder: ShipmentOrder) => set({ selectedShipmentOrder: shipmentOrder }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
   }))
 

@@ -4,7 +4,7 @@ import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
 import { FaEye } from 'react-icons/fa6'
-import type { ShipmentOrder } from "@/types/shipment-order"
+import type { ShipmentOrder } from "@/types/shipment-order.type"
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
 import { Card } from '@nextui-org/card'
 import { RxCross2 } from "react-icons/rx";
@@ -109,7 +109,7 @@ const dataMock = dataMock1.concat(dataMock1).concat(dataMock1).concat(dataMock1)
 export default function Page() {
   const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
-  const selectedShipmentOrder = useShipmentTableStore.use.shipmentOrder()
+  const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
   const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
   const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
   const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
