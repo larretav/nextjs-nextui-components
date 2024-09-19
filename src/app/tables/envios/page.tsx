@@ -170,7 +170,7 @@ export default function Page() {
         </Table>
       </div>
       {isDetailsOpen &&
-        <Card className="flex min-w-72 flex-col p-2  mx-1 sticky top-16 max-h-96">
+        <Card className="flex min-w-72 flex-col p-2  mx-1 sticky top-28 max-h-96">
           <Button isIconOnly radius='full' size='sm' variant='light'
             className='absolute top-3 right-3'
             onPress={() => toggleDetails(false)}
