@@ -10,7 +10,7 @@ type Props = {
   country:string,
 }
 
-export default function AddressCard({address,postalCode,location,country}: Props) {
+export default function AddressTableCard({address,postalCode,location,country}: Props) {
   return (
     <Card className='flex-row shadow-md min-h-24'>
     <CardBody className='flex-row py-4'>    

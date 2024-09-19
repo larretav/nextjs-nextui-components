@@ -12,7 +12,7 @@ import { RxCross2 } from "react-icons/rx";
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
-import AddressCard from '@/components/surfaces/cards/desktop/AddressCard'
+import AddressTableCard from '@/components/surfaces/cards/desktop/AddressTableCard'
 const dataMock1: Client[] = [
     {
         id: "173826",
@@ -247,7 +247,7 @@ export default function Page() {
                     <p className='font-medium text-sm px-3'>Direcciones: {selectedClient.addressList.length}</p>
                     <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
                         {selectedClient?.addressList?.map((item, index) =>
-                            <AddressCard
+                            <AddressTableCard
                                 key={`${item.address} - ${index}`}
                                 address={item.address}
                                 location={item.location}
