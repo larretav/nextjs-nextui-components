@@ -1,10 +1,10 @@
 "use client"
 import React from 'react'
-import { useClientTableStore } from '@/store/tables/clients-table-store'
+import { useCustomerTableStore } from '@/store/tables/customer-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
 import { FaEye } from 'react-icons/fa6'
-import type { Client } from "@/types/client.type"
+import type { Customer } from "@/types/customer.type"
 import { IoPerson } from "react-icons/io5";
 import { BsBuildingsFill } from "react-icons/bs";
 import TabFilter from '@/components/navigation/tabs/TabFilter'
@@ -12,8 +12,8 @@ import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import { PageTitle } from '@/components'
 import { TiUserAdd } from "react-icons/ti";
-import ClientDetailsCard from './_components/ClientDetailsCard'
-const dataMock: Client[] = [
+import CustomerDetailsCard from './_components/CustomerDetailsCard'
+const dataMock: Customer[] = [
     {
         id: "173826",
         type: "company",
@@ -315,11 +315,11 @@ const dataMock: Client[] = [
 
 ]
 export default function Page() {
-    const isDetailsOpen = useClientTableStore.use.isDetailsOpen()
-    const toggleDetails = useClientTableStore.use.toggleDetails()
-    const selectClient = useClientTableStore.use.selectClient()
-    const selectedKey = useClientTableStore.use.selectedTabKey() as string
-    const setSelectedKey = useClientTableStore.use.setSelectedTabKey()
+    const isDetailsOpen = useCustomerTableStore.use.isDetailsOpen()
+    const toggleDetails = useCustomerTableStore.use.toggleDetails()
+    const selectCustomer = useCustomerTableStore.use.selectCustomer()
+    const selectedKey = useCustomerTableStore.use.selectedTabKey() as string
+    const setSelectedKey = useCustomerTableStore.use.setSelectedTabKey()
 
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -359,7 +359,7 @@ export default function Page() {
                                     <TableCell>
                                         <Button isIconOnly radius='full' size='sm' variant='light'
                                             onPress={() => {
-                                                selectClient(row)
+                                                selectCustomer(row)
                                                 toggleDetails(true)
                                             }}
                                         >
@@ -372,7 +372,7 @@ export default function Page() {
                     </Table>
                 </div>
                 <div>
-                    {isDetailsOpen && <ClientDetailsCard />}
+                    {isDetailsOpen && <CustomerDetailsCard />}
                 </div>
             </div>
         </div>

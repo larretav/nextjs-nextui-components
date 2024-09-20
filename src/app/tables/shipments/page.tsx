@@ -3,23 +3,23 @@ import React from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye, FaXmark } from 'react-icons/fa6'
+import { FaEye, } from 'react-icons/fa6'
 import type { ShipmentOrder } from "@/types/shipment-order.type"
-import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
-import { Card, CardHeader } from '@nextui-org/card'
+
+
 import { IconEcommerce, PageTitle, ShipperType } from '@/components'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import ShipmentDetailsCard from './_components/ShipmentDetailsCard'
-import clsx from 'clsx'
+
 const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1218,
     date: "20/05/2024",
-    client: "Ricardo Montreal",
+    customer: "Ricardo Montreal",
     origin: "Los Mochis",
     destination: "Acapulco",
     cost: 373.33,
@@ -34,7 +34,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "shopify",
     orderId: 1220,
     date: "22/05/2024",
-    client: "Ana Lopez",
+    customer: "Ana Lopez",
     origin: "Guadalajara",
     destination: "Cancún",
     cost: 480.75,
@@ -52,7 +52,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "woocommerce",
     orderId: 1221,
     date: "23/05/2024",
-    client: "Carlos Perez",
+    customer: "Carlos Perez",
     origin: "Monterrey",
     destination: "CDMX",
     cost: 215.50,
@@ -67,7 +67,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "prestashop",
     orderId: 1222,
     date: "24/05/2024",
-    client: "Sofia Martinez",
+    customer: "Sofia Martinez",
     origin: "Tijuana",
     destination: "Puebla",
     cost: 599.99,
@@ -90,7 +90,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "jumpseller",
     orderId: 1223,
     date: "25/05/2024",
-    client: "Luis Fernandez",
+    customer: "Luis Fernandez",
     origin: "León",
     destination: "Veracruz",
     cost: 325.00,
@@ -108,7 +108,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "shopify",
     orderId: 1224,
     date: "26/05/2024",
-    client: "Maria Rodriguez",
+    customer: "Maria Rodriguez",
     origin: "Queretaro",
     destination: "Merida",
     cost: 450.00,
@@ -124,7 +124,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "onsite",
     orderId: 1225,
     date: "27/05/2024",
-    client: "Juan Garcia",
+    customer: "Juan Garcia",
     origin: "San Luis Potosi",
     destination: "Chihuahua",
     cost: 279.99,
@@ -139,7 +139,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "woocommerce",
     orderId: 1226,
     date: "28/05/2024",
-    client: "Ana Torres",
+    customer: "Ana Torres",
     origin: "Hermosillo",
     destination: "Oaxaca",
     cost: 599.99,
@@ -154,7 +154,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "woocommerce",
     orderId: 1227,
     date: "29/05/2024",
-    client: "Pedro Lopez",
+    customer: "Pedro Lopez",
     origin: "Ciudad Juarez",
     destination: "Tampico",
     cost: 199.99,
@@ -169,7 +169,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "shopify",
     orderId: 1228,
     date: "30/05/2024",
-    client: "Sofia Gomez",
+    customer: "Sofia Gomez",
     origin: "Torreon",
     destination: "Villahermosa",
     cost: 399.99,
@@ -184,7 +184,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "prestashop",
     orderId: 1229,
     date: "31/05/2024",
-    client: "Carlos Hernandez",
+    customer: "Carlos Hernandez",
     origin: "Mexicali",
     destination: "Durango",
     cost: 525.00,
@@ -199,7 +199,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "jumpseller",
     orderId: 1230,
     date: "01/06/2024",
-    client: "Maria Sanchez",
+    customer: "Maria Sanchez",
     origin: "Culiacan",
     destination: "Cozumel",
     cost: 299.99,
@@ -214,7 +214,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "onsite",
     orderId: 1231,
     date: "02/06/2024",
-    client: "Juan Martinez",
+    customer: "Juan Martinez",
     origin: "Guadalajara",
     destination: "Puebla",
     cost: 649.99,
@@ -229,7 +229,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "onsite",
     orderId: 1232,
     date: "03/06/2024",
-    client: "Ana Garcia",
+    customer: "Ana Garcia",
     origin: "Monterrey",
     destination: "Tijuana",
     cost: 399.99,
@@ -244,7 +244,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "woocommerce",
     orderId: 1233,
     date: "04/06/2024",
-    client: "Pedro Lopez",
+    customer: "Pedro Lopez",
     origin: "Queretaro",
     destination: "San Luis Potosi",
     cost: 225.00,
@@ -259,7 +259,7 @@ const dataMock: ShipmentOrder[] = [
     ecommercePlatform: "shopify",
     orderId: 1234,
     date: "05/06/2024",
-    client: "Sofia Rodriguez",
+    customer: "Sofia Rodriguez",
     origin: "León",
     destination: "Hermosillo",
     cost: 499.99,
@@ -321,7 +321,7 @@ export default function Page() {
                     <span>#{row.orderId}</span>
                   </TableCell>
                   <TableCell >{row.date}</TableCell>
-                  <TableCell>{row.client}</TableCell>
+                  <TableCell>{row.customer}</TableCell>
                   <TableCell>{row.origin} - {row.destination}</TableCell>
                   <TableCell>${row.cost.toFixed(2)}</TableCell>
                   <TableCell><OsStatus status={row.status} /></TableCell>

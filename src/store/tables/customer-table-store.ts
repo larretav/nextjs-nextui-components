@@ -1,27 +1,27 @@
 import {create} from "zustand"
 import createSelectors from "../selectors"
 import { Key } from "react"
-import { Client } from "@/types/client.type"
+import { Customer } from "@/types/customer.type"
 type State ={
     isDetailsOpen: boolean
-    selectedClient: Client
+    selectedCustomer: Customer
     selectedTabKey:Key 
 }
 
 type Actions = {
     toggleDetails: (isOpen:boolean) => void
-    selectClient: (client: Client) => void
+    selectCustomer: (customer: Customer) => void
     setSelectedTabKey: (key:Key) => void
 }
 
-const ClientTableStore = create<State & Actions>((set) => ({
+const CustomerTableStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
-    selectedClient: {} as Client,
+    selectedCustomer: {} as Customer,
     selectedTabKey:"",
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectClient: (client: Client) => set({ selectedClient: client }),
+    selectCustomer: (customer: Customer) => set({ selectedCustomer: customer }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
   }))
 
 
-  export const useClientTableStore = createSelectors(ClientTableStore);
+  export const useCustomerTableStore = createSelectors(CustomerTableStore);

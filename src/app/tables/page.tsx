@@ -16,7 +16,7 @@ export default function SurfacesPage() {
       icon: <FaImage size={40} />,
       title: 'Table',
       subtitle: 'Tabla de Clientes',
-      url: '/tables/clients'
+      url: '/tables/customers'
     },
     {
       icon: <FaImage size={40} />,

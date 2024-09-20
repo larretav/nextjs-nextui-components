@@ -11,7 +11,7 @@ export type ShipmentOrder = {
     ecommercePlatform: EcommercePlatforms,
     orderId: number,
     date: string,
-    client: string,
+    customer: string,
     origin: string,
     destination: string,
     cost: number,

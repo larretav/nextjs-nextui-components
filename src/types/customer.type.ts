@@ -5,7 +5,7 @@ type Address = {
     country:string,
 }
 
-export type Client = {
+export type Customer = {
     id:string
     name:string,
     postalCode:string,
