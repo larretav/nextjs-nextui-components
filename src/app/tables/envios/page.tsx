@@ -12,6 +12,7 @@ import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
+import ShipmentDetailsCard from './_components/ShipmentDetailsCard'
 const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
@@ -337,31 +338,7 @@ export default function Page() {
             </TableBody>
           </Table>
         </div>
-        {isDetailsOpen &&
-          <Card className="flex sticky flex-col p-2  mx-3 max-h-96 min-w-72 top-[110px]">
-            <Button isIconOnly radius='full' size='sm' variant='light'
-              className='absolute top-3 right-3 z-40'
-              onPress={() => toggleDetails(false)}
-            >
-              <FaXmark size={20} />
-            </Button>
-            <CardHeader className="flex-col items-start gap-3">
-              <p className='pt-2 font-semibold text-xl'>Orden #{selectedShipmentOrder.orderId}</p>
-              <p className='text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
-            </CardHeader>
-            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
-              {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
-                <PackageMobileCard key={`${item.title}-${index}`}
-                  leadingIcon='box'
-                  title={item.title}
-                  subtitle={item.subTitle}
-                  quantity={item.quantity}
-                  weightMeasures={item.dimensions}
-                  className="dark:bg-zinc-800"
-                />
-              )}
-            </div>
-          </Card>}
+        {isDetailsOpen && <ShipmentDetailsCard />}
       </div>
     </div>
 

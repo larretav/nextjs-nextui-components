@@ -19,7 +19,7 @@ export default function PackageMobileCard({ leadingIcon, title, subtitle, weight
             <div className='flex'>
                 <PackageType type={leadingIcon} className='self-center' />
             </div>
-            <CardBody className='flex flex-row'>
+            <CardBody className='flex flex-row scrollbar-hide'>
                 <div className='w-full'>
                     <p className='text-sm font-semibold'>{title}</p>
                     <p className='text-xs text-gray-400'>{subtitle}</p>
