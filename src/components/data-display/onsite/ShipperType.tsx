@@ -27,7 +27,7 @@ export const ShipperType = ({ shipper, isEcommerce = false, className }: Props) 
         alt={shipper}
         width={80}
         height={35}
-        className="object-cover w-full h-full"
+        className="object-cover w-full h-full dark:brightness-[0.75]"
       />
 
       {

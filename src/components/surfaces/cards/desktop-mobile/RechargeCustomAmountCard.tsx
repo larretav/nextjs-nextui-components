@@ -12,7 +12,7 @@ type Props = {
 
 export default function RechargeCustomAmountMobileCard({ title,highlighted }: Props) {
     return (
-        <Card className={`px-2 h-min max-w-72`}>
+        <Card className="px-2 shadow-md h-min max-w-72">
             <CardHeader>
                 <p className='mt-5 text-xl font-semibold'>{title}</p>
             </CardHeader>

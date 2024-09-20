@@ -16,7 +16,7 @@ type Props = {
 export default function BoxMobileCard({ description, content, length, height, width, weight }: Props) {
     const weightAndMeasures = `${length} X ${height} X ${width} - ${weight}kg`
     return (
-        <Card>
+        <Card className='shadow-md'>
             <CardBody>
                 <div className="mx-2 border-b">
                     <p className='text-base font-semibold'>{description}</p>

@@ -7,14 +7,15 @@ type Props = {
     title: string
     subtitle: string,
     weightMeasures: string,
-    quantity: number
+    quantity: number,
+    className?: React.StyleHTMLAttributes<HTMLImageElement>['className'],
 }
 
 
 
-export default function PackageMobileCard({ leadingIcon, title, subtitle, weightMeasures, quantity }: Props) {
+export default function PackageMobileCard({ leadingIcon, title, subtitle, weightMeasures, quantity, className }: Props) {
     return (
-        <Card className='flex-row gap-2 p-5 py-0 pl-2 shadow-md' >
+        <Card className={'flex-row gap-2 p-5 py-0 pl-2 shadow-md min-h-20 ' + className} >
             <div className='flex'>
                 <PackageType type={leadingIcon} className='self-center' />
             </div>

@@ -1,34 +1,34 @@
 "use client"
-import { FaImage,  } from "react-icons/fa6";
+import { PageTitle } from "@/components";
 import { Card } from "@nextui-org/card";
-import { useRouter } from "next/navigation";
-
-export default function NavigationPage() {
+import { useRouter } from 'next/navigation';
+import { FaImage } from "react-icons/fa6";
+export default function SurfacesPage() {
   const router = useRouter();
-
   const categories = [
     {
       icon: <FaImage size={40} />,
-      title: 'Drawers',
-      subtitle: 'Drawers.',
-      url: '/navigation/drawer'
+      title: 'Table',
+      subtitle: 'Tabla de envíos',
+      url: '/tables/envios'
     },
     {
       icon: <FaImage size={40} />,
-      title: 'Toolbars',
-      subtitle: 'Toolbars',
-      url: '/navigation/toolbar'
+      title: 'Table',
+      subtitle: 'Tabla de Clientes',
+      url: '/tables/clientes'
     },
     {
       icon: <FaImage size={40} />,
-      title: 'Menus',
-      subtitle: 'Menus',
-      url: '/navigation/menus'
+      title: 'Table',
+      subtitle: 'Tabla de Facturas',
+      url: '/tables/facturas'
     },
-
   ];
 
   return (
+    <div className="flex flex-col p-3">
+    <PageTitle text="Surfaces Componentes" />
     <div className="grid grid-cols-1 gap-4 py-2 px-6 w-full sm:grid-cols-4">
       {
         categories.map((item, idx) => (
@@ -42,5 +42,7 @@ export default function NavigationPage() {
         ))
       }
     </div>
+    </div>
+    
   )
 }
