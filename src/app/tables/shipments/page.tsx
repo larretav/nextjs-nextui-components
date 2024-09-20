@@ -13,6 +13,7 @@ import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import ShipmentDetailsCard from './_components/ShipmentDetailsCard'
+import clsx from 'clsx'
 const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
@@ -278,6 +279,7 @@ export default function Page() {
   const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
   const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
   const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
+
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
       <div className='ml-5'>
@@ -318,7 +320,7 @@ export default function Page() {
                     </div>
                     <span>#{row.orderId}</span>
                   </TableCell>
-                  <TableCell>{row.date}</TableCell>
+                  <TableCell >{row.date}</TableCell>
                   <TableCell>{row.client}</TableCell>
                   <TableCell>{row.origin} - {row.destination}</TableCell>
                   <TableCell>${row.cost.toFixed(2)}</TableCell>

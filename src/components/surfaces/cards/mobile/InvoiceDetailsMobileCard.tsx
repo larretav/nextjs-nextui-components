@@ -11,14 +11,14 @@ type Props = {
 
 export default function InvoiceDetailsMobileCard({ id, date, amount, className }: Props) {
     return (
-        <Card className={'min-h-14 ' + className}>
+        <Card className={'min-h-14 shadow ' + className}>
             <CardBody className='flex-row'>
                 <div>
                     <p className="text-sm font-medium">{id}</p>
                     <p className="text-xs font-medium text-gray-400">{date}</p>
                 </div>
                 <div className="flex ml-auto text-xl font-medium">
-                    <p className='self-center'>${amount.toFixed(2)}MXN</p>
+                    <div className='self-center'>${amount.toFixed(2)} <span className="text-xs font-bold">MXN</span></div>
                 </div>
             </CardBody>
         </Card>

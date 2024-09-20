@@ -26,7 +26,7 @@ export default function ToolbarFilters() {
         {
             text: "Todos",
             value: 45,
-            activeColor: "primary"
+            activeColor: "default"
         },
         {
             text: "En Sitio y Transito",
@@ -80,7 +80,7 @@ export default function ToolbarFilters() {
         },
     ]
     return (
-        <div className='flex flex-col w-full'>
+        <div className='flex flex-col w-full '>
             <div className="flex w-full">
                 <div className='flex w-8/12 md:w-10/12 xl:w-11/12'>
                     <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={handleChange} >
@@ -89,27 +89,27 @@ export default function ToolbarFilters() {
                         ))}
                     </TabsFilters>
                 </div>
-                <div className="flex ml-2 w-full">
-                    <Button variant='light' radius='full' isIconOnly
+                <div className="flex px-2 w-full items-center justify-center">
+                    <Button size="sm" variant='light' radius='full' isIconOnly
                         onPress={() => {
                             setDisplayViewMenu(!displayViewMenu)
                             setDisplayFilterMenu(false)
                         }}
                     >
-                        <FaEye className='text-slate-600' />
+                        <FaEye size={18} className='text-slate-600' />
                     </Button>
-                    <Button variant='light' radius='full' isIconOnly
+                    <Button size="sm" variant='light' radius='full' isIconOnly
                         onPress={() => {
                             setDisplayFilterMenu(!displayFilterMenu)
                             setDisplayViewMenu(false)
                         }}
 
                     >
-                        <FaFilter className='text-slate-600' />
+                        <FaFilter size={18} className='text-slate-600' />
                     </Button>
-                    <Button variant='light' radius='full' isIconOnly
+                    <Button size="sm" variant='light' radius='full' isIconOnly
                     >
-                        <FaPlus className='text-blue-500' />
+                        <FaPlus size={18} className='text-blue-500' />
                     </Button>
                 </div>
             </div>
