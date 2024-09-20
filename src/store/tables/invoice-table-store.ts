@@ -1,27 +1,27 @@
 import {create} from "zustand"
 import createSelectors from "../selectors"
 import { Key } from "react"
-import { Bill } from "@/types/bill.type"
+import { Invoice } from "@/types/invoice.type"
 type State ={
     isDetailsOpen: boolean
-    selectedBill: Bill
+    selectedInvoice: Invoice
     selectedTabKey:Key 
 }
 
 type Actions = {
     toggleDetails: (isOpen:boolean) => void
-    selectBill: (bill: Bill) => void
+    selectInvoice: (invoice: Invoice) => void
     setSelectedTabKey: (key:Key) => void
 }
 
-const BillTableStore = create<State & Actions>((set) => ({
+const InvoiceTableStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
-    selectedBill: {} as Bill,
+    selectedInvoice: {} as Invoice,
     selectedTabKey:"",
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectBill: (bill: Bill) => set({ selectedBill: bill }),
+    selectInvoice: (invoice: Invoice) => set({ selectedInvoice: invoice }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
   }))
 
 
-  export const useBillTableStore = createSelectors(BillTableStore);
+  export const useInvoiceTableStore = createSelectors(InvoiceTableStore);

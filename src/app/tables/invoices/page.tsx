@@ -1,19 +1,16 @@
 "use client"
 import React from 'react'
-import { useBillTableStore } from '@/store/tables/bills-table-store'
+import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye, FaXmark } from 'react-icons/fa6'
-import { Card, CardHeader } from '@nextui-org/card'
+import { FaEye, } from 'react-icons/fa6'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import { PageTitle } from '@/components'
-import { Bill } from '@/types/bill.type'
-
-import InvoiceDetailsMobileCard from '@/components/surfaces/cards/mobile/InvoiceDetailsMobileCard'
-import BillsDetailsCard from './_components/BillsDetailsCard'
-const dataMock: Bill[] = [
+import { Invoice } from '@/types/invoice.type'
+import InvoiceDetailsCard from './_components/InvoiceDetailsCard'
+const dataMock: Invoice[] = [
   {
     folio: "LMAO-71",
     date: "17/05/2024",
@@ -410,12 +407,12 @@ const dataMock: Bill[] = [
   }
 ]
 export default function Page() {
-  const isDetailsOpen = useBillTableStore.use.isDetailsOpen()
-  const toggleDetails = useBillTableStore.use.toggleDetails()
-  const selectedBill = useBillTableStore.use.selectedBill()
-  const selectBill = useBillTableStore.use.selectBill()
-  const selectedKey = useBillTableStore.use.selectedTabKey() as string
-  const setSelectedKey = useBillTableStore.use.setSelectedTabKey()
+  const isDetailsOpen = useInvoiceTableStore.use.isDetailsOpen()
+  const toggleDetails = useInvoiceTableStore.use.toggleDetails()
+  const selectedInvoice = useInvoiceTableStore.use.selectedInvoice()
+  const selectInvoice = useInvoiceTableStore.use.selectInvoice()
+  const selectedKey = useInvoiceTableStore.use.selectedTabKey() as string
+  const setSelectedKey = useInvoiceTableStore.use.setSelectedTabKey()
 
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -452,7 +449,7 @@ export default function Page() {
                   <TableCell>
                     <Button isIconOnly radius='full' size='sm' variant='light'
                       onPress={() => {
-                        selectBill(row)
+                        selectInvoice(row)
                         toggleDetails(true)
                       }}
                     >
@@ -465,7 +462,7 @@ export default function Page() {
           </Table>
         </div>
         <div>
-          {isDetailsOpen && <BillsDetailsCard />}
+          {isDetailsOpen && <InvoiceDetailsCard />}
         </div>
       </div>
     </div>

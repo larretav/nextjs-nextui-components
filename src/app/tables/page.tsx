@@ -22,7 +22,7 @@ export default function SurfacesPage() {
       icon: <FaImage size={40} />,
       title: 'Table',
       subtitle: 'Tabla de Facturas',
-      url: '/tables/bills'
+      url: '/tables/invoices'
     },
   ];
 

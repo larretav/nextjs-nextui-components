@@ -1,5 +1,5 @@
 
-export type Bill={
+export type Invoice={
 folio:string,
 date:string,
 paymentMethod:string,
