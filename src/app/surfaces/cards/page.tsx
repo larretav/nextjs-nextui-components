@@ -94,13 +94,15 @@ export default function CardsPage() {
                     <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash", "transfer"]} />
                     <RechargeMobileCard title="Pro" description="Puedes realizar hasta 2 envíos" cost={1000} highlighted badgeQuantity={200} paymentMethods={["cash", "transfer", "card"]} />
                 </div>
-
             </div>
             <div className="flex flex-col gap-3 py-3 px-6">
                 <PageTitle text="Mobile-Desktop Responsive Cards Components" />
                 <p className="p-2 font-medium">DashboardCard (Desktop-Mobile)</p>
-                <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
-                    <DashboardCard text="En sitio" quantity={250} />
+                <div className="grid grid-cols-1 gap-2 md:grid-cols-3 lg:grid-cols-4">
+                <DashboardCard type="en sitio" quantity={250} />
+                <DashboardCard type="en transito" quantity={50} />
+                <DashboardCard type="entregados" quantity={1250} />
+                <DashboardCard type="cancelados" quantity={5} />
                 </div>
                 <p className="p-2 font-medium">RechargeCustomAmountCard (Mobile-Desktop)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">

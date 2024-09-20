@@ -21,7 +21,7 @@ export default function BoxMobileCard({ description, content, length, height, wi
                 <div className="mx-2 border-b">
                     <p className='text-base font-semibold'>{description}</p>
                     <p className='text-sm'>{content}</p>
-                    <p className='mb-2 text-xs font-semibold text-slate-400'>{weightAndMeasures}</p>
+                    <p className='mb-2 text-xs font-semibold text-zinc-400'>{weightAndMeasures}</p>
                 </div>
             </CardBody>
             <CardFooter className='gap-2 justify-end pt-0'>
