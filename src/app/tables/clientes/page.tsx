@@ -3,12 +3,11 @@ import React from 'react'
 import { useClientTableStore } from '@/store/tables/clients-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye } from 'react-icons/fa6'
+import { FaEye, FaXmark } from 'react-icons/fa6'
 import type { Client } from "@/types/client.type"
 import { IoPerson } from "react-icons/io5";
 import { BsBuildingsFill } from "react-icons/bs";
-import { Card } from '@nextui-org/card'
-import { RxCross2 } from "react-icons/rx";
+import { Card, CardHeader } from '@nextui-org/card'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
@@ -325,7 +324,7 @@ export default function Page() {
     const setSelectedKey = useClientTableStore.use.setSelectedTabKey()
 
     return (
-        <div className='bg-zinc-100 dark:bg-zinc-800'>
+        <div className='bg-zinc-100 dark:bg-zinc-950'>
             <div className="flex p-2 px-4 rounded-lg">
                 <PageTitle text='Clientes' />
                 <Button startContent={<TiUserAdd className='text-white' />} size='sm' color='secondary' className='mt-1 ml-auto text-white'>Nuevo</Button>
@@ -339,7 +338,7 @@ export default function Page() {
                             <TabFilter key={3} text="Eliminados" value="80" activeColor="red" />
                         </TabsFilters>
                         <div className='flex items-center ml-auto'>
-                            <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18} /></Button>
+                            <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={16} /></Button>
                         </div>
                     </div>
                     <Table aria-label="Tabla de clientes" >
@@ -366,7 +365,7 @@ export default function Page() {
                                                 toggleDetails(true)
                                             }}
                                         >
-                                            <FaEye size={18} className='text-blue-500' />
+                                            <FaEye size={16} className='text-blue-500' />
                                         </Button>
                                     </TableCell>
                                 </TableRow>
@@ -376,15 +375,17 @@ export default function Page() {
                 </div>
                 <div>
                     {isDetailsOpen &&
-                        <Card className="flex sticky flex-col p-2 mx-2 max-h-96 min-w-72 top-[130px] bg-zinc-100 dark:bg-zinc-800">
-                            <Button isIconOnly radius='full' size='sm' variant='light'
-                                className='absolute top-3 right-3'
+                        <Card className="flex sticky flex-col p-2 mx-2 max-h-96 min-w-72 top-[130px] ">
+                            <Button isIconOnly radius='full' size='sm' variant='light' 
+                                className='absolute top-3 right-3 z-40'
                                 onPress={() => toggleDetails(false)}
                             >
-                                <RxCross2 size={18} className='text-red-500' />
+                                <FaXmark size={20}  />
                             </Button>
-                            <p className='px-2 pt-2 font-semibold'>ID: {selectedClient.id}</p>
-                            <p className='px-3 text-sm font-medium'>Direcciones: {selectedClient.addressList.length}</p>
+                            <CardHeader className='flex-col items-start gap-3'>
+                            <p className='pt-2 font-semibold text-xl'>Cliente ID: {selectedClient.id}</p>
+                            <p className='text-sm font-medium'>Direcciones: {selectedClient.addressList.length}</p>
+                            </CardHeader>
                             <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
                                 {selectedClient?.addressList?.map((item, index) =>
                                     <AddressTableCard
@@ -393,6 +394,7 @@ export default function Page() {
                                         location={item.location}
                                         country={item.country}
                                         postalCode={item.postalCode}
+                                        className="dark:bg-zinc-800"
                                     />
                                 )}
                             </div>

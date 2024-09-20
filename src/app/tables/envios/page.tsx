@@ -3,11 +3,10 @@ import React from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaCross, FaEye, FaXmark } from 'react-icons/fa6'
+import { FaEye, FaXmark } from 'react-icons/fa6'
 import type { ShipmentOrder } from "@/types/shipment-order.type"
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
 import { Card, CardHeader } from '@nextui-org/card'
-import { RxCross2 } from "react-icons/rx";
 import { IconEcommerce, PageTitle, ShipperType } from '@/components'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
@@ -331,7 +330,7 @@ export default function Page() {
                         toggleDetails(true)
                       }}
                     >
-                      <FaEye size={18} className='text-blue-500' />
+                      <FaEye size={16} className='text-blue-500' />
                     </Button>
                   </TableCell>
                 </TableRow>)}
@@ -339,7 +338,7 @@ export default function Page() {
           </Table>
         </div>
         {isDetailsOpen &&
-          <Card className="flex sticky flex-col p-2  mx-3 max-h-96 min-w-72 top-[110px] light:bg-white">
+          <Card className="flex sticky flex-col p-2  mx-3 max-h-96 min-w-72 top-[110px]">
             <Button isIconOnly radius='full' size='sm' variant='light'
               className='absolute top-3 right-3 z-40'
               onPress={() => toggleDetails(false)}

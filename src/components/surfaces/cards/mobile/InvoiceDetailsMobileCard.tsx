@@ -6,11 +6,12 @@ type Props = {
     id: string,
     date: string,
     amount: number
+    className?:string
 }
 
-export default function InvoiceDetailsMobileCard({ id, date, amount }: Props) {
+export default function InvoiceDetailsMobileCard({ id, date, amount, className }: Props) {
     return (
-        <Card className='min-h-14'>
+        <Card className={'min-h-14 ' + className}>
             <CardBody className='flex-row'>
                 <div>
                     <p className="text-sm font-medium">{id}</p>
