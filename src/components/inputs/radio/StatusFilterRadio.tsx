@@ -3,9 +3,8 @@ import { cn } from '@/lib/utils';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { getNextUIOrTailwindColor } from '@/utils';
 import { css } from '@emotion/css';
-import { Radio, RadioProps, useRadio } from '@nextui-org/radio'
+import { Radio, RadioProps } from '@nextui-org/radio'
 import { useIsSSR } from '@react-aria/ssr';
-import { VisuallyHidden } from '@react-aria/visually-hidden';
 import { useTheme } from 'next-themes';
 import React from 'react'
 
@@ -14,21 +13,9 @@ type Props = RadioProps & {
 }
 
 
-export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
+export const StatusFilterRadio = ({ activeColor, children, ...otherProps }: Props) => {
 
-  const {
-    Component,
-    children,
-    isSelected,
-    description,
-    getBaseProps,
-    getWrapperProps,
-    getInputProps,
-    getLabelProps,
-    getLabelWrapperProps,
-    getControlProps,
-  } = useRadio(otherProps);
-
+  console.log(otherProps)
   const { theme = 'light' } = useTheme();
   const isSSR = useIsSSR();
 
@@ -36,42 +23,30 @@ export const StatusFilterRadio = ({ activeColor, ...otherProps }: Props) => {
   const bgColor = getNextUIOrTailwindColor(activeColor || 'primary', 'light', 500, 'rgba', theme === 'dark' ? 15 : 5);
   const hoverColor = getNextUIOrTailwindColor(activeColor || 'primary', 'light', 500, 'rgba', theme === 'dark' ? 20 : 10);
 
-  if (isSSR) return null
+  if (isSSR) return null;
 
   return (
-    <Component
-      {...getBaseProps()}
-
-      className={cn(
-        "group inline-flex items-center justify-between flex-row-reverse transition-all cursor-pointer border-2 border-default rounded-lg gap-4 px-3 py-2",
-        css({
-          backgroundColor: bgColor,
-          borderColor: 'transparent',
-          '&[data-selected="true"]': {
-            borderColor:  accentColor 
-          },
-          '&:hover': {
-            backgroundColor: hoverColor
-          }
-        })
-      )}
-
-
+    <Radio
+      {...otherProps}
+      classNames={{
+        label: "font-medium text-default-600",
+        control: css({ backgroundColor: accentColor }),
+        base: cn(
+          "inline-flex m-0 max-w-full bg-content1 hover:bg-content2 items-center justify-between transition-all",
+          "flex-row-reverse cursor-pointer rounded-lg gap-9 px-3 py-2 border-2 border-transparent",
+          css({
+            backgroundColor: bgColor,
+            '&:hover': {
+              backgroundColor: hoverColor
+            },
+            '&[data-selected="true"], &[data-selected="true"] > span ': {
+              borderColor: accentColor + " !important"
+            },
+          })
+        ),
+      }}
     >
-      <VisuallyHidden>
-        <input {...getInputProps()} />
-      </VisuallyHidden>
-
-      <span   {...getWrapperProps()} style={{ borderColor: isSelected ? accentColor : undefined }} >
-        <span   {...getControlProps()} style={{ backgroundColor: isSelected ? accentColor : undefined }} />
-      </span>
-
-      <div {...getLabelWrapperProps()} >
-        {children && <span {...getLabelProps()} className="font-medium text-default-600">{children}</span>}
-        {description && (
-          <span className="text-small text-foreground opacity-70">{description}</span>
-        )}
-      </div>
-    </Component >
+      {children}
+    </Radio>
   );
 }

@@ -50,7 +50,8 @@ export const getNextUiColor = (
   return color;
 };
 
-export const getNextUIOrTailwindColor = (colorName: string, theme: ThemeName = 'dark', scale: ColorScale = 500, type: Type = "hex", opacity: number = 100 ) => {
+export const getNextUIOrTailwindColor = (colorName: string, theme: ThemeName = 'dark', scale: ColorScale = 500, type: Type = "hex", opacity: number = 100) => {
+  console.log(getNextUiColor(colorName, theme, scale, type, opacity) || getTailwindColorHex(colorName, scale, type, opacity))
   return getNextUiColor(colorName, theme, scale, type, opacity) || getTailwindColorHex(colorName, scale, type, opacity);
 }
 
