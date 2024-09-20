@@ -10,19 +10,19 @@ export default function SurfacesPage() {
       icon: <FaImage size={40} />,
       title: 'Table',
       subtitle: 'Tabla de envíos',
-      url: '/tables/envios'
+      url: '/tables/shipments'
     },
     {
       icon: <FaImage size={40} />,
       title: 'Table',
       subtitle: 'Tabla de Clientes',
-      url: '/tables/clientes'
+      url: '/tables/clients'
     },
     {
       icon: <FaImage size={40} />,
       title: 'Table',
       subtitle: 'Tabla de Facturas',
-      url: '/tables/facturas'
+      url: '/tables/bills'
     },
   ];
 
