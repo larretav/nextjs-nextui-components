@@ -3,10 +3,10 @@ import React from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye } from 'react-icons/fa6'
+import { FaCross, FaEye, FaXmark } from 'react-icons/fa6'
 import type { ShipmentOrder } from "@/types/shipment-order.type"
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
-import { Card } from '@nextui-org/card'
+import { Card, CardHeader } from '@nextui-org/card'
 import { RxCross2 } from "react-icons/rx";
 import { IconEcommerce, PageTitle, ShipperType } from '@/components'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
@@ -45,7 +45,7 @@ const dataMock: ShipmentOrder[] = [
       { title: "Vans Old Skool", subTitle: "tenis 25cm", dimensions: "26x10x6-0.4kg", quantity: 1 },
       { title: "New Balance 574", subTitle: "tenis 27cm", dimensions: "29x13x9-0.7kg", quantity: 2 },
       { title: "Reebok Classic", subTitle: "tenis 26cm", dimensions: "27x11x7-0.5kg", quantity: 1 },
-      { title: "Puma Future Rider", subTitle: "tenis 27cm", dimensions: "30x14x10-0.8kg", quantity: 1 },    ]
+      { title: "Puma Future Rider", subTitle: "tenis 27cm", dimensions: "30x14x10-0.8kg", quantity: 1 },]
   },
   {
     ecommercePlatform: "woocommerce",
@@ -279,87 +279,91 @@ export default function Page() {
   const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
   const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
   return (
-    <div className='bg-zinc-100 dark:bg-zinc-800'>
-    <div className='ml-5'>
-    <PageTitle text='Envíos'/>
-    </div>
-    <div className='flex p-3'>
-      <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
-        <div className="flex px-5">
-          <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
-            <TabFilter key={1} text="Todos" value="200" activeColor="green" />
-            <TabFilter key={2} text="En sitio y transito" value="50" activeColor="amber" />
-            <TabFilter key={3} text="En sitio" value="25" activeColor="amber" />
-            <TabFilter key={4} text="En transito" value="25" activeColor="blue" />
-            <TabFilter key={5} text="Entregado" value="10" activeColor="green" />
-            <TabFilter key={6} text="Cancelado" value="2" activeColor="red" />
-          </TabsFilters>
-          <div className='flex items-center ml-auto'>
-            <Button  isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18}/></Button>
-            </div>          
-        </div>
-        <Table aria-label="Example static collection table" >
-          <TableHeader>
-            <TableColumn className='w-min' >Orden</TableColumn>
-            <TableColumn>Fecha</TableColumn>
-            <TableColumn>Cliente</TableColumn>
-            <TableColumn>Origen - Destino</TableColumn>
-            <TableColumn>Costo</TableColumn>
-            <TableColumn>Estatus</TableColumn>
-            <TableColumn>Alianza</TableColumn>
-            <TableColumn>Acciones</TableColumn>
-          </TableHeader>
-          <TableBody>
-            {dataMock.map((row, index) =>
-              <TableRow key={`${row.orderId} ${index}`}>
-                <TableCell className='flex gap-1 items-center'>
-                  <div className='p-1 rounded-xl bg-slate-200'>
-                    <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
-                  </div>
-                  <span className='font-medium'>#{row.orderId}</span>
-                </TableCell>
-                <TableCell>{row.date}</TableCell>
-                <TableCell>{row.client}</TableCell>
-                <TableCell>{row.origin} - {row.destination}</TableCell>
-                <TableCell>${row.cost.toFixed(2)}</TableCell>
-                <TableCell><OsStatus status={row.status} /></TableCell>
-                <TableCell><ShipperType shipper={row.shipper}/></TableCell>
-                <TableCell>
-                  <Button isIconOnly radius='full' size='sm' variant='light'
-                    onPress={() => {
-                      selectShipmentOrder(row)
-                      toggleDetails(true)
-                    }}
-                  >
-                    <FaEye size={18} className='text-blue-500' />
-                  </Button>
-                </TableCell>
-              </TableRow>)}
-          </TableBody>
-        </Table>
+    <div className='bg-zinc-100 dark:bg-zinc-950'>
+      <div className='ml-5'>
+        <PageTitle text='Envíos' />
       </div>
-      {isDetailsOpen &&
-        <Card className="flex sticky flex-col p-2 mx-3 max-h-96 min-w-72 top-[110px] bg-zinc-100 dark:bg-zinc-800">
-          <Button isIconOnly radius='full' size='sm' variant='light'
-            className='absolute top-3 right-3'
-            onPress={() => toggleDetails(false)}
-          >
-            <RxCross2 size={18} className='text-red-500' />
-          </Button>
-          <p className='px-2 pt-2 font-semibold'>Orden #{selectedShipmentOrder.orderId}</p>
-          <p className='px-3 text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
-          <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
-            {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
-              <PackageMobileCard key={`${item.title}-${index}`}
-                leadingIcon='box'
-                title={item.title}
-                subtitle={item.subTitle}
-                quantity={item.quantity}
-                weightMeasures={item.dimensions} />
-            )}
+      <div className='flex p-3'>
+        <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
+          <div className="flex px-5">
+            <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
+              <TabFilter key={1} text="Todos" value="200" activeColor="green" />
+              <TabFilter key={2} text="En sitio y transito" value="50" activeColor="amber" />
+              <TabFilter key={3} text="En sitio" value="25" activeColor="amber" />
+              <TabFilter key={4} text="En transito" value="25" activeColor="blue" />
+              <TabFilter key={5} text="Entregado" value="10" activeColor="green" />
+              <TabFilter key={6} text="Cancelado" value="2" activeColor="red" />
+            </TabsFilters>
+            <div className='flex items-center ml-auto'>
+              <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={16} /></Button>
+            </div>
           </div>
-        </Card>}
-    </div>
+          <Table aria-label="Example static collection table" >
+            <TableHeader>
+              <TableColumn className='w-min' >Orden</TableColumn>
+              <TableColumn>Fecha</TableColumn>
+              <TableColumn>Cliente</TableColumn>
+              <TableColumn>Origen - Destino</TableColumn>
+              <TableColumn>Costo</TableColumn>
+              <TableColumn>Estatus</TableColumn>
+              <TableColumn>Alianza</TableColumn>
+              <TableColumn>Acciones</TableColumn>
+            </TableHeader>
+            <TableBody>
+              {dataMock.map((row, index) =>
+                <TableRow key={`${row.orderId} ${index}`}>
+                  <TableCell className='flex gap-2 items-center'>
+                    <div className='p-1 rounded-xl bg-default-200'>
+                      <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
+                    </div>
+                    <span>#{row.orderId}</span>
+                  </TableCell>
+                  <TableCell>{row.date}</TableCell>
+                  <TableCell>{row.client}</TableCell>
+                  <TableCell>{row.origin} - {row.destination}</TableCell>
+                  <TableCell>${row.cost.toFixed(2)}</TableCell>
+                  <TableCell><OsStatus status={row.status} /></TableCell>
+                  <TableCell><ShipperType shipper={row.shipper} /></TableCell>
+                  <TableCell>
+                    <Button isIconOnly radius='full' size='sm' variant='light'
+                      onPress={() => {
+                        selectShipmentOrder(row)
+                        toggleDetails(true)
+                      }}
+                    >
+                      <FaEye size={18} className='text-blue-500' />
+                    </Button>
+                  </TableCell>
+                </TableRow>)}
+            </TableBody>
+          </Table>
+        </div>
+        {isDetailsOpen &&
+          <Card className="flex sticky flex-col p-2  mx-3 max-h-96 min-w-72 top-[110px] light:bg-white">
+            <Button isIconOnly radius='full' size='sm' variant='light'
+              className='absolute top-3 right-3 z-40'
+              onPress={() => toggleDetails(false)}
+            >
+              <FaXmark size={20} />
+            </Button>
+            <CardHeader className="flex-col items-start gap-3">
+              <p className='pt-2 font-semibold text-xl'>Orden #{selectedShipmentOrder.orderId}</p>
+              <p className='text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
+            </CardHeader>
+            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
+              {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
+                <PackageMobileCard key={`${item.title}-${index}`}
+                  leadingIcon='box'
+                  title={item.title}
+                  subtitle={item.subTitle}
+                  quantity={item.quantity}
+                  weightMeasures={item.dimensions}
+                  className="dark:bg-zinc-800"
+                />
+              )}
+            </div>
+          </Card>}
+      </div>
     </div>
 
   )

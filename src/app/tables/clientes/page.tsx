@@ -328,7 +328,7 @@ export default function Page() {
         <div className='bg-zinc-100 dark:bg-zinc-800'>
             <div className="flex p-2 px-4 rounded-lg">
                 <PageTitle text='Clientes' />
-                <Button startContent={<TiUserAdd className='text-white' />} size='sm' className='mt-1 ml-auto text-white shadow-md bg-blue-950 shadow-blue-400'>Nuevo</Button>
+                <Button startContent={<TiUserAdd className='text-white' />} size='sm' color='secondary' className='mt-1 ml-auto text-white'>Nuevo</Button>
             </div>
             <div className='flex p-3'>
                 <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">

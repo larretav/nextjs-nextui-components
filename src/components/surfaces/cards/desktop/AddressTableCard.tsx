@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/button'
 import { Card, CardBody } from '@nextui-org/card'
 import React from 'react'
-import { FaEdit, FaTrashAlt } from 'react-icons/fa'
+import { FaPenToSquare, FaTrashCan } from 'react-icons/fa6'
 
 type Props = {
   address: string,
@@ -20,10 +20,10 @@ export default function AddressTableCard({ address, postalCode, location, countr
         </div>
         <div className='flex flex-col gap-1 justify-center ml-auto'>
           <Button isIconOnly size='sm' variant='light' radius='full'>
-            <FaEdit className='text-blue-600' size={14} />
+            <FaPenToSquare className='text-blue-600' size={16} />
           </Button>
           <Button isIconOnly size='sm' variant='light' radius='full'>
-            <FaTrashAlt className='text-red-500' size={14} />
+            <FaTrashCan className='text-red-500' size={16} />
           </Button>
         </div>
       </CardBody>
