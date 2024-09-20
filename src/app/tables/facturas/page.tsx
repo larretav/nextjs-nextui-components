@@ -423,14 +423,14 @@ export default function Page() {
                 <PageTitle text='Facturas' />
             </div>
             <div className='flex p-3'>
-                <div className="flex flex-col w-full  rounded-xl bg-white dark:bg-zinc-900">
-                    <div className="flex px-5 ">
+                <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
+                    <div className="flex px-5">
                         <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
                             <TabFilter key={1} text="Todos" value="1080" activeColor="amber" />
                             <TabFilter key={2} text="Activos" value="100" activeColor="green" />
                             <TabFilter key={3} text="Sin Saldo" value="80" activeColor="red" />
                         </TabsFilters>
-                        <div className='ml-auto flex items-center'>
+                        <div className='flex items-center ml-auto'>
                             <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18} /></Button>
                         </div>
                     </div>
@@ -466,16 +466,16 @@ export default function Page() {
                 </div>
                 <div>
                     {isDetailsOpen &&
-                        <Card className="flex min-w-72 flex-col p-2  mx-2 sticky top-[130px] max-h-96 bg-zinc-100 dark:bg-zinc-800">
+                        <Card className="flex sticky flex-col p-2 mx-2 max-h-96 min-w-72 top-[130px] bg-zinc-100 dark:bg-zinc-800">
                             <Button isIconOnly radius='full' size='sm' variant='light'
                                 className='absolute top-3 right-3'
                                 onPress={() => toggleDetails(false)}
                             >
                                 <RxCross2 size={18} className='text-red-500' />
                             </Button>
-                            <p className='font-semibold pt-2 px-2'>Folio: {selectedBill.folio}</p>
-                            <p className='font-medium text-sm px-3'>Conceptos: {selectedBill.breakdown.length}</p>
-                            <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
+                            <p className='px-2 pt-2 font-semibold'>Folio: {selectedBill.folio}</p>
+                            <p className='px-3 text-sm font-medium'>Conceptos: {selectedBill.breakdown.length}</p>
+                            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
                                 {selectedBill?.breakdown?.map((item, index) =>
                                     <InvoiceDetailsMobileCard
                                         key={item.id + index}

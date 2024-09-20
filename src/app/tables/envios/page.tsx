@@ -13,7 +13,7 @@ import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
-const dataMock1: ShipmentOrder[] = [
+const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1218,
@@ -102,10 +102,175 @@ const dataMock1: ShipmentOrder[] = [
       { title: "Samsung Galaxy S23", subTitle: "smartphone", dimensions: "20x10x5-0.3kg", quantity: 1 },
       { title: "Google Pixel 7", subTitle: "smartphone", dimensions: "19x9x4-0.2kg", quantity: 1 },
     ]
-  }
+  },
+  {
+    ecommercePlatform: "shopify",
+    orderId: 1224,
+    date: "26/05/2024",
+    client: "Maria Rodriguez",
+    origin: "Queretaro",
+    destination: "Merida",
+    cost: 450.00,
+    status: "en tránsito",
+    shipper: "dhl",
+    shipmentItems: [
+      { title: "Canon EOS Rebel", subTitle: "cámara", dimensions: "20x15x10-0.8kg", quantity: 1 },
+      { title: "Nikon D5600", subTitle: "cámara", dimensions: "22x18x12-1.0kg", quantity: 1 },
+      { title: "Sony Alpha a6400", subTitle: "cámara", dimensions: "20x12x8-0.6kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "onsite",
+    orderId: 1225,
+    date: "27/05/2024",
+    client: "Juan Garcia",
+    origin: "San Luis Potosi",
+    destination: "Chihuahua",
+    cost: 279.99,
+    status: "entregado",
+    shipper: "fedex",
+    shipmentItems: [
+      { title: "Xbox Series X", subTitle: "consola", dimensions: "30x20x15-2.5kg", quantity: 1 },
+      { title: "PlayStation 5", subTitle: "consola", dimensions: "32x22x16-2.8kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "woocommerce",
+    orderId: 1226,
+    date: "28/05/2024",
+    client: "Ana Torres",
+    origin: "Hermosillo",
+    destination: "Oaxaca",
+    cost: 599.99,
+    status: "en sitio",
+    shipper: "ups",
+    shipmentItems: [
+      { title: "LG 4K TV", subTitle: "televisor 55'", dimensions: "120x80x30-15kg", quantity: 1 },
+      { title: "Samsung QLED TV", subTitle: "televisor 50'", dimensions: "110x70x25-12kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "woocommerce",
+    orderId: 1227,
+    date: "29/05/2024",
+    client: "Pedro Lopez",
+    origin: "Ciudad Juarez",
+    destination: "Tampico",
+    cost: 199.99,
+    status: "cancelado",
+    shipper: "dhl",
+    shipmentItems: [
+      { title: "HP Pavilion Gaming", subTitle: "laptop", dimensions: "35x25x5-2.0kg", quantity: 1 },
+      { title: "Dell Inspiron", subTitle: "laptop", dimensions: "33x23x4-1.8kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "shopify",
+    orderId: 1228,
+    date: "30/05/2024",
+    client: "Sofia Gomez",
+    origin: "Torreon",
+    destination: "Villahermosa",
+    cost: 399.99,
+    status: "en tránsito",
+    shipper: "ups",
+    shipmentItems: [
+      { title: "Fender Stratocaster", subTitle: "guitarra", dimensions: "40x15x5-3.5kg", quantity: 1 },
+      { title: "Gibson Les Paul", subTitle: "guitarra", dimensions: "42x17x6-4.0kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "prestashop",
+    orderId: 1229,
+    date: "31/05/2024",
+    client: "Carlos Hernandez",
+    origin: "Mexicali",
+    destination: "Durango",
+    cost: 525.00,
+    status: "entregado",
+    shipper: "dhl",
+    shipmentItems: [
+      { title: "Apple MacBook Air", subTitle: "laptop", dimensions: "30x20x5-1.5kg", quantity: 1 },
+      { title: "Dell Monitor", subTitle: "pantalla 24'", dimensions: "50x30x10-5kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "jumpseller",
+    orderId: 1230,
+    date: "01/06/2024",
+    client: "Maria Sanchez",
+    origin: "Culiacan",
+    destination: "Cozumel",
+    cost: 299.99,
+    status: "en tránsito",
+    shipper: "fedex",
+    shipmentItems: [
+      { title: "Nike Running Shoes", subTitle: "zapatillas", dimensions: "25x15x10-1kg", quantity: 2 },
+      { title: "Adidas Soccer Ball", subTitle: "pelota", dimensions: "20x20x10-0.5kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "onsite",
+    orderId: 1231,
+    date: "02/06/2024",
+    client: "Juan Martinez",
+    origin: "Guadalajara",
+    destination: "Puebla",
+    cost: 649.99,
+    status: "en sitio",
+    shipper: "paquetexpress",
+    shipmentItems: [
+      { title: "Sony Soundbar", subTitle: "barra de sonido", dimensions: "90x20x15-10kg", quantity: 1 },
+      { title: "LG Smart Speaker", subTitle: "altavoz inteligente", dimensions: "20x15x10-2kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "onsite",
+    orderId: 1232,
+    date: "03/06/2024",
+    client: "Ana Garcia",
+    origin: "Monterrey",
+    destination: "Tijuana",
+    cost: 399.99,
+    status: "entregado",
+    shipper: "paquetexpress",
+    shipmentItems: [
+      { title: "HP Printer", subTitle: "impresora", dimensions: "40x30x20-5kg", quantity: 1 },
+      { title: "Epson Scanner", subTitle: "escáner", dimensions: "30x20x10-2kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "woocommerce",
+    orderId: 1233,
+    date: "04/06/2024",
+    client: "Pedro Lopez",
+    origin: "Queretaro",
+    destination: "San Luis Potosi",
+    cost: 225.00,
+    status: "cancelado",
+    shipper: "pkt1",
+    shipmentItems: [
+      { title: "Xiaomi Smartwatch", subTitle: "reloj inteligente", dimensions: "10x5x2-0.1kg", quantity: 2 },
+      { title: "Samsung Wireless Earbuds", subTitle: "auriculares", dimensions: "5x5x2-0.1kg", quantity: 1 },
+    ]
+  },
+  {
+    ecommercePlatform: "shopify",
+    orderId: 1234,
+    date: "05/06/2024",
+    client: "Sofia Rodriguez",
+    origin: "León",
+    destination: "Hermosillo",
+    cost: 499.99,
+    status: "en tránsito",
+    shipper: "ups",
+    shipmentItems: [
+      { title: "Gopro Camera", subTitle: "cámara", dimensions: "10x5x5-0.2kg", quantity: 1 },
+      { title: "DJI Drone", subTitle: "dron", dimensions: "30x20x15-1.5kg", quantity: 1 },
+    ]
+  },
 ];
 
-const dataMock = dataMock1.concat(dataMock1).concat(dataMock1).concat(dataMock1).concat(dataMock1)
 export default function Page() {
   const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
@@ -119,7 +284,7 @@ export default function Page() {
     <PageTitle text='Envíos'/>
     </div>
     <div className='flex p-3'>
-      <div className="flex flex-col w-full bg-white dark:bg-zinc-900 rounded-xl">
+      <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
         <div className="flex px-5">
           <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
             <TabFilter key={1} text="Todos" value="200" activeColor="green" />
@@ -129,7 +294,7 @@ export default function Page() {
             <TabFilter key={5} text="Entregado" value="10" activeColor="green" />
             <TabFilter key={6} text="Cancelado" value="2" activeColor="red" />
           </TabsFilters>
-          <div className='ml-auto flex items-center'>
+          <div className='flex items-center ml-auto'>
             <Button  isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18}/></Button>
             </div>          
         </div>
@@ -148,7 +313,7 @@ export default function Page() {
             {dataMock.map((row, index) =>
               <TableRow key={`${row.orderId} ${index}`}>
                 <TableCell className='flex gap-1 items-center'>
-                  <div className='p-1 bg-slate-200 rounded-xl'>
+                  <div className='p-1 rounded-xl bg-slate-200'>
                     <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
                   </div>
                   <span className='font-medium'>#{row.orderId}</span>
@@ -174,16 +339,16 @@ export default function Page() {
         </Table>
       </div>
       {isDetailsOpen &&
-        <Card className="flex min-w-72 flex-col p-2  mx-3 sticky top-[110px] max-h-96 bg-zinc-100 dark:bg-zinc-800">
+        <Card className="flex sticky flex-col p-2 mx-3 max-h-96 min-w-72 top-[110px] bg-zinc-100 dark:bg-zinc-800">
           <Button isIconOnly radius='full' size='sm' variant='light'
             className='absolute top-3 right-3'
             onPress={() => toggleDetails(false)}
           >
             <RxCross2 size={18} className='text-red-500' />
           </Button>
-          <p className='font-semibold pt-2 px-2'>Orden #{selectedShipmentOrder.orderId}</p>
-          <p className='font-medium text-sm px-3'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
-          <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
+          <p className='px-2 pt-2 font-semibold'>Orden #{selectedShipmentOrder.orderId}</p>
+          <p className='px-3 text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
+          <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
             {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
               <PackageMobileCard key={`${item.title}-${index}`}
                 leadingIcon='box'

@@ -15,7 +15,7 @@ import { FaFilter } from "react-icons/fa";
 import AddressTableCard from '@/components/surfaces/cards/desktop/AddressTableCard'
 import { PageTitle } from '@/components'
 import { TiUserAdd } from "react-icons/ti";
-const dataMock1: Client[] = [
+const dataMock: Client[] = [
     {
         id: "173826",
         type: "company",
@@ -182,8 +182,140 @@ const dataMock1: Client[] = [
             },
         ]
     },
+    {
+        id: "173871",
+        type: "person",
+        name: "Ana Isabel López Hernández",
+        postalCode: "91010",
+        location: "Puebla Puebla",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Calle 3 Sur #1456",
+                postalCode: "91010",
+                location: "Puebla Puebla",
+                country: "Mx"
+            },
+            {
+                address: "Avenida Héroes del 47 #2345",
+                postalCode: "91100",
+                location: "Cholula Puebla",
+                country: "Mx"
+            },
+        ]
+    },
+    {
+        id: "173872",
+        type: "company",
+        name: "Servicios de Carga y Logística del Centro",
+        postalCode: "92000",
+        location: "Querétaro Querétaro",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Avenida 5 de Febrero #678",
+                postalCode: "92000",
+                location: "Querétaro Querétaro",
+                country: "Mx"
+            },
+            {
+                address: "Calle Ignacio Zaragoza #890",
+                postalCode: "92100",
+                location: "San Juan del Río Querétaro",
+                country: "Mx"
+            },
+        ]
+    },
+    {
+        id: "173873",
+        type: "person",
+        name: "Carlos Alberto Gómez Gómez",
+        postalCode: "93010",
+        location: "Aguascalientes Aguascalientes",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Calle Morelos #1234",
+                postalCode: "93010",
+                location: "Aguascalientes Aguascalientes",
+                country: "Mx"
+            },
+            {
+                address: "Avenida Adolfo López Mateos #4567",
+                postalCode: "93100",
+                location: "Rincón de Romos Aguascalientes",
+                country: "Mx"
+            },
+        ]
+    },
+    {
+        id: "173874",
+        type: "company",
+        name: "Distribuidores de Materiales de Construcción del Norte",
+        postalCode: "94000",
+        location: "Saltillo Coahuila",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Avenida Venustiano Carranza #9012",
+                postalCode: "94000",
+                location: "Saltillo Coahuila",
+                country: "Mx"
+            },
+            {
+                address: "Calle Allende #3456",
+                postalCode: "94100",
+                location: "Piedras Negras Coahuila",
+                country: "Mx"
+            },
+        ]
+    },
+    {
+        id: "173875",
+        type: "person",
+        name: "Martha Elena Morales Morales",
+        postalCode: "95010",
+        location: "Durango Durango",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Calle 20 de Noviembre #7890",
+                postalCode: "95010",
+                location: "Durango Durango",
+                country: "Mx"
+            },
+            {
+                address: "Avenida Guadalupe Victoria #1234",
+                postalCode: "95100",
+                location: "Santiago Papasquiaro Durango",
+                country: "Mx"
+            },
+        ]
+    },
+    {
+        id: "173876",
+        type: "company",
+        name: "Servicios de Consultoría y Asesoría del Sur",
+        postalCode: "96000",
+        location: "Oaxaca Oaxaca",
+        country: "Mx",
+        addressList: [
+            {
+                address: "Avenida Juárez #4567",
+                postalCode: "96000",
+                location: "Oaxaca Oaxaca",
+                country: "Mx"
+            },
+            {
+                address: "Calle Ignacio Zaragoza #8901",
+                postalCode: "96100",
+                location: "Tehuantepec Oaxaca",
+                country: "Mx"
+            },
+        ]
+    },
+
 ]
-const dataMock = dataMock1.concat(dataMock1).concat(dataMock1).concat(dataMock1).concat(dataMock1).concat(dataMock1).concat(dataMock1)
 export default function Page() {
     const isDetailsOpen = useClientTableStore.use.isDetailsOpen()
     const toggleDetails = useClientTableStore.use.toggleDetails()
@@ -196,17 +328,17 @@ export default function Page() {
         <div className='bg-zinc-100 dark:bg-zinc-800'>
             <div className="flex p-2 px-4 rounded-lg">
                 <PageTitle text='Clientes' />
-                <Button startContent={<TiUserAdd className='text-white' />} size='sm' className='ml-auto text-white bg-blue-950 shadow-blue-400 shadow-md mt-1'>Nuevo</Button>
+                <Button startContent={<TiUserAdd className='text-white' />} size='sm' className='mt-1 ml-auto text-white shadow-md bg-blue-950 shadow-blue-400'>Nuevo</Button>
             </div>
             <div className='flex p-3'>
-                <div className="flex flex-col w-full  rounded-xl bg-white dark:bg-zinc-900">
-                    <div className="flex px-5 ">
+                <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
+                    <div className="flex px-5">
                         <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
                             <TabFilter key={1} text="Todos" value="1080" activeColor="amber" />
                             <TabFilter key={2} text="Activos" value="100" activeColor="green" />
                             <TabFilter key={3} text="Eliminados" value="80" activeColor="red" />
                         </TabsFilters>
-                        <div className='ml-auto flex items-center'>
+                        <div className='flex items-center ml-auto'>
                             <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={18} /></Button>
                         </div>
                     </div>
@@ -244,16 +376,16 @@ export default function Page() {
                 </div>
                 <div>
                     {isDetailsOpen &&
-                        <Card className="flex min-w-72 flex-col p-2  mx-2 sticky top-[130px] max-h-96 bg-zinc-100 dark:bg-zinc-800">
+                        <Card className="flex sticky flex-col p-2 mx-2 max-h-96 min-w-72 top-[130px] bg-zinc-100 dark:bg-zinc-800">
                             <Button isIconOnly radius='full' size='sm' variant='light'
                                 className='absolute top-3 right-3'
                                 onPress={() => toggleDetails(false)}
                             >
                                 <RxCross2 size={18} className='text-red-500' />
                             </Button>
-                            <p className='font-semibold pt-2 px-2'>ID: {selectedClient.id}</p>
-                            <p className='font-medium text-sm px-3'>Direcciones: {selectedClient.addressList.length}</p>
-                            <div className="flex flex-col w-full p-1 gap-2 scrollbar-hide overflow-y-scroll sticky">
+                            <p className='px-2 pt-2 font-semibold'>ID: {selectedClient.id}</p>
+                            <p className='px-3 text-sm font-medium'>Direcciones: {selectedClient.addressList.length}</p>
+                            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
                                 {selectedClient?.addressList?.map((item, index) =>
                                     <AddressTableCard
                                         key={`${item.address} - ${index}`}

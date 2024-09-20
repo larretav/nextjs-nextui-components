@@ -22,7 +22,7 @@ export default function CardsPage() {
         <>
             <div className="flex flex-col gap-3 py-3 px-6">
                 <PageTitle text="Mobile Cards Components" />
-                <p className="font-medium p-2">PackageMobileCard</p>
+                <p className="p-2 font-medium">PackageMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <PackageMobileCard
                         leadingIcon="box"
@@ -46,7 +46,7 @@ export default function CardsPage() {
                         quantity={1}
                     />
                 </div>
-                <p className="font-medium p-2">ListTitleMobileCard</p>
+                <p className="p-2 font-medium">ListTitleMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <ListTitleMobileCard title="Título" subtitle="SubTítulo" />
                     <ListTitleMobileCard title="Título" subtitle="SubTítulo" leadingIcon="box" />
@@ -55,40 +55,40 @@ export default function CardsPage() {
                     <ListTitleMobileCard title="Envío de documentos" subtitle="Total de sobres" leadingIcon="envelope" showTrailing />
                     <ListTitleMobileCard title="Base de datos" subtitle="Base subtítulos" showTrailing />
                 </div>
-                <p className="font-medium p-2">PackageItemMobileCard</p>
+                <p className="p-2 font-medium">PackageItemMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <PackageItemMobileCard content="Informativo" packageType="box" />
                     <PackageItemMobileCard content="Documentos" packageType="envelope" />
                     <PackageItemMobileCard content="Pallets" packageType="pallet" />
                 </div>
-                <p className="font-medium p-2">InvoiceMobileCard</p>
+                <p className="p-2 font-medium">InvoiceMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <InvoiceMobileCard folio="LMAO-01" date="02/04/2024" payment="Tarjeta de crédito" amount={1000} status="paid" />
                     <InvoiceMobileCard folio="LMAO-02" date="02/04/2024" payment="Tarjeta de debito" amount={500.99} status="canceled" />
                     <InvoiceMobileCard folio="LMAO-03" date="02/04/2024" payment="Tarjeta de crédito" amount={88.99} status="pending" />
                 </div>
-                <p className="font-medium p-2">CustomerMobileCard</p>
+                <p className="p-2 font-medium">CustomerMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <CustomerMobileCard customerName="DEP dental villa de cortes" address="Ciudad de Mexico, Ciudad de Mexico MX, 03530" />
                     <CustomerMobileCard customerName="Laboratorio clínico Don Alvarez" address="Jalisco, Guadalajara MX, 18351" />
                 </div>
-                <p className="font-medium p-2">BoxMobileCard</p>
+                <p className="p-2 font-medium">BoxMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <BoxMobileCard description="Caja chica" content="HDMI, tarjeta de video y equipo de computo" length={20} height={20} width={20} weight={1} />
                 </div>
-                <p className="font-medium p-2">ContentSummaryMobileCard</p>
+                <p className="p-2 font-medium">ContentSummaryMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <ContentSummaryMobileCard content="Informativo" type="Caja" dimensions="35cm x 30cm x 20cm - 1.5kg" quantity={3} />
                 </div>
-                <p className="font-medium p-2">InvoiceDetailsMobileCard</p>
+                <p className="p-2 font-medium">InvoiceDetailsMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <InvoiceDetailsMobileCard id="0043123" date="23/05/2024" amount={230} />
                 </div>
-                <p className="font-medium p-2">OriginDestinationMobileCard</p>
+                <p className="p-2 font-medium">OriginDestinationMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <OriginDestinationMobileCard title="Origen" postalCode="81200" address="Centro, Los Mochis, Sin" />
                 </div>
-                <p className="font-medium p-2">RechargeMobileCard</p>
+                <p className="p-2 font-medium">RechargeMobileCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <RechargeMobileCard title="Básico" description="Puedes realizar hasta 2 envíos" cost={200} highlighted badgeQuantity={5} paymentMethods={["cash"]} />
                     <RechargeMobileCard title="Avanzado" description="Puedes realizar hasta 2 envíos" cost={500} badgeQuantity={20} paymentMethods={["cash", "transfer"]} />
@@ -98,26 +98,26 @@ export default function CardsPage() {
             </div>
             <div className="flex flex-col gap-3 py-3 px-6">
                 <PageTitle text="Mobile-Desktop Responsive Cards Components" />
-                <p className="font-medium p-2">DashboardCard (Desktop-Mobile)</p>
+                <p className="p-2 font-medium">DashboardCard (Desktop-Mobile)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <DashboardCard text="En sitio" quantity={250} />
                 </div>
-                <p className="font-medium p-2">RechargeCustomAmountCard (Mobile-Desktop)</p>
+                <p className="p-2 font-medium">RechargeCustomAmountCard (Mobile-Desktop)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <RechargeCustomAmountCard title="Otra Cantidad" highlighted />
                     <RechargeCustomAmountCard title="Otra Cantidad" />
                 </div>
-                <p className="font-medium p-2">AccountBalanceCard (Mobile-Desktop)</p>
+                <p className="p-2 font-medium">AccountBalanceCard (Mobile-Desktop)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <AccountBalanceCard balance={1200} trackingGuidesQuantity={5} />
                 </div>
-                <p className="font-medium p-2">AccountStateCard (Mobile-Desktop)</p>
+                <p className="p-2 font-medium">AccountStateCard (Mobile-Desktop)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <AccountStateCard type="pending" amount={100} date="22 Junio" />
                     <AccountStateCard type="expired" amount={200} date="22 Abril" />
                     <AccountStateCard type="congrats" />
                 </div>
-                <p className="font-medium p-2">DashAlertCard (Mobile-Desktop)</p>
+                <p className="p-2 font-medium">DashAlertCard (Mobile-Desktop)</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
                     <DashAlertCard type="pendingRecharge" size="md" />
                     <DashAlertCard type="lowCreditPkt1" size="md" />
@@ -137,7 +137,7 @@ export default function CardsPage() {
                     <DashAlertCard type="congrats" size="sm" />
                 </div>
             </div>
-            <p className="font-medium p-2">AlertCard (Mobile-Desktop)</p>
+            <p className="p-2 font-medium">AlertCard (Mobile-Desktop)</p>
             <div className="grid grid-cols-1 gap-2 md:grid-cols-2">
                 <AlertCard severity="success" description="Descripción de la alerta" />
                 <AlertCard severity="success" description="Descripción de la alerta" variant="filled" />
@@ -151,7 +151,7 @@ export default function CardsPage() {
 
             <div className="flex flex-col gap-3 py-3 px-6">
                 <PageTitle text="Desktop Cards Components" />
-                <p className="font-medium p-2">RechargeDesktopCard</p>
+                <p className="p-2 font-medium">RechargeDesktopCard</p>
                 <div className="grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                     <RechargeDesktopCard title="Básico" cost={200} badgeQuantity={2} paymentMethods={["card"]} description='Puedes realizar hasta 2 envíos' highlighted />
                     <RechargeDesktopCard title="Standard" cost={300} badgeQuantity={3} paymentMethods={["card", "cash"]} description='Puedes realizar hasta 3 envíos' />

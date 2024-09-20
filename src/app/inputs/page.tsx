@@ -8,15 +8,15 @@ export default function InputsPage() {
   return (
     <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Input Components" />
-      <p className="font-medium p-2">SimpleCounter</p>
+      <p className="p-2 font-medium">SimpleCounter</p>
       <div className="w-min">
       <SimpleCounter/>
       </div>
-      <p className="font-medium p-2">Box Counter</p>
+      <p className="p-2 font-medium">Box Counter</p>
       <div className="w-min">
       <BoxCounter/>
       </div>
-      <p className="font-medium p-2">Switch</p>
+      <p className="p-2 font-medium">Switch</p>
       <div className="grid grid-cols-2 gap-2 md:grid-cols-12">
         <div className="container-component-item"><ThemeSwitch /></div>
         <div className="container-component-item"><Switch /></div>
