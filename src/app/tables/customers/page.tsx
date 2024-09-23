@@ -12,7 +12,7 @@ import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import { PageTitle } from '@/components'
 import { TiUserAdd } from "react-icons/ti";
-import CustomerDetailsCard from './_components/CustomerDetailsCard'
+import CustomerDetails from './_components/CustomerDetails'
 const dataMock: Customer[] = [
     {
         id: "173826",
@@ -372,7 +372,7 @@ export default function Page() {
                     </Table>
                 </div>
                 <div>
-                    {isDetailsOpen && <CustomerDetailsCard />}
+                    {isDetailsOpen && <CustomerDetails />}
                 </div>
             </div>
         </div>

@@ -5,12 +5,12 @@ import { Card, CardHeader } from '@nextui-org/card'
 import React from 'react'
 import { FaXmark } from 'react-icons/fa6'
 
-export default function CustomerDetailsCard() {
+export default function CustomerDetails() {
     const toggleDetails = useCustomerTableStore.use.toggleDetails()
     const selectedCustomer = useCustomerTableStore.use.selectedCustomer()
 
     return (
-        <Card className="flex sticky flex-col p-2 mx-2 max-h-96 min-w-72 top-[130px] shadow-sm ">
+        <Card className="flex sticky flex-col p-2 mx-2 max-h-screen min-w-72 top-[130px] shadow-sm ">
             <Button isIconOnly radius='full' size='sm' variant='light'
                 className='absolute top-3 right-3 z-40'
                 onPress={() => toggleDetails(false)}
@@ -18,10 +18,10 @@ export default function CustomerDetailsCard() {
                 <FaXmark size={20} />
             </Button>
             <CardHeader className='flex-col items-start gap-3'>
-                <p className='pt-2 font-semibold text-xl'>Cliente ID: {selectedCustomer.id}</p>
+                <p className='pt-2 font-semibold text-lg'>{selectedCustomer.name}</p>
                 <p className='text-sm font-medium'>Direcciones: {selectedCustomer.addressList.length}</p>
             </CardHeader>
-            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-hide">
+            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-card">
                 {selectedCustomer?.addressList?.map((item, index) =>
                     <AddressTableCard
                         key={`${item.address} - ${index}`}
