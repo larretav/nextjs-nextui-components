@@ -5,15 +5,12 @@ import { Card, CardHeader } from '@nextui-org/card'
 import React from 'react'
 import { FaXmark } from 'react-icons/fa6'
 
-export default function ShipmentDetailsCard() {
-  const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
+export default function ShipmentDetails() {
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
   const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
-  const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
-  const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
-  const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
+
   return (
-    <Card className="flex sticky flex-col p-2  mx-3 max-h-96 min-w-72 top-[110px] shadow-sm">
+    <Card className="flex sticky flex-col p-2 max-h-screen mx-3  min-w-72 top-[110px] shadow-sm">                 
       <Button isIconOnly radius='full' size='sm' variant='light'
         className='absolute top-3 right-3 z-40'
         onPress={() => toggleDetails(false)}
@@ -24,7 +21,7 @@ export default function ShipmentDetailsCard() {
         <p className='pt-2 font-semibold text-xl'>Orden #{selectedShipmentOrder.orderId}</p>
         <p className='text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
       </CardHeader>
-      <div className="flex overflow-y-scroll sticky flex-col gap-2 w-full scrollbar-hide p-1">
+      <div className="flex overflow-y-scroll sticky flex-col gap-2 w-full scrollbar-card p-1">
         {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
           <PackageMobileCard key={`${item.title}-${index}`}
             leadingIcon='box'

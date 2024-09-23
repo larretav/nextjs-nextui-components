@@ -12,7 +12,7 @@ import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
-import ShipmentDetailsCard from './_components/ShipmentDetailsCard'
+import ShipmentDetails from './_components/ShipmentDetails'
 
 const dataMock: ShipmentOrder[] = [
   {
@@ -340,7 +340,7 @@ export default function Page() {
             </TableBody>
           </Table>
         </div>
-        {isDetailsOpen && <ShipmentDetailsCard />}
+        {isDetailsOpen && <ShipmentDetails />}
       </div>
     </div>
 
