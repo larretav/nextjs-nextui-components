@@ -409,6 +409,7 @@ const dataMock: Invoice[] = [
 export default function Page() {
   const isDetailsOpen = useInvoiceTableStore.use.isDetailsOpen()
   const toggleDetails = useInvoiceTableStore.use.toggleDetails()  
+  const selectedInvoice = useInvoiceTableStore.use.selectedInvoice()
   const selectInvoice = useInvoiceTableStore.use.selectInvoice()
   const selectedKey = useInvoiceTableStore.use.selectedTabKey() as string
   const setSelectedKey = useInvoiceTableStore.use.setSelectedTabKey()
@@ -440,7 +441,7 @@ export default function Page() {
             </TableHeader>
             <TableBody>
               {dataMock.map((row, index) =>
-                <TableRow key={`${row.folio} - ${index}`}>
+                <TableRow key={`${row.folio} - ${index}`} className={`${row.folio === selectedInvoice.folio && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
                   <TableCell>{row.folio}</TableCell>
                   <TableCell>{row.date} </TableCell>
                   <TableCell>{row.paymentMethod} </TableCell>

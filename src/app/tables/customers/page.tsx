@@ -317,6 +317,7 @@ const dataMock: Customer[] = [
 export default function Page() {
     const isDetailsOpen = useCustomerTableStore.use.isDetailsOpen()
     const toggleDetails = useCustomerTableStore.use.toggleDetails()
+    const selectedCustomer = useCustomerTableStore.use.selectedCustomer()
     const selectCustomer = useCustomerTableStore.use.selectCustomer()
     const selectedKey = useCustomerTableStore.use.selectedTabKey() as string
     const setSelectedKey = useCustomerTableStore.use.setSelectedTabKey()
@@ -349,7 +350,7 @@ export default function Page() {
                         </TableHeader>
                         <TableBody>
                             {dataMock.map((row, index) =>
-                                <TableRow key={`${row.id} - ${index}`}>
+                                <TableRow key={`${row.id} - ${index}`} className={`${row.id === selectedCustomer.id && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
                                     <TableCell className='flex gap-3'>
                                         {row.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{row.name}
                                     </TableCell>

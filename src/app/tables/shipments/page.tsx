@@ -313,8 +313,8 @@ export default function Page() {
             </TableHeader>
             <TableBody>
               {dataMock.map((row, index) =>
-                <TableRow key={`${row.orderId} ${index}`}>
-                  <TableCell className='flex gap-2 items-center'>
+                <TableRow key={`${row.orderId} ${index}`} className={`${row.orderId === selectedShipmentOrder.orderId && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
+                  <TableCell className={`flex gap-2 items-center `}>
                     <div className='p-1 rounded-xl bg-default-200'>
                       <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
                     </div>
