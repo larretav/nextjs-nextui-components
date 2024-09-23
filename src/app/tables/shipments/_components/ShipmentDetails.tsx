@@ -21,7 +21,7 @@ export default function ShipmentDetails() {
         <p className='pt-2 font-semibold text-xl'>Orden #{selectedShipmentOrder.orderId}</p>
         <p className='text-sm font-medium'>Paquetes: {selectedShipmentOrder.shipmentItems.length}</p>
       </CardHeader>
-      <div className="flex overflow-y-scroll sticky flex-col gap-2 w-full scrollbar-card p-1">
+      <div className="flex overflow-y-scroll sticky flex-col gap-2 w-full scrollbar-minimalist p-1">
         {selectedShipmentOrder?.shipmentItems?.map((item, index) =>
           <PackageMobileCard key={`${item.title}-${index}`}
             leadingIcon='box'

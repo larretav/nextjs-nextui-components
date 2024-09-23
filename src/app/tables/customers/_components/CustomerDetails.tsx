@@ -21,7 +21,7 @@ export default function CustomerDetails() {
                 <p className='pt-2 font-semibold text-lg'>{selectedCustomer.name}</p>
                 <p className='text-sm font-medium'>Direcciones: {selectedCustomer.addressList.length}</p>
             </CardHeader>
-            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-card">
+            <div className="flex overflow-y-scroll sticky flex-col gap-2 p-1 w-full scrollbar-minimalist">
                 {selectedCustomer?.addressList?.map((item, index) =>
                     <AddressTableCard
                         key={`${item.address} - ${index}`}

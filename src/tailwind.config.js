@@ -60,11 +60,11 @@ module.exports = {
           '-webkit-appearance': 'none',
           margin: '0',
         },         
-         ".scrollbar-card::-webkit-scrollbar": {
+         ".scrollbar-minimalist::-webkit-scrollbar": {
           width: '6px',
           height: '6px',
         },
-        ".scrollbar-card::-webkit-scrollbar-thumb": {
+        ".scrollbar-minimalist::-webkit-scrollbar-thumb": {
           backgroundColor: "#5b6069", 
           borderRadius: '10px',
         },      

@@ -3,13 +3,13 @@ import React from 'react'
 import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye, } from 'react-icons/fa6'
+import { FaFileInvoiceDollar, } from 'react-icons/fa6'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { FaFilter } from "react-icons/fa";
 import { PageTitle } from '@/components'
 import { Invoice } from '@/types/invoice.type'
-import InvoiceDetailsCard from './_components/InvoiceDetailsCard'
+import InvoiceDetails from './_components/InvoiceDetails'
 const dataMock: Invoice[] = [
   {
     folio: "LMAO-71",
@@ -408,8 +408,7 @@ const dataMock: Invoice[] = [
 ]
 export default function Page() {
   const isDetailsOpen = useInvoiceTableStore.use.isDetailsOpen()
-  const toggleDetails = useInvoiceTableStore.use.toggleDetails()
-  const selectedInvoice = useInvoiceTableStore.use.selectedInvoice()
+  const toggleDetails = useInvoiceTableStore.use.toggleDetails()  
   const selectInvoice = useInvoiceTableStore.use.selectInvoice()
   const selectedKey = useInvoiceTableStore.use.selectedTabKey() as string
   const setSelectedKey = useInvoiceTableStore.use.setSelectedTabKey()
@@ -453,7 +452,7 @@ export default function Page() {
                         toggleDetails(true)
                       }}
                     >
-                      <FaEye size={16} className='text-blue-500' />
+                      <FaFileInvoiceDollar size={16} className='text-emerald-500 dark:text-emerald-300' />
                     </Button>
                   </TableCell>
                 </TableRow>
@@ -462,7 +461,7 @@ export default function Page() {
           </Table>
         </div>
         <div>
-          {isDetailsOpen && <InvoiceDetailsCard />}
+          {isDetailsOpen && <InvoiceDetails />}
         </div>
       </div>
     </div>
