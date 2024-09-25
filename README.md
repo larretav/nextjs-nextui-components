@@ -3,11 +3,11 @@ Este es un proyecto para la creación de componentes con NextJS y NextUI
 
 ## Ejecutar en desarrollo
 1. Clonar repositorio.
-4. Instalar dependencias. Ejecutar:
+2. Instalar dependencias. Ejecutar:
   ```
   npm install
   ```
-5. Levantar el proyecto:
+3. Levantar el proyecto:
   ```
   npm run dev
   ```
