@@ -5,20 +5,19 @@ import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from 
 import { Button } from '@nextui-org/button'
 import { FaEye, } from 'react-icons/fa6'
 import type { ShipmentOrder } from "@/types/shipment-order.type"
-
-
 import { IconEcommerce, PageTitle, ShipperType } from '@/components'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
-import { FaFilter } from "react-icons/fa";
 import ShipmentDetails from './_components/ShipmentDetails'
-
+import PopoverFilter from './_components/PopoverFilter'
+import { parseDate, DateFormatter, isSameDay, today, getLocalTimeZone, parseDateTime } from '@internationalized/date';
+import { EcommercePlatforms, Shippers } from '@/types'
 const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1218,
-    date: "20/05/2024",
+    date: "2024-08-14T09:00:00.000",
     customer: "Ricardo Montreal",
     origin: "Los Mochis",
     destination: "Acapulco",
@@ -33,7 +32,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "shopify",
     orderId: 1220,
-    date: "22/05/2024",
+    date: "2024-08-15T09:00:00.000",
     customer: "Ana Lopez",
     origin: "Guadalajara",
     destination: "Cancún",
@@ -51,7 +50,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "woocommerce",
     orderId: 1221,
-    date: "23/05/2024",
+    date: "2024-08-16T09:00:00.000",
     customer: "Carlos Perez",
     origin: "Monterrey",
     destination: "CDMX",
@@ -66,7 +65,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "prestashop",
     orderId: 1222,
-    date: "24/05/2024",
+    date: "2024-08-17T09:00:00.000",
     customer: "Sofia Martinez",
     origin: "Tijuana",
     destination: "Puebla",
@@ -89,7 +88,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "jumpseller",
     orderId: 1223,
-    date: "25/05/2024",
+    date: "2024-08-18T09:00:00.000",
     customer: "Luis Fernandez",
     origin: "León",
     destination: "Veracruz",
@@ -107,7 +106,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "shopify",
     orderId: 1224,
-    date: "26/05/2024",
+    date: "2024-08-19T09:00:00.000",
     customer: "Maria Rodriguez",
     origin: "Queretaro",
     destination: "Merida",
@@ -123,7 +122,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1225,
-    date: "27/05/2024",
+    date: "2024-08-20T09:00:00.000",
     customer: "Juan Garcia",
     origin: "San Luis Potosi",
     destination: "Chihuahua",
@@ -138,7 +137,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "woocommerce",
     orderId: 1226,
-    date: "28/05/2024",
+    date: "2024-08-21T09:00:00.000",
     customer: "Ana Torres",
     origin: "Hermosillo",
     destination: "Oaxaca",
@@ -153,7 +152,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "woocommerce",
     orderId: 1227,
-    date: "29/05/2024",
+    date: "2024-08-22T09:00:00.000",
     customer: "Pedro Lopez",
     origin: "Ciudad Juarez",
     destination: "Tampico",
@@ -168,7 +167,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "shopify",
     orderId: 1228,
-    date: "30/05/2024",
+    date: "2024-08-23T09:00:00.000",
     customer: "Sofia Gomez",
     origin: "Torreon",
     destination: "Villahermosa",
@@ -183,7 +182,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "prestashop",
     orderId: 1229,
-    date: "31/05/2024",
+    date: "2024-08-24T09:00:00.000",
     customer: "Carlos Hernandez",
     origin: "Mexicali",
     destination: "Durango",
@@ -198,7 +197,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "jumpseller",
     orderId: 1230,
-    date: "01/06/2024",
+    date: "2024-08-25T09:00:00.000",
     customer: "Maria Sanchez",
     origin: "Culiacan",
     destination: "Cozumel",
@@ -213,7 +212,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1231,
-    date: "02/06/2024",
+    date: "2024-08-26T09:00:00.000",
     customer: "Juan Martinez",
     origin: "Guadalajara",
     destination: "Puebla",
@@ -228,7 +227,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
     orderId: 1232,
-    date: "03/06/2024",
+    date: "2024-08-27T09:00:00.000",
     customer: "Ana Garcia",
     origin: "Monterrey",
     destination: "Tijuana",
@@ -243,7 +242,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "woocommerce",
     orderId: 1233,
-    date: "04/06/2024",
+    date: "2024-08-28T09:00:00.000",
     customer: "Pedro Lopez",
     origin: "Queretaro",
     destination: "San Luis Potosi",
@@ -258,7 +257,7 @@ const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "shopify",
     orderId: 1234,
-    date: "05/06/2024",
+    date: "2024-08-29T09:00:00.000",
     customer: "Sofia Rodriguez",
     origin: "León",
     destination: "Hermosillo",
@@ -277,8 +276,54 @@ export default function Page() {
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
   const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
   const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
-  const selectedKey = useShipmentTableStore.use.selectedTabKey() as string
-  const setSelectedKey = useShipmentTableStore.use.setSelectedTabKey()
+  const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
+  const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
+  //Filters
+  const filterDate = useShipmentTableStore.use.filterDate()
+  const filterShipper = useShipmentTableStore.use.filterShipper()
+  const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
+  const filterWord = useShipmentTableStore.use.filterWord()
+
+  console.log(filterWord)
+  //Date Formatter
+  const formatter = new DateFormatter('es-MX', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+  //Filtering logic
+  const filteredByDate = dataMock.filter((item) => {
+    return isSameDay(parseDateTime(item.date), parseDateTime(filterDate)) ||
+      new Date(item.date) > new Date(filterDate)
+  })
+  const filteredByShipper = filteredByDate.filter((item) => {
+    if (filterShipper === "Todos" as Shippers) return item
+
+    return item.shipper.toLowerCase().includes(filterShipper)
+  })
+  const filterByEcommercePlatform = filteredByShipper.filter((item) => {
+    if (filterEcommercePlatform === "Todos" as EcommercePlatforms) return item
+
+    return item.ecommercePlatform.toLowerCase().includes(filterEcommercePlatform)
+  })
+
+  const filterByFilterWord = filterByEcommercePlatform.filter((item) => {
+    return item.customer.toLowerCase().includes(filterWord) ||
+      item.orderId.toString().includes(filterWord.toLowerCase())
+  })
+
+  const filterByStatus = filterByFilterWord.filter((item) => {
+    if (selectedTabKey === "Todos") return item
+    return item.status.toLowerCase().includes(selectedTabKey.toLowerCase())
+  })
+
+  //Item count
+  const itemsOnSite = filterByFilterWord.filter((item) => item.status === "en sitio").length
+  const itemsInTransit = filterByFilterWord.filter((item) => item.status === "en tránsito").length
+  const itemsDelivered = filterByFilterWord.filter((item) => item.status === "entregado").length
+  const itemsCancelled = filterByFilterWord.filter((item) => item.status === "cancelado").length
+
+
 
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -288,16 +333,15 @@ export default function Page() {
       <div className='flex p-3'>
         <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
           <div className="flex px-5">
-            <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
-              <TabFilter key={1} text="Todos" value="200" activeColor="green" />
-              <TabFilter key={2} text="En sitio y transito" value="50" activeColor="amber" />
-              <TabFilter key={3} text="En sitio" value="25" activeColor="amber" />
-              <TabFilter key={4} text="En transito" value="25" activeColor="blue" />
-              <TabFilter key={5} text="Entregado" value="10" activeColor="green" />
-              <TabFilter key={6} text="Cancelado" value="2" activeColor="red" />
+            <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={setSelectedTabKey} >
+              <TabFilter key={"Todos"} text="Todos" value={filterByFilterWord.length} activeColor="green" />
+              <TabFilter key={"En sitio"} text="En sitio" value={itemsOnSite} activeColor="amber" />
+              <TabFilter key={"En tránsito"} text="En transito" value={itemsInTransit} activeColor="blue" />
+              <TabFilter key={"Entregado"} text="Entregado" value={itemsDelivered} activeColor="green" />
+              <TabFilter key={"Cancelado"} text="Cancelado" value={itemsCancelled} activeColor="red" />
             </TabsFilters>
             <div className='flex items-center ml-auto'>
-              <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={16} /></Button>
+              <PopoverFilter />
             </div>
           </div>
           <Table aria-label="Example static collection table" >
@@ -312,31 +356,42 @@ export default function Page() {
               <TableColumn>Acciones</TableColumn>
             </TableHeader>
             <TableBody>
-              {dataMock.map((row, index) =>
-                <TableRow key={`${row.orderId} ${index}`} className={`${row.orderId === selectedShipmentOrder.orderId && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
-                  <TableCell className={`flex gap-2 items-center `}>
-                    <div className='p-1 rounded-xl bg-default-200'>
-                      <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
-                    </div>
-                    <span>#{row.orderId}</span>
-                  </TableCell>
-                  <TableCell >{row.date}</TableCell>
-                  <TableCell>{row.customer}</TableCell>
-                  <TableCell>{row.origin} - {row.destination}</TableCell>
-                  <TableCell>${row.cost.toFixed(2)}</TableCell>
-                  <TableCell><OsStatus status={row.status} /></TableCell>
-                  <TableCell><ShipperType shipper={row.shipper} /></TableCell>
-                  <TableCell>
-                    <Button isIconOnly radius='full' size='sm' variant='light'
-                      onPress={() => {
-                        selectShipmentOrder(row)
-                        toggleDetails(true)
-                      }}
-                    >
-                      <FaEye size={16} className='text-blue-500' />
-                    </Button>
-                  </TableCell>
-                </TableRow>)}
+              {filterByStatus.length === 0 ?
+                <TableRow>
+                  <TableCell colSpan={8} className='bg-zinc-100 rounded-xl'>No se encontraron elementos relacionados</TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                  <TableCell> </TableCell>
+                </TableRow>
+                : filterByStatus.map((row, index) =>
+                  <TableRow key={`${row.orderId} ${index}`} className={` ${row.orderId === selectedShipmentOrder.orderId && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
+                    <TableCell className={`flex gap-2 items-center `} >
+                      <div className=' rounded-xl bg-default-200'>
+                        <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
+                      </div>
+                      <span>#{row.orderId}</span>
+                    </TableCell>
+                    <TableCell >{formatter.format(new Date(row.date))}</TableCell>
+                    <TableCell>{row.customer}</TableCell>
+                    <TableCell>{row.origin} - {row.destination}</TableCell>
+                    <TableCell>${row.cost.toFixed(2)}</TableCell>
+                    <TableCell><OsStatus status={row.status} /></TableCell>
+                    <TableCell ><ShipperType shipper={row.shipper} /></TableCell>
+                    <TableCell >
+                      <Button isIconOnly radius='full' size='sm' variant='light'
+                        onPress={() => {
+                          selectShipmentOrder(row)
+                          toggleDetails(true)
+                        }}
+                      >
+                        <FaEye size={16} className='text-blue-500' />
+                      </Button>
+                    </TableCell>
+                  </TableRow>)}
             </TableBody>
           </Table>
         </div>
