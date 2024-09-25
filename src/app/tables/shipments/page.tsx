@@ -1,7 +1,7 @@
 "use client"
 import React from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
 import { FaEye, } from 'react-icons/fa6'
 import type { ShipmentOrder } from "@/types/shipment-order.type"
@@ -271,10 +271,44 @@ const dataMock: ShipmentOrder[] = [
   },
 ];
 
+
+const columns = [{
+  key: "orden",
+  label: "Orden"
+},
+{
+  key: "fecha",
+  label: "Fecha"
+},
+{
+  key: "cliente",
+  label: "Cliente"
+},
+{
+  key: "origen-destino",
+  label: "Origen - Destino"
+},
+{
+  key: "costo",
+  label: "Costo"
+},
+{
+  key: "estatus",
+  label: "Estatus"
+},
+{
+  key: "alianza",
+  label: "Alianza"
+},
+{
+  key: "acciones",
+  label: "Acciones"
+},
+]
+
 export default function Page() {
   const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
-  const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
   const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
   const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
   const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
@@ -284,7 +318,6 @@ export default function Page() {
   const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
   const filterWord = useShipmentTableStore.use.filterWord()
 
-  console.log(filterWord)
   //Date Formatter
   const formatter = new DateFormatter('es-MX', {
     year: 'numeric',
@@ -324,6 +357,44 @@ export default function Page() {
   const itemsCancelled = filterByFilterWord.filter((item) => item.status === "cancelado").length
 
 
+  const renderCell = (item: ShipmentOrder, columnKey: string) => {
+    switch (columnKey) {
+      case "orden":
+        return (
+          <div className="flex gap-2 items-center">
+            <div className="rounded-xl bg-default-200">
+              <IconEcommerce className="w-8 h-8" ecommerce={item.ecommercePlatform} />
+            </div>
+            <span>#{item.orderId}</span>
+          </div>
+        );
+      case "fecha":
+        return formatter.format(new Date(item.date));
+      case "cliente":
+        return item.customer;
+      case "origen-destino":
+        return `${item.origin} - ${item.destination}`;
+      case "costo":
+        return `$${item.cost.toFixed(2)}`;
+      case "estatus":
+        return <OsStatus status={item.status} />;
+      case "alianza":
+        return <ShipperType shipper={item.shipper} />;
+      case "acciones":
+        return (
+          <Button isIconOnly radius="full" size="sm" variant="light"
+            onPress={() => {
+              selectShipmentOrder(item);
+              toggleDetails(true);
+            }}
+          >
+            <FaEye size={16} className="text-blue-500" />
+          </Button>
+        );
+      default:
+        return item["orderId"];
+    }
+  };
 
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -344,54 +415,44 @@ export default function Page() {
               <PopoverFilter />
             </div>
           </div>
-          <Table aria-label="Example static collection table" >
-            <TableHeader>
-              <TableColumn className='w-min' >Orden</TableColumn>
-              <TableColumn>Fecha</TableColumn>
-              <TableColumn>Cliente</TableColumn>
-              <TableColumn>Origen - Destino</TableColumn>
-              <TableColumn>Costo</TableColumn>
-              <TableColumn>Estatus</TableColumn>
-              <TableColumn>Alianza</TableColumn>
-              <TableColumn>Acciones</TableColumn>
+          <Table  aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle'className='w-full'
+            onSelectionChange={(ev) => {
+              const orderId = Array.from(ev)[0]
+              const shipmentOrder = filterByStatus.find((item) => item.orderId.toString() === orderId)
+              if (shipmentOrder) {
+                selectShipmentOrder(shipmentOrder)
+                toggleDetails(true)
+              } else {
+                toggleDetails(false)
+              }
+            }}
+          >
+            <TableHeader  columns={columns} className='bg-sky-500'>
+              {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
             </TableHeader>
-            <TableBody>
-              {filterByStatus.length === 0 ?
-                <TableRow>
-                  <TableCell colSpan={8} className='bg-zinc-100 rounded-xl'>No se encontraron elementos relacionados</TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                  <TableCell> </TableCell>
-                </TableRow>
-                : filterByStatus.map((row, index) =>
-                  <TableRow key={`${row.orderId} ${index}`} className={` ${row.orderId === selectedShipmentOrder.orderId && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
-                    <TableCell className={`flex gap-2 items-center `} >
-                      <div className=' rounded-xl bg-default-200'>
-                        <IconEcommerce className='w-8 h-8' ecommerce={row.ecommercePlatform} />
-                      </div>
-                      <span>#{row.orderId}</span>
-                    </TableCell>
-                    <TableCell >{formatter.format(new Date(row.date))}</TableCell>
-                    <TableCell>{row.customer}</TableCell>
-                    <TableCell>{row.origin} - {row.destination}</TableCell>
-                    <TableCell>${row.cost.toFixed(2)}</TableCell>
-                    <TableCell><OsStatus status={row.status} /></TableCell>
-                    <TableCell ><ShipperType shipper={row.shipper} /></TableCell>
-                    <TableCell >
-                      <Button isIconOnly radius='full' size='sm' variant='light'
-                        onPress={() => {
-                          selectShipmentOrder(row)
-                          toggleDetails(true)
-                        }}
-                      >
-                        <FaEye size={16} className='text-blue-500' />
-                      </Button>
-                    </TableCell>
-                  </TableRow>)}
+            <TableBody items={filterByStatus}>
+              {
+                filterByStatus.length === 0 ?
+                  <TableRow>
+                    <TableCell colSpan={1}>No hay resultados que coincidan con la búsqueda</TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                    <TableCell> </TableCell>
+                  </TableRow>
+                  : (item) => (
+                    <TableRow key={item.orderId} >
+                      {(columnKey) =>
+                        <TableCell>
+                          {renderCell(item, columnKey as string)}
+                        </TableCell>}
+                    </TableRow>
+                  )
+              }
+
             </TableBody>
           </Table>
         </div>
