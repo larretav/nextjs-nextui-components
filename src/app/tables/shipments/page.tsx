@@ -1,15 +1,19 @@
 "use client"
 import React from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection } from "@nextui-org/table"
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue } from "@nextui-org/table"
 import type { ShipmentOrder } from "@/types/shipment-order.type"
-import { PageTitle, } from '@/components'
+import { IconEcommerce, PageTitle, ShipperType, } from '@/components'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import ShipmentDetails from './_components/ShipmentDetails'
 import PopoverFilter from './_components/PopoverFilter'
-import RenderCell from './_components/RenderCell'
-import { filterShipments } from './_components/functions/filterShipments'
+import { filterShipments } from './functions/filterShipments'
+import { DateFormatter } from '@internationalized/date'
+import OsStatus from '@/components/data-display/onsite/OsStatus'
+import { Button } from '@nextui-org/button'
+import { FaEllipsisVertical } from 'react-icons/fa6'
+
 const dataMock: ShipmentOrder[] = [
   {
     ecommercePlatform: "onsite",
@@ -268,40 +272,6 @@ const dataMock: ShipmentOrder[] = [
   },
 ];
 
-const columns = [{
-  key: "orden",
-  label: "Orden"
-},
-{
-  key: "fecha",
-  label: "Fecha"
-},
-{
-  key: "cliente",
-  label: "Cliente"
-},
-{
-  key: "origen-destino",
-  label: "Origen - Destino"
-},
-{
-  key: "costo",
-  label: "Costo"
-},
-{
-  key: "estatus",
-  label: "Estatus"
-},
-{
-  key: "alianza",
-  label: "Alianza"
-},
-{
-  key: "acciones",
-  label: "Acciones"
-},
-]
-
 export default function Page() {
   const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
   const toggleDetails = useShipmentTableStore.use.toggleDetails()
@@ -311,7 +281,6 @@ export default function Page() {
   const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
   //Filtering
   const { filterByFilterWord, filterByStatus } = filterShipments(dataMock)
-
   //Item count
   const itemsOnSite = filterByFilterWord.filter((item) => item.status === "en sitio").length
   const itemsInTransit = filterByFilterWord.filter((item) => item.status === "en tránsito").length
@@ -328,13 +297,72 @@ export default function Page() {
       toggleDetails(false)
     }
   }
+  const formatter = new DateFormatter('es-MX', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
+
+  const columns = [{
+    key: "orden",
+    label: "Orden"
+  },
+  {
+    key: "fecha",
+    label: "Fecha"
+  },
+  {
+    key: "cliente",
+    label: "Cliente"
+  },
+  {
+    key: "origen-destino",
+    label: "Origen - Destino"
+  },
+  {
+    key: "costo",
+    label: "Costo"
+  },
+  {
+    key: "estatus",
+    label: "Estatus"
+  },
+  {
+    key: "alianza",
+    label: "Alianza"
+  },
+  {
+    key: "acciones",
+    label: "Acciones"
+  },
+  ]
+  const rows = filterByStatus.map((order) => {
+    return {
+      key: order.orderId,
+      orden: <div className="flex gap-2 items-center">
+        <div className="rounded-xl bg-default-200">
+          <IconEcommerce className="w-8 h-8" ecommerce={order.ecommercePlatform} />
+        </div>
+        <span>#{order.orderId}</span>
+      </div>,
+      fecha: formatter.format(new Date(order.date)),
+      cliente: order.customer,
+      "origen-destino": `${order.origin} - ${order.destination}`,
+      costo:`$${order.cost.toFixed(2)}`,
+      estatus: <OsStatus status={order.status} />,
+      alianza: <ShipperType shipper={order.shipper} />,
+      acciones: <Button isIconOnly radius="full" size="sm" variant="light">
+        <FaEllipsisVertical size={16} className="text-zinc-500" />
+      </Button>
+    }
+  })
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
       <div className='ml-5'>
         <PageTitle text='Envíos' />
       </div>
       <div className='flex p-3'>
-        <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
+        <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
           <div className="flex px-5">
             <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={setSelectedTabKey} >
               <TabFilter key={"Todos"} text="Todos" value={filterByFilterWord.length} activeColor="green" />
@@ -347,13 +375,13 @@ export default function Page() {
               <PopoverFilter />
             </div>
           </div>
-          <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='replace'
+          <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
             onSelectionChange={handleSelectionChange}
           >
-            <TableHeader columns={columns} className='bg-sky-500'>
+            <TableHeader columns={columns}>
               {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
             </TableHeader>
-            <TableBody items={filterByStatus}>
+            <TableBody items={rows}>
               {
                 filterByStatus.length === 0 ?
                   <TableRow>
@@ -365,13 +393,11 @@ export default function Page() {
                     <TableCell> </TableCell>
                     <TableCell> </TableCell>
                     <TableCell> </TableCell>
-                  </TableRow>
+                  </TableRow >
                   : (item) => (
-                    <TableRow key={item.orderId} >
+                    <TableRow key={item.key} className='cursor-pointer' >
                       {(columnKey) =>
-                        <TableCell>
-                          {RenderCell({ item, columnKey, toggleDetails, selectShipmentOrder })}
-                        </TableCell>}
+                        <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
                     </TableRow>
                   )
               }
@@ -381,6 +407,5 @@ export default function Page() {
         {isDetailsOpen && <ShipmentDetails />}
       </div>
     </div>
-
   )
 }

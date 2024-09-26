@@ -13,29 +13,25 @@ import { EcommercePlatforms } from "@/types/ecommerce-platform.type"
 
 
 export default function PopoverFilter() {
-
     const filterDate = useShipmentTableStore.use.filterDate()
     const filterShipper = useShipmentTableStore.use.filterShipper()    
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterWord = useShipmentTableStore.use.filterWord()
 
-
     const setFilterDate = useShipmentTableStore.use.setFilterDate()
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()
-
-
     return (
         <Popover
             showArrow
             offset={10}
             placement="bottom-end"
-            backdrop={"transparent"}
+            backdrop={"opaque"}
         >
             <PopoverTrigger>
                 <Button color="default" isIconOnly radius="full" size="sm" variant="light" className="capitalize">
-                    <FaFilter size={16} />
+                    <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full">
@@ -100,7 +96,7 @@ export default function PopoverFilter() {
                     <Input radius="sm" startContent={<IoIosSearch />}
                     value={filterWord}
                     onValueChange={(val)=>setFilterWord(val)}
-                        placeholder='Buscar por cliente o # de cliente' size='lg'
+                        placeholder='Buscar por cliente o # orden' size='lg'
                         classNames={{ input: "text-xs" }} />
                 </div>
             </PopoverContent>
