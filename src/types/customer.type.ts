@@ -13,4 +13,5 @@ export type Customer = {
     country:string,
     type:"person"|"company",
     addressList:Address[] 
+    status:"active"|"inactive"
 }
