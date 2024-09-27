@@ -31,12 +31,12 @@ export default function PopoverFilter() {
     }, [setPage, setFilterDate]);
 
     const onShipperChange = useCallback((val: SharedSelection) => {
-        setFilterShipper(val.currentKey as Shippers)
+       if(val.currentKey) setFilterShipper(val.currentKey as Shippers)
         setPage(1);
     }, [setPage, setFilterShipper]);
 
     const onEcommerceChange = useCallback((val: SharedSelection) => {
-        setFilterEcommercePlatform(val.currentKey as EcommercePlatforms)
+        if(val.currentKey) setFilterEcommercePlatform(val.currentKey as EcommercePlatforms)
         setPage(1);
     }, [setPage, setFilterEcommercePlatform]);
 
@@ -64,6 +64,7 @@ export default function PopoverFilter() {
                         onChange={onDateChange}
                         radius='sm' size='lg' onKeyDown={(e) => e.preventDefault()} aria-label='Calendario' />
                     <Select
+                    disallowEmptySelection
                         classNames={{ label: "text-xs" }}
                         size='sm'
                         label="Alianzas"
@@ -92,6 +93,7 @@ export default function PopoverFilter() {
                     <Select
                         size='sm'
                         label="Plataforma"
+                        disallowEmptySelection
                         classNames={{ label: "text-xs" }}
                         defaultSelectedKeys={[filterEcommercePlatform]}
                         onSelectionChange={onEcommerceChange}

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useCustomerTableStore } from '@/store/tables/customer-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Selection } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
@@ -14,6 +14,8 @@ import { TiUserAdd } from "react-icons/ti";
 import CustomerDetails from './_components/CustomerDetails'
 import PopoverFilter from './_components/PopoverFilter'
 import { filterCustomer } from './functions/filterCustomer'
+import { Pagination } from '@nextui-org/pagination'
+import { Select, SelectItem } from '@nextui-org/select'
 const dataMock: Customer[] = [
     {
         id: "173826",
@@ -332,9 +334,14 @@ export default function Page() {
     const isDetailsOpen = useCustomerTableStore.use.isDetailsOpen()
     const toggleDetails = useCustomerTableStore.use.toggleDetails()
     const selectCustomer = useCustomerTableStore.use.selectCustomer()
+    //Pagination
+    const page = useCustomerTableStore.use.page()
+    const rowsPerPage = useCustomerTableStore.use.rowsPerPage()
+    const setPage = useCustomerTableStore.use.setPage()
+    const setRowsPerPage = useCustomerTableStore.use.setRowsPerPage()
+    //Filtering
     const selectedTabKey = useCustomerTableStore.use.selectedTabKey() as string
     const setSelectedTabKey = useCustomerTableStore.use.setSelectedTabKey()
-
     const { filterByType, filterByStatus } = filterCustomer(dataMock)
 
     //Tab item count
@@ -374,6 +381,8 @@ export default function Page() {
     },
     ]
     const rows = filterByStatus.map((item) => {
+
+
         return {
             key: item.id,
             name: <div className='flex gap-3'>{item.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{item.name}</div>,
@@ -385,7 +394,21 @@ export default function Page() {
             </Button>
         }
     })
+     //Pagination logic from nextui docs
+  const pages = Math.ceil(rows.length / rowsPerPage);
+  const start = (page - 1) * rowsPerPage;
+  const end = start + rowsPerPage;
+  const paginatedItems = rows.slice(start, end);
 
+  const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
+    setRowsPerPage(Number(e.target.value));
+    setPage(1);
+  }, [setPage, setRowsPerPage]);
+
+  const onTabChange = useCallback((key: React.Key)=>{
+    setSelectedTabKey(key)
+    setPage(1)
+  },[setSelectedTabKey, setPage])
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <div className="flex p-2 px-4 rounded-lg">
@@ -395,7 +418,7 @@ export default function Page() {
             <div className='flex p-3'>
                 <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
                     <div className="flex px-5">
-                        <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={setSelectedTabKey} >
+                        <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={onTabChange} >
                             <TabFilter key={"Todos"} text="Todos" value={filterByType.length} activeColor="amber" />
                             <TabFilter key={"active"} text="Activos" value={activeCustomers} activeColor="green" />
                             <TabFilter key={"inactive"} text="Inactivos" value={inActiveCustomers} activeColor="red" />
@@ -406,27 +429,50 @@ export default function Page() {
                     </div>
                     <Table aria-label="Tabla de clientes" selectionMode='single' selectionBehavior='toggle' removeWrapper
                         onSelectionChange={handleSelectionChange}
+                        bottomContent={
+                            pages > 0 && <div className="flex w-full justify-center gap-2">
+                              <div className="flex items-center gap-2">
+                                <label className="flex items-center text-default-400 text-small text-nowrap">
+                                  Filas por página:
+                                </label>
+                                  <Select
+                                  aria-label='filas por página'
+                                  size='sm'
+                                    className="bg-transparent outline-none text-default-400 text-small w-20"
+                                    isRequired
+                                    disallowEmptySelection
+                                    defaultSelectedKeys={["2"]}
+                                    onChange={onRowsPerPageChange}
+                                  >
+                                    <SelectItem key={2} value="2">2</SelectItem>
+                                    <SelectItem key={4} value="4">4</SelectItem>
+                                    <SelectItem key={5} value="5">5</SelectItem>
+                                  </Select>                  
+                              </div>
+                              <Pagination
+                                isCompact
+                                showControls
+                                showShadow
+                                color="secondary"
+                                page={page}
+                                total={pages}
+                                onChange={(page) => { page > 0 ? setPage(page) : setPage(1) }}
+                              />
+                            </div>
+                          }
                     >
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody items={rows}>
-                            {
-                                filterByType.length === 0 ?
-                                    <TableRow>
-                                        <TableCell colSpan={2}>No hay resultados que coincidan con la búsqueda</TableCell>
-                                        <TableCell> </TableCell>
-                                        <TableCell> </TableCell>
-                                        <TableCell> </TableCell>
-                                        <TableCell> </TableCell>
-                                    </TableRow >
-                                    : (item) => (
-                                        <TableRow key={item.key} className='cursor-pointer' >
-                                            {(columnKey) =>
-                                                <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
-                                        </TableRow>
-                                    )
-                            }
+                        <TableBody items={paginatedItems} emptyContent="No hay resultados que coincidan con la búsqueda">
+                          {
+                            (item) => (
+                                <TableRow key={item.key} className='cursor-pointer' >
+                                    {(columnKey) =>
+                                        <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                                </TableRow>
+                            )
+                          }
                         </TableBody>
                     </Table>
                 </div>

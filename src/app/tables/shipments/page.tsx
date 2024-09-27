@@ -14,7 +14,8 @@ import OsStatus from '@/components/data-display/onsite/OsStatus'
 import { Button } from '@nextui-org/button'
 import { FaEllipsisVertical } from 'react-icons/fa6'
 import { dataMock } from "./shipmentsDataMock"
-import { Select,SelectItem } from '@nextui-org/select';
+import { Select, SelectItem } from '@nextui-org/select';
+import { SharedSelection } from '@nextui-org/system';
 
 export default function Page() {
   const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
@@ -110,16 +111,16 @@ export default function Page() {
   const end = start + rowsPerPage;
   const paginatedItems = rows.slice(start, end);
 
-  const onRowsPerPageChange = useCallback((e: React.ChangeEvent<HTMLSelectElement>) => {
-    setRowsPerPage(Number(e.target.value));
+  const onRowsPerPageChange = useCallback((val: SharedSelection) => {
+   if(val.currentKey) setRowsPerPage(Number(val.currentKey));
     setPage(1);
   }, [setPage, setRowsPerPage]);
 
-  const onTabChange = useCallback((key: React.Key)=>{
+  const onTabChange = useCallback((key: React.Key) => {
     setSelectedTabKey(key)
     setPage(1)
-  },[setSelectedTabKey, setPage])  
-
+  }, [setSelectedTabKey, setPage])
+  
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
       <div className='ml-5'>
@@ -147,16 +148,20 @@ export default function Page() {
                   <label className="flex items-center text-default-400 text-small text-nowrap">
                     Filas por página:
                   </label>
-                    <Select
+                  <Select
+                  selectionMode='single'
+                  disallowEmptySelection
+                  aria-label='filas por página'
                     size='sm'
-                      className="bg-transparent outline-none text-default-400 text-small w-20"
-                      value={rowsPerPage}
-                      onChange={onRowsPerPageChange}
-                    >
-                      <SelectItem key={2} value="2">2</SelectItem>
-                      <SelectItem key={4} value="4">4</SelectItem>
-                      <SelectItem key={5} value="5">5</SelectItem>
-                    </Select>                  
+                    className="bg-transparent outline-none text-default-400 text-small w-20"
+                    value={rowsPerPage}
+                    defaultSelectedKeys={["2"]}
+                    onSelectionChange={(e)=>onRowsPerPageChange(e)}
+                  >
+                    <SelectItem key={2} value="2">2</SelectItem>
+                    <SelectItem key={4} value="4">4</SelectItem>
+                    <SelectItem key={5} value="5">5</SelectItem>
+                  </Select>
                 </div>
                 <Pagination
                   isCompact
