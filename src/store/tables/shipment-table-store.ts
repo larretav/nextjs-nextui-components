@@ -45,7 +45,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     filterEcommercePlatform:"Todos" as EcommercePlatforms,
     filterWord:"",
     page: 1,
-    rowsPerPage: 2,   
+    rowsPerPage: 5,   
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentOrder) => set({ selectedShipmentOrder: shipmentOrder }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),

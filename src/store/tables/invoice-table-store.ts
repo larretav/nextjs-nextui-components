@@ -9,6 +9,8 @@ type State ={
     selectedTabKey:Key 
     filterDate:string
     filterWord:string
+    page:number
+    rowsPerPage:number
 }
 
 type Actions = {
@@ -17,6 +19,8 @@ type Actions = {
     setSelectedTabKey: (key:Key) => void
     setFilterDate: (date:string) => void
     setFilterWord: (word:string) => void
+    setPage: (page: number) => void
+    setRowsPerPage: (rowsPerPage: number) => void
 }
 const pastMonth = today(getLocalTimeZone()).subtract({ months: 1 }).toString()
 const InvoiceTableStore = create<State & Actions>((set) => ({
@@ -25,11 +29,15 @@ const InvoiceTableStore = create<State & Actions>((set) => ({
     selectedTabKey:"",
     filterDate:pastMonth,
     filterWord:"",
+    page: 1,
+    rowsPerPage: 5,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectInvoice: (invoice: Invoice) => set({ selectedInvoice: invoice }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
     setFilterDate: (date:string) => set({ filterDate: date }),
     setFilterWord: (word:string) => set({ filterWord: word }),
+    setPage: (page: number) => set({ page: page }),
+    setRowsPerPage: (rowsPerPage: number) => set({ rowsPerPage: rowsPerPage }),
   }))
 
 

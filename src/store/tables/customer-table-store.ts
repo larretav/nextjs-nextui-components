@@ -32,7 +32,7 @@ const CustomerTableStore = create<State & Actions>((set) => ({
     filterCountry:"Todos",
     filterCustomerType:"Todos",
     page: 1,
-    rowsPerPage: 2,
+    rowsPerPage: 5,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectCustomer: (customer: Customer) => set({ selectedCustomer: customer }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),

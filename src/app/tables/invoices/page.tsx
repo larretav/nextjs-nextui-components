@@ -1,9 +1,9 @@
 "use client"
-import React from 'react'
+import React, { useCallback } from 'react'
 import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEllipsisVertical} from 'react-icons/fa6'
+import { FaEllipsisVertical } from 'react-icons/fa6'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import { PageTitle } from '@/components'
@@ -12,13 +12,16 @@ import InvoiceDetails from './_components/InvoiceDetails'
 import PopoverFilter from './_components/PopoverFilter'
 import { DateFormatter } from '@internationalized/date'
 import { filterInvoice } from './functions/filterInvoices'
+import { SharedSelection } from '@nextui-org/system'
+import { Select, SelectItem } from '@nextui-org/select'
+import { Pagination } from '@nextui-org/pagination'
 const dataMock: Invoice[] = [
   {
     folio: "LMAO-71",
     date: "2024-08-14T09:00:00.000",
     paymentMethod: "Tarjeta Débito",
     total: 1500,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "001400899",
@@ -63,7 +66,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-15T09:00:00.000",
     paymentMethod: "Efectivo",
     total: 2000,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "002000899",
@@ -102,7 +105,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-16T09:00:00.000",
     paymentMethod: "Transferencia",
     total: 3000,
-    status:"no balance",
+    status: "no balance",
     breakdown: [
       {
         id: "002500899",
@@ -141,7 +144,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-17T09:00:00.000",
     paymentMethod: "Tarjeta Crédito",
     total: 2500,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "003000899",
@@ -180,7 +183,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-18T09:00:00.000",
     paymentMethod: "PayPal",
     total: 1800,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "003500899",
@@ -213,7 +216,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-19T09:00:00.000",
     paymentMethod: "Efectivo",
     total: 2200,
-    status:"no balance",
+    status: "no balance",
     breakdown: [
       {
         id: "003900899",
@@ -246,7 +249,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-20T09:00:00.000",
     paymentMethod: "Transferencia",
     total: 2800,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "004300899",
@@ -279,7 +282,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-21T09:00:00.000",
     paymentMethod: "Tarjeta Crédito",
     total: 2000,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "005000899",
@@ -300,7 +303,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-22T09:00:00.000",
     paymentMethod: "PayPal",
     total: 1500,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "005200899",
@@ -321,7 +324,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-22T09:00:00.000",
     paymentMethod: "Efectivo",
     total: 1200,
-    status:"no balance",
+    status: "no balance",
     breakdown: [
       {
         id: "005400899",
@@ -342,7 +345,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-23T09:00:00.000",
     paymentMethod: "Transferencia",
     total: 2500,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "005600899",
@@ -363,7 +366,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-23T09:00:00.000",
     paymentMethod: "Tarjeta Débito",
     total: 1800,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "005800899",
@@ -384,7 +387,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-24T09:00:00.000",
     paymentMethod: "Tarjeta Crédito",
     total: 2200,
-    status:"active",
+    status: "active",
     breakdown: [
       {
         id: "006000899",
@@ -405,7 +408,7 @@ const dataMock: Invoice[] = [
     date: "2024-08-25T09:00:00.000",
     paymentMethod: "PayPal",
     total: 2800,
-    status:"no balance",
+    status: "no balance",
     breakdown: [
       {
         id: "006200899",
@@ -424,16 +427,22 @@ const dataMock: Invoice[] = [
 ]
 export default function Page() {
   const isDetailsOpen = useInvoiceTableStore.use.isDetailsOpen()
-  const toggleDetails = useInvoiceTableStore.use.toggleDetails()    
+  const toggleDetails = useInvoiceTableStore.use.toggleDetails()
   const selectInvoice = useInvoiceTableStore.use.selectInvoice()
   const selectedTabKey = useInvoiceTableStore.use.selectedTabKey() as string
   const setSelectedTabKey = useInvoiceTableStore.use.setSelectedTabKey()
 
-  const {filterByFilterWord,filterByStatus} = filterInvoice(dataMock)
+  //Pagination
+  const page = useInvoiceTableStore.use.page()
+  const setPage = useInvoiceTableStore.use.setPage()
+  const rowsPerPage = useInvoiceTableStore.use.rowsPerPage()
+  const setRowsPerPage = useInvoiceTableStore.use.setRowsPerPage()
+
+  const { filterByFilterWord, filterByStatus } = filterInvoice(dataMock)
 
   //Tab item count
   const activeInvoice = filterByFilterWord.filter((item) => item.status === "active").length
-  const noBalanceInvoice = filterByFilterWord.filter((item)=> item.status === "no balance").length
+  const noBalanceInvoice = filterByFilterWord.filter((item) => item.status === "no balance").length
 
   const handleSelectionChange = (ev: Selection) => {
     const orderId = Array.from(ev)[0]
@@ -449,42 +458,58 @@ export default function Page() {
   const columns = [{
     key: "folio",
     label: "Folio"
-},
-{
+  },
+  {
     key: "date",
     label: "Fecha"
-},
-{
+  },
+  {
     key: "payment method",
     label: "Método de pago"
-},
-{
+  },
+  {
     key: "total",
     label: "Total"
-},
-{
+  },
+  {
     key: "actions",
     label: "Acciones"
-},
-]
-const formatter = new DateFormatter('es-MX', {
-  year: 'numeric',
-  month: 'numeric',
-  day: 'numeric',
-});
+  },
+  ]
+  const formatter = new DateFormatter('es-MX', {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+  });
 
-const rows = filterByStatus.map((item)=>{
-  return {
-    key:item.folio,
-    folio:item.folio,
-    date: formatter.format(new Date(item.date)),
-    "payment method":item.paymentMethod,
-    total:`$${item.total.toFixed(2)}`,
-    actions: <Button isIconOnly radius="full" size="sm" variant="light">
-    <FaEllipsisVertical size={16} className="text-zinc-500" />
-  </Button>
-  }
-})
+  const rows = filterByStatus.map((item) => {
+    return {
+      key: item.folio,
+      folio: item.folio,
+      date: formatter.format(new Date(item.date)),
+      "payment method": item.paymentMethod,
+      total: `$${item.total.toFixed(2)}`,
+      actions: <Button isIconOnly radius="full" size="sm" variant="light">
+        <FaEllipsisVertical size={16} className="text-zinc-500" />
+      </Button>
+    }
+  })
+  //Pagination logic from nextui docs
+  const pages = Math.ceil(rows.length / rowsPerPage);
+  const start = (page - 1) * rowsPerPage;
+  const end = start + rowsPerPage;
+  const paginatedItems = rows.slice(start, end);
+
+  const onRowsPerPageChange = useCallback((val: SharedSelection) => {
+    if (val.currentKey) setRowsPerPage(Number(val.currentKey));
+    setPage(1);
+  }, [setPage, setRowsPerPage]);
+
+  const onTabChange = useCallback((key: React.Key) => {
+    setSelectedTabKey(key)
+    setPage(1)
+  }, [setSelectedTabKey, setPage])
+
   return (
     <div className='bg-zinc-100 dark:bg-zinc-950'>
       <div className="flex p-2 px-4 rounded-lg">
@@ -493,26 +518,58 @@ const rows = filterByStatus.map((item)=>{
       <div className='flex p-3'>
         <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
           <div className="flex px-5">
-            <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={setSelectedTabKey} >
+            <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={onTabChange} >
               <TabFilter key={"Todos"} text="Todos" value={filterByFilterWord.length} activeColor="amber" />
               <TabFilter key={"active"} text="Activos" value={activeInvoice} activeColor="green" />
               <TabFilter key={"no balance"} text="Sin saldo" value={noBalanceInvoice} activeColor="red" />
             </TabsFilters>
             <div className='flex items-center ml-auto'>
-              <PopoverFilter/>
+              <PopoverFilter />
             </div>
           </div>
           <Table aria-label="Tabla de clientes" selectionMode='single' selectionBehavior='toggle' removeWrapper
-            onSelectionChange={handleSelectionChange}>
+            onSelectionChange={handleSelectionChange}
+            bottomContent={
+              pages > 0 && <div className="flex w-full justify-center gap-2">
+                <div className="flex items-center gap-2">
+                  <label className="flex items-center text-default-400 text-small text-nowrap">
+                    Filas por página:
+                  </label>
+                  <Select
+                    selectionMode='single'
+                    disallowEmptySelection
+                    aria-label='filas por página'
+                    size='sm'
+                    className="bg-transparent outline-none text-default-400 text-small w-20"
+                    value={rowsPerPage}
+                    defaultSelectedKeys={["2"]}
+                    onSelectionChange={(e) => onRowsPerPageChange(e)}
+                  >
+                    <SelectItem key={2} value="2">2</SelectItem>
+                    <SelectItem key={4} value="4">4</SelectItem>
+                    <SelectItem key={5} value="5">5</SelectItem>
+                  </Select>
+                </div>
+                <Pagination
+                  isCompact
+                  showControls
+                  showShadow
+                  color="secondary"
+                  page={page}
+                  total={pages}
+                  onChange={(page) => { page > 0 ? setPage(page) : setPage(1) }}
+                />
+              </div>
+            }>
             <TableHeader columns={columns}>
-            {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
+              {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
             </TableHeader>
-            <TableBody items={rows}>
+            <TableBody items={paginatedItems} emptyContent="No hay resultados que coincidan con la búsqueda">
               {(item) => (
-                    <TableRow key={item.key} className='cursor-pointer' >
-                      {(columnKey) =>
-                        <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
-                    </TableRow>)}
+                <TableRow key={item.key} className='cursor-pointer' >
+                  {(columnKey) =>
+                    <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                </TableRow>)}
             </TableBody>
           </Table>
         </div>
