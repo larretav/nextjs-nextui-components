@@ -10,7 +10,7 @@ export default function ShipmentDetails() {
   const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
 
   return (
-    <Card className="flex sticky flex-col p-2 max-h-screen mx-3  min-w-72 top-[110px] shadow-sm">                 
+    <Card className="flex sticky flex-col p-2 max-h-[90vh] mx-3  min-w-72 top-[110px] shadow-sm">                 
       <Button isIconOnly radius='full' size='sm' variant='light'
         className='absolute top-3 right-3 z-40'
         onPress={() => toggleDetails(false)}

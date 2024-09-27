@@ -9,6 +9,8 @@ type State ={
     filterWord:string
     filterCountry:string
     filterCustomerType:string
+    page:number,
+    rowsPerPage:number
 }
 
 type Actions = {
@@ -18,6 +20,8 @@ type Actions = {
     setFilterWord: (word:string) => void
     setFilterCountry: (country:string) => void
     setFilterCustomerType: (type:string) => void
+    setPage: (page: number) => void
+    setRowsPerPage: (rowsPerPage: number) => void
 }
 
 const CustomerTableStore = create<State & Actions>((set) => ({
@@ -27,12 +31,16 @@ const CustomerTableStore = create<State & Actions>((set) => ({
     filterWord:"",
     filterCountry:"Todos",
     filterCustomerType:"Todos",
+    page: 1,
+    rowsPerPage: 5,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectCustomer: (customer: Customer) => set({ selectedCustomer: customer }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
     setFilterWord: (word:string) => set({ filterWord: word }),
     setFilterCountry: (country:string) => set({ filterCountry: country }),
     setFilterCustomerType: (type:string) => set({ filterCustomerType: type }),
+    setPage: (page: number) => set({ page: page }),
+    setRowsPerPage: (rowsPerPage: number) => set({ rowsPerPage: rowsPerPage }),
   }))
 
 

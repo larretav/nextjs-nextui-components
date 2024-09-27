@@ -10,7 +10,7 @@ export default function CustomerDetails() {
     const selectedCustomer = useCustomerTableStore.use.selectedCustomer()
 
     return (
-        <Card className="flex sticky flex-col p-2 mx-2 max-h-screen min-w-72 top-[130px] shadow-sm ">
+        <Card className="flex sticky flex-col p-2 mx-2 max-h-[90vh] min-w-72 top-[130px] shadow-sm ">
             <Button isIconOnly radius='full' size='sm' variant='light'
                 className='absolute top-3 right-3 z-40'
                 onPress={() => toggleDetails(false)}

@@ -15,6 +15,9 @@ type State ={
     filterShipper:Shippers
     filterEcommercePlatform:EcommercePlatforms
     filterWord:string
+    //Pagination
+    page: number
+    rowsPerPage: number
 }
 
 type Actions = {
@@ -26,6 +29,9 @@ type Actions = {
     setFilterShipper: (shipper:Shippers) => void
     setFilterEcommercePlatform: (platform:EcommercePlatforms) => void
     setFilterWord: (word:string) => void
+    //Pagination
+    setPage: (page: number) => void
+    setRowsPerPage: (rowsPerPage: number) => void
 }
 
 const pastMonth = today(getLocalTimeZone()).subtract({ months: 1 }).toString()
@@ -37,7 +43,9 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     filterDate:pastMonth,
     filterShipper:"Todos" as Shippers,
     filterEcommercePlatform:"Todos" as EcommercePlatforms,
-    filterWord:"",   
+    filterWord:"",
+    page: 1,
+    rowsPerPage: 5,   
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentOrder) => set({ selectedShipmentOrder: shipmentOrder }),
     setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
@@ -45,6 +53,8 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     setFilterShipper: (shipper:Shippers) => set({ filterShipper: shipper }),
     setFilterEcommercePlatform: (platform:EcommercePlatforms) => set({ filterEcommercePlatform: platform }),
     setFilterWord: (word:string) => set({ filterWord: word }),
+    setPage: (page: number) => set({ page: page }),
+    setRowsPerPage: (rowsPerPage: number) => set({ rowsPerPage: rowsPerPage }),
   }))
 
 
