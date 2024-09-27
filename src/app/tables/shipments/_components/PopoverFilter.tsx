@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
 import { FaFilter } from 'react-icons/fa6'
@@ -6,15 +6,15 @@ import { DatePicker } from '@nextui-org/date-picker'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Input } from '@nextui-org/input'
 import { IoIosSearch } from 'react-icons/io'
-import { parseDate } from '@internationalized/date';
+import { CalendarDate, parseDate } from '@internationalized/date';
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Shippers } from '@/types/shippers.type'
 import { EcommercePlatforms } from "@/types/ecommerce-platform.type"
-
+import { SharedSelection } from '@nextui-org/system'
 
 export default function PopoverFilter() {
     const filterDate = useShipmentTableStore.use.filterDate()
-    const filterShipper = useShipmentTableStore.use.filterShipper()    
+    const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterWord = useShipmentTableStore.use.filterWord()
 
@@ -22,6 +22,29 @@ export default function PopoverFilter() {
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()
+
+    const setPage = useShipmentTableStore.use.setPage()
+
+    const onDateChange = useCallback((date: CalendarDate) => {
+        setFilterDate(date.toString())
+        setPage(1);
+    }, [setPage, setFilterDate]);
+
+    const onShipperChange = useCallback((val: SharedSelection) => {
+        setFilterShipper(val.currentKey as Shippers)
+        setPage(1);
+    }, [setPage, setFilterShipper]);
+
+    const onEcommerceChange = useCallback((val: SharedSelection) => {
+        setFilterEcommercePlatform(val.currentKey as EcommercePlatforms)
+        setPage(1);
+    }, [setPage, setFilterEcommercePlatform]);
+
+    const onFilterWordChange = useCallback((val: string) => {
+        setFilterWord(val)
+        setPage(1);
+    }, [setPage, setFilterWord]);
+
     return (
         <Popover
             showArrow
@@ -38,14 +61,14 @@ export default function PopoverFilter() {
                 <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
                     <DatePicker
                         value={parseDate(filterDate)}
-                        onChange={(date) => setFilterDate(date.toString())}
+                        onChange={onDateChange}
                         radius='sm' size='lg' onKeyDown={(e) => e.preventDefault()} aria-label='Calendario' />
                     <Select
                         classNames={{ label: "text-xs" }}
                         size='sm'
                         label="Alianzas"
                         defaultSelectedKeys={[filterShipper]}
-                        onSelectionChange={(val) => setFilterShipper(val.currentKey as Shippers)}
+                        onSelectionChange={onShipperChange}
                     >
                         <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
                             Todos
@@ -71,8 +94,7 @@ export default function PopoverFilter() {
                         label="Plataforma"
                         classNames={{ label: "text-xs" }}
                         defaultSelectedKeys={[filterEcommercePlatform]}
-                        onSelectionChange={(val) => setFilterEcommercePlatform(val.currentKey as EcommercePlatforms)}
-
+                        onSelectionChange={onEcommerceChange}
                     >
                         <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
                             Todos
@@ -94,8 +116,8 @@ export default function PopoverFilter() {
                         </SelectItem>
                     </Select>
                     <Input radius="sm" startContent={<IoIosSearch />}
-                    value={filterWord}
-                    onValueChange={(val)=>setFilterWord(val)}
+                        value={filterWord}
+                        onValueChange={onFilterWordChange}
                         placeholder='Buscar por cliente o # orden' size='lg'
                         classNames={{ input: "text-xs" }} />
                 </div>
