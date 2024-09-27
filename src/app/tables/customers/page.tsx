@@ -1,18 +1,19 @@
 "use client"
 import React from 'react'
 import { useCustomerTableStore } from '@/store/tables/customer-table-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/table"
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Selection } from "@nextui-org/table"
 import { Button } from '@nextui-org/button'
-import { FaEye } from 'react-icons/fa6'
+import { FaEllipsisVertical } from 'react-icons/fa6'
 import type { Customer } from "@/types/customer.type"
 import { IoPerson } from "react-icons/io5";
 import { BsBuildingsFill } from "react-icons/bs";
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
-import { FaFilter } from "react-icons/fa";
 import { PageTitle } from '@/components'
 import { TiUserAdd } from "react-icons/ti";
 import CustomerDetails from './_components/CustomerDetails'
+import PopoverFilter from './_components/PopoverFilter'
+import { filterCustomer } from './functions/filterCustomer'
 const dataMock: Customer[] = [
     {
         id: "173826",
@@ -21,6 +22,7 @@ const dataMock: Customer[] = [
         postalCode: "81110",
         location: "Zapopan Jalisco",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Allende #14 Centro",
@@ -55,6 +57,7 @@ const dataMock: Customer[] = [
         postalCode: "82210",
         location: "Hermosillo Sonora",
         country: "Mx",
+        status: "inactive",
         addressList: [
             {
                 address: "Juarez Sur #1550",
@@ -76,7 +79,8 @@ const dataMock: Customer[] = [
         name: "Servicios Financieros del Norte",
         postalCode: "83100",
         location: "Chihuahua Chihuahua",
-        country: "Mx",
+        country: "Cl",
+        status: "active",
         addressList: [
             {
                 address: "Avenida Universidad #123",
@@ -99,6 +103,7 @@ const dataMock: Customer[] = [
         postalCode: "84010",
         location: "Culiacán Sinaloa",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Calle Lázaro Cárdenas #789",
@@ -120,7 +125,8 @@ const dataMock: Customer[] = [
         name: "Distribuidores de Electrónicos del Sur",
         postalCode: "86000",
         location: "Villahermosa Tabasco",
-        country: "Mx",
+        country: "Cl",
+        status: "active",
         addressList: [
             {
                 address: "Avenida de los Ríos #901",
@@ -143,6 +149,7 @@ const dataMock: Customer[] = [
         postalCode: "87010",
         location: "Tuxtla Gutiérrez Chiapas",
         country: "Mx",
+        status: "inactive",
         addressList: [
             {
                 address: "Calle Central #567",
@@ -165,6 +172,7 @@ const dataMock: Customer[] = [
         postalCode: "88000",
         location: "Veracruz Veracruz",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Avenida de la Independencia #1234",
@@ -186,7 +194,8 @@ const dataMock: Customer[] = [
         name: "Ana Isabel López Hernández",
         postalCode: "91010",
         location: "Puebla Puebla",
-        country: "Mx",
+        country: "Cl",
+        status: "inactive",
         addressList: [
             {
                 address: "Calle 3 Sur #1456",
@@ -209,6 +218,7 @@ const dataMock: Customer[] = [
         postalCode: "92000",
         location: "Querétaro Querétaro",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Avenida 5 de Febrero #678",
@@ -231,6 +241,7 @@ const dataMock: Customer[] = [
         postalCode: "93010",
         location: "Aguascalientes Aguascalientes",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Calle Morelos #1234",
@@ -252,7 +263,8 @@ const dataMock: Customer[] = [
         name: "Distribuidores de Materiales de Construcción del Norte",
         postalCode: "94000",
         location: "Saltillo Coahuila",
-        country: "Mx",
+        country: "Cl",
+        status: "active",
         addressList: [
             {
                 address: "Avenida Venustiano Carranza #9012",
@@ -275,6 +287,7 @@ const dataMock: Customer[] = [
         postalCode: "95010",
         location: "Durango Durango",
         country: "Mx",
+        status: "active",
         addressList: [
             {
                 address: "Calle 20 de Noviembre #7890",
@@ -297,6 +310,7 @@ const dataMock: Customer[] = [
         postalCode: "96000",
         location: "Oaxaca Oaxaca",
         country: "Mx",
+        status: "inactive",
         addressList: [
             {
                 address: "Avenida Juárez #4567",
@@ -317,10 +331,60 @@ const dataMock: Customer[] = [
 export default function Page() {
     const isDetailsOpen = useCustomerTableStore.use.isDetailsOpen()
     const toggleDetails = useCustomerTableStore.use.toggleDetails()
-    const selectedCustomer = useCustomerTableStore.use.selectedCustomer()
     const selectCustomer = useCustomerTableStore.use.selectCustomer()
-    const selectedKey = useCustomerTableStore.use.selectedTabKey() as string
-    const setSelectedKey = useCustomerTableStore.use.setSelectedTabKey()
+    const selectedTabKey = useCustomerTableStore.use.selectedTabKey() as string
+    const setSelectedTabKey = useCustomerTableStore.use.setSelectedTabKey()
+
+    const { filterByType, filterByStatus } = filterCustomer(dataMock)
+
+    //Tab item count
+    const activeCustomers = filterByType.filter((item) => item.status === "active").length
+    const inActiveCustomers = filterByType.filter((item) => item.status === "inactive").length
+
+    const handleSelectionChange = (ev: Selection) => {
+        const orderId = Array.from(ev)[0]
+        const customer = filterByStatus.find((item) => item.id.toString() === orderId)
+        if (customer) {
+            selectCustomer(customer)
+            toggleDetails(true)
+        } else {
+            toggleDetails(false)
+        }
+    }
+
+    const columns = [{
+        key: "name",
+        label: "Nombre"
+    },
+    {
+        key: "postal code",
+        label: "Código Postal"
+    },
+    {
+        key: "location",
+        label: "Ubicación"
+    },
+    {
+        key: "country",
+        label: "País"
+    },
+    {
+        key: "actions",
+        label: "Acciones"
+    },
+    ]
+    const rows = filterByStatus.map((item) => {
+        return {
+            key: item.id,
+            name: <div className='flex gap-3'>{item.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{item.name}</div>,
+            "postal code": item.postalCode,
+            location: item.location,
+            country: item.country,
+            actions: <Button isIconOnly radius='full' size='sm' variant='light' >
+                <FaEllipsisVertical size={16} className='text-slate-500' />
+            </Button>
+        }
+    })
 
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -329,46 +393,40 @@ export default function Page() {
                 <Button startContent={<TiUserAdd className='text-white' />} size='sm' color='secondary' className='mt-1 ml-auto text-white'>Nuevo</Button>
             </div>
             <div className='flex p-3'>
-                <div className="flex flex-col w-full bg-white rounded-xl dark:bg-zinc-900">
+                <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
                     <div className="flex px-5">
-                        <TabsFilters fullWidth selectedKey={selectedKey} onSelectionChange={setSelectedKey} >
-                            <TabFilter key={1} text="Todos" value="1080" activeColor="amber" />
-                            <TabFilter key={2} text="Activos" value="100" activeColor="green" />
-                            <TabFilter key={3} text="Eliminados" value="80" activeColor="red" />
+                        <TabsFilters fullWidth selectedKey={selectedTabKey} onSelectionChange={setSelectedTabKey} >
+                            <TabFilter key={"Todos"} text="Todos" value={filterByType.length} activeColor="amber" />
+                            <TabFilter key={"active"} text="Activos" value={activeCustomers} activeColor="green" />
+                            <TabFilter key={"inactive"} text="Inactivos" value={inActiveCustomers} activeColor="red" />
                         </TabsFilters>
                         <div className='flex items-center ml-auto'>
-                            <Button isIconOnly variant="light" radius='full' size='sm'><FaFilter size={16} /></Button>
+                            <PopoverFilter />
                         </div>
                     </div>
-                    <Table aria-label="Tabla de clientes" >
-                        <TableHeader>
-                            <TableColumn>Nombre</TableColumn>
-                            <TableColumn>Código Postal</TableColumn>
-                            <TableColumn>Ubicación</TableColumn>
-                            <TableColumn>País</TableColumn>
-                            <TableColumn>Acciones</TableColumn>
+                    <Table aria-label="Tabla de clientes" selectionMode='single' selectionBehavior='toggle' removeWrapper
+                        onSelectionChange={handleSelectionChange}
+                    >
+                        <TableHeader columns={columns}>
+                            {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody>
-                            {dataMock.map((row, index) =>
-                                <TableRow key={`${row.id} - ${index}`} className={`${row.id === selectedCustomer.id && isDetailsOpen && "bg-zinc-200 dark:bg-zinc-700"}`}>
-                                    <TableCell className='flex gap-3'>
-                                        {row.type === "person" ? <IoPerson /> : <BsBuildingsFill />}{row.name}
-                                    </TableCell>
-                                    <TableCell>{row.postalCode} </TableCell>
-                                    <TableCell>{row.location} </TableCell>
-                                    <TableCell>{row.country} </TableCell>
-                                    <TableCell>
-                                        <Button isIconOnly radius='full' size='sm' variant='light'
-                                            onPress={() => {
-                                                selectCustomer(row)
-                                                toggleDetails(true)
-                                            }}
-                                        >
-                                            <FaEye size={16} className='text-blue-500' />
-                                        </Button>
-                                    </TableCell>
-                                </TableRow>
-                            )}
+                        <TableBody items={rows}>
+                            {
+                                filterByType.length === 0 ?
+                                    <TableRow>
+                                        <TableCell colSpan={2}>No hay resultados que coincidan con la búsqueda</TableCell>
+                                        <TableCell> </TableCell>
+                                        <TableCell> </TableCell>
+                                        <TableCell> </TableCell>
+                                        <TableCell> </TableCell>
+                                    </TableRow >
+                                    : (item) => (
+                                        <TableRow key={item.key} className='cursor-pointer' >
+                                            {(columnKey) =>
+                                                <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
+                                        </TableRow>
+                                    )
+                            }
                         </TableBody>
                     </Table>
                 </div>
