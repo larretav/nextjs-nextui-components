@@ -542,12 +542,12 @@ export default function Page() {
                     size='sm'
                     className="bg-transparent outline-none text-default-400 text-small w-20"
                     value={rowsPerPage}
-                    defaultSelectedKeys={["2"]}
+                    defaultSelectedKeys={rowsPerPage.toString()}
                     onSelectionChange={(e) => onRowsPerPageChange(e)}
                   >
                     <SelectItem key={2} value="2">2</SelectItem>
-                    <SelectItem key={4} value="4">4</SelectItem>
                     <SelectItem key={5} value="5">5</SelectItem>
+                    <SelectItem key={25} value="25">25</SelectItem>
                   </Select>
                 </div>
                 <Pagination
