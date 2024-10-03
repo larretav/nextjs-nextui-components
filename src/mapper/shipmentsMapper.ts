@@ -1,5 +1,5 @@
 // Define the DataItem class
-export class ShipmentDataItem {
+export class ShipmentItem {
     constructor(
         public id: number,
         public clientOriginId: number,
@@ -142,7 +142,7 @@ interface ApiResponse {
     draw: number;
     recordsTotal: number;
     recordsFiltered: number;
-    data: ShipmentDataItem[];
+    data: ShipmentItem[];
 }
 
 // Define the MappedResponse class
@@ -150,7 +150,7 @@ export class ShipmentsMapper {
     draw: number;
     recordsTotal: number;
     recordsFiltered: number;
-    data: ShipmentDataItem[];
+    data: ShipmentItem[];
 
     constructor(mappedData: ApiResponse) {
         this.draw = mappedData.draw;
@@ -165,7 +165,7 @@ export class ShipmentsMapper {
             draw: response.draw,
             recordsTotal: response.recordsTotal,
             recordsFiltered: response.recordsFiltered,
-            data: response.data.map((item: any) => new ShipmentDataItem(
+            data: response.data.map((item: any) => new ShipmentItem(
                 item.id,
                 item.idclienteorigen,
                 item.folioDocClienteCliente,

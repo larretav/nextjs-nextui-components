@@ -1,35 +1,26 @@
-import React, { useCallback, useState } from 'react'
+import React, { useCallback,  } from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
 import { FaFilter } from 'react-icons/fa6'
-import { DatePicker } from '@nextui-org/date-picker'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Input } from '@nextui-org/input'
 import { IoIosSearch } from 'react-icons/io'
-import { CalendarDate, parseDate } from '@internationalized/date';
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
-import { Shippers } from '@/types/shippers.type'
-import { EcommercePlatforms } from "@/types/ecommerce-platform.type"
 import { SharedSelection } from '@nextui-org/system'
 
 export default function PopoverFilter() {
-    const filterDate = useShipmentTableStore.use.filterDate()
+    
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterWord = useShipmentTableStore.use.filterWord()
 
-    const setFilterDate = useShipmentTableStore.use.setFilterDate()
+    
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()   
 
     const setPage = useShipmentTableStore.use.setPage()
     const setStart = useShipmentTableStore.use.setStart()
-    const onDateChange = useCallback((date: CalendarDate) => {
-        setFilterDate(date.toString())
-        setStart(0)
-        setPage(1);
-    }, [setPage, setFilterDate]);
 
     const onShipperChange = useCallback((val: SharedSelection) => {
         setStart(0)
@@ -64,11 +55,7 @@ export default function PopoverFilter() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full">
-                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4'>
-                    <DatePicker
-                        value={parseDate(filterDate)}
-                        onChange={onDateChange}
-                        radius='sm' size='lg' onKeyDown={(e) => e.preventDefault()} aria-label='Calendario' />
+                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 '>           
                     <Select
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}

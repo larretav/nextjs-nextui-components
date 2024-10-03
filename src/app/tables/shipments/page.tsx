@@ -2,23 +2,18 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue, } from "@nextui-org/table"
-import { Pagination, } from "@nextui-org/pagination";
 import { IconEcommerce, PageTitle, ShipperType, } from '@/components'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import ShipmentDetails from './_components/ShipmentDetails'
 import PopoverFilter from './_components/PopoverFilter'
-import { filterShipments } from './functions/filterShipments'
-import { DateFormatter } from '@internationalized/date'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import { Button } from '@nextui-org/button'
-import { FaEllipsisVertical } from 'react-icons/fa6'
-import { dataMock } from "./shipmentsDataMock"
-import { Select, SelectItem } from '@nextui-org/select';
-import { SharedSelection } from '@nextui-org/system';
+import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
 import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
-import PaginationText from '@/components/pagination/PaginationText';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
+import TablePagination from './_components/TablePagination';
 
 export default function Page() {
     const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
@@ -27,18 +22,16 @@ export default function Page() {
     const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
     const [shipmentsData, setShipmentsData] = React.useState<ShipmentsMapper>();
-    //Filters
-    const filterDate = useShipmentTableStore.use.filterDate()
+    //Filters    
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterWord = useShipmentTableStore.use.filterWord()
     //Pagination
-    const page = useShipmentTableStore.use.page()
     const setPage = useShipmentTableStore.use.setPage()
     const start = useShipmentTableStore.use.start()
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
-    const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
+    
 
     const debounceDelay = 500;
     //Fetch
@@ -87,11 +80,6 @@ export default function Page() {
             console.log(error)
         }
     }
-    const onRowsPerPageChange = useCallback((val: SharedSelection) => {
-        if (val.currentKey) setRowsPerPage(Number(val.currentKey));
-        setStart(0)
-        setPage(1);
-    }, [setPage, setRowsPerPage]);
 
     const handleSelectionChange = (ev: Selection) => {
         const orderId = Array.from(ev)[0]
@@ -105,11 +93,11 @@ export default function Page() {
         }
     }
 
-    const onPageChange = (page: number) => {
-        page > 0 ? setPage(page) : setPage(1)
-        const newStart = (page - 1) * rowsPerPage;
-        setStart(newStart)
-    }
+    const onTabChange = useCallback((key: React.Key) => {
+        setStart(0)
+        setPage(1)
+        setSelectedTabKey(key)
+    }, [setSelectedTabKey, setPage])
 
     const columns = [{
         key: "order",
@@ -145,7 +133,6 @@ export default function Page() {
     },
     ]
 
-
     const rows = shipmentsData?.data?.map((order) => {
         return {
             key: order.id,
@@ -161,19 +148,26 @@ export default function Page() {
             cost: `$${order.Cost.toFixed(2)}`,
             status: <OsStatus status={order.getStatusName as ShipmentStatus} />,
             shipper: <ShipperType shipper={order.getShipper as Shippers} />,
-            actions: <Button isIconOnly radius="full" size="sm" variant="light">
-                <FaEllipsisVertical size={16} className="text-zinc-500" />
-            </Button>,
+            actions: (
+                <Dropdown>
+                    <DropdownTrigger>
+                        <Button isIconOnly radius='full' size='sm' variant='light' >
+                            <FaEllipsisVertical size={16} />
+                        </Button>
+                    </DropdownTrigger>
+                    <DropdownMenu aria-label="Static Actions">
+                        <DropdownItem key="new" startContent={<FaFilePdf size={18} color='red' />}>Ver PDF</DropdownItem>
+                        <DropdownItem key="copy">Copy link</DropdownItem>
+                        <DropdownItem key="edit">Edit file</DropdownItem>
+                        <DropdownItem key="delete" className="text-danger" color="danger">
+                            Delete file
+                        </DropdownItem>
+                    </DropdownMenu>
+                </Dropdown>
+            ),
             isForeign: order.isForeignBranch
         }
     }) || []
-
-
-    const onTabChange = useCallback((key: React.Key) => {
-        setStart(0)
-        setPage(1)
-        setSelectedTabKey(key)
-    }, [setSelectedTabKey, setPage])
 
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
@@ -198,42 +192,7 @@ export default function Page() {
                     <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
-                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ? <div className="flex w-full justify-center gap-2">
-                                <div className="flex items-center gap-2">
-                                    <span className="flex items-center text-xs  text-nowrap">
-                                        Filas por página:
-                                    </span>
-                                    <Select
-                                        selectionMode='single'
-                                        disallowEmptySelection
-                                        aria-label='filas por página'
-                                        size='sm'
-                                        className="bg-transparent outline-none text-default-400 text-small w-20"
-                                        value={rowsPerPage}
-                                        defaultSelectedKeys={[rowsPerPage.toString()]}
-                                        onSelectionChange={(e) => onRowsPerPageChange(e)}
-                                    >
-                                        <SelectItem key={10} value="10">10</SelectItem>
-                                        <SelectItem key={25} value="25">25</SelectItem>
-                                        <SelectItem key={50} value="50">50</SelectItem>
-                                        <SelectItem key={100} value="100">100</SelectItem>
-                                    </Select>
-                                </div>
-                                <PaginationText
-                                    itemsPerPage={rowsPerPage}
-                                    page={page}
-                                    totalItems={shipmentsData?.recordsFiltered || 0}
-                                />
-                                <Pagination
-                                    isCompact
-                                    showControls
-                                    showShadow
-                                    color="secondary"
-                                    page={page}
-                                    total={Math.ceil((shipmentsData?.recordsFiltered || 0) / rowsPerPage)}
-                                    onChange={onPageChange}
-                                />
-                            </div> : ""
+                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ? <TablePagination shipmentsData={shipmentsData} /> : ""
                         }
                     >
                         <TableHeader columns={columns}>
@@ -241,7 +200,7 @@ export default function Page() {
                         </TableHeader>
                         <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda">
                             {(item) => (
-                                <TableRow key={item.key} className={`cursor-pointer ${item.isForeign ? "bg-green-300" : ""}`} >
+                                <TableRow key={item.key} className={`cursor-pointer ${item.isForeign && "bg-emerald-100 dark:bg-emerald-900"}`} >
                                     {(columnKey) =>
                                         <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
                                 </TableRow>

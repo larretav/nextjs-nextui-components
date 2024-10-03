@@ -43,7 +43,7 @@ export default function ShipmentDetails() {
       <div className="flex overflow-y-scroll sticky flex-col gap-2 w-full scrollbar-minimalist p-1">
         {details?.map((item, index) =>
           <PackageMobileCard key={`${item.id}-${index}`}
-            leadingIcon='box'
+            leadingIcon={item.getType}
             title={item.content}
             subtitle={item.productSatDescription}
             quantity={item.quantity}

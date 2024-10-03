@@ -25,6 +25,19 @@ export class ShipmentDetailsItem {
     get getWeightMeasures(): string {
         return `${this.length}x${this.height}x${this.width}x${this.weight}kg`;
     }
+
+    get getType(): "box"|"envelope"|"pallet" {
+        switch (this.type) {
+          case "Paquete":
+            return "box";
+          case "Sobre":
+            return "envelope";
+          case "Tarima":
+            return "pallet";
+          default:            
+            return "box";
+        }
+      }
 }
 
 // Define the interface for the complete response

@@ -1,18 +1,13 @@
 import {create} from "zustand"
 import createSelectors from "../selectors"
-import type { ShipmentOrder } from "@/types/shipment-order.type"
-import type {Shippers} from "@/types/shippers.type"
-import type {EcommercePlatforms} from "@/types/ecommerce-platform.type"
-import {today, getLocalTimeZone} from '@internationalized/date';
 import { Key } from "react"
-import { ShipmentDataItem } from "@/mapper/shipmentsMapper"
+import { ShipmentItem } from "@/mapper/shipmentsMapper"
 
 type State ={
     isDetailsOpen: boolean
-    selectedShipmentOrder: ShipmentDataItem
+    selectedShipmentOrder: ShipmentItem
     //Filters
-    selectedTabKey:Key
-    filterDate:string
+    selectedTabKey:Key    
     filterShipper:string
     filterEcommercePlatform:string
     filterWord:string
@@ -24,10 +19,9 @@ type State ={
 
 type Actions = {
     toggleDetails: (isOpen:boolean) => void
-    selectShipmentOrder: (shipmentOrder: ShipmentDataItem) => void
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => void
     //Filters
-    setSelectedTabKey: (key:Key) => void
-    setFilterDate: (date:string) => void
+    setSelectedTabKey: (key:Key) => void    
     setFilterShipper: (shipper:string) => void
     setFilterEcommercePlatform: (platform:string) => void
     setFilterWord: (word:string) => void
@@ -37,13 +31,10 @@ type Actions = {
     setStart: (start: number) => void
 }
 
-const pastMonth = today(getLocalTimeZone()).subtract({ months: 1 }).toString()
-
 const ShipmentTableStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
-    selectedShipmentOrder: {} as ShipmentDataItem, 
-    selectedTabKey:"P,A",
-    filterDate:pastMonth,
+    selectedShipmentOrder: {} as ShipmentItem, 
+    selectedTabKey:"P,A",    
     filterShipper:"0",
     filterEcommercePlatform:"X" ,
     filterWord:"",
@@ -51,9 +42,8 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     rowsPerPage: 10,   
     start: 0,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectShipmentOrder: (shipmentOrder: ShipmentDataItem) => set({ selectedShipmentOrder: shipmentOrder }),
-    setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),
-    setFilterDate: (date:string) => set({ filterDate: date }),
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),
+    setSelectedTabKey: (key:Key) => set({ selectedTabKey: key }),    
     setFilterShipper: (shipper:string) => set({ filterShipper: shipper }),
     setFilterEcommercePlatform: (platform:string) => set({ filterEcommercePlatform: platform }),
     setFilterWord: (word:string) => set({ filterWord: word }),
