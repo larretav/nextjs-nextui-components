@@ -1,4 +1,4 @@
-import React, { useCallback,  } from 'react'
+import React, { useCallback, } from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
 import { FaFilter } from 'react-icons/fa6'
@@ -7,20 +7,28 @@ import { Input } from '@nextui-org/input'
 import { IoIosSearch } from 'react-icons/io'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { SharedSelection } from '@nextui-org/system'
+import { Badge } from '@nextui-org/badge'
+export default function ShipmentsPopoverFilter() {
 
-export default function PopoverFilter() {
-    
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterWord = useShipmentTableStore.use.filterWord()
-
-    
+    const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
-    const setFilterWord = useShipmentTableStore.use.setFilterWord()   
+    const setFilterWord = useShipmentTableStore.use.setFilterWord()
 
     const setPage = useShipmentTableStore.use.setPage()
     const setStart = useShipmentTableStore.use.setStart()
+
+    //Display how many filters are active
+    const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X"
+    //Number of active filters
+    const filterCount = filterShipper != "0" ? 1 : 0
+    const filterCount2 = filterEcommercePlatform != "X" ? 1 : 0
+    const filterCount3 = filterWord != "" && filterWord.length > 3 ? 1 : 0
+    const filterCount4 = selectedTabKey != "X" ? 1 : 0
+    const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4
 
     const onShipperChange = useCallback((val: SharedSelection) => {
         setStart(0)
@@ -40,8 +48,6 @@ export default function PopoverFilter() {
         setPage(1);
     }, [setPage, setFilterWord]);
 
-
-      
     return (
         <Popover
             showArrow
@@ -51,11 +57,13 @@ export default function PopoverFilter() {
         >
             <PopoverTrigger>
                 <Button color="default" isIconOnly radius="full" size="sm" variant="light" className="capitalize">
-                    <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
+                    <Badge content={filterCountTotal} isInvisible={!isAnyFilterActive} size='sm' color='warning'>
+                        <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
+                    </Badge>
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full">
-                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 '>           
+                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 '>
                     <Select
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}

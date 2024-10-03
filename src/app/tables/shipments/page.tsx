@@ -6,7 +6,7 @@ import { IconEcommerce, PageTitle, ShipperType, } from '@/components'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import ShipmentDetails from './_components/ShipmentDetails'
-import PopoverFilter from './_components/PopoverFilter'
+import ShipmentsPopoverFilter from './_components/ShipmentsPopoverFilter'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import { Button } from '@nextui-org/button'
 import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
@@ -37,8 +37,12 @@ export default function Page() {
     //Modals
     const toggleViewPDFModal = useShipmentTableStore.use.toggleViewPDFModal()
 
-    const debounceDelay = 500;
     //Fetch
+    useEffect(() => {      
+            callApi()      
+    }, [filterShipper, filterEcommercePlatform, selectedTabKey, rowsPerPage, start])
+    //Separate useEffect for debounce
+    const debounceDelay = 500;
     useEffect(() => {
         const timeoutId = setTimeout(() => {
             callApi();
@@ -47,9 +51,9 @@ export default function Page() {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [filterShipper, filterWord, filterEcommercePlatform, selectedTabKey, rowsPerPage, start])
-
-
+    }, [filterWord, ])
+    
+    
     async function callApi() {
         try {
             const myHeaders = new Headers({
@@ -193,7 +197,7 @@ export default function Page() {
                             <TabFilter key={"X"} text="Todos" value={""} activeColor="green" />
                         </TabsFilters>
                         <div className='flex items-center ml-auto'>
-                            <PopoverFilter />
+                            <ShipmentsPopoverFilter />
                         </div>
                     </div>
                     <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
