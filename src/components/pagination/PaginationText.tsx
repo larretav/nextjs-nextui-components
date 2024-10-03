@@ -4,9 +4,10 @@ type Props = {
     itemsPerPage: number,
     page: number,
     totalItems: number
+    totalFilteredItems?: number
 }
 
-const PaginationText = ({ itemsPerPage, page, totalItems }: Props) => {
+const PaginationText = ({ itemsPerPage, page, totalItems, totalFilteredItems }: Props) => {
   if (totalItems === 0) {
     return (
       <span className="text-xs self-center">
@@ -20,7 +21,8 @@ const PaginationText = ({ itemsPerPage, page, totalItems }: Props) => {
 
   return (
     <span className="text-xs self-center">
-      {startIndex} - {endIndex} de un total de {totalItems}
+      Mostrando registros del {startIndex} al {endIndex} de un total de {totalItems} <br />
+      {totalFilteredItems && `Filtrados de un total de ${totalFilteredItems}`}
     </span>
   );
 };

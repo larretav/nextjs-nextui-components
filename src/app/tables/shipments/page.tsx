@@ -14,14 +14,17 @@ import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import TablePagination from './_components/TablePagination';
+import ViewPDFModal from './_components/ViewPDFModal'
 
 export default function Page() {
+    const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();
+
     const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
     const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
+    const selectShipmentOrderForMenu = useShipmentTableStore.use.selectShipmentOrderForMenu()
     const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
-    const [shipmentsData, setShipmentsData] = React.useState<ShipmentsMapper>();
     //Filters    
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
@@ -31,7 +34,8 @@ export default function Page() {
     const start = useShipmentTableStore.use.start()
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
-    
+    //Modals
+    const toggleViewPDFModal = useShipmentTableStore.use.toggleViewPDFModal()
 
     const debounceDelay = 500;
     //Fetch
@@ -50,7 +54,7 @@ export default function Page() {
         try {
             const myHeaders = new Headers({
                 "Content-Type": "application/json",
-                "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InBrdDFmaGVyIiwibmJmIjoxNzI3OTA3NTgwLCJleHAiOjE3Mjc5OTM5ODAsImlhdCI6MTcyNzkwNzU4MCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1MDQ2OSIsImF1ZCI6Imh0dHA6Ly9sb2NhbGhvc3Q6NTA0NjkifQ.VvIsdYrnuZR8TortgbXv70889hDFqjw7JqnkRExotIA"
+                "Authorization": process.env.NEXT_PUBLIC_TOKEN || ""
 
             })
             const body = JSON.stringify({
@@ -84,7 +88,6 @@ export default function Page() {
     const handleSelectionChange = (ev: Selection) => {
         const orderId = Array.from(ev)[0]
         const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
-        console.log(shipmentOrder)
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -149,14 +152,17 @@ export default function Page() {
             status: <OsStatus status={order.getStatusName as ShipmentStatus} />,
             shipper: <ShipperType shipper={order.getShipper as Shippers} />,
             actions: (
-                <Dropdown>
+                <Dropdown >
                     <DropdownTrigger>
-                        <Button isIconOnly radius='full' size='sm' variant='light' >
+                        <Button isIconOnly radius='full' size='sm' variant='light' onClick={() => {
+                            selectShipmentOrderForMenu(order)
+
+                        }}>
                             <FaEllipsisVertical size={16} />
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem key="new" startContent={<FaFilePdf size={18} color='red' />}>Ver PDF</DropdownItem>
+                        <DropdownItem key="new" startContent={<FaFilePdf size={18} color='red' />} onClick={() => toggleViewPDFModal(true)}>Ver PDF</DropdownItem>
                         <DropdownItem key="copy">Copy link</DropdownItem>
                         <DropdownItem key="edit">Edit file</DropdownItem>
                         <DropdownItem key="delete" className="text-danger" color="danger">
@@ -171,6 +177,7 @@ export default function Page() {
 
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
+            <ViewPDFModal />
             <div className='ml-5'>
                 <PageTitle text='Envíos' />
             </div>

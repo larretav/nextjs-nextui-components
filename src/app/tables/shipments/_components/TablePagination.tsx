@@ -28,10 +28,16 @@ export default function TablePagination({shipmentsData}:Props) {
         setPage(1);
     }, [setPage, setRowsPerPage]);
     return (
-        <div className="flex w-full justify-center gap-2">
-            <div className="flex items-center gap-2">
-                <span className="flex items-center text-xs  text-nowrap">
-                    Filas por página:
+        <div className="flex w-full  gap-3">
+            <div className="flex items-center gap-3">
+            <PaginationText
+                itemsPerPage={rowsPerPage}
+                page={page}
+                totalItems={shipmentsData?.recordsFiltered || 0}
+                totalFilteredItems={shipmentsData.recordsTotal}
+            />
+                <span className="flex items-center text-xs  text-nowrap pl-3">
+                    Filas:
                 </span>
                 <Select
                     selectionMode='single'
@@ -49,11 +55,7 @@ export default function TablePagination({shipmentsData}:Props) {
                     <SelectItem key={100} value="100">100</SelectItem>
                 </Select>
             </div>
-            <PaginationText
-                itemsPerPage={rowsPerPage}
-                page={page}
-                totalItems={shipmentsData?.recordsFiltered || 0}
-            />
+     
             <Pagination
                 isCompact
                 showControls
