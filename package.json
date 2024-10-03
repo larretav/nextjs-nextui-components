@@ -13,6 +13,7 @@
 		"@emotion/css": "^11.13.0",
 		"@emotion/react": "^11.13.3",
 		"@emotion/server": "^11.11.0",
+		"@hookform/resolvers": "^3.9.0",
 		"@internationalized/date": "^3.5.5",
 		"@nextui-org/accordion": "^2.0.38",
 		"@nextui-org/avatar": "^2.0.32",
@@ -50,11 +51,14 @@
 		"immer": "^10.1.1",
 		"intl-messageformat": "^10.5.0",
 		"next": "14.2.4",
+		"next-auth": "^5.0.0-beta.22",
 		"next-themes": "^0.2.1",
 		"react": "18.3.1",
 		"react-dom": "18.3.1",
+		"react-hook-form": "^7.53.0",
 		"react-icons": "^5.2.1",
 		"styled-components": "^6.1.13",
+		"zod": "^3.23.8",
 		"zustand": "^4.5.4"
 	},
 	"devDependencies": {
