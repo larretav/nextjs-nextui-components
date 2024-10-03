@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useState } from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
 import { FaFilter } from 'react-icons/fa6'
@@ -21,30 +21,36 @@ export default function PopoverFilter() {
     const setFilterDate = useShipmentTableStore.use.setFilterDate()
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
-    const setFilterWord = useShipmentTableStore.use.setFilterWord()
+    const setFilterWord = useShipmentTableStore.use.setFilterWord()   
 
     const setPage = useShipmentTableStore.use.setPage()
-
+    const setStart = useShipmentTableStore.use.setStart()
     const onDateChange = useCallback((date: CalendarDate) => {
         setFilterDate(date.toString())
+        setStart(0)
         setPage(1);
     }, [setPage, setFilterDate]);
 
     const onShipperChange = useCallback((val: SharedSelection) => {
-        if (val.currentKey) setFilterShipper(val.currentKey as Shippers)
+        setStart(0)
+        if (val.currentKey) setFilterShipper(val.currentKey)
         setPage(1);
     }, [setPage, setFilterShipper]);
 
     const onEcommerceChange = useCallback((val: SharedSelection) => {
-        if (val.currentKey) setFilterEcommercePlatform(val.currentKey as EcommercePlatforms)
+        setStart(0)
+        if (val.currentKey) setFilterEcommercePlatform(val.currentKey)
         setPage(1);
     }, [setPage, setFilterEcommercePlatform]);
 
     const onFilterWordChange = useCallback((val: string) => {
+        setStart(0)
         setFilterWord(val)
         setPage(1);
     }, [setPage, setFilterWord]);
 
+
+      
     return (
         <Popover
             showArrow
@@ -68,26 +74,26 @@ export default function PopoverFilter() {
                         classNames={{ label: "text-xs" }}
                         size='sm'
                         label="Alianzas"
-                        defaultSelectedKeys={[filterShipper]}
+                        defaultSelectedKeys={[filterShipper.toString()]}
                         onSelectionChange={onShipperChange}
                     >
-                        <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={0} classNames={{ title: "text-xs" }}>
                             Todos
                         </SelectItem>
-                        <SelectItem key={"pkt1"} classNames={{ title: "text-xs" }}>
-                            PKT1
-                        </SelectItem>
-                        <SelectItem key={"paquetexpress"} classNames={{ title: "text-xs" }}>
-                            PKTExpress
-                        </SelectItem>
-                        <SelectItem key={"fedex"} classNames={{ title: "text-xs" }}>
-                            Fedex
-                        </SelectItem>
-                        <SelectItem key={"dhl"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={1} classNames={{ title: "text-xs" }}>
                             DHL
                         </SelectItem>
-                        <SelectItem key={"ups"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={2} classNames={{ title: "text-xs" }}>
+                            PAQUETEXPRESS
+                        </SelectItem>
+                        <SelectItem key={3} classNames={{ title: "text-xs" }}>
                             UPS
+                        </SelectItem>
+                        <SelectItem key={4} classNames={{ title: "text-xs" }}>
+                            FEDEX
+                        </SelectItem>
+                        <SelectItem key={5} classNames={{ title: "text-xs" }}>
+                            PKT1
                         </SelectItem>
                     </Select>
                     <Select
@@ -98,23 +104,23 @@ export default function PopoverFilter() {
                         defaultSelectedKeys={[filterEcommercePlatform]}
                         onSelectionChange={onEcommerceChange}
                     >
-                        <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={"X"} classNames={{ title: "text-xs" }}>
                             Todos
                         </SelectItem>
-                        <SelectItem key={"jumpseller"} classNames={{ title: "text-xs" }}>
-                            Jumpseller
+                        <SelectItem key={"Onsite"} classNames={{ title: "text-xs" }}>
+                            Onsite
                         </SelectItem>
-                        <SelectItem key={"onsite"} classNames={{ title: "text-xs" }}>
-                            OnSite
+                        <SelectItem key={"WooCommerce"} classNames={{ title: "text-xs" }}>
+                            WooCommerce
                         </SelectItem>
-                        <SelectItem key={"prestashop"} classNames={{ title: "text-xs" }}>
-                            Prestashop
-                        </SelectItem>
-                        <SelectItem key={"shopify"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={"Shopify"} classNames={{ title: "text-xs" }}>
                             Shopify
                         </SelectItem>
-                        <SelectItem key={"woocommerce"} classNames={{ title: "text-xs" }}>
-                            Woocommerce
+                        <SelectItem key={"Jumpseller"} classNames={{ title: "text-xs" }}>
+                            Jumpseller
+                        </SelectItem>
+                        <SelectItem key={"Prestashop"} classNames={{ title: "text-xs" }}>
+                            Prestashop
                         </SelectItem>
                     </Select>
                     <Input radius="sm" startContent={<IoIosSearch />}
