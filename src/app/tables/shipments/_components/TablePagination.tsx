@@ -6,7 +6,6 @@ import { Select, SelectItem } from '@nextui-org/select'
 import { SharedSelection } from '@nextui-org/system'
 import React, { useCallback } from 'react'
 
-
 type Props = {
     shipmentsData: ShipmentsMapper 
 }
@@ -27,6 +26,7 @@ export default function TablePagination({shipmentsData}:Props) {
         setStart(0)
         setPage(1);
     }, [setPage, setRowsPerPage]);
+
     return (
         <div className="flex w-full  gap-3">
             <div className="flex items-center gap-3">

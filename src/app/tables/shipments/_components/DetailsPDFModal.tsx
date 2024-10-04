@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
 import { Button } from '@nextui-org/button';
-
+import toast from 'react-hot-toast';
 
 export default function DetailsPDFModal() {
     const { onOpenChange } = useDisclosure();
@@ -18,11 +18,11 @@ export default function DetailsPDFModal() {
             const url = URL.createObjectURL(blob)
             setPdfUrl(url);
         } catch (error) {
-            console.error(error)
+            toast.error("Error al obtener el PDF")
         }
     }
     useEffect(() => {
-
+        if (!selectedShipmentOrder.id) return
         callViewPDFApi()
     }, [selectedShipmentOrder])
     return (
@@ -35,7 +35,6 @@ export default function DetailsPDFModal() {
                             src={pdfUrl}
                             width="100%"
                             height="500"
-
                         />
                     )}
                 </ModalBody>
