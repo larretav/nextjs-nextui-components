@@ -18,7 +18,9 @@ import DetailsPDFModal from './_components/DetailsPDFModal'
 import { FaFileExport } from "react-icons/fa6";
 import LabelPDFModal from './_components/LabelPDFModal'
 import toast, { Toaster } from 'react-hot-toast';
-
+import { extractCFDIParams } from './functions/extractCFDIParams'
+import { FaFileInvoiceDollar } from "react-icons/fa6";
+import { BsFiletypeXml } from "react-icons/bs";
 export default function Page() {
     const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();
 
@@ -168,25 +170,57 @@ export default function Page() {
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem key="new" startContent={<FaFilePdf size={16} color='red' />}
+                        <DropdownItem key="new" startContent={<FaFilePdf size={16} className='text-red-500' />}
                             onClick={() => {
                                 if (order.getStatusName == "cancelada") {
                                     toast.error("Documentación cancelada");
                                     return;
                                 }
                                 toggleViewPDFModal(true)
-                            }}>Detalles PDF</DropdownItem>
-                        <DropdownItem key="copy" startContent={<FaFileExport size={16} color='green' />}
+                            }}
+                        >Detalles PDF</DropdownItem>
+                        <DropdownItem key="copy" startContent={<FaFileExport size={16} className='text-green-500' />}
                             onClick={() => {
                                 if (order.getStatusName == "cancelada") {
                                     toast.error("Documentación cancelada");
                                     return;
                                 }
                                 toggleViewLabelPDFModal(true)
-                            }}>Guía PDF</DropdownItem>
-                        <DropdownItem key="edit">Edit file</DropdownItem>
-                        <DropdownItem key="delete" className="text-danger" color="danger">
-                            Delete file
+                            }}
+                        >Guía PDF</DropdownItem>
+                        <DropdownItem key="edit" startContent={<FaFileInvoiceDollar size={16} className='text-red-500' />}
+                            onClick={() => {
+                                if (order.getStatusName == "cancelada") {
+                                    toast.error("Documentación cancelada");
+                                    return;
+                                }
+                                const [param1, param2] = extractCFDIParams(order.buttons)
+                                if (param1.length < 2 || param2.length < 2) {
+                                    toast.error("No se encontró CFDI");
+                                    return
+                                }
+                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${param1}/${param2}?Tipo=1`
+                                window.open(url, '_blank');
+                            }}
+                        >
+                            CFDI PDF
+                        </DropdownItem>
+                        <DropdownItem key="delete" startContent={<BsFiletypeXml size={16} className='text-sky-500' />}
+                            onClick={() => {
+                                if (order.getStatusName == "cancelada") {
+                                    toast.error("Documentación cancelada");
+                                    return;
+                                }
+                                const [param1, param2] = extractCFDIParams(order.buttons)
+                                if (param1.length < 2 || param2.length < 2) {
+                                    toast.error("No se encontró CFDI");
+                                    return
+                                }
+                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${param1}/${param2}?Tipo=0`
+                                window.open(url, '_blank');
+                            }}
+                        >
+                            CFDI XML
                         </DropdownItem>
                     </DropdownMenu>
                 </Dropdown>
