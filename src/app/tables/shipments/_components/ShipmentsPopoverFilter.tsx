@@ -1,3 +1,4 @@
+"use client"
 import React, { useCallback, } from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
@@ -8,27 +9,31 @@ import { IoIosSearch } from 'react-icons/io'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
 import { SharedSelection } from '@nextui-org/system'
 import { Badge } from '@nextui-org/badge'
-export default function ShipmentsPopoverFilter() {
 
+export default function ShipmentsPopoverFilter() {
+    const documenters = useShipmentTableStore.use.documenters()
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
+    const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
     const filterWord = useShipmentTableStore.use.filterWord()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()
-
+    const setFilterDocumenter = useShipmentTableStore.use.setFilterDocumenter()
     const setPage = useShipmentTableStore.use.setPage()
     const setStart = useShipmentTableStore.use.setStart()
 
     //Display how many filters are active
-    const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X"
+    const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X" || filterDocumenter != "X"
     //Number of active filters
     const filterCount = filterShipper != "0" ? 1 : 0
     const filterCount2 = filterEcommercePlatform != "X" ? 1 : 0
     const filterCount3 = filterWord != "" && filterWord.length > 3 ? 1 : 0
     const filterCount4 = selectedTabKey != "X" ? 1 : 0
-    const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4
+    const filterCount5 = filterDocumenter != "X" ? 1 : 0
+    const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4 + filterCount5
+
 
     const onShipperChange = useCallback((val: SharedSelection) => {
         setStart(0)
@@ -41,6 +46,12 @@ export default function ShipmentsPopoverFilter() {
         if (val.currentKey) setFilterEcommercePlatform(val.currentKey)
         setPage(1);
     }, [setPage, setFilterEcommercePlatform]);
+    
+    const onDocumenterChange = useCallback((val: SharedSelection) => {
+        setStart(0)
+        if (val.currentKey) setFilterDocumenter(val.currentKey)
+        setPage(1);
+    }, [setPage, setFilterDocumenter]);
 
     const onFilterWordChange = useCallback((val: string) => {
         setStart(0)
@@ -48,6 +59,12 @@ export default function ShipmentsPopoverFilter() {
         setPage(1);
     }, [setPage, setFilterWord]);
 
+    const docummenterItems = documenters?.data?.map((documenter) => ({
+        key: documenter.id.toString(),
+        label: documenter.clientName
+    }))
+    const allDocumenters = { key: "X", label: "Todos" }
+    docummenterItems?.unshift(allDocumenters)
     return (
         <Popover
             showArrow
@@ -117,6 +134,17 @@ export default function ShipmentsPopoverFilter() {
                         <SelectItem key={"Prestashop"} classNames={{ title: "text-xs" }}>
                             Prestashop
                         </SelectItem>
+                    </Select>
+                    <Select
+                        size='sm'
+                        label="Documentador"
+                        disallowEmptySelection
+                        classNames={{ label: "text-xs" }}
+                        defaultSelectedKeys={[filterDocumenter]}
+                        onSelectionChange={onDocumenterChange}
+                        items={docummenterItems}
+                    >
+                        {(doc) => <SelectItem key={doc.key}>{doc.label}</SelectItem>}
                     </Select>
                     <Input radius="sm" startContent={<IoIosSearch />}
                         value={filterWord}
