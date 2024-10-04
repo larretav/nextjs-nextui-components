@@ -4,24 +4,25 @@ import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
 import { Button } from '@nextui-org/button';
 
 
-export default function ViewPDFModal() {
+export default function DetailsPDFModal() {
     const { onOpenChange } = useDisclosure();
-    const isOpen = useShipmentTableStore.use.isViewPDFModalOpen()
-    const toggleViewPDFModal = useShipmentTableStore.use.toggleViewPDFModal()
+    const isOpen = useShipmentTableStore.use.isDetailsPDFModalOpen()
+    const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrderForMenu()
     const [pdfUrl, setPdfUrl] = useState("");
     const urlCall = `https://web.pktuno.mx/PKT1/impresiondocumentacion.php?id=${selectedShipmentOrder.id}&GPDF=Si&idfranquicia=${selectedShipmentOrder.branchId}&idcontacto=${selectedShipmentOrder.userId}&Onsite`    
-    useEffect(() => {
-        async function callViewPDFApi() {
-            try {
-                const res = await fetch(urlCall)
-                const blob = await res.blob()
-                const url = URL.createObjectURL(blob)
-                setPdfUrl(url);
-            } catch (error) {
-                console.error(error)
-            }
+    async function callViewPDFApi() {
+        try {
+            const res = await fetch(urlCall)
+            const blob = await res.blob()
+            const url = URL.createObjectURL(blob)
+            setPdfUrl(url);
+        } catch (error) {
+            console.error(error)
         }
+    }
+    useEffect(() => {
+
         callViewPDFApi()
     }, [selectedShipmentOrder])
     return (

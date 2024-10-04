@@ -14,7 +14,10 @@ import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import TablePagination from './_components/TablePagination';
-import ViewPDFModal from './_components/ViewPDFModal'
+import DetailsPDFModal from './_components/DetailsPDFModal'
+import { FaFileExport } from "react-icons/fa6";
+import LabelPDFModal from './_components/LabelPDFModal'
+import toast, { Toaster } from 'react-hot-toast';
 
 export default function Page() {
     const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();
@@ -35,11 +38,11 @@ export default function Page() {
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
     //Modals
-    const toggleViewPDFModal = useShipmentTableStore.use.toggleViewPDFModal()
-
+    const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
+    const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
     //Fetch
-    useEffect(() => {      
-            callApi()      
+    useEffect(() => {
+        callApi()
     }, [filterShipper, filterEcommercePlatform, selectedTabKey, rowsPerPage, start])
     //Separate useEffect for debounce
     const debounceDelay = 500;
@@ -51,9 +54,9 @@ export default function Page() {
         return () => {
             clearTimeout(timeoutId);
         };
-    }, [filterWord, ])
-    
-    
+    }, [filterWord])
+
+
     async function callApi() {
         try {
             const myHeaders = new Headers({
@@ -160,14 +163,27 @@ export default function Page() {
                     <DropdownTrigger>
                         <Button isIconOnly radius='full' size='sm' variant='light' onClick={() => {
                             selectShipmentOrderForMenu(order)
-
                         }}>
                             <FaEllipsisVertical size={16} />
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem key="new" startContent={<FaFilePdf size={18} color='red' />} onClick={() => toggleViewPDFModal(true)}>Ver PDF</DropdownItem>
-                        <DropdownItem key="copy">Copy link</DropdownItem>
+                        <DropdownItem key="new" startContent={<FaFilePdf size={16} color='red' />}
+                            onClick={() => {
+                                if (order.getStatusName == "cancelada") {
+                                    toast.error("Documentación cancelada");
+                                    return;
+                                }
+                                toggleViewPDFModal(true)
+                            }}>Detalles PDF</DropdownItem>
+                        <DropdownItem key="copy" startContent={<FaFileExport size={16} color='green' />}
+                            onClick={() => {
+                                if (order.getStatusName == "cancelada") {
+                                    toast.error("Documentación cancelada");
+                                    return;
+                                }
+                                toggleViewLabelPDFModal(true)
+                            }}>Guía PDF</DropdownItem>
                         <DropdownItem key="edit">Edit file</DropdownItem>
                         <DropdownItem key="delete" className="text-danger" color="danger">
                             Delete file
@@ -181,7 +197,9 @@ export default function Page() {
 
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
-            <ViewPDFModal />
+            <Toaster />
+            <DetailsPDFModal />
+            <LabelPDFModal />
             <div className='ml-5'>
                 <PageTitle text='Envíos' />
             </div>

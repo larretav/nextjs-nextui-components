@@ -17,7 +17,8 @@ type State = {
     rowsPerPage: number
     start: number
     //Modals
-    isViewPDFModalOpen: boolean
+    isDetailsPDFModalOpen: boolean
+    isLabelPDFModalOpen: boolean
 }
 
 type Actions = {
@@ -34,7 +35,8 @@ type Actions = {
     setRowsPerPage: (rowsPerPage: number) => void
     setStart: (start: number) => void
     //Modals
-    toggleViewPDFModal: (isOpen: boolean) => void
+    toggleDetailsPDFModal: (isOpen: boolean) => void
+    toggleLabelPDFModal: (isOpen: boolean) => void
 }
 
 const ShipmentTableStore = create<State & Actions>((set) => ({
@@ -48,7 +50,8 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     page: 1,
     rowsPerPage: 10,
     start: 0,
-    isViewPDFModalOpen: false,
+    isDetailsPDFModalOpen: false,
+    isLabelPDFModalOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),
     selectShipmentOrderForMenu: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrderForMenu: shipmentOrder }),
@@ -59,7 +62,8 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     setPage: (page: number) => set({ page: page }),
     setRowsPerPage: (rowsPerPage: number) => set({ rowsPerPage: rowsPerPage }),
     setStart: (start: number) => set({ start: start }),
-    toggleViewPDFModal: (isOpen: boolean) => set({ isViewPDFModalOpen: isOpen }),
+    toggleDetailsPDFModal: (isOpen: boolean) => set({ isDetailsPDFModalOpen: isOpen }),
+    toggleLabelPDFModal: (isOpen: boolean) => set({ isLabelPDFModalOpen: isOpen }),
 
 }))
 
