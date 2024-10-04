@@ -12,11 +12,13 @@ import { Badge } from '@nextui-org/badge'
 
 export default function ShipmentsPopoverFilter() {
     const documenters = useShipmentTableStore.use.documenters()
+
     const filterShipper = useShipmentTableStore.use.filterShipper()
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
     const filterWord = useShipmentTableStore.use.filterWord()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
+    
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()
@@ -34,7 +36,6 @@ export default function ShipmentsPopoverFilter() {
     const filterCount5 = filterDocumenter != "X" ? 1 : 0
     const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4 + filterCount5
 
-
     const onShipperChange = useCallback((val: SharedSelection) => {
         setStart(0)
         if (val.currentKey) setFilterShipper(val.currentKey)
@@ -46,7 +47,7 @@ export default function ShipmentsPopoverFilter() {
         if (val.currentKey) setFilterEcommercePlatform(val.currentKey)
         setPage(1);
     }, [setPage, setFilterEcommercePlatform]);
-    
+
     const onDocumenterChange = useCallback((val: SharedSelection) => {
         setStart(0)
         if (val.currentKey) setFilterDocumenter(val.currentKey)
@@ -73,8 +74,8 @@ export default function ShipmentsPopoverFilter() {
             backdrop={"opaque"}
         >
             <PopoverTrigger>
-                <Button color="default" isIconOnly radius="full" size="sm" variant="light" className="capitalize">
-                    <Badge content={filterCountTotal} isInvisible={!isAnyFilterActive} size='sm' color='warning'>
+                <Button isIconOnly radius="full" size="sm" variant="light" className="capitalize">
+                    <Badge content={filterCountTotal} isInvisible={!isAnyFilterActive} size='sm' color='primary'>
                         <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
                     </Badge>
                 </Button>

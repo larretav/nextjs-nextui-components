@@ -22,14 +22,15 @@ import { extractCFDIParams } from '../functions/extractCFDIParams'
 import { FaFileInvoiceDollar } from "react-icons/fa6";
 import { BsFiletypeXml } from "react-icons/bs";
 import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
+import { Spinner } from "@nextui-org/spinner";
 
 type Props = {
     documenters: any
 }
 export default function ShipmentsTable({ documenters }: Props) {
 
-    const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();       
-    
+    const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();
+    const [isLoading, setIsLoading] = useState(false);
     //Store hooks
     const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
@@ -53,13 +54,19 @@ export default function ShipmentsTable({ documenters }: Props) {
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
     //Fetch shipments
     useEffect(() => {
-        callShipmentsApi()
-    }, [filterShipper, filterEcommercePlatform,filterDocumenter, selectedTabKey, rowsPerPage, start])
+        setIsLoading(true)
+        callShipmentsApi().finally(() => {
+            setIsLoading(false)
+        })
+    }, [filterShipper, filterEcommercePlatform, filterDocumenter, selectedTabKey, rowsPerPage, start])
     //Separate useEffect for debounce
-    const debounceDelay = 200;
+    const debounceDelay = 100;
     useEffect(() => {
+        setIsLoading(true)
         const timeoutId = setTimeout(() => {
-            callShipmentsApi();
+            callShipmentsApi().finally(() => {
+                setIsLoading(false)
+            })
         }, debounceDelay);
 
         return () => {
@@ -68,16 +75,15 @@ export default function ShipmentsTable({ documenters }: Props) {
     }, [filterWord])
 
     //Save documenters in global store
-    useEffect(()=>{
+    useEffect(() => {
         const mappedDocumenters = ShipmentsDocumenterMapper.fromResponse(documenters)
         setDocumenters(mappedDocumenters)
-    },[documenters])
+    }, [documenters])
     async function callShipmentsApi() {
         try {
             const myHeaders = new Headers({
                 "Content-Type": "application/json",
                 "Authorization": process.env.NEXT_PUBLIC_TOKEN || ""
-
             })
             const body = JSON.stringify({
                 draw: 1,
@@ -91,7 +97,6 @@ export default function ShipmentsTable({ documenters }: Props) {
                 origen: filterEcommercePlatform,
                 documentador: filterDocumenter,
             });
-
             const res = await fetch("https://onsite.pktuno.mx/ws2//Api/DocOS/Obtener/a15df564-22f4-11eb-860f-00505632f3b46212",
                 {
                     headers: myHeaders,
@@ -103,13 +108,13 @@ export default function ShipmentsTable({ documenters }: Props) {
             const mappedResponse = ShipmentsMapper.fromResponse(json)
             setShipmentsData(mappedResponse)
         } catch (error) {
-            console.log(error)
+            toast.error("Error al obtener información, reintente más tarde")
         }
     }
-
+    
     const handleSelectionChange = (ev: Selection) => {
         const orderId = Array.from(ev)[0]
-        const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
+        const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)        
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -157,7 +162,7 @@ export default function ShipmentsTable({ documenters }: Props) {
         label: "Acciones"
     },
     ]
-    
+
     const rows = shipmentsData?.data?.map((order) => {
         return {
             key: order.id,
@@ -276,7 +281,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda">
+                        <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda" isLoading={isLoading} loadingContent={<Spinner color='secondary' size='lg' />}>
                             {(item) => (
                                 <TableRow key={item.key} className={`cursor-pointer ${item.isForeign && "bg-emerald-100 dark:bg-emerald-900"}`} >
                                     {(columnKey) =>
@@ -284,7 +289,6 @@ export default function ShipmentsTable({ documenters }: Props) {
                                 </TableRow>
                             )}
                         </TableBody>
-
                     </Table>
                 </div>
                 {isDetailsOpen && <ShipmentDetails />}
