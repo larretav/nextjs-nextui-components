@@ -19,7 +19,7 @@ export default function LabelPDFModal() {
             const url = URL.createObjectURL(blob)
             setPdfUrl(url);
         } catch (error) {
-            toast.error("Error al obtener el PDF")
+            console.error(error)
         }
     }
     useEffect(() => {
