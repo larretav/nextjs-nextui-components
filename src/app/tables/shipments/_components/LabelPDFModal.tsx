@@ -8,7 +8,7 @@ import toast from 'react-hot-toast';
 export default function LabelPDFModal() {
     const { onOpenChange } = useDisclosure();
     const toggleViewPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrderForMenu()
+    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
     const isOpen = useShipmentTableStore.use.isLabelPDFModalOpen()
     const [pdfUrl, setPdfUrl] = useState("");
     const urlCall = `https://onsite.pktuno.mx/ws2//Api/Labels/PDF?id=${selectedShipmentOrder.id}&ecom=true`
@@ -19,7 +19,7 @@ export default function LabelPDFModal() {
             const url = URL.createObjectURL(blob)
             setPdfUrl(url);
         } catch (error) {
-            console.error(error)
+            toast.error("Error al obtener el PDF")
         }
     }
     useEffect(() => {

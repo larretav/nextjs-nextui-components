@@ -17,13 +17,13 @@ import TablePagination from './TablePagination';
 import DetailsPDFModal from './DetailsPDFModal'
 import { FaFileExport } from "react-icons/fa6";
 import LabelPDFModal from './LabelPDFModal'
-import toast, { Toaster } from 'react-hot-toast';
-import { extractCFDIParams } from '../functions/extractCFDIParams'
-import { FaFileInvoiceDollar } from "react-icons/fa6";
+import toast, { Toaster } from 'react-hot-toast'; '../functions/extractCFDIParams'
+import { FaFileContract } from "react-icons/fa6";
 import { BsFiletypeXml } from "react-icons/bs";
 import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
 import { Spinner } from "@nextui-org/spinner";
-
+import { FaLocationDot } from "react-icons/fa6";
+import PaqueteExpressMap from './PaqueteExpressMap'
 type Props = {
     documenters: any
 }
@@ -35,7 +35,6 @@ export default function ShipmentsTable({ documenters }: Props) {
     const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
     const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
-    const selectShipmentOrderForMenu = useShipmentTableStore.use.selectShipmentOrderForMenu()
     const setDocumenters = useShipmentTableStore.use.setDocumenters()
     //Filters    
     const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
@@ -52,6 +51,7 @@ export default function ShipmentsTable({ documenters }: Props) {
     //Modals
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
+    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressModal()
     //Fetch shipments
     useEffect(() => {
         setIsLoading(true)
@@ -111,10 +111,11 @@ export default function ShipmentsTable({ documenters }: Props) {
             toast.error("Error al obtener información, reintente más tarde")
         }
     }
-    
+
     const handleSelectionChange = (ev: Selection) => {
         const orderId = Array.from(ev)[0]
-        const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)        
+        const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
+        console.log(shipmentOrder)
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -127,6 +128,7 @@ export default function ShipmentsTable({ documenters }: Props) {
         setStart(0)
         setPage(1)
         setSelectedTabKey(key)
+        toggleDetails(false)
     }, [setSelectedTabKey, setPage])
 
     const columns = [{
@@ -179,69 +181,56 @@ export default function ShipmentsTable({ documenters }: Props) {
             status: <OsStatus status={order.getStatusName as ShipmentStatus} />,
             shipper: <ShipperType shipper={order.getShipper as Shippers} />,
             actions: (
-                <Dropdown >
-                    <DropdownTrigger>
-                        <Button isIconOnly radius='full' size='sm' variant='light' onClick={() => {
-                            selectShipmentOrderForMenu(order)
-                        }}>
-                            <FaEllipsisVertical size={16} />
+                <Dropdown isDisabled={order.getStatusName == "cancelada"}  >
+                    <DropdownTrigger >
+                        <Button isIconOnly radius='full' size='sm' variant='light'  
+                            onClick={() => {
+                                selectShipmentOrder(order)
+                            }}>
+                            <FaEllipsisVertical size={16} className={`${order.getStatusName == "cancelada" && "text-slate-300"}`}/>
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
-                        <DropdownItem key="new" startContent={<FaFilePdf size={16} className='text-red-500' />}
-                            onClick={() => {
-                                if (order.getStatusName == "cancelada") {
-                                    toast.error("Documentación cancelada");
-                                    return;
-                                }
-                                toggleViewPDFModal(true)
-                            }}
+                        <DropdownItem key="viewDetailsPDF" startContent={<FaFilePdf size={16} className='text-red-500' />}
+                            onClick={() => { toggleViewPDFModal(true) }}
                         >Detalles PDF
                         </DropdownItem>
-                        <DropdownItem key="copy" startContent={<FaFileExport size={16} className='text-green-500' />}
-                            onClick={() => {
-                                if (order.getStatusName == "cancelada") {
-                                    toast.error("Documentación cancelada");
-                                    return;
-                                }
-                                toggleViewLabelPDFModal(true)
-                            }}
+                        <DropdownItem key="LabelPDF" startContent={<FaFileExport size={16} className='text-green-500' />}
+                            onClick={() => { toggleViewLabelPDFModal(true) }}
                         >Guía PDF
                         </DropdownItem>
-                        <DropdownItem key="edit" startContent={<FaFileInvoiceDollar size={16} className='text-red-500' />}
+                        <DropdownItem key="CFDI Traslado" startContent={<FaFileContract size={16} className='text-red-500' />}
                             onClick={() => {
-                                if (order.getStatusName == "cancelada") {
-                                    toast.error("Documentación cancelada");
-                                    return;
-                                }
-                                const [param1, param2] = extractCFDIParams(order.buttons)
-                                if (param1.length < 2 || param2.length < 2) {
-                                    toast.error("No se encontró CFDI");
+                                if (!order.transferSeries || !order.transferFolio) {
+                                    toast.error("No se encontró serie y folio de traslado")
                                     return
                                 }
-                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${param1}/${param2}?Tipo=1`
+                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${order.transferSeries}/${order.transferFolio}?Tipo=1`
                                 window.open(url, '_blank');
                             }}
                         >
-                            CFDI PDF
+                            CFDI Traslado PDF
                         </DropdownItem>
                         <DropdownItem key="delete" startContent={<BsFiletypeXml size={16} className='text-sky-500' />}
                             onClick={() => {
-                                if (order.getStatusName == "cancelada") {
-                                    toast.error("Documentación cancelada");
-                                    return;
-                                }
-                                const [param1, param2] = extractCFDIParams(order.buttons)
-                                if (param1.length < 2 || param2.length < 2) {
-                                    toast.error("No se encontró CFDI");
+                                if (!order.transferSeries || !order.transferFolio) {
+                                    toast.error("No se encontró serie y folio de traslado")
                                     return
                                 }
-                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${param1}/${param2}?Tipo=0`
+                                const url = `https://documentacion.paq1.com.mx/api/v2/Facturacion/Factura/${order.transferSeries}/${order.transferFolio}?Tipo=0`
                                 window.open(url, '_blank');
                             }}
                         >
-                            CFDI XML
+                            CFDI Traslado XML
                         </DropdownItem>
+                        {order.forcedOfficeKey != "0" ?
+                            <DropdownItem startContent={<FaLocationDot size={16} className='text-sky-500' />}
+                                onClick={() => {
+                                    togglePaquetexpressModal(true)
+                                }}
+                            >Ubicación Paquetexpress
+                            </DropdownItem>
+                            : <DropdownItem className='hidden'> </DropdownItem>}
                     </DropdownMenu>
                 </Dropdown>
             ),
@@ -254,6 +243,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             <Toaster />
             <DetailsPDFModal />
             <LabelPDFModal />
+            <PaqueteExpressMap />
             <div className='ml-5'>
                 <PageTitle text='Envíos' />
             </div>
@@ -283,7 +273,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                         </TableHeader>
                         <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda" isLoading={isLoading} loadingContent={<Spinner color='secondary' size='lg' />}>
                             {(item) => (
-                                <TableRow key={item.key} className={`cursor-pointer ${item.isForeign && "bg-emerald-100 dark:bg-emerald-900"}`} >
+                                <TableRow key={item.key} className={`cursor-pointer ${item.isForeign && "bg-emerald-200 dark:bg-green-800"}`} >
                                     {(columnKey) =>
                                         <TableCell>{getKeyValue(item, columnKey)}</TableCell>}
                                 </TableRow>

@@ -1,14 +1,11 @@
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
 import { ShipmentDetailsMapper } from '@/mapper/shipmentsDetailsMapper'
 import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
-import { Button } from '@nextui-org/button'
 import { Card, CardHeader } from '@nextui-org/card'
 import React, { useEffect, useState } from 'react'
-import { FaXmark } from 'react-icons/fa6'
 import { ShipmentDetailsItem } from "@/mapper/shipmentsDetailsMapper"
 import toast from 'react-hot-toast'
 export default function ShipmentDetails() {
-  const toggleDetails = useShipmentTableStore.use.toggleDetails()
   const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
   const [details, setDetails] = useState<ShipmentDetailsItem[]>()
   useEffect(() => {
@@ -32,12 +29,6 @@ export default function ShipmentDetails() {
   }
   return (
     <Card className="flex sticky flex-col p-2 max-h-[90vh] mx-3  min-w-72 top-[110px] shadow-sm">
-      <Button isIconOnly radius='full' size='sm' variant='light'
-        className='absolute top-3 right-3 z-40'
-        onPress={() => toggleDetails(false)}
-      >
-        <FaXmark size={20} />
-      </Button>
       <CardHeader className="flex-col items-start gap-3 px-1">
         <p className='pt-2 font-semibold text-xl'>Orden #{selectedShipmentOrder.id}</p>
         <p className='text-sm font-medium'>Paquetes: {details?.length}</p>

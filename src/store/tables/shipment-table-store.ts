@@ -6,8 +6,7 @@ import { ShipmentsDocumenterMapper } from "@/mapper/shipmentsDocumenterMapper"
 
 type State = {
     isDetailsOpen: boolean
-    selectedShipmentOrder: ShipmentItem
-    selectedShipmentOrderForMenu: ShipmentItem
+    selectedShipmentOrder: ShipmentItem    
     documenters: ShipmentsDocumenterMapper
     //Filters
     selectedTabKey: Key
@@ -27,8 +26,7 @@ type State = {
 type Actions = {
     toggleDetails: (isOpen: boolean) => void
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => void
-    selectShipmentOrder: (shipmentOrder: ShipmentItem) => void
-    selectShipmentOrderForMenu: (shipmentOrder: ShipmentItem) => void
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => void    
     //Filters
     setSelectedTabKey: (key: Key) => void
     setFilterShipper: (shipper: string) => void
@@ -60,8 +58,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     isDetailsPDFModalOpen: false,
     isLabelPDFModalOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),
-    selectShipmentOrderForMenu: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrderForMenu: shipmentOrder }),
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),    
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => set({ documenters: documenters }),
     setSelectedTabKey: (key: Key) => set({ selectedTabKey: key }),
     setFilterShipper: (shipper: string) => set({ filterShipper: shipper }),

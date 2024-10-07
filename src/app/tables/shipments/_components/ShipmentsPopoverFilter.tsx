@@ -18,13 +18,14 @@ export default function ShipmentsPopoverFilter() {
     const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
     const filterWord = useShipmentTableStore.use.filterWord()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
-    
+
     const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
     const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
     const setFilterWord = useShipmentTableStore.use.setFilterWord()
     const setFilterDocumenter = useShipmentTableStore.use.setFilterDocumenter()
     const setPage = useShipmentTableStore.use.setPage()
     const setStart = useShipmentTableStore.use.setStart()
+    const toggleDetails = useShipmentTableStore.use.toggleDetails()
 
     //Display how many filters are active
     const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X" || filterDocumenter != "X"
@@ -40,24 +41,28 @@ export default function ShipmentsPopoverFilter() {
         setStart(0)
         if (val.currentKey) setFilterShipper(val.currentKey)
         setPage(1);
+        toggleDetails(false)
     }, [setPage, setFilterShipper]);
 
     const onEcommerceChange = useCallback((val: SharedSelection) => {
         setStart(0)
         if (val.currentKey) setFilterEcommercePlatform(val.currentKey)
         setPage(1);
+        toggleDetails(false)
     }, [setPage, setFilterEcommercePlatform]);
 
     const onDocumenterChange = useCallback((val: SharedSelection) => {
         setStart(0)
         if (val.currentKey) setFilterDocumenter(val.currentKey)
         setPage(1);
+        if (filterWord.length > 3) toggleDetails(false)
     }, [setPage, setFilterDocumenter]);
 
     const onFilterWordChange = useCallback((val: string) => {
         setStart(0)
         setFilterWord(val)
         setPage(1);
+        toggleDetails(false)
     }, [setPage, setFilterWord]);
 
     const docummenterItems = documenters?.data?.map((documenter) => ({

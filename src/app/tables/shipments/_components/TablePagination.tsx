@@ -15,16 +15,18 @@ export default function TablePagination({shipmentsData}:Props) {
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
     const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
-
+    const toggleDetails = useShipmentTableStore.use.toggleDetails()
     const onPageChange = (page: number) => {
         page > 0 ? setPage(page) : setPage(1)
         const newStart = (page - 1) * rowsPerPage;
         setStart(newStart)
+        toggleDetails(false)
     }
     const onRowsPerPageChange = useCallback((val: SharedSelection) => {
         if (val.currentKey) setRowsPerPage(Number(val.currentKey));
         setStart(0)
         setPage(1);
+        toggleDetails(false)
     }, [setPage, setRowsPerPage]);
 
     return (

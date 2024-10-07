@@ -8,7 +8,7 @@ export default function DetailsPDFModal() {
     const { onOpenChange } = useDisclosure();
     const isOpen = useShipmentTableStore.use.isDetailsPDFModalOpen()
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrderForMenu()
+    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
     const [pdfUrl, setPdfUrl] = useState("");
     const urlCall = `https://web.pktuno.mx/PKT1/impresiondocumentacion.php?id=${selectedShipmentOrder.id}&GPDF=Si&idfranquicia=${selectedShipmentOrder.branchId}&idcontacto=${selectedShipmentOrder.userId}&Onsite`    
     async function callViewPDFApi() {
