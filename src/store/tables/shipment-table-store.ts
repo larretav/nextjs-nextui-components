@@ -21,6 +21,7 @@ type State = {
     //Modals
     isDetailsPDFModalOpen: boolean
     isLabelPDFModalOpen: boolean
+    isPaquetexpressModalOpen: boolean
 }
 
 type Actions = {
@@ -40,6 +41,7 @@ type Actions = {
     //Modals
     toggleDetailsPDFModal: (isOpen: boolean) => void
     toggleLabelPDFModal: (isOpen: boolean) => void
+    togglePaquetexpressModal: (isOpen: boolean) => void
 }
 
 const ShipmentTableStore = create<State & Actions>((set) => ({
@@ -57,6 +59,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     start: 0,
     isDetailsPDFModalOpen: false,
     isLabelPDFModalOpen: false,
+    isPaquetexpressModalOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),    
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => set({ documenters: documenters }),
@@ -70,7 +73,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     setStart: (start: number) => set({ start: start }),
     toggleDetailsPDFModal: (isOpen: boolean) => set({ isDetailsPDFModalOpen: isOpen }),
     toggleLabelPDFModal: (isOpen: boolean) => set({ isLabelPDFModalOpen: isOpen }),
-
+    togglePaquetexpressModal: (isOpen: boolean) => set({ isPaquetexpressModalOpen: isOpen }),
 }))
 
 
