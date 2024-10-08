@@ -26,6 +26,7 @@ export default function ShipmentsPopoverFilter() {
     const setPage = useShipmentTableStore.use.setPage()
     const setStart = useShipmentTableStore.use.setStart()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
+    const setSelectedTableKey = useShipmentTableStore.use.setSelectedTableKey()
 
     //Display how many filters are active
     const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X" || filterDocumenter != "X"
@@ -38,32 +39,44 @@ export default function ShipmentsPopoverFilter() {
     const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4 + filterCount5
 
     const onShipperChange = useCallback((val: SharedSelection) => {
-        setStart(0)
-        if (val.currentKey) setFilterShipper(val.currentKey)
-        setPage(1);
-        toggleDetails(false)
+        if (val.currentKey) {
+            setFilterShipper(val.currentKey)
+            setStart(0)
+            setPage(1);
+            toggleDetails(false)
+            setSelectedTableKey(new Set([]))
+        }
     }, [setPage, setFilterShipper]);
 
     const onEcommerceChange = useCallback((val: SharedSelection) => {
-        setStart(0)
-        if (val.currentKey) setFilterEcommercePlatform(val.currentKey)
-        setPage(1);
-        toggleDetails(false)
+        if (val.currentKey) {
+            setStart(0)
+            setFilterEcommercePlatform(val.currentKey)
+            setPage(1);
+            toggleDetails(false)
+            setSelectedTableKey(new Set([]))
+        }
     }, [setPage, setFilterEcommercePlatform]);
 
     const onDocumenterChange = useCallback((val: SharedSelection) => {
-        setStart(0)
-        if (val.currentKey) setFilterDocumenter(val.currentKey)
-        setPage(1);
-        if (filterWord.length > 3) toggleDetails(false)
+        if (val.currentKey) {
+            setStart(0)
+            setFilterDocumenter(val.currentKey)
+            setPage(1);
+            toggleDetails(false)
+            setSelectedTableKey(new Set([]))
+        }
     }, [setPage, setFilterDocumenter]);
 
     const onFilterWordChange = useCallback((val: string) => {
-        setStart(0)
         setFilterWord(val)
-        setPage(1);
-        toggleDetails(false)
-    }, [setPage, setFilterWord]);
+        if (filterWord.length > 3) {
+            setStart(0)
+            setPage(1);
+            toggleDetails(false)
+            setSelectedTableKey(new Set([]))
+        }
+    }, [setPage, setFilterWord, filterWord]);
 
     const docummenterItems = documenters?.data?.map((documenter) => ({
         key: documenter.id.toString(),
@@ -71,6 +84,7 @@ export default function ShipmentsPopoverFilter() {
     }))
     const allDocumenters = { key: "X", label: "Todos" }
     docummenterItems?.unshift(allDocumenters)
+    
     return (
         <Popover
             showArrow

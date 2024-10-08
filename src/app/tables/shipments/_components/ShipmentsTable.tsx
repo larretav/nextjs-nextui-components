@@ -31,11 +31,14 @@ export default function ShipmentsTable({ documenters }: Props) {
 
     const [shipmentsData, setShipmentsData] = useState<ShipmentsMapper>();
     const [isLoading, setIsLoading] = useState(false);
+
     //Store hooks
     const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
     const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
     const setDocumenters = useShipmentTableStore.use.setDocumenters()
+    const selectedTableKey = useShipmentTableStore.use.selectedTableKey()
+    const setSelectedTableKey = useShipmentTableStore.use.setSelectedTableKey()
     //Filters    
     const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
     const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
@@ -52,7 +55,7 @@ export default function ShipmentsTable({ documenters }: Props) {
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
     const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressModal()
-    //Fetch shipments
+    //Fetch shipments    
     useEffect(() => {
         setIsLoading(true)
         callShipmentsApi().finally(() => {
@@ -113,9 +116,9 @@ export default function ShipmentsTable({ documenters }: Props) {
     }
 
     const handleSelectionChange = (ev: Selection) => {
+        setSelectedTableKey(ev)        
         const orderId = Array.from(ev)[0]
         const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
-        console.log(shipmentOrder)
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -129,6 +132,7 @@ export default function ShipmentsTable({ documenters }: Props) {
         setPage(1)
         setSelectedTabKey(key)
         toggleDetails(false)
+        setSelectedTableKey(new Set([]))
     }, [setSelectedTabKey, setPage])
 
     const columns = [{
@@ -183,11 +187,13 @@ export default function ShipmentsTable({ documenters }: Props) {
             actions: (
                 <Dropdown isDisabled={order.getStatusName == "cancelada"}  >
                     <DropdownTrigger >
-                        <Button isIconOnly radius='full' size='sm' variant='light'  
+                        <Button isIconOnly radius='full' size='sm' variant='light'
                             onClick={() => {
                                 selectShipmentOrder(order)
+                                setSelectedTableKey(new Set([order.id.toString()]))
+                                toggleDetails(true)
                             }}>
-                            <FaEllipsisVertical size={16} className={`${order.getStatusName == "cancelada" && "text-slate-300"}`}/>
+                            <FaEllipsisVertical size={16} className={`${order.getStatusName == "cancelada" && "text-slate-300"}`} />
                         </Button>
                     </DropdownTrigger>
                     <DropdownMenu aria-label="Static Actions">
@@ -245,7 +251,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             <LabelPDFModal />
             <PaqueteExpressMap />
             <div className='ml-5'>
-                <PageTitle text='Envíos' />
+                <PageTitle text='Envíos' />                
             </div>
             <div className='flex p-3'>
                 <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
@@ -262,7 +268,8 @@ export default function ShipmentsTable({ documenters }: Props) {
                             <ShipmentsPopoverFilter />
                         </div>
                     </div>
-                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
+                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper 
+                        selectedKeys={selectedTableKey}
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
                             shipmentsData?.data?.length && shipmentsData.data.length > 0 ? <TablePagination shipmentsData={shipmentsData} /> : ""

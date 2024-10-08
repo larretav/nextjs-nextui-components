@@ -3,11 +3,12 @@ import createSelectors from "../selectors"
 import { Key } from "react"
 import { ShipmentItem } from "@/mapper/shipmentsMapper"
 import { ShipmentsDocumenterMapper } from "@/mapper/shipmentsDocumenterMapper"
-
+import { Selection } from "@nextui-org/table"
 type State = {
     isDetailsOpen: boolean
     selectedShipmentOrder: ShipmentItem    
     documenters: ShipmentsDocumenterMapper
+    selectedTableKey:Selection
     //Filters
     selectedTabKey: Key
     filterShipper: string
@@ -27,7 +28,8 @@ type State = {
 type Actions = {
     toggleDetails: (isOpen: boolean) => void
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => void
-    selectShipmentOrder: (shipmentOrder: ShipmentItem) => void    
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => void
+    setSelectedTableKey: (key: Selection) => void    
     //Filters
     setSelectedTabKey: (key: Key) => void
     setFilterShipper: (shipper: string) => void
@@ -48,7 +50,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
     documenters: {} as ShipmentsDocumenterMapper,
     selectedShipmentOrder: {} as ShipmentItem,
-    selectedShipmentOrderForMenu: {} as ShipmentItem,
+    selectedTableKey: new Set([]),
     selectedTabKey: "P,A",
     filterShipper: "0",
     filterEcommercePlatform: "X",
@@ -63,6 +65,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),    
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => set({ documenters: documenters }),
+    setSelectedTableKey: (key: Selection) => set({ selectedTableKey: key }),    
     setSelectedTabKey: (key: Key) => set({ selectedTabKey: key }),
     setFilterShipper: (shipper: string) => set({ filterShipper: shipper }),
     setFilterEcommercePlatform: (platform: string) => set({ filterEcommercePlatform: platform }),
