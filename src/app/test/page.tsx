@@ -10,6 +10,7 @@ import React from 'react'
 import { FaFilter } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { RegisterFormTest } from "./_components/RegisterFormTest";
+import PageContent from "./_components/PageContent";
 
 type Props = {}
 
@@ -20,9 +21,8 @@ export default function page({ }: Props) {
 
       <div className="flex flex-col justify-center items-center">
 
-        <div className="max-w-[300px]">
-          <RegisterFormTest />
-        </div>
+        <PageContent />
+
       </div>
 
     </div>
