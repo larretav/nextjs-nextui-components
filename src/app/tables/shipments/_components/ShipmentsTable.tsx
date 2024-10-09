@@ -57,8 +57,13 @@ export default function ShipmentsTable({ documenters }: Props) {
     //Modals
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
-    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressModal()
+    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressMapModal()
     const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
+    const isDetailsPDFModalOpen = useShipmentTableStore.use.isDetailsPDFModalOpen()
+    const isLabelPDFModalOpen = useShipmentTableStore.use.isLabelPDFModalOpen()
+    const isPaquetexpressMapModalOpen = useShipmentTableStore.use.isPaquetexpressMapModalOpen()
+    const isDeliveryDetailsModalOpen = useShipmentTableStore.use.isDeliveryDetailsModalOpen()
+
     //Fetch shipments    
     useEffect(() => {
         setIsLoading(true)
@@ -123,7 +128,6 @@ export default function ShipmentsTable({ documenters }: Props) {
         setSelectedTableKey(ev)
         const orderId = Array.from(ev)[0]
         const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
-        console.log(shipmentOrder)
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -261,10 +265,10 @@ export default function ShipmentsTable({ documenters }: Props) {
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <Toaster />
-            <DetailsPDFModal />
-            <LabelPDFModal />
-            <PaqueteExpressMap />
-            <DeliveryDetailsModal />
+            {isDetailsPDFModalOpen && <DetailsPDFModal />}
+            {isLabelPDFModalOpen && <LabelPDFModal />}
+            {isPaquetexpressMapModalOpen && <PaqueteExpressMap />}
+            {isDeliveryDetailsModalOpen && <DeliveryDetailsModal />}
             <div className='ml-5'>
                 <PageTitle text='Envíos' />
             </div>

@@ -10,8 +10,8 @@ import { APIProvider, Map, Pin, AdvancedMarker } from '@vis.gl/react-google-maps
 export default function PaqueteExpressMap() {
     const { onOpenChange } = useDisclosure();
     const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
-    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressModal()
-    const isOpen = useShipmentTableStore.use.isPaquetexpressModalOpen()
+    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressMapModal()
+    const isOpen = useShipmentTableStore.use.isPaquetexpressMapModalOpen()
     const [PXOffice, setPXOffice] = useState<MappedPaqueteExpressOffice | undefined>()
     async function callPaqueteExpressApi() {
         if (selectedShipmentOrder.forcedOfficeKey == "0" || !selectedShipmentOrder.forcedOfficeKey) return
@@ -29,7 +29,7 @@ export default function PaqueteExpressMap() {
     
     useEffect(() => {
         callPaqueteExpressApi()
-    }, [selectedShipmentOrder])
+    }, [])
     return (
         <Modal isOpen={isOpen} onClose={() => togglePaquetexpressModal(false)} onOpenChange={onOpenChange}  scrollBehavior='outside'>
             <APIProvider apiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API as string}>

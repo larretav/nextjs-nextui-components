@@ -22,7 +22,7 @@ type State = {
     //Modals
     isDetailsPDFModalOpen: boolean
     isLabelPDFModalOpen: boolean
-    isPaquetexpressModalOpen: boolean
+    isPaquetexpressMapModalOpen: boolean
     isDeliveryDetailsModalOpen: boolean
 }
 
@@ -44,7 +44,7 @@ type Actions = {
     //Modals
     toggleDetailsPDFModal: (isOpen: boolean) => void
     toggleLabelPDFModal: (isOpen: boolean) => void
-    togglePaquetexpressModal: (isOpen: boolean) => void
+    togglePaquetexpressMapModal: (isOpen: boolean) => void
     toggleDeliveryDetailsModal: (isOpen: boolean) => void
 }
 
@@ -63,7 +63,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     start: 0,
     isDetailsPDFModalOpen: false,
     isLabelPDFModalOpen: false,
-    isPaquetexpressModalOpen: false,
+    isPaquetexpressMapModalOpen: false,
     isDeliveryDetailsModalOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),
@@ -79,7 +79,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     setStart: (start: number) => set({ start: start }),
     toggleDetailsPDFModal: (isOpen: boolean) => set({ isDetailsPDFModalOpen: isOpen }),
     toggleLabelPDFModal: (isOpen: boolean) => set({ isLabelPDFModalOpen: isOpen }),
-    togglePaquetexpressModal: (isOpen: boolean) => set({ isPaquetexpressModalOpen: isOpen }),
+    togglePaquetexpressMapModal: (isOpen: boolean) => set({ isPaquetexpressMapModalOpen: isOpen }),
     toggleDeliveryDetailsModal: (isOpen: boolean) => set({ isDeliveryDetailsModalOpen: isOpen }),
 }))
 

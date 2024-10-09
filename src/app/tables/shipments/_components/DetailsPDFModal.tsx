@@ -24,7 +24,7 @@ export default function DetailsPDFModal() {
     useEffect(() => {
         if (!selectedShipmentOrder.id) return
         callViewPDFApi()
-    }, [selectedShipmentOrder])
+    }, [])
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} classNames={{ closeButton: "opacity-0" }}>
             <ModalContent >

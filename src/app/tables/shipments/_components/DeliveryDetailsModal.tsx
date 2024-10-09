@@ -9,17 +9,16 @@ import toast from 'react-hot-toast';
 
 
 export default function DeliveryDetailsModal() {
-    const {  onOpenChange } = useDisclosure();
+    const { onOpenChange } = useDisclosure();
     const isOpen = useShipmentTableStore.use.isDeliveryDetailsModalOpen()
     const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
     const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
     const [deliveryDetails, setDeliveryDetails] = useState<PaqueteExpressDeliveryMapper>()
     const [deliverySignature, setDeliverySignature] = useState<string>("")
     async function callDeliveryDetailsApi() {
-        if (selectedShipmentOrder.getShipper !== "paquetexpress") return
-        try {
-            const trackingNumber = selectedShipmentOrder.trackingNumber.split("-")[1]
-            console.log(trackingNumber)
+        if (!selectedShipmentOrder.trackingNumber ||selectedShipmentOrder.getShipper !== "paquetexpress") return
+        try {                   
+            const trackingNumber = selectedShipmentOrder?.trackingNumber?.split("-")[1]
             const response = await fetch(`https://cc.paquetexpress.com.mx/ptxws/rest/api/v1/guia/historico/ultimoevento/${trackingNumber}/@1@2@3@4@5?`)
             const text = await response.text()
             const jsonMatch = text.match(/Resultado\((.*)\)/);
@@ -35,6 +34,7 @@ export default function DeliveryDetailsModal() {
     }
 
     async function callDeliverySignatureApi() {
+        if (!selectedShipmentOrder.trackingNumber ||selectedShipmentOrder.getShipper !== "paquetexpress") return
         try {
             const trackingNumber = selectedShipmentOrder.trackingNumber.split("-")[1]
             const response = await fetch(`https://cc.paquetexpress.com.mx/ptxws/rest/api/v1/entrega/firma/${trackingNumber}/@1@2@3@4@5?`)
@@ -43,7 +43,7 @@ export default function DeliveryDetailsModal() {
             const data = JSON.parse(jsonString);
             const imageSrc = `data:image/png;base64,${data[0].imagen}`;
             setDeliverySignature(imageSrc)
-        } catch (error) {
+        } catch (error) {            
             toast.error("Error al obtener la imagen de la entrega por paqueteexpress")
         }
     }
@@ -51,7 +51,7 @@ export default function DeliveryDetailsModal() {
     useEffect(() => {
         callDeliveryDetailsApi()
         callDeliverySignatureApi()
-    }, [selectedShipmentOrder])
+    }, [])
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} onClose={() => toggleDeliveryDetailsModal(false)}>
             <ModalContent>
