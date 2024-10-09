@@ -6,9 +6,9 @@ import { ShipmentsDocumenterMapper } from "@/mapper/shipmentsDocumenterMapper"
 import { Selection } from "@nextui-org/table"
 type State = {
     isDetailsOpen: boolean
-    selectedShipmentOrder: ShipmentItem    
+    selectedShipmentOrder: ShipmentItem
     documenters: ShipmentsDocumenterMapper
-    selectedTableKey:Selection
+    selectedTableKey: Selection
     //Filters
     selectedTabKey: Key
     filterShipper: string
@@ -23,13 +23,14 @@ type State = {
     isDetailsPDFModalOpen: boolean
     isLabelPDFModalOpen: boolean
     isPaquetexpressModalOpen: boolean
+    isDeliveryDetailsModalOpen: boolean
 }
 
 type Actions = {
     toggleDetails: (isOpen: boolean) => void
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => void
     selectShipmentOrder: (shipmentOrder: ShipmentItem) => void
-    setSelectedTableKey: (key: Selection) => void    
+    setSelectedTableKey: (key: Selection) => void
     //Filters
     setSelectedTabKey: (key: Key) => void
     setFilterShipper: (shipper: string) => void
@@ -44,6 +45,7 @@ type Actions = {
     toggleDetailsPDFModal: (isOpen: boolean) => void
     toggleLabelPDFModal: (isOpen: boolean) => void
     togglePaquetexpressModal: (isOpen: boolean) => void
+    toggleDeliveryDetailsModal: (isOpen: boolean) => void
 }
 
 const ShipmentTableStore = create<State & Actions>((set) => ({
@@ -62,10 +64,11 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     isDetailsPDFModalOpen: false,
     isLabelPDFModalOpen: false,
     isPaquetexpressModalOpen: false,
+    isDeliveryDetailsModalOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
-    selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),    
+    selectShipmentOrder: (shipmentOrder: ShipmentItem) => set({ selectedShipmentOrder: shipmentOrder }),
     setDocumenters: (documenters: ShipmentsDocumenterMapper) => set({ documenters: documenters }),
-    setSelectedTableKey: (key: Selection) => set({ selectedTableKey: key }),    
+    setSelectedTableKey: (key: Selection) => set({ selectedTableKey: key }),
     setSelectedTabKey: (key: Key) => set({ selectedTabKey: key }),
     setFilterShipper: (shipper: string) => set({ filterShipper: shipper }),
     setFilterEcommercePlatform: (platform: string) => set({ filterEcommercePlatform: platform }),
@@ -77,6 +80,7 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     toggleDetailsPDFModal: (isOpen: boolean) => set({ isDetailsPDFModalOpen: isOpen }),
     toggleLabelPDFModal: (isOpen: boolean) => set({ isLabelPDFModalOpen: isOpen }),
     togglePaquetexpressModal: (isOpen: boolean) => set({ isPaquetexpressModalOpen: isOpen }),
+    toggleDeliveryDetailsModal: (isOpen: boolean) => set({ isDeliveryDetailsModalOpen: isOpen }),
 }))
 
 

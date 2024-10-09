@@ -24,6 +24,9 @@ import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
 import { Spinner } from "@nextui-org/spinner";
 import { FaLocationDot } from "react-icons/fa6";
 import PaqueteExpressMap from './PaqueteExpressMap'
+import { CiDeliveryTruck } from 'react-icons/ci'
+import { TbTruckDelivery } from 'react-icons/tb'
+import DeliveryDetailsModal from './DeliveryDetailsModal'
 type Props = {
     documenters: any
 }
@@ -55,6 +58,7 @@ export default function ShipmentsTable({ documenters }: Props) {
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
     const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressModal()
+    const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
     //Fetch shipments    
     useEffect(() => {
         setIsLoading(true)
@@ -116,9 +120,10 @@ export default function ShipmentsTable({ documenters }: Props) {
     }
 
     const handleSelectionChange = (ev: Selection) => {
-        setSelectedTableKey(ev)        
+        setSelectedTableKey(ev)
         const orderId = Array.from(ev)[0]
         const shipmentOrder = shipmentsData?.data.find((item) => item.id == orderId)
+        console.log(shipmentOrder)
         if (shipmentOrder) {
             selectShipmentOrder(shipmentOrder)
             toggleDetails(true)
@@ -229,7 +234,8 @@ export default function ShipmentsTable({ documenters }: Props) {
                         >
                             CFDI Traslado XML
                         </DropdownItem>
-                        {order.forcedOfficeKey != "0" ?
+
+                        {order.forcedOfficeKey != "0" && order.getShipper === "paquetexpress" ?
                             <DropdownItem startContent={<FaLocationDot size={16} className='text-sky-500' />}
                                 onClick={() => {
                                     togglePaquetexpressModal(true)
@@ -237,7 +243,15 @@ export default function ShipmentsTable({ documenters }: Props) {
                             >Ubicación Paquetexpress
                             </DropdownItem>
                             : <DropdownItem className='hidden'> </DropdownItem>}
+
+                        {order.getStatusName == "entregado" && order.getShipper === "paquetexpress" ?
+                            <DropdownItem startContent={<TbTruckDelivery size={16} className='text-teal-500' />}
+                                onClick={() => toggleDeliveryDetailsModal(true)}
+                            >Detalles de entrega
+                            </DropdownItem>
+                            : <DropdownItem className='hidden'> </DropdownItem>}
                     </DropdownMenu>
+
                 </Dropdown>
             ),
             isForeign: order.isForeignBranch
@@ -250,8 +264,9 @@ export default function ShipmentsTable({ documenters }: Props) {
             <DetailsPDFModal />
             <LabelPDFModal />
             <PaqueteExpressMap />
+            <DeliveryDetailsModal />
             <div className='ml-5'>
-                <PageTitle text='Envíos' />                
+                <PageTitle text='Envíos' />
             </div>
             <div className='flex p-3'>
                 <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">
@@ -268,7 +283,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                             <ShipmentsPopoverFilter />
                         </div>
                     </div>
-                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper 
+                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
                         selectedKeys={selectedTableKey}
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
