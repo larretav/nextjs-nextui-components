@@ -1,3 +1,7 @@
+/**
+ * Mapper for service
+ * https://onsite.pktuno.mx/ws2/Api/Contactos
+ */
 class Documenter {
     constructor(
         public id: number,

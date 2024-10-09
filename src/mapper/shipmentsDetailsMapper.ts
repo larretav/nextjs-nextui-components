@@ -1,4 +1,7 @@
-// Define the DataItem class with English property names
+/**
+ * Mapper for service
+ * https://onsite.pktuno.mx/ws2//Api/DocOS/obtenerDetallesDoc/a15df564-22f4-11eb-860f-00505632f3b46212?id=${OrderID}
+ */
 export class ShipmentDetailsItem {
     constructor(
         public id: number,

@@ -1,4 +1,7 @@
-// Define the DeliveryEvent class with English property names
+/**
+ * Mapper for service
+ * https://cc.paquetexpress.com.mx/ptxws/rest/api/v1/guia/historico/ultimoevento/${trackingNumber}/@1@2@3@4@5?
+ */
 class DeliveryEvent {
     constructor(
         public date: string, // "fecha"

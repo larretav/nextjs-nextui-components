@@ -1,4 +1,7 @@
-// Define the DataItem class
+/**
+ * Mapper for service
+ * https://onsite.pktuno.mx/ws2//Api/DocOS/Obtener/{apiKey}
+ */
 export class ShipmentItem {
     constructor(
         public id: number,
