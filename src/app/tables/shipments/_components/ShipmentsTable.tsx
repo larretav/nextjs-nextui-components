@@ -24,9 +24,10 @@ import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
 import { Spinner } from "@nextui-org/spinner";
 import { FaLocationDot } from "react-icons/fa6";
 import PaqueteExpressMap from './PaqueteExpressMap'
-import { CiDeliveryTruck } from 'react-icons/ci'
 import { TbTruckDelivery } from 'react-icons/tb'
 import DeliveryDetailsModal from './DeliveryDetailsModal'
+import { IoFootstepsSharp } from 'react-icons/io5'
+import TrackingModal from './TrackingModal'
 type Props = {
     documenters: any
 }
@@ -59,10 +60,12 @@ export default function ShipmentsTable({ documenters }: Props) {
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
     const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressMapModal()
     const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
+    const toggleTrackingModal = useShipmentTableStore.use.toggleTrackingModal()
     const isDetailsPDFModalOpen = useShipmentTableStore.use.isDetailsPDFModalOpen()
     const isLabelPDFModalOpen = useShipmentTableStore.use.isLabelPDFModalOpen()
     const isPaquetexpressMapModalOpen = useShipmentTableStore.use.isPaquetexpressMapModalOpen()
     const isDeliveryDetailsModalOpen = useShipmentTableStore.use.isDeliveryDetailsModalOpen()
+    const isTrackingModalOpen = useShipmentTableStore.use.isTrackingModalOpen()
 
     //Fetch shipments    
     useEffect(() => {
@@ -254,6 +257,12 @@ export default function ShipmentsTable({ documenters }: Props) {
                             >Detalles de entrega
                             </DropdownItem>
                             : <DropdownItem className='hidden'> </DropdownItem>}
+
+                        {order.getStatusName == "entregado" ?
+                            <DropdownItem startContent={<IoFootstepsSharp size={16} className='text-amber-500' />}
+                                onClick={() => toggleTrackingModal(true)}
+                            >Rastreo del envío</DropdownItem>
+                            : <DropdownItem className='hidden'> </DropdownItem>}
                     </DropdownMenu>
 
                 </Dropdown>
@@ -261,7 +270,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             isForeign: order.isForeignBranch
         }
     }) || []
-
+    
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <Toaster />
@@ -269,6 +278,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             {isLabelPDFModalOpen && <LabelPDFModal />}
             {isPaquetexpressMapModalOpen && <PaqueteExpressMap />}
             {isDeliveryDetailsModalOpen && <DeliveryDetailsModal />}
+            {isTrackingModalOpen && <TrackingModal />}
             <div className='ml-5'>
                 <PageTitle text='Envíos' />
             </div>
@@ -287,7 +297,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                             <ShipmentsPopoverFilter />
                         </div>
                     </div>
-                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
+                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper color='warning'
                         selectedKeys={selectedTableKey}
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
