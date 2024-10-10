@@ -307,7 +307,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                         <TableHeader columns={columns}>
                             {(column) => <TableColumn key={column.key}>{column.label}</TableColumn>}
                         </TableHeader>
-                        <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda" isLoading={isLoading} loadingContent={<Spinner color='secondary' size='lg' />}>
+                        <TableBody items={rows} emptyContent="No hay resultados que coincidan con la búsqueda" isLoading={isLoading} loadingContent={<Spinner color='primary' size='lg' />}>
                             {(item) => (
                                 <TableRow key={item.key} className={`cursor-pointer ${item.isForeign && "bg-emerald-200 dark:bg-green-800"}`} >
                                     {(columnKey) =>

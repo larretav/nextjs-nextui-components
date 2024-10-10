@@ -102,9 +102,9 @@ export default function TrackingModal() {
                                             <VerticalTimelineElement
                                                 key={index}
                                                 className=""
-                                                contentStyle={{ background: index % 2 === 0 ? '#2BD450' : '#2196f3', color: '#fff', borderRadius: '10px',  }}
-                                                iconStyle={{ background: index % 2 === 0 ? '#2BD450' : '#2196f3', color: '#fff', boxShadow: '0 0 0 2px #fff' }}
-                                                contentArrowStyle={{ borderRight: index % 2 === 0 ? '7px solid  #2BD450' : '7px solid  #2196f3' }}
+                                                contentStyle={{ background: index % 2 === 0 ? '#2BD450' : '#27418e', color: '#fff', borderRadius: '10px',  }}
+                                                iconStyle={{ background: index % 2 === 0 ? '#2BD450' : '#27418e', color: '#fff', boxShadow: '0 0 0 2px #fff' }}
+                                                contentArrowStyle={{ borderRight: index % 2 === 0 ? '7px solid  #2BD450' : '7px solid  #27418e' }}
                                                 icon={<LiaTruckMovingSolid />}
                                             >
                                                 <span className="vertical-timeline-element-title">{report.date}</span> <br />

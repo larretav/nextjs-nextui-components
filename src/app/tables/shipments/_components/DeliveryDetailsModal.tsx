@@ -71,14 +71,15 @@ export default function DeliveryDetailsModal() {
                             </div>
                             <span className='-mb-2 font-bold'>Firma electrónica</span>
                             <div className='bg-neutral-100 border rounded-lg'>
+                             {deliverySignature &&
                                 <Image
-                                    className='w-auto h-auto min-h-40'
-                                    alt='delivery-signature'
-                                    width={200}
-                                    height={200}
-                                    src={deliverySignature}
-                                >
-                                </Image>
+                                className='w-auto h-auto min-h-40'
+                                alt='delivery-signature'
+                                width={200}
+                                height={200}
+                                src={deliverySignature}
+                            >
+                            </Image>}
                             </div>
                         </>}
                     </ModalBody>

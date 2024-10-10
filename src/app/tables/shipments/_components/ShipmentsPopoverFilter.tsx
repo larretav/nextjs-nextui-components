@@ -27,7 +27,7 @@ export default function ShipmentsPopoverFilter() {
     const setStart = useShipmentTableStore.use.setStart()
     const toggleDetails = useShipmentTableStore.use.toggleDetails()
     const setSelectedTableKey = useShipmentTableStore.use.setSelectedTableKey()
-
+    const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
     //Display how many filters are active
     const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X" || filterDocumenter != "X"
     //Number of active filters
@@ -37,7 +37,7 @@ export default function ShipmentsPopoverFilter() {
     const filterCount4 = selectedTabKey != "X" ? 1 : 0
     const filterCount5 = filterDocumenter != "X" ? 1 : 0
     const filterCountTotal = filterCount + filterCount2 + filterCount3 + filterCount4 + filterCount5
-
+    
     const onShipperChange = useCallback((val: SharedSelection) => {
         if (val.currentKey) {
             setFilterShipper(val.currentKey)
@@ -78,6 +78,18 @@ export default function ShipmentsPopoverFilter() {
         }
     }, [setPage, setFilterWord, filterWord]);
 
+   const handleResetFilters = ()=>{
+    setFilterShipper("0")
+        setFilterEcommercePlatform("X")
+        setFilterWord("")
+        setFilterDocumenter("X")
+        setStart(0)
+        setPage(1)
+        toggleDetails(false)
+        setSelectedTableKey(new Set([]))
+        setSelectedTabKey("P,A")
+   }
+
     const docummenterItems = documenters?.data?.map((documenter) => ({
         key: documenter.id.toString(),
         label: documenter.clientName
@@ -106,7 +118,7 @@ export default function ShipmentsPopoverFilter() {
                         classNames={{ label: "text-xs" }}
                         size='sm'
                         label="Alianzas"
-                        defaultSelectedKeys={[filterShipper.toString()]}
+                        selectedKeys={[filterShipper.toString()]}                        
                         onSelectionChange={onShipperChange}
                     >
                         <SelectItem key={0} classNames={{ title: "text-xs" }}>
@@ -133,7 +145,7 @@ export default function ShipmentsPopoverFilter() {
                         label="Plataforma"
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}
-                        defaultSelectedKeys={[filterEcommercePlatform]}
+                        selectedKeys={[filterEcommercePlatform]}                        
                         onSelectionChange={onEcommerceChange}
                     >
                         <SelectItem key={"X"} classNames={{ title: "text-xs" }}>
@@ -160,7 +172,7 @@ export default function ShipmentsPopoverFilter() {
                         label="Documentador"
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}
-                        defaultSelectedKeys={[filterDocumenter]}
+                        selectedKeys={[filterDocumenter]}
                         onSelectionChange={onDocumenterChange}
                         items={docummenterItems}
                     >
@@ -169,8 +181,9 @@ export default function ShipmentsPopoverFilter() {
                     <Input radius="sm" startContent={<IoIosSearch />}
                         value={filterWord}
                         onValueChange={onFilterWordChange}
-                        placeholder='Buscar por cliente o # orden' size='lg'
+                        placeholder='Buscar por cliente o # orden' size='md'                        
                         classNames={{ input: "text-xs" }} />
+                        <Button className='mt-2' color='warning' onClick={handleResetFilters} size='sm' >Reiniciar Filtros</Button>
                 </div>
             </PopoverContent>
         </Popover>
