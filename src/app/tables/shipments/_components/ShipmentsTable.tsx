@@ -13,7 +13,7 @@ import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
 import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
-import TablePagination from './TablePagination';
+import TablePagination from '../../../../components/pagination/TablePagination';
 import DetailsPDFModal from './DetailsPDFModal'
 import { FaFileExport } from "react-icons/fa6";
 import LabelPDFModal from './LabelPDFModal'
@@ -51,10 +51,12 @@ export default function ShipmentsTable({ documenters }: Props) {
     const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
     const filterWord = useShipmentTableStore.use.filterWord()
     //Pagination
+    const page = useShipmentTableStore.use.page()
     const setPage = useShipmentTableStore.use.setPage()
     const start = useShipmentTableStore.use.start()
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
+    const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
     //Modals
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
@@ -270,7 +272,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             isForeign: order.isForeignBranch
         }
     }) || []
-    
+
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <Toaster />
@@ -301,7 +303,16 @@ export default function ShipmentsTable({ documenters }: Props) {
                         selectedKeys={selectedTableKey}
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
-                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ? <TablePagination shipmentsData={shipmentsData} /> : ""
+                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ?
+                                <TablePagination page={page}
+                                    setPage={setPage}
+                                    rowsPerPage={rowsPerPage}
+                                    setRowsPerPage={setRowsPerPage}
+                                    toggleDetails={toggleDetails}
+                                    recordsFiltered={shipmentsData.recordsFiltered}
+                                    recordsTotal={shipmentsData.recordsTotal}
+                                    setStart={setStart}
+                                /> : ""
                         }
                     >
                         <TableHeader columns={columns}>
