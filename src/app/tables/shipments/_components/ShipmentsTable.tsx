@@ -127,8 +127,7 @@ export default function ShipmentsTable({ documenters }: Props) {
         } catch (error) {
             toast.error("Error al obtener información, reintente más tarde")
         }
-    }
-
+    }    
     const handleSelectionChange = (ev: Selection) => {
         setSelectedTableKey(ev)
         const orderId = Array.from(ev)[0]
