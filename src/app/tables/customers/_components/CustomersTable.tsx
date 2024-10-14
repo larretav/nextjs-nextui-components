@@ -13,10 +13,11 @@ import { TiUserAdd } from "react-icons/ti";
 
 import CustomerPopoverFilter from './CustomerPopoverFilter'
 import { filterCustomer } from '../functions/filterCustomer'
-import { CustomersMapper } from '@/mapper/customersMapper'
+import { Customer, CustomersMapper } from '@/mapper/customersMapper'
 import TablePagination from '@/components/pagination/TablePagination'
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown'
 import { FaEdit } from "react-icons/fa";
+import { useSwitchPage } from '../functions/useSwitchPage'
 
 
 type Props = {
@@ -35,8 +36,11 @@ export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
         mappedActiveUsersResponse.data.reverse().concat(mappedInactiveUsersResponse.data.reverse())
     )
 
+    //Switch pages hook
+    const {switchToAddOrEditCustomerPage} = useSwitchPage()
     //Store hooks
     const selectCustomer = useCustomerCatalogStore.use.selectCustomer()
+ 
     //Pagination
     const page = useCustomerCatalogStore.use.page()
     const rowsPerPage = useCustomerCatalogStore.use.rowsPerPage()
@@ -52,6 +56,7 @@ export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
     //Tab item count
     const activeCustomers = filterByType.filter((item) => item.active.toLowerCase() === "si").length
     const inActiveCustomers = filterByType.filter((item) => item.active.toLowerCase() === "cb").length
+
 
     const columns = [
         {
@@ -80,7 +85,7 @@ export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
         },
     ]
 
-    const rows = filterByStatus.map((customer) => {
+    const rows = filterByStatus.map((customer, index) => {
         return {
             key: customer.id,
             icon: <>{customer.type === "Fisica" ? <IoPerson /> : <BsBuildingsFill />}</>,
@@ -95,10 +100,10 @@ export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
                     </Button>
                 </DropdownTrigger>
                 <DropdownMenu aria-label="Actions">
-                    <DropdownItem key="viewDetailsPDF" startContent={customer.type === "Fisica" ? <IoPerson size={16}/> : <BsBuildingsFill size={16}/>}
+                    <DropdownItem key={`${customer.id}-${index} detalles`} startContent={customer.type === "Fisica" ? <IoPerson size={16}/> : <BsBuildingsFill size={16}/>}
                     >Detalles del cliente
                     </DropdownItem>
-                    <DropdownItem key="viewDetailsPDF" startContent={<FaEdit size={16} className='text-sky-500'/>}
+                    <DropdownItem key={`${customer.id}-${index} editar`} startContent={<FaEdit size={16} className='text-sky-500'/>}
                     >Editar cliente
                     </DropdownItem>
                 </DropdownMenu>
@@ -121,7 +126,12 @@ export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <div className="flex p-2 px-4 rounded-lg">
                 <PageTitle text='Clientes' />
-                <Button startContent={<TiUserAdd className='text-white' />} size='sm' color='secondary' className='mt-1 ml-auto text-white'>Nuevo</Button>
+                <Button startContent={<TiUserAdd className='text-white' />} 
+                onClick={()=>{
+                    selectCustomer({} as Customer)
+                    switchToAddOrEditCustomerPage()
+                }}
+                size='sm' color='secondary' className='mt-1 ml-auto text-white'>Nuevo</Button>
             </div>
             <div className='flex p-3'>
                 <div className="flex flex-col w-full bg-neutral-50 rounded-xl dark:bg-zinc-900">

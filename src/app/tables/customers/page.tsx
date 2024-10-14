@@ -1,7 +1,7 @@
+/**
+ * ACTIVIDAD SUSPENDIDA - CATALOGO DE CLIENTES
+ */
 import CustomerCatalogDesktop from './_components/CustomerCatalogDesktop';
-
-
-
 export default async function Page() {
     const headers = new Headers({
         "Content-Type": "application/json",
