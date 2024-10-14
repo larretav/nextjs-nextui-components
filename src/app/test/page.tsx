@@ -1,57 +1,100 @@
 "use client"
 
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@nextui-org/modal"
-import { Button } from '@nextui-org/button';
-type Props = {}
+import { Avatar  } from "@nextui-org/avatar";
+import { Select, SelectItem } from '@nextui-org/select';
+import {
+  Autocomplete,  
+  AutocompleteItem
+} from "@nextui-org/autocomplete";
+import { LocationItem, LocationResponseMapper } from '@/mapper/locationServiceMapper';
 
-export default function page({ }: Props) {
-  const [pdfUrl, setPdfUrl] = useState("");
-  const { onOpen, onOpenChange } = useDisclosure();
-  const [isOpen, setIsOpen] = useState(false);
+
+
+let debounceTimeout: NodeJS.Timeout;
+export default function page() {
+  const [selectedCountry, setSelectedCountry] = useState<Set<string>>(new Set(["mx"]))
+  const [term, setTerm] = useState("")
+  const [locationList, setLocationList] = useState<LocationResponseMapper>()
+  const [selectedLocation, setSelectedLocation] = useState<LocationItem>()
+
+  async function callGetLocationApi() {
+    if (term.length < 4) return
+    const country = Array.from(selectedCountry)[0]
+    const response = await fetch(`https://onsite.pktuno.mx/ws2//Api/Cps/AutocompleteJSON?country=${country}&term=${term}`)
+    const json = await response.json()
+    //Filter duplicate results from the response
+    const mappedResponse = LocationResponseMapper.fromResponse(json)
+    const originalData = mappedResponse.data
+    const uniqueLocations = originalData?.filter((loc, index, self) =>
+      index === self.findIndex((t) => t.label === loc.label)
+    );
+    mappedResponse.data = uniqueLocations
+    setLocationList(mappedResponse)
+  }
   useEffect(() => {
-    async function callApi() {
-      const res = await fetch("https://web.pktuno.mx/PKT1/impresiondocumentacion.php?id=216339&GPDF=Si&idfranquicia=80&idcontacto=11287&Onsite")
-      const blob = await res.blob()
-      const url = URL.createObjectURL(blob)
-      setPdfUrl(url);
-      setIsOpen(true)
+    clearTimeout(debounceTimeout);
+    if (term) {
+      debounceTimeout = setTimeout(() => {
+        callGetLocationApi();
+      }, 500); // 500ms delay
     }
-    callApi()
-  }, [])
+  }, [term, callGetLocationApi]);
+
+  const countryList = [
+    { id: "mx", name: "México", url: "https://flagcdn.com/mx.svg", value: "mx" },
+    { id: "ad", name: "Andorra", url: "https://flagcdn.com/ad.svg", value: "ad" },
+    { id: "ar", name: "Argentina", url: "https://flagcdn.com/ar.svg", value: "ar" },
+    { id: "ca", name: "Canada", url: "https://flagcdn.com/ca.svg", value: "ca" },
+    { id: "es", name: "España", url: "https://flagcdn.com/es.svg", value: "es" }
+  ]
+
   return (
     <div className="flex">
-      <p>Test page</p>
-      <div className="flex flex-wrap gap-4 ml-auto">
-        <Button onPress={onOpen}>Open Modal</Button>
-        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
-          <ModalContent>
-            {(onClose) => (
-              <>
+      <Autocomplete
+        items={locationList?.data || []}
+        aria-label='Código postal o ciudad'
+        placeholder='Código postal o ciudad'
+        fullWidth
+        scrollShadowProps={{ isEnabled: false }}
+        autoComplete='nel'
+        startContent={<Select
+          aria-label='Select country'
+          size='sm'
+          className='w-44'
+          selectedKeys={selectedCountry}
+          onSelectionChange={(ev) => {
+            const id = Array.from(ev)[0] as string
+            setSelectedCountry(new Set([id]))
+          }}
+          classNames={{ listbox: "p-0" }}
+          items={countryList}
+          renderValue={(countryList) => {
+            return countryList.map((country, index) => (
+              <div key={`${country.data?.id}-${index}`} className='flex items-center'>
+                <Avatar className='w-7 h-7' src={country.data?.url} size='sm' />
+                <span className='text-center pl-2 text-xs'>{country.data?.name}</span>
+              </div>
+            ))
+          }}
+        >
+          {(country) =>
+            <SelectItem aria-label='Select country' startContent={<Avatar alt="Argentina" className="w-7 h-7" src={country.url} />} key={country.id} value={country.value}><span className='text-xs'>{country.name}</span></SelectItem>}
+        </Select>}
+        onInputChange={(ev) => {
+          if (ev.length > 10) return
+          setTerm(ev)
+        }}
+        onSelectionChange={(ev) => {
+          const rel = locationList?.data.find((loc) => loc.label == ev)
+          setSelectedLocation(rel)
+        }}
+      >
+        {(location) => <AutocompleteItem key={`${location.value}`}>{location.label}</AutocompleteItem>}
 
-                <ModalBody>
-                  {pdfUrl && (
-                    <embed
-                      type="application/pdf"
-                      src={pdfUrl}
-                      width="100%"
-                      height="500"
-                    />
-                  )}
-                </ModalBody>
-                <ModalFooter>
-                  <Button color="danger" variant="light" onPress={() => setIsOpen(false)}>
-                    Close
-                  </Button>
-
-                </ModalFooter>
-              </>
-            )}
-          </ModalContent>
-        </Modal>
-
-      </div>
+      </Autocomplete>
 
     </div>
   )
 }
+

@@ -1,21 +1,24 @@
-import PaginationText from '@/components/pagination/PaginationText'
-import { ShipmentsMapper } from '@/mapper/shipmentsMapper'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
+"use client"
 import { Pagination } from '@nextui-org/pagination'
 import { Select, SelectItem } from '@nextui-org/select'
 import { SharedSelection } from '@nextui-org/system'
 import React, { useCallback } from 'react'
 
 type Props = {
-    shipmentsData: ShipmentsMapper 
+    page: number
+    setPage: (page: number) => void
+    setStart?: (start: number) => void
+    rowsPerPage: number
+    setRowsPerPage: (rowsPerPage: number) => void
+    toggleDetails?: (isOpen: boolean) => void
+    recordsFiltered: number
+    recordsTotal: number
 }
-export default function TablePagination({shipmentsData}:Props) {
-    const page = useShipmentTableStore.use.page()
-    const setPage = useShipmentTableStore.use.setPage()    
-    const setStart = useShipmentTableStore.use.setStart()
-    const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
-    const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
-    const toggleDetails = useShipmentTableStore.use.toggleDetails()
+export default function TablePagination({ page, setPage, setStart = () => { }, rowsPerPage, setRowsPerPage, toggleDetails = () => { }, recordsFiltered, recordsTotal }: Props) {
+    //Pagination text
+    const startIndex = (page - 1) * rowsPerPage + 1;
+    const endIndex = Math.min(page * rowsPerPage, recordsFiltered);
+
     const onPageChange = (page: number) => {
         page > 0 ? setPage(page) : setPage(1)
         const newStart = (page - 1) * rowsPerPage;
@@ -32,12 +35,10 @@ export default function TablePagination({shipmentsData}:Props) {
     return (
         <div className="flex w-full  gap-3">
             <div className="flex items-center gap-3">
-            <PaginationText
-                itemsPerPage={rowsPerPage}
-                page={page}
-                totalItems={shipmentsData?.recordsFiltered || 0}
-                totalFilteredItems={shipmentsData.recordsTotal}
-            />
+                <span className="text-xs self-center">
+                    Mostrando registros del {startIndex} al {endIndex} de un total de {recordsFiltered} <br />
+                    Filtrados de un total de {recordsTotal}
+                </span>
                 <span className="flex items-center text-xs  text-nowrap pl-3">
                     Filas:
                 </span>
@@ -57,14 +58,14 @@ export default function TablePagination({shipmentsData}:Props) {
                     <SelectItem key={100} value="100">100</SelectItem>
                 </Select>
             </div>
-     
+
             <Pagination
                 isCompact
                 showControls
                 showShadow
                 color="secondary"
                 page={page}
-                total={Math.ceil((shipmentsData?.recordsFiltered || 0) / rowsPerPage)}
+                total={Math.ceil((recordsFiltered || 0) / rowsPerPage)}
                 onChange={onPageChange}
             />
         </div>

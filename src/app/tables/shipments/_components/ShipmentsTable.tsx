@@ -13,21 +13,21 @@ import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
 import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
-import TablePagination from './TablePagination';
+import TablePagination from '../../../../components/pagination/TablePagination';
 import DetailsPDFModal from './DetailsPDFModal'
-import { FaFileExport } from "react-icons/fa6";
+import { FaFileExport ,FaLocationDot,FaFileContract} from "react-icons/fa6";
 import LabelPDFModal from './LabelPDFModal'
-import toast, { Toaster } from 'react-hot-toast'; '../functions/extractCFDIParams'
-import { FaFileContract } from "react-icons/fa6";
+import toast, { Toaster } from 'react-hot-toast'; 
 import { BsFiletypeXml } from "react-icons/bs";
 import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
 import { Spinner } from "@nextui-org/spinner";
-import { FaLocationDot } from "react-icons/fa6";
 import PaqueteExpressMap from './PaqueteExpressMap'
 import { TbTruckDelivery } from 'react-icons/tb'
 import DeliveryDetailsModal from './DeliveryDetailsModal'
 import { IoFootstepsSharp } from 'react-icons/io5'
 import TrackingModal from './TrackingModal'
+import { Input } from '@nextui-org/input'
+import { IoIosSearch } from 'react-icons/io'
 type Props = {
     documenters: any
 }
@@ -50,11 +50,14 @@ export default function ShipmentsTable({ documenters }: Props) {
     const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
     const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
     const filterWord = useShipmentTableStore.use.filterWord()
+    const setFilterWord = useShipmentTableStore.use.setFilterWord()
     //Pagination
+    const page = useShipmentTableStore.use.page()
     const setPage = useShipmentTableStore.use.setPage()
     const start = useShipmentTableStore.use.start()
     const setStart = useShipmentTableStore.use.setStart()
     const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
+    const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
     //Modals
     const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
     const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
@@ -76,7 +79,7 @@ export default function ShipmentsTable({ documenters }: Props) {
     }, [filterShipper, filterEcommercePlatform, filterDocumenter, selectedTabKey, rowsPerPage, start])
     //Separate useEffect for debounce
     const debounceDelay = 100;
-    useEffect(() => {
+    useEffect(() => {        
         setIsLoading(true)
         const timeoutId = setTimeout(() => {
             callShipmentsApi().finally(() => {
@@ -126,7 +129,6 @@ export default function ShipmentsTable({ documenters }: Props) {
             toast.error("Error al obtener información, reintente más tarde")
         }
     }
-
     const handleSelectionChange = (ev: Selection) => {
         setSelectedTableKey(ev)
         const orderId = Array.from(ev)[0]
@@ -147,6 +149,15 @@ export default function ShipmentsTable({ documenters }: Props) {
         setSelectedTableKey(new Set([]))
     }, [setSelectedTabKey, setPage])
 
+    const onFilterWordChange = useCallback((val: string) => {
+        setFilterWord(val)
+        if (filterWord.length > 3 ) {
+            setStart(0)
+            setPage(1);
+            toggleDetails(false)
+            setSelectedTableKey(new Set([]))
+        }
+    }, [setPage, setFilterWord, filterWord]);
     const columns = [{
         key: "order",
         label: "Orden"
@@ -270,7 +281,7 @@ export default function ShipmentsTable({ documenters }: Props) {
             isForeign: order.isForeignBranch
         }
     }) || []
-    
+
     return (
         <div className='bg-zinc-100 dark:bg-zinc-950'>
             <Toaster />
@@ -293,15 +304,30 @@ export default function ShipmentsTable({ documenters }: Props) {
                             <TabFilter key={"C"} text="Cancelado" value={""} activeColor="red" />
                             <TabFilter key={"X"} text="Todos" value={""} activeColor="green" />
                         </TabsFilters>
-                        <div className='flex items-center ml-auto'>
+                        <div className='flex items-center ml-auto gap-2'>
+                            <Input radius="sm" startContent={<IoIosSearch />}
+                                value={filterWord}
+                                onValueChange={onFilterWordChange}
+                                placeholder='Cliente o # orden' size='sm'
+                                classNames={{ input: "text-xs" }} 
+                                />
                             <ShipmentsPopoverFilter />
                         </div>
                     </div>
-                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper color='warning'
+                    <Table aria-label="dynamic collection table" selectionMode='single' selectionBehavior='toggle' removeWrapper
                         selectedKeys={selectedTableKey}
                         onSelectionChange={handleSelectionChange}
                         bottomContent={
-                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ? <TablePagination shipmentsData={shipmentsData} /> : ""
+                            shipmentsData?.data?.length && shipmentsData.data.length > 0 ?
+                                <TablePagination page={page}
+                                    setPage={setPage}
+                                    rowsPerPage={rowsPerPage}
+                                    setRowsPerPage={setRowsPerPage}
+                                    toggleDetails={toggleDetails}
+                                    recordsFiltered={shipmentsData.recordsFiltered}
+                                    recordsTotal={shipmentsData.recordsTotal}
+                                    setStart={setStart}
+                                /> : ""
                         }
                     >
                         <TableHeader columns={columns}>

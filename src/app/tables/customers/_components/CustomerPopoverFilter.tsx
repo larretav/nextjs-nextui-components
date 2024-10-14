@@ -1,3 +1,4 @@
+"use client"
 import React,{useCallback} from 'react'
 import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
 import { Button } from '@nextui-org/button'
@@ -5,21 +6,28 @@ import { FaFilter } from 'react-icons/fa6'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Input } from '@nextui-org/input'
 import { IoIosSearch } from 'react-icons/io'
-import { useCustomerTableStore } from '@/store/tables/customer-table-store'
+import { useCustomerCatalogStore } from '@/store/tables/customer-catalog-store'
 import { SharedSelection } from '@nextui-org/system'
+import { Badge } from '@nextui-org/badge'
 
 
-export default function PopoverFilter() {
-    const filterCountry = useCustomerTableStore.use.filterCountry()
-    const filterWord = useCustomerTableStore.use.filterWord()
-    const filterCustomerType = useCustomerTableStore.use.filterCustomerType()
-
-    const setFilterCountry = useCustomerTableStore.use.setFilterCountry()
-    const setFilterWord = useCustomerTableStore.use.setFilterWord()
-    const setFilterCustomerType = useCustomerTableStore.use.setFilterCustomerType()
-
-    const setPage = useCustomerTableStore.use.setPage()
+export default function CustomerPopoverFilter() {
+    const filterCountry = useCustomerCatalogStore.use.filterCountry()
+    const filterWord = useCustomerCatalogStore.use.filterWord()
+    const filterCustomerType = useCustomerCatalogStore.use.filterCustomerType()
+    const selectedTabKey = useCustomerCatalogStore.use.selectedTabKey() as string
+    const setFilterCountry = useCustomerCatalogStore.use.setFilterCountry()
+    const setFilterWord = useCustomerCatalogStore.use.setFilterWord()
+    const setFilterCustomerType = useCustomerCatalogStore.use.setFilterCustomerType()
+    const setSelectedTabKey = useCustomerCatalogStore.use.setSelectedTabKey()
+    const setPage = useCustomerCatalogStore.use.setPage()
     
+    const isAnyFilterActive = filterCountry != "Todos" || filterWord != "" || filterCustomerType != "Todos" || selectedTabKey != "Todos"
+    const filterCount1 = filterCountry != "Todos" ? 1 : 0
+    const filterCount2 = filterWord != "" ? 1 : 0
+    const filterCount3 = filterCustomerType != "Todos" ? 1 : 0
+    const filterCount4 = selectedTabKey != "Todos" ? 1 : 0
+    const filterCountTotal = filterCount1 + filterCount2 + filterCount3 + filterCount4
     const onFilterWordChange = useCallback((val: string) => {
         setFilterWord(val)
         setPage(1);
@@ -35,6 +43,13 @@ export default function PopoverFilter() {
         setPage(1);
     }, [setPage, setFilterCustomerType]);
 
+    const handleResetFilters = () => {
+        setFilterCountry("Todos")
+        setFilterWord("")
+        setFilterCustomerType("Todos")
+        setSelectedTabKey("si")
+        setPage(1)
+    }
     return (
         <Popover
             showArrow
@@ -43,8 +58,10 @@ export default function PopoverFilter() {
             backdrop={"opaque"}
         >
             <PopoverTrigger>
-                <Button color="default" isIconOnly radius="full" size="sm" variant="light" className="capitalize">
-                    <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
+                  <Button isIconOnly radius="full" size="sm" variant="light" className="capitalize">
+                    <Badge content={filterCountTotal} isInvisible={!isAnyFilterActive} size='sm' color='primary'>
+                        <FaFilter size={16} className='text-zinc-600 dark:text-zinc-300' />
+                    </Badge>
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full">
@@ -59,7 +76,7 @@ export default function PopoverFilter() {
                         label="País"
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}
-                        defaultSelectedKeys={[filterCountry]}
+                        selectedKeys={[filterCountry]}
                         onSelectionChange={onCountryChange}
                     >
                         <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
@@ -71,25 +88,29 @@ export default function PopoverFilter() {
                         <SelectItem key={"Cl"} classNames={{ title: "text-xs" }}>
                             Chile
                         </SelectItem>
+                        <SelectItem key={"Us"} classNames={{ title: "text-xs" }}>
+                            USA
+                        </SelectItem>
                     </Select>
                     <Select
                         size='sm'
                         label="Tipo"
                         disallowEmptySelection
                         classNames={{ label: "text-xs" }}
-                        defaultSelectedKeys={[filterCustomerType]}
+                        selectedKeys={[filterCustomerType]}
                         onSelectionChange={onCustomerTypeChange}
                     >
                         <SelectItem key={"Todos"} classNames={{ title: "text-xs" }}>
                             Todos
                         </SelectItem>
-                        <SelectItem key={"person"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={"Fisica"} classNames={{ title: "text-xs" }}>
                             Persona
                         </SelectItem>
-                        <SelectItem key={"company"} classNames={{ title: "text-xs" }}>
+                        <SelectItem key={"Moral"} classNames={{ title: "text-xs" }}>
                             Compañía
                         </SelectItem>
                     </Select>
+                    <Button size='sm' color='warning' onPress={handleResetFilters}>Reiniciar filtros</Button>
                 </div>
             </PopoverContent>
         </Popover>
