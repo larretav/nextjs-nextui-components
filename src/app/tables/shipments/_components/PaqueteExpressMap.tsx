@@ -45,11 +45,16 @@ export default function PaqueteExpressMap() {
                                 <p className='text-xs '><strong>Dirección: </strong> {PXOffice?.getAddress} { }</p> <br />
                                 <p className='text-xs'><strong>Horario: </strong>{PXOffice?.data.schedule}</p> <br />
                                 <p className='text-xs '><strong>Teléfonos: </strong>{PXOffice?.getPhones}</p>
-                                <Button className='w-40 mt-2 text-xs' size='sm' color='secondary'
+                                <Button className='w-40 mt-2 text-xs hidden sm:block' size='sm' color='secondary'
                                     onClick={() => {
                                         navigator.clipboard.writeText(`https://www.google.com/maps?q=${PXOffice?.data.latitude},${PXOffice?.data.longitude}`)
                                         toast.success("Ubicación copiada al portapapeles")
                                     }}>Copiar ubicación</Button>
+
+                                <Button className='w-40 mt-2 text-xs sm:hidden ' size='sm' color='secondary'
+                                    onClick={() => {
+                                        window.open(`https://www.google.com/maps?q=${PXOffice?.data.latitude},${PXOffice?.data.longitude}`, "_blank")                                        
+                                    }}>Ver en google maps</Button>
                             </div>
                             {PXOffice?.data.latitude && PXOffice?.data.longitude && (
                                 <div className='w-96 h-72'>

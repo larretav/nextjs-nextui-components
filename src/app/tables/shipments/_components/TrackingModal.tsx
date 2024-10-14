@@ -20,12 +20,13 @@ export default function TrackingModal() {
     const [selectedAccordionKey, setSelectedAccordionKey] = useState<Set<string>>(new Set([]))
     const lastUpdate = shipmentTracking?.reports[0].status
     const lastUpdateTime = `El ${shipmentTracking?.reports[0].date} a las ${shipmentTracking?.reports[0].time}`
-    const reports = shipmentTracking?.reports
+    const reports = shipmentTracking?.reports    
+
     async function callDeliveryTrackingApi() {
         try {
             const response = await fetch("https://test-mx-api.paq1.com.mx//API/Tracking/2/251195308815/complete") //Temporal para test
             const json = await response.json()
-            const mappedResponse = ShipmentTrackingMapper.fromResponse(json)
+            const mappedResponse = ShipmentTrackingMapper.fromResponse(json)                       
             setShipmentTracking(mappedResponse)
         } catch (error) {
             toast.error("Error al consultar el servicio de rastreo del envío")
@@ -39,7 +40,7 @@ export default function TrackingModal() {
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} scrollBehavior='outside' size='2xl'
             onClose={() => toggleTrackingModal(false)}
-            className='bg-neutral-200 dark:bg-neutral-800'>
+            className='bg-neutral-100 dark:bg-neutral-800'>
             <ModalContent >
                 <ModalBody className='px-2'>
                     {isLoading && <Spinner color="success" size="lg" />}
@@ -49,10 +50,10 @@ export default function TrackingModal() {
                         <div className="flex  justify-center items-center gap-1">
                             {shipmentTracking.trackingLabels?.map((label, index) => (
                                 <div key={`${label.Namestate}-${index}`} className='w-1/4'>
-                                    {label.On && <div className='flex flex-col items-center'>
-                                        <Image src={label.UrlImg} alt={label.Namestate} width={100} height={100} />
+                                    <div className='flex flex-col items-center'>
+                                        <Image src={label.UrlImg} alt={label.Namestate} width={100} height={100} className={`${label.On ? '' : 'grayscale'}`}/>
                                         <span className='text-[10px] py-3'>{label.Namestate}</span>
-                                    </div>}
+                                    </div>
                                 </div>
                             ))}
                         </div>

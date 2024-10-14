@@ -68,15 +68,7 @@ export default function ShipmentsPopoverFilter() {
         }
     }, [setPage, setFilterDocumenter]);
 
-    const onFilterWordChange = useCallback((val: string) => {
-        setFilterWord(val)
-        if (filterWord.length > 3) {
-            setStart(0)
-            setPage(1);
-            toggleDetails(false)
-            setSelectedTableKey(new Set([]))
-        }
-    }, [setPage, setFilterWord, filterWord]);
+
 
    const handleResetFilters = ()=>{
     setFilterShipper("0")
@@ -112,9 +104,10 @@ export default function ShipmentsPopoverFilter() {
                 </Button>
             </PopoverTrigger>
             <PopoverContent className="w-full">
-                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-3 '>
+                <div className='grid grid-cols-1 gap-2 p-2 md:grid-cols-4 '>
                     <Select
                         disallowEmptySelection
+                        className='w-56'
                         classNames={{ label: "text-xs" }}
                         size='sm'
                         label="Alianzas"
@@ -178,12 +171,8 @@ export default function ShipmentsPopoverFilter() {
                     >
                         {(doc) => <SelectItem key={doc.key}>{doc.label}</SelectItem>}
                     </Select>
-                    <Input radius="sm" startContent={<IoIosSearch />}
-                        value={filterWord}
-                        onValueChange={onFilterWordChange}
-                        placeholder='Buscar por cliente o # orden' size='md'                        
-                        classNames={{ input: "text-xs" }} />
-                        <Button className='mt-2' color='warning' onClick={handleResetFilters} size='sm' >Reiniciar Filtros</Button>
+
+                        <Button className='mt-2 ' color='danger' variant='light' onClick={handleResetFilters} size='sm' >Reiniciar Filtros</Button>
                 </div>
             </PopoverContent>
         </Popover>
