@@ -35,7 +35,7 @@ export class ShipmentsDocumenterMapper {
     }
 
     // Static method to map the response and return MappedResponse instance
-    static fromResponse(response: any): ShipmentsDocumenterMapper {
+    static fromJson(response: any): ShipmentsDocumenterMapper {
         const mappedData: ApiResponse = {
             data: response.map((item: any) => new Documenter(
                 item.id,

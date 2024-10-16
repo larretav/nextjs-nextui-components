@@ -39,7 +39,7 @@ export class PaqueteExpressDeliveryMapper {
     }
 
     // Static method to map the response and return MappedResponse instance
-    static fromResponse(response: any): PaqueteExpressDeliveryMapper {
+    static fromJson(response: any): PaqueteExpressDeliveryMapper {
         const mappedData: ApiResponse = {
             data: new DeliveryEvent(
                 response.fecha, // date

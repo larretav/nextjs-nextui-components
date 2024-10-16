@@ -70,7 +70,7 @@ export class ShipmentTrackingMapper {
         this.reports = reports;
     }
 
-    static fromResponse(response: any): ShipmentTrackingMapper {
+    static fromJson(response: any): ShipmentTrackingMapper {
         return new ShipmentTrackingMapper(
             response.TrackingNumber,
             response.Shipper,

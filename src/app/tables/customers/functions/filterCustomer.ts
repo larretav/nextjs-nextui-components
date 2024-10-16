@@ -1,6 +1,6 @@
 import { useCustomerCatalogStore } from "@/store/tables/customer-catalog-store";
-import { Customer } from "@/mapper/customersMapper";
-import { CustomersMapper } from "@/mapper/customersMapper";
+import { Customer } from "@/models/shipments/customer.model";
+import { CustomersMapper } from "@/models/shipments/customer.model";
 
 export function filterCustomer(customer:Customer[]){
     const selectedTabKey = useCustomerCatalogStore.use.selectedTabKey() as string    

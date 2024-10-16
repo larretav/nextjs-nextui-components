@@ -1,6 +1,6 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
+import { useShipmentListStore } from '@/store/tables/shipment-list-store'
 import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue, } from "@nextui-org/table"
 import { IconEcommerce, PageTitle, ShipperType, } from '@/components'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
@@ -10,7 +10,7 @@ import ShipmentsPopoverFilter from './ShipmentsPopoverFilter'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
 import { Button } from '@nextui-org/button'
 import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
-import { ShipmentsMapper } from '@/mapper/shipmentsMapper';
+import { ShipmentsMapper } from '@/models/shipments/shipments.model';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
 import TablePagination from '../../../../components/pagination/TablePagination';
@@ -19,7 +19,7 @@ import { FaFileExport ,FaLocationDot,FaFileContract} from "react-icons/fa6";
 import LabelPDFModal from './LabelPDFModal'
 import toast, { Toaster } from 'react-hot-toast'; 
 import { BsFiletypeXml } from "react-icons/bs";
-import { ShipmentsDocumenterMapper } from '@/mapper/shipmentsDocumenterMapper'
+import { ShipmentsDocumenterMapper } from '@/models/shipments/shipmentsDocumenter.model'
 import { Spinner } from "@nextui-org/spinner";
 import PaqueteExpressMap from './PaqueteExpressMap'
 import { TbTruckDelivery } from 'react-icons/tb'
@@ -37,38 +37,38 @@ export default function ShipmentsTable({ documenters }: Props) {
     const [isLoading, setIsLoading] = useState(false);
 
     //Store hooks
-    const isDetailsOpen = useShipmentTableStore.use.isDetailsOpen()
-    const toggleDetails = useShipmentTableStore.use.toggleDetails()
-    const selectShipmentOrder = useShipmentTableStore.use.selectShipmentOrder()
-    const setDocumenters = useShipmentTableStore.use.setDocumenters()
-    const selectedTableKey = useShipmentTableStore.use.selectedTableKey()
-    const setSelectedTableKey = useShipmentTableStore.use.setSelectedTableKey()
+    const isDetailsOpen = useShipmentListStore.use.isDetailsOpen()
+    const toggleDetails = useShipmentListStore.use.toggleDetails()
+    const selectShipmentOrder = useShipmentListStore.use.selectShipmentOrder()
+    const setDocumenters = useShipmentListStore.use.setDocumenters()
+    const selectedTableKey = useShipmentListStore.use.selectedTableKey()
+    const setSelectedTableKey = useShipmentListStore.use.setSelectedTableKey()
     //Filters    
-    const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
-    const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
-    const filterShipper = useShipmentTableStore.use.filterShipper()
-    const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
-    const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
-    const filterWord = useShipmentTableStore.use.filterWord()
-    const setFilterWord = useShipmentTableStore.use.setFilterWord()
+    const setSelectedTabKey = useShipmentListStore.use.setSelectedTabKey()
+    const selectedTabKey = useShipmentListStore.use.selectedTabKey() as string
+    const filterShipper = useShipmentListStore.use.filterShipper()
+    const filterEcommercePlatform = useShipmentListStore.use.filterEcommercePlatform()
+    const filterDocumenter = useShipmentListStore.use.filterDocumenter()
+    const filterWord = useShipmentListStore.use.filterWord()
+    const setFilterWord = useShipmentListStore.use.setFilterWord()
     //Pagination
-    const page = useShipmentTableStore.use.page()
-    const setPage = useShipmentTableStore.use.setPage()
-    const start = useShipmentTableStore.use.start()
-    const setStart = useShipmentTableStore.use.setStart()
-    const rowsPerPage = useShipmentTableStore.use.rowsPerPage()
-    const setRowsPerPage = useShipmentTableStore.use.setRowsPerPage()
+    const page = useShipmentListStore.use.page()
+    const setPage = useShipmentListStore.use.setPage()
+    const start = useShipmentListStore.use.start()
+    const setStart = useShipmentListStore.use.setStart()
+    const rowsPerPage = useShipmentListStore.use.rowsPerPage()
+    const setRowsPerPage = useShipmentListStore.use.setRowsPerPage()
     //Modals
-    const toggleViewPDFModal = useShipmentTableStore.use.toggleDetailsPDFModal()
-    const toggleViewLabelPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
-    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressMapModal()
-    const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
-    const toggleTrackingModal = useShipmentTableStore.use.toggleTrackingModal()
-    const isDetailsPDFModalOpen = useShipmentTableStore.use.isDetailsPDFModalOpen()
-    const isLabelPDFModalOpen = useShipmentTableStore.use.isLabelPDFModalOpen()
-    const isPaquetexpressMapModalOpen = useShipmentTableStore.use.isPaquetexpressMapModalOpen()
-    const isDeliveryDetailsModalOpen = useShipmentTableStore.use.isDeliveryDetailsModalOpen()
-    const isTrackingModalOpen = useShipmentTableStore.use.isTrackingModalOpen()
+    const toggleViewPDFModal = useShipmentListStore.use.toggleDetailsPDFModal()
+    const toggleViewLabelPDFModal = useShipmentListStore.use.toggleLabelPDFModal()
+    const togglePaquetexpressModal = useShipmentListStore.use.togglePaquetexpressMapModal()
+    const toggleDeliveryDetailsModal = useShipmentListStore.use.toggleDeliveryDetailsModal()
+    const toggleTrackingModal = useShipmentListStore.use.toggleTrackingModal()
+    const isDetailsPDFModalOpen = useShipmentListStore.use.isDetailsPDFModalOpen()
+    const isLabelPDFModalOpen = useShipmentListStore.use.isLabelPDFModalOpen()
+    const isPaquetexpressMapModalOpen = useShipmentListStore.use.isPaquetexpressMapModalOpen()
+    const isDeliveryDetailsModalOpen = useShipmentListStore.use.isDeliveryDetailsModalOpen()
+    const isTrackingModalOpen = useShipmentListStore.use.isTrackingModalOpen()
 
     //Fetch shipments    
     useEffect(() => {
@@ -94,7 +94,7 @@ export default function ShipmentsTable({ documenters }: Props) {
 
     //Save documenters in global store
     useEffect(() => {
-        const mappedDocumenters = ShipmentsDocumenterMapper.fromResponse(documenters)
+        const mappedDocumenters = ShipmentsDocumenterMapper.fromJson(documenters)
         setDocumenters(mappedDocumenters)
     }, [documenters])
     async function callShipmentsApi() {
@@ -123,7 +123,7 @@ export default function ShipmentsTable({ documenters }: Props) {
                 }
             )
             const json = await res.json()
-            const mappedResponse = ShipmentsMapper.fromResponse(json)
+            const mappedResponse = ShipmentsMapper.fromJson(json)
             setShipmentsData(mappedResponse)
         } catch (error) {
             toast.error("Error al obtener información, reintente más tarde")

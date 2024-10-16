@@ -1,3 +1,4 @@
+
 export class Customer {
     id: number; // "id"
     internalCode: string; // "codigointerno"
@@ -120,7 +121,7 @@ export class CustomersMapper {
         this.data = data;
     }
 
-    static fromResponse(json: any): CustomersMapper {
+    static fromJson(json: any): CustomersMapper {
         const clients: Customer[] = json.data.map((clientData: any) => new Customer(clientData));
 
         return new CustomersMapper(json.key, json.isError, json.Message, json.totalRecords, clients);

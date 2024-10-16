@@ -41,7 +41,7 @@ export class MappedPaqueteExpressOffice {
     }
 
     // Static method to map the response and return MappedResponse instance
-    static fromResponse(response: any): MappedPaqueteExpressOffice {
+    static fromJson(response: any): MappedPaqueteExpressOffice {
         const mappedData: ApiResponse = {
             data: new Office(
                 response.clave, // code

@@ -1,8 +1,8 @@
 import { create } from "zustand"
 import createSelectors from "../selectors"
 import { Key } from "react"
-import { Customer, } from "@/mapper/customersMapper"
-import { LocationItem } from "@/mapper/locationServiceMapper"
+import { Customer, } from "@/models/shipments/customer.model"
+import { LocationItem } from "@/models/shipments/locationService.model"
 type State = {
     selectedCustomer: Customer
     selectedTabKey: Key

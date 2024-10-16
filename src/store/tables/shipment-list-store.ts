@@ -1,8 +1,8 @@
 import { create } from "zustand"
 import createSelectors from "../selectors"
 import { Key } from "react"
-import { ShipmentItem } from "@/mapper/shipmentsMapper"
-import { ShipmentsDocumenterMapper } from "@/mapper/shipmentsDocumenterMapper"
+import { ShipmentItem } from "@/models/shipments/shipments.model"
+import { ShipmentsDocumenterMapper } from "@/models/shipments/shipmentsDocumenter.model"
 import { Selection } from "@nextui-org/table"
 type State = {
     isDetailsOpen: boolean
@@ -50,7 +50,7 @@ type Actions = {
     toggleTrackingModal: (isOpen: boolean) => void
 }
 
-const ShipmentTableStore = create<State & Actions>((set) => ({
+const ShipmentListStore = create<State & Actions>((set) => ({
     isDetailsOpen: false,
     toggleDetails: (isOpen: boolean) => set({ isDetailsOpen: isOpen }),
     documenters: {} as ShipmentsDocumenterMapper,
@@ -90,4 +90,4 @@ const ShipmentTableStore = create<State & Actions>((set) => ({
     toggleTrackingModal: (isOpen: boolean) => set({ isTrackingModalOpen: isOpen }),      
 }))
 
-export const useShipmentTableStore = createSelectors(ShipmentTableStore);
+export const useShipmentListStore = createSelectors(ShipmentListStore);

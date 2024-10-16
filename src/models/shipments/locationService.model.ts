@@ -35,7 +35,7 @@ export class LocationResponseMapper {
         this.data = [];
     }
 
-    static fromResponse(json: any[]): LocationResponseMapper {
+    static fromJson(json: any[]): LocationResponseMapper {
         const response = new LocationResponseMapper();
         response.data = json.map((item: any) => new LocationItem(item));
         return response;

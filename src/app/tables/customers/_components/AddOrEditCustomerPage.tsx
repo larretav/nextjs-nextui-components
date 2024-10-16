@@ -13,7 +13,7 @@ import {
   Autocomplete,  
   AutocompleteItem
 } from "@nextui-org/autocomplete";
-import { LocationItem, LocationResponseMapper } from '@/mapper/locationServiceMapper';
+import { LocationItem, LocationResponseMapper } from '@/models/shipments/locationService.model';
 import AutocompleteLocation from './AutocompleteLocation'
 
 export default function AddOrEditCustomerPage() {

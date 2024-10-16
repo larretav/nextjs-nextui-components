@@ -6,28 +6,28 @@ import { FaFilter } from 'react-icons/fa6'
 import { Select, SelectItem } from '@nextui-org/select'
 import { Input } from '@nextui-org/input'
 import { IoIosSearch } from 'react-icons/io'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
+import { useShipmentListStore } from '@/store/tables/shipment-list-store'
 import { SharedSelection } from '@nextui-org/system'
 import { Badge } from '@nextui-org/badge'
 
 export default function ShipmentsPopoverFilter() {
-    const documenters = useShipmentTableStore.use.documenters()
+    const documenters = useShipmentListStore.use.documenters()
 
-    const filterShipper = useShipmentTableStore.use.filterShipper()
-    const filterEcommercePlatform = useShipmentTableStore.use.filterEcommercePlatform()
-    const filterDocumenter = useShipmentTableStore.use.filterDocumenter()
-    const filterWord = useShipmentTableStore.use.filterWord()
-    const selectedTabKey = useShipmentTableStore.use.selectedTabKey() as string
+    const filterShipper = useShipmentListStore.use.filterShipper()
+    const filterEcommercePlatform = useShipmentListStore.use.filterEcommercePlatform()
+    const filterDocumenter = useShipmentListStore.use.filterDocumenter()
+    const filterWord = useShipmentListStore.use.filterWord()
+    const selectedTabKey = useShipmentListStore.use.selectedTabKey() as string
 
-    const setFilterShipper = useShipmentTableStore.use.setFilterShipper()
-    const setFilterEcommercePlatform = useShipmentTableStore.use.setFilterEcommercePlatform()
-    const setFilterWord = useShipmentTableStore.use.setFilterWord()
-    const setFilterDocumenter = useShipmentTableStore.use.setFilterDocumenter()
-    const setPage = useShipmentTableStore.use.setPage()
-    const setStart = useShipmentTableStore.use.setStart()
-    const toggleDetails = useShipmentTableStore.use.toggleDetails()
-    const setSelectedTableKey = useShipmentTableStore.use.setSelectedTableKey()
-    const setSelectedTabKey = useShipmentTableStore.use.setSelectedTabKey()
+    const setFilterShipper = useShipmentListStore.use.setFilterShipper()
+    const setFilterEcommercePlatform = useShipmentListStore.use.setFilterEcommercePlatform()
+    const setFilterWord = useShipmentListStore.use.setFilterWord()
+    const setFilterDocumenter = useShipmentListStore.use.setFilterDocumenter()
+    const setPage = useShipmentListStore.use.setPage()
+    const setStart = useShipmentListStore.use.setStart()
+    const toggleDetails = useShipmentListStore.use.toggleDetails()
+    const setSelectedTableKey = useShipmentListStore.use.setSelectedTableKey()
+    const setSelectedTabKey = useShipmentListStore.use.setSelectedTabKey()
     //Display how many filters are active
     const isAnyFilterActive = filterShipper != "0" || filterEcommercePlatform != "X" || filterWord.length > 3 || selectedTabKey != "X" || filterDocumenter != "X"
     //Number of active filters

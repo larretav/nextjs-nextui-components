@@ -62,7 +62,7 @@ export class CustomerAddressListMapper {
         this.data = data;
     }
 
-    static fromResponse(json: any): CustomerAddressListMapper {
+    static fromJson(json: any): CustomerAddressListMapper {
         const addresses: Address[] = json.data.map((addressData: any) => new Address(addressData));
         return new CustomerAddressListMapper(json.key, json.isError, json.Message, json.totalRecords, addresses);
     }

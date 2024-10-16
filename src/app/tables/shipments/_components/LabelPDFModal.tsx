@@ -1,15 +1,15 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
+import { useShipmentListStore } from '@/store/tables/shipment-list-store';
 import { Button } from '@nextui-org/button';
 import toast from 'react-hot-toast';
 import { Spinner } from "@nextui-org/spinner";
 export default function LabelPDFModal() {
     const { onOpenChange } = useDisclosure();
-    const toggleViewPDFModal = useShipmentTableStore.use.toggleLabelPDFModal()
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
-    const isOpen = useShipmentTableStore.use.isLabelPDFModalOpen()
+    const toggleViewPDFModal = useShipmentListStore.use.toggleLabelPDFModal()
+    const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()
+    const isOpen = useShipmentListStore.use.isLabelPDFModalOpen()
     const [pdfUrl, setPdfUrl] = useState("");
     const [isLoading, setIsLoading] = useState(false)
     const urlCall = `https://onsite.pktuno.mx/ws2//Api/Labels/PDF?id=${selectedShipmentOrder.id}&ecom=true`

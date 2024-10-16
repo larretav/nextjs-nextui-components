@@ -2,17 +2,17 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
+import { useShipmentListStore } from '@/store/tables/shipment-list-store';
 import { Button } from '@nextui-org/button';
-import { MappedPaqueteExpressOffice } from '@/mapper/paqueteExpressOfficeMapper';
+import { MappedPaqueteExpressOffice } from '@/models/shipments/paqueteExpressOffice.model';
 import toast from 'react-hot-toast';
 import { APIProvider, Map, Pin, AdvancedMarker } from '@vis.gl/react-google-maps';
 import { Spinner } from '@nextui-org/spinner';
 export default function PaqueteExpressMap() {
     const { onOpenChange } = useDisclosure();
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
-    const togglePaquetexpressModal = useShipmentTableStore.use.togglePaquetexpressMapModal()
-    const isOpen = useShipmentTableStore.use.isPaquetexpressMapModalOpen()
+    const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()
+    const togglePaquetexpressModal = useShipmentListStore.use.togglePaquetexpressMapModal()
+    const isOpen = useShipmentListStore.use.isPaquetexpressMapModalOpen()
     const [PXOffice, setPXOffice] = useState<MappedPaqueteExpressOffice | undefined>()
     const [isLoading, setIsLoading] = useState(false)
     async function callPaqueteExpressApi() {
@@ -22,7 +22,7 @@ export default function PaqueteExpressMap() {
             const text = await res.text()
             const jsonString = text.replace(/^Resultado\(/, '').replace(/\)$/, '');
             const json = JSON.parse(jsonString)
-            const mappedResponse = MappedPaqueteExpressOffice.fromResponse(json[0])
+            const mappedResponse = MappedPaqueteExpressOffice.fromJson(json[0])
             setPXOffice(mappedResponse)
         } catch (error) {
             toast.error("Error al obtener información de la oficina, reintente más tarde")

@@ -1,12 +1,12 @@
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
-import { ShipmentDetailsMapper } from '@/mapper/shipmentsDetailsMapper'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store'
+import { ShipmentDetailsMapper } from '@/models/shipments/shipmentsDetails.model'
+import { useShipmentListStore } from '@/store/tables/shipment-list-store'
 import { Card, CardHeader } from '@nextui-org/card'
 import React, { useEffect, useState } from 'react'
-import { ShipmentDetailsItem } from "@/mapper/shipmentsDetailsMapper"
+import { ShipmentDetailsItem } from "@/models/shipments/shipmentsDetails.model"
 import toast from 'react-hot-toast'
 export default function ShipmentDetails() {
-  const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
+  const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()
   const [details, setDetails] = useState<ShipmentDetailsItem[]>()
   useEffect(() => {
     callShipmentDetailsApi()
@@ -21,7 +21,7 @@ export default function ShipmentDetails() {
         headers: myHeaders,
       })
       const json = await response.json()
-      const mappedResponse = ShipmentDetailsMapper.fromResponse(json)
+      const mappedResponse = ShipmentDetailsMapper.fromJson(json)
       setDetails(mappedResponse.data)
     } catch (error) {
       toast.error("Error al obtener los detalles de la orden")

@@ -1,6 +1,6 @@
 "use client"
-import { PaqueteExpressDeliveryMapper } from '@/mapper/paquetexpressDeliveryMapper';
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
+import { PaqueteExpressDeliveryMapper } from '@/models/shipments/paquetexpressDelivery.model';
+import { useShipmentListStore } from '@/store/tables/shipment-list-store';
 import { Button } from '@nextui-org/button'
 import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/modal'
 import Image from 'next/image';
@@ -11,9 +11,9 @@ import { Spinner } from "@nextui-org/spinner"
 
 export default function DeliveryDetailsModal() {
     const { onOpenChange } = useDisclosure();
-    const isOpen = useShipmentTableStore.use.isDeliveryDetailsModalOpen()
-    const toggleDeliveryDetailsModal = useShipmentTableStore.use.toggleDeliveryDetailsModal()
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
+    const isOpen = useShipmentListStore.use.isDeliveryDetailsModalOpen()
+    const toggleDeliveryDetailsModal = useShipmentListStore.use.toggleDeliveryDetailsModal()
+    const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()
     const [deliveryDetails, setDeliveryDetails] = useState<PaqueteExpressDeliveryMapper>()
     const [deliverySignature, setDeliverySignature] = useState<string>("")
     const [isLoading, setIsLoading] = useState(false)
@@ -26,7 +26,7 @@ export default function DeliveryDetailsModal() {
             const jsonMatch = text.match(/Resultado\((.*)\)/);
             if (jsonMatch && jsonMatch[1]) {
                 const jsonData = JSON.parse(jsonMatch[1]);
-                const mappedResponse = PaqueteExpressDeliveryMapper.fromResponse(jsonData[0])
+                const mappedResponse = PaqueteExpressDeliveryMapper.fromJson(jsonData[0])
                 setDeliveryDetails(mappedResponse)
             }
 

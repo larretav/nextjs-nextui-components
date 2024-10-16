@@ -7,7 +7,7 @@ import {
     Autocomplete,
     AutocompleteItem
 } from "@nextui-org/autocomplete";
-import { LocationItem, LocationResponseMapper } from '@/mapper/locationServiceMapper';
+import { LocationItem, LocationResponseMapper } from '@/models/shipments/locationService.model';
 import { useCustomerCatalogStore } from '@/store/tables/customer-catalog-store';
 
 let debounceTimeout: NodeJS.Timeout;
@@ -23,7 +23,7 @@ export default function AutocompleteLocation() {
         const response = await fetch(`https://onsite.pktuno.mx/ws2//Api/Cps/AutocompleteJSON?country=${country}&term=${term}`)
         const json = await response.json()
         //Filter duplicate results from the response
-        const mappedResponse = LocationResponseMapper.fromResponse(json)
+        const mappedResponse = LocationResponseMapper.fromJson(json)
         const originalData = mappedResponse.data
         const uniqueLocations = originalData?.filter((loc, index, self) =>
             index === self.findIndex((t) => t.label === loc.label)

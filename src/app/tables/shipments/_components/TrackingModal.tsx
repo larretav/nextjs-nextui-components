@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
-import { useShipmentTableStore } from '@/store/tables/shipment-table-store';
+import { useShipmentListStore } from '@/store/tables/shipment-list-store';
 import { Button } from '@nextui-org/button';
 import toast from 'react-hot-toast';
 import { Spinner } from "@nextui-org/spinner";
-import { ShipmentTrackingMapper } from '@/mapper/shipmentTrackingMapper';
+import { ShipmentTrackingMapper } from '@/models/shipments/shipmentTracking.model';
 import { Accordion, AccordionItem } from "@nextui-org/accordion"
 import Image from 'next/image';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
@@ -12,9 +12,9 @@ import 'react-vertical-timeline-component/style.min.css';
 import { LiaTruckMovingSolid } from 'react-icons/lia';
 export default function TrackingModal() {
     const { onOpenChange } = useDisclosure();
-    const isOpen = useShipmentTableStore.use.isTrackingModalOpen()
-    const toggleTrackingModal = useShipmentTableStore.use.toggleTrackingModal()
-    const selectedShipmentOrder = useShipmentTableStore.use.selectedShipmentOrder()
+    const isOpen = useShipmentListStore.use.isTrackingModalOpen()
+    const toggleTrackingModal = useShipmentListStore.use.toggleTrackingModal()
+    const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()
     const [shipmentTracking, setShipmentTracking] = useState<ShipmentTrackingMapper>()
     const [isLoading, setIsLoading] = useState(false)
     const [selectedAccordionKey, setSelectedAccordionKey] = useState<Set<string>>(new Set([]))
@@ -26,7 +26,7 @@ export default function TrackingModal() {
         try {
             const response = await fetch("https://test-mx-api.paq1.com.mx//API/Tracking/2/251195308815/complete") //Temporal para test
             const json = await response.json()
-            const mappedResponse = ShipmentTrackingMapper.fromResponse(json)                       
+            const mappedResponse = ShipmentTrackingMapper.fromJson(json)                       
             setShipmentTracking(mappedResponse)
         } catch (error) {
             toast.error("Error al consultar el servicio de rastreo del envío")

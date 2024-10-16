@@ -13,7 +13,7 @@ import { TiUserAdd } from "react-icons/ti";
 
 import CustomerPopoverFilter from './CustomerPopoverFilter'
 import { filterCustomer } from '../functions/filterCustomer'
-import { Customer, CustomersMapper } from '@/mapper/customersMapper'
+import { Customer, CustomersMapper } from '@/models/shipments/customer.model'
 import TablePagination from '@/components/pagination/TablePagination'
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown'
 import { FaEdit } from "react-icons/fa";
@@ -25,8 +25,8 @@ type Props = {
     inactiveUsers: any
 }
 export default function CustomersTable({ activeUsers, inactiveUsers }: Props) {
-    const mappedActiveUsersResponse = CustomersMapper.fromResponse(activeUsers)
-    const mappedInactiveUsersResponse = CustomersMapper.fromResponse(inactiveUsers)
+    const mappedActiveUsersResponse = CustomersMapper.fromJson(activeUsers)
+    const mappedInactiveUsersResponse = CustomersMapper.fromJson(inactiveUsers)
 
     const allCustomers = new CustomersMapper(
         mappedActiveUsersResponse.key,

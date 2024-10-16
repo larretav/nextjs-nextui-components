@@ -163,7 +163,7 @@ export class ShipmentsMapper {
     }
 
     // Static method to map the response and return MappedResponse instance
-    static fromResponse(response: any): ShipmentsMapper {
+    static fromJson(response: any): ShipmentsMapper {
         const mappedData: ApiResponse = {
             draw: response.draw,
             recordsTotal: response.recordsTotal,
