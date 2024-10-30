@@ -11,9 +11,10 @@ const statusOptions: Record<ShipmentStatus, { color: StatusColor }> = {
   "en tránsito": { color: "blue" },
   "entregado": { color: "success" },
   "cancelado": { color: "danger" },
+  "cancelada": { color: "danger" },
 };
 export default function OsStatus({status}: Props) {
-    const {color} = statusOptions[status]
+    const {color} = statusOptions[status] 
   return (
    <Status  color={color}><span className='capitalize'>{status}</span></Status>
   )

@@ -1,1 +1,1 @@
-export type ShipmentStatus = 'en sitio' | 'en tránsito' | 'entregado' | 'cancelado' 
+export type ShipmentStatus = 'en sitio' | 'en tránsito' | 'entregado' | 'cancelado' | "cancelada"
