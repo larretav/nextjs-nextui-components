@@ -9,10 +9,7 @@ export type TabFilterProps = TabItemProps & {
   text: string;
   value: string | number,
   activeColor?: NextUIColorKeys | TailwindColorKeys,
-
 }
-
-
 
 export const TabFilter = ({ text, value, activeColor = "blue", ...restProps }: TabFilterProps) => {
   return (

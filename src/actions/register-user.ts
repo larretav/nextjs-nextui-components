@@ -2,9 +2,9 @@
 
 import { RegisterFormType, registerUserSchema } from "@/lib";
 
-export const registerUser = (data: RegisterFormType) => {
+export const registerUser = async (data: RegisterFormType) => {
 
   const resp = registerUserSchema.safeParse(data)
-  // console.log(resp)
-  
+  console.log(resp)
+
 }

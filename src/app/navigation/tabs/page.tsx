@@ -2,6 +2,7 @@ import { PageTitle } from "@/components";
 import OSTabsFilters from "./_components/OSTabsFilters";
 
 export default function TabsPage() {
+  
   return (
     <div className="flex flex-col gap-3 px-2 md:px-6">
       <PageTitle text="Tabs" />

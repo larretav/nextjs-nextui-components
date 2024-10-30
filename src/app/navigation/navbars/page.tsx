@@ -2,6 +2,7 @@ import { MobileToolbar, PageTitle } from "@/components";
 import { OSNavbar } from "./_components/OSNavbar";
 import { FaPlus } from "react-icons/fa6";
 import { OSSidebar } from "../drawer/_components/onsite-sidebar/OSSidebar";
+import { BoxOpenSolid } from "@/components/icons";
 
 export default function NavbarsPage() {
   return (
@@ -12,7 +13,11 @@ export default function NavbarsPage() {
         <OSNavbar />
         <MobileToolbar title="Detalles" endContent={<FaPlus size={24} className="text-blue-500" />} />
         <OSSidebar />
+
+        <div className="text-green-500">
+          <BoxOpenSolid size={50}  />
+        </div>
       </div>
-    </div>
+    </div >
   );
 }

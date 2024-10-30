@@ -10,6 +10,7 @@ import React from 'react'
 import { FaFilter } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { RegisterFormTest } from "./_components/RegisterFormTest";
+import { BoxOpenSolid } from "@/components/icons";
 
 type Props = {}
 
@@ -18,10 +19,14 @@ export default function page({ }: Props) {
     <div className="flex flex-col p-3">
       <PageTitle text="Test Page" />
 
-      <div className="flex flex-col justify-center items-center">
+      <div className="flex flex-col justify-center items-center gap-4">
 
         <div className="max-w-[300px]">
-          <RegisterFormTest />
+          {/* <RegisterFormTest /> */}
+
+          <div className="text-blue-600">
+            <BoxOpenSolid size={200}  />
+          </div>
         </div>
       </div>
 
