@@ -1,4 +1,4 @@
-import { PageTitle } from "@/components";
+import { BottomSheet, PageTitle } from "@/components";
 import { DrawerButtons } from "./_components/DrawerButtons";
 import SidebarFiltersButton from "./_components/SidebarFiltersButton";
 
@@ -9,6 +9,7 @@ export default function DrawerPage() {
       <div className="grid grid-cols-1 gap-3 mt-2 md:grid-cols-5">
         <DrawerButtons />
         <SidebarFiltersButton />
+        <BottomSheet />
       </div>
     </div>
   );
