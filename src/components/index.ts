@@ -1,3 +1,4 @@
+export { BottomSheet } from "./navigation/bottom-sheet/BottomSheet";
 export { SidebarFilterDivider } from "./data-display/divider/SidebarFilterDivider";
 export { SidebarFilterTitle } from "./typography/SidebarFilterTitle";
 export { BottomNavigationBar } from "./navigation/bottom-nav-bar/BottomNavigationBar";
