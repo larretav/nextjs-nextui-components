@@ -1,6 +1,7 @@
 import { BottomSheet, PageTitle } from "@/components";
 import { DrawerButtons } from "./_components/DrawerButtons";
 import SidebarFiltersButton from "./_components/SidebarFiltersButton";
+import BottomSheetButton from "./_components/BottomSheetButton";
 
 export default function DrawerPage() {
   return (
@@ -9,7 +10,7 @@ export default function DrawerPage() {
       <div className="grid grid-cols-1 gap-3 mt-2 md:grid-cols-5">
         <DrawerButtons />
         <SidebarFiltersButton />
-        <BottomSheet />
+        <BottomSheetButton />
       </div>
     </div>
   );
