@@ -1,6 +1,7 @@
 import { PageTitle } from "@/components";
 import { OSStatusFilterRadio } from "./_components/OSStatusFilterRadio";
 import { OSQuotationRadio } from "./_components/OSQuotationRadio";
+import OSImageRadio from "./_components/OSImageRadio";
 
 export default function RadioPage() {
   return (
@@ -10,6 +11,7 @@ export default function RadioPage() {
       <div className="grid grid-cols-1 gap-2 md:grid-cols-3">
         <OSQuotationRadio />
         <OSStatusFilterRadio />
+        <OSImageRadio />
       </div>
 
     </div>
