@@ -29,11 +29,8 @@ export const ImageRadio = ({ src, alt, imageProps, activeColor = 'primary', ...p
   const { theme = 'light' } = useTheme();
   const isDark = theme === 'dark'
 
-  const bgColor = getNextUIOrTailwindColor(activeColor, theme, 50);
-  const borderColor = getNextUIOrTailwindColor(activeColor, theme, 300);
-
-  const bgColor2 = getNextUIOrTailwindColor(activeColor, 'light', 500, 'rgba', isDark ? 15 : 8);
-  const borderColor2 = getNextUIOrTailwindColor(activeColor, 'light', 500, 'rgba', isDark ? 40 : 60);
+  const bgColor = getNextUIOrTailwindColor(activeColor, 'light', 500, 'rgba', isDark ? 15 : 8);
+  const borderColor = getNextUIOrTailwindColor(activeColor, 'light', 500, 'rgba', isDark ? 40 : 60);
 
   return (
     <Component
@@ -51,16 +48,19 @@ export const ImageRadio = ({ src, alt, imageProps, activeColor = 'primary', ...p
       </VisuallyHidden>
 
       <div className="flex flex-col items-center justify-between gap-1">
-        <div className={clsx("p-2 rounded-2xl size-16 border transition-colors ", {
+        <div className={clsx("p-2 rounded-2xl size-16 border transition-all", {
         })}
           style={{
-            backgroundColor: isSelected ? bgColor2 : undefined,
-            borderColor: isSelected ? borderColor2 : 'transparent',
+            backgroundColor: isSelected ? bgColor : undefined,
+            borderColor: isSelected ? borderColor : 'transparent',
           }}
         >
           <Image src={src} alt={alt} width={50} height={50} className="object-contain" {...imageProps} />
         </div>
-        {children && <span {...getLabelProps()} >{children}</span>}
+        {children && <span {...getLabelProps()} className={clsx(getLabelProps().className, {
+          'font-semibold': isSelected
+        })}
+        >{children}</span>}
       </div>
     </Component>
   );

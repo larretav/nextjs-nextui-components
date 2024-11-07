@@ -37,7 +37,7 @@ const OSImageRadio = () => {
       onValueChange={setSelected}
 
     >
-      {options.map(({text, ...props}) => <ImageRadio {...props} activeColor="sky">
+      {options.map(({text, ...props}) => <ImageRadio key={props.value} {...props} activeColor="sky">
         {text}
       </ImageRadio>)}
 
