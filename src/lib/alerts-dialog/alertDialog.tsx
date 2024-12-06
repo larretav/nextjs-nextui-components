@@ -5,6 +5,7 @@ import React, { createContext, useContext, useState, ReactNode, useEffect } from
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCircleExclamation, FaCircleXmark, FaInfo, FaTriangleExclamation } from 'react-icons/fa6';
+import { Button } from '@nextui-org/button';
 
 
 type AlertProps = {
@@ -18,6 +19,21 @@ type AlertProps = {
 type AlertContextType = {
   showAlert: (title: string, options: Omit<AlertProps, 'title'>) => void;
 };
+
+
+
+let alertCallback: ((props: AlertProps) => void) | null = null;
+
+export const showAlert = (title: string, options: Omit<AlertProps, 'title'>) => {
+  if (!alertCallback)
+    console.error('No se encontró un proveedor de alertas. Asegura que tu aplicación esté envuelta con AlertProvider. ');
+
+  alertCallback!({ title, ...options });
+
+};
+
+
+
 
 const AlertContext = createContext<AlertContextType | undefined>(undefined);
 
@@ -38,22 +54,23 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <AlertContext.Provider value={{ showAlert }}>
+
       {children}
+
+
       <CustomAlert
         title={alertProps?.title ?? ''}
         severity={alertProps?.severity ?? 'success'}
         description={alertProps?.description ?? 'success'}
         open={open}
-        onOpenChange={setOpen}
+        onClose={() => setOpen(false)}
         {...alertProps}
-        isDismissable
         footer={
-          <button
-            className="btn btn-primary"
-            onClick={closeAlert}
+          <Button
+            onPress={closeAlert}
           >
             Cerrar
-          </button>
+          </Button>
         }
       />
     </AlertContext.Provider>
@@ -72,7 +89,7 @@ export const useAlert = (): AlertContextType => {
 
 
 
-const CustomAlert = ({ severity = "success", title, description, footer, isDismissable = false, open = true, onOpenChange }: AlertProps & { open: boolean, onOpenChange: (isOpen: boolean) => void }) => {
+const CustomAlert = ({ severity = "success", title, description, footer, isDismissable = false, open = true, onClose }: AlertProps & { open: boolean, onClose: () => void }) => {
 
   const icons: Record<AlertProps['severity'], ReactNode> = {
     success: <FaCheckCircle size={100} />,
@@ -82,13 +99,14 @@ const CustomAlert = ({ severity = "success", title, description, footer, isDismi
   }
 
 
-  const { isOpen, onOpenChange: onOpChange } = useDisclosure({ defaultOpen: open });
-  
+  const { isOpen, onOpenChange } = useDisclosure({ isOpen: open });
+
 
   useEffect(() => {
-    onOpChange();
-  }, [open])
-  
+    if (!isOpen)
+      onClose();
+  }, [isOpen, onOpenChange])
+
 
   return (
     <Modal
@@ -96,11 +114,8 @@ const CustomAlert = ({ severity = "success", title, description, footer, isDismi
       isDismissable={false}
       className="rounded-3xl bg-content2"
       isOpen={isOpen}
-      onOpenChange={(isOpen) => {
-        onOpChange();
-        onOpenChange(isOpen);
-      }}
-      // hideCloseButton
+      onOpenChange={onOpenChange}
+      hideCloseButton
       motionProps={{
         variants: {
           enter: {

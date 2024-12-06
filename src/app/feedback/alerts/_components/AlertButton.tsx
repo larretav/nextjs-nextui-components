@@ -6,16 +6,19 @@ import React from 'react'
 
 const AlertButton = () => {
 
-  const alertDialog = useAlert();
-
-  const handleOpen = () => {
-    // alert.success("Hola we", { description: 'Esta es una descripcion', })
-    alertDialog.showAlert("Hola we", { severity: 'success', description: 'Descripción' })
-  }
+  const { showAlert } = useAlert();
 
   return (
-    <div className="flex flex-col col-span-4">
-      <Button onPress={handleOpen} >Trigger</Button>
+    <div className="flex gap-2 col-span-4">
+      
+      <Button color='primary' onPress={() => {
+        showAlert("Hola we", { severity: 'success', description: 'Descripción' })
+      }} >Trigger</Button>
+
+      <Button color='secondary' onPress={() => {
+        showAlert("Segunda alerts", { severity: 'info', description: 'Descripción' })
+      }}  >Trigger</Button>
+
     </div>
   )
 }
