@@ -5,9 +5,6 @@ import AlertButton from "./_components/AlertButton";
 
 export default function AlertsPage() {
 
-
-
-
   return (
     <div className="flex flex-col gap-3 px-2 md:px-6">
       <PageTitle text="Alerts" />
