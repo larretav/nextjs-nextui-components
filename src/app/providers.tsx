@@ -28,7 +28,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 							<AlertProvider>
 								{children}
 							</AlertProvider>
-						</IconContext.Provider>
+						</IconContext.Provider>						
 					</NextThemesProvider>
 				</StyledComponentsRegistry>
 			</NextUIProvider>

@@ -1,5 +1,4 @@
 import { PageTitle } from "@/components";
-import { alert } from "@/components/feedback/CustomAlert";
 import AlertCard from "@/components/surfaces/cards/desktop-mobile/AlertCard";
 import AlertButton from "./_components/AlertButton";
 

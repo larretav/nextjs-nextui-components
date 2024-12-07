@@ -1,62 +1,85 @@
 // src/context/AlertContext.tsx
 'use client';
 
-import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
+import React, { useState, ReactNode, useEffect } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FaCircleExclamation, FaCircleXmark, FaInfo, FaTriangleExclamation } from 'react-icons/fa6';
+import { FaCircleExclamation, FaCircleXmark, FaInfo, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
 import { Button } from '@nextui-org/button';
 
 
 type AlertProps = {
   severity: "success" | "info" | "warning" | "error";
   title: string;
-  description: string;
+  description?: string;
   isDismissable?: boolean;
   footer?: ReactNode;
 };
 
-type AlertContextType = {
-  showAlert: (title: string, options: Omit<AlertProps, 'title'>) => void;
-};
-
+type ShowAlert = (title: string, options?: Omit<AlertProps, 'title' | 'severity'>) => void
 
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
 
-export const showAlert = (title: string, options: Omit<AlertProps, 'title'>) => {
+const validateCallback = () => {
   if (!alertCallback)
-    console.error('No se encontró un proveedor de alertas. Asegura que tu aplicación esté envuelta con AlertProvider. ');
-
-  alertCallback!({ title, ...options });
-
-};
+    throw new Error('No se encontró un proveedor de alertas. Asegura que tu aplicación esté envuelta con AlertProvider. ');
+}
 
 
+export const showAlert: Record<AlertProps['severity'], ShowAlert> = {
+  success: (title, options) => {
+    validateCallback();
+    alertCallback!({ ...options, title, severity: 'success' })
+  },
+
+  info: (title, options) => {
+    validateCallback();
+    alertCallback!({ ...options, title, severity: 'info' })
+  },
+
+  warning: (title, options) => {
+    validateCallback();
+    alertCallback!({ ...options, title, severity: 'warning' })
+  },
+
+  error: (title, options) => {
+    validateCallback();
+    alertCallback!({ ...options, title, severity: 'error' })
+  }
+}
 
 
-const AlertContext = createContext<AlertContextType | undefined>(undefined);
+
 
 export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   const [alertProps, setAlertProps] = useState<AlertProps | null>(null);
   const [open, setOpen] = useState(false)
 
-  const showAlert = (title: string, options: Omit<AlertProps, 'title'>) => {
-    setAlertProps({ title, ...options });
-    setOpen(true)
-  };
 
   const closeAlert = () => {
     setAlertProps(null);
     setOpen(false)
   };
 
+
+  useEffect(() => {
+
+    alertCallback = (props: AlertProps) => {
+      setAlertProps(props);
+      setOpen(true);
+    };
+
+    return () => {
+      alertCallback = null;
+    };
+
+  }, []);
+
   return (
-    <AlertContext.Provider value={{ showAlert }}>
-
+    <>
       {children}
-
 
       <CustomAlert
         title={alertProps?.title ?? ''}
@@ -73,23 +96,13 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
           </Button>
         }
       />
-    </AlertContext.Provider>
+    </>
   );
 };
 
-export const useAlert = (): AlertContextType => {
-  const context = useContext(AlertContext);
-  if (!context) {
-    throw new Error('useAlert debe usarse dentro de un AlertProvider');
-  }
-  return context;
-};
 
 
-
-
-
-const CustomAlert = ({ severity = "success", title, description, footer, isDismissable = false, open = true, onClose }: AlertProps & { open: boolean, onClose: () => void }) => {
+const CustomAlert = ({ severity, title, description = 'Descripción', footer, isDismissable = true, open = true, onClose }: AlertProps & { open: boolean, onClose: () => void }) => {
 
   const icons: Record<AlertProps['severity'], ReactNode> = {
     success: <FaCheckCircle size={100} />,
@@ -111,11 +124,14 @@ const CustomAlert = ({ severity = "success", title, description, footer, isDismi
   return (
     <Modal
       placement="center"
-      isDismissable={false}
-      className="rounded-3xl bg-content2"
+      isDismissable={isDismissable}
       isOpen={isOpen}
       onOpenChange={onOpenChange}
+      onClose={onClose}
       hideCloseButton
+      closeButton={<Button isIconOnly color="default" variant="light" > <FaXmark size="1.2rem" /> </Button>}
+      className="rounded-3xl bg-content2 mx-2"
+      classNames={{ closeButton: 'top-2 right-2'}}
       motionProps={{
         variants: {
           enter: {
@@ -138,12 +154,12 @@ const CustomAlert = ({ severity = "success", title, description, footer, isDismi
       }}
     >
       <ModalContent>
-        <ModalHeader className="flex flex-col justify-center items-center ">
+        <ModalHeader className="flex flex-col justify-center items-center py-7">
           {icons[severity]}
         </ModalHeader>
 
         <ModalBody className="gap-4">
-          <p className="text-2xl text-foreground-800 text-center">
+          <p className="text-2xl text-foreground-800 text-center font-medium">
             {title}
           </p>
           <p className="text-lg text-foreground-500 text-center">
