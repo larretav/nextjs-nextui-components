@@ -1,17 +1,17 @@
-import { useCustomerTableStore } from "@/store/tables/customer-table-store";
-import { Customer } from "@/types/customer.type";
-
+import { useCustomerCatalogStore } from "@/store/tables/customer-catalog-store";
+import { Customer } from "@/models/shipments/customer.model";
+import { CustomersMapper } from "@/models/shipments/customer.model";
 
 export function filterCustomer(customer:Customer[]){
-    const selectedTabKey = useCustomerTableStore.use.selectedTabKey() as string    
-    const filterWord = useCustomerTableStore.use.filterWord()
-    const filterCountry = useCustomerTableStore.use.filterCountry()
-    const filterCustomerType = useCustomerTableStore.use.filterCustomerType()
+    const selectedTabKey = useCustomerCatalogStore.use.selectedTabKey() as string    
+    const filterWord = useCustomerCatalogStore.use.filterWord()
+    const filterCountry = useCustomerCatalogStore.use.filterCountry()
+    const filterCustomerType = useCustomerCatalogStore.use.filterCustomerType()
 
     const filterByFilterWord = customer.filter((item) => {
-        return item.name.toLowerCase().includes(filterWord.toLowerCase()) ||
+        return item.getFullName.toLowerCase().includes(filterWord.toLowerCase()) ||
             item.postalCode.toLowerCase().includes(filterWord.toLowerCase()) ||
-            item.location.toLowerCase().includes(filterWord.toLowerCase())
+            item.city.toLowerCase().includes(filterWord.toLowerCase())
     })
 
     const filterByCountry = filterByFilterWord.filter((item) => {
@@ -26,7 +26,7 @@ export function filterCustomer(customer:Customer[]){
 
     const filterByStatus = filterByType.filter((item) => {
         if (selectedTabKey === "Todos") return item
-        return item.status.toLowerCase() === selectedTabKey.toLowerCase()
+        return item.active.toLowerCase() === selectedTabKey.toLowerCase()
     })
 
     return {filterByType, filterByStatus}

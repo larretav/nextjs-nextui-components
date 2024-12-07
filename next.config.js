@@ -10,6 +10,10 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'res.cloudinary.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'test-mx-api.paq1.com.mx'
       }
     ]
   }

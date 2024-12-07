@@ -7,7 +7,7 @@ import { Input } from '@nextui-org/input'
 import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation';
-import React, { ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
+import React, { cloneElement, ReactElement, useCallback, useEffect, useMemo, useState } from 'react'
 import { FaMagnifyingGlass } from 'react-icons/fa6'
 import { MdGroups } from 'react-icons/md';
 
@@ -203,9 +203,9 @@ const OSSidebarList = (props: Props) => {
 
 
   const [sidebarItems, setSidebarItems] = useState(sidebarItemsInit);
-  const [inputSearch, setInputSearch] = useState("")
+  const [inputSearch, setInputSearch] = useState("");
   const debounceValue = useDebounce(inputSearch, 500);
-  const pathname = usePathname();
+  const pathname = usePathname();       
 
   const handleChangeInputSearch = (e: React.ChangeEvent<HTMLInputElement>) => setInputSearch(e.target.value)
 
@@ -237,7 +237,7 @@ const OSSidebarList = (props: Props) => {
     <>
 
       <Input
-        startContent={<FaMagnifyingGlass color="grey" size={20} />}
+        startContent={<FaMagnifyingGlass color="grey" size={16} />}
         placeholder="Buscar..."
         value={inputSearch}
         onChange={handleChangeInputSearch}
@@ -260,7 +260,7 @@ const OSSidebarList = (props: Props) => {
                 classNames={{
                   base: clsx(
                     "py-2 px-4 transition-colors text-slate-600 dark:text-slate-100 data-[hover=true]:text-slate-600 data-[hover=true]:bg-default-200", {
-                    "bg-green-600/10 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 transition-colors": isActive(item.path)
+                    "bg-green-600/10 text-green-700 data-[hover=true]:bg-green-600/30 data-[hover=true]:text-green-700 dark:text-green-600 transition-colors ":  isActive(item.path)
                   }),
                   title: clsx({
                     "font-semibold": isActive(item.path)
