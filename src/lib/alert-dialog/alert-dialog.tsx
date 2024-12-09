@@ -4,19 +4,19 @@
 import React, { useState, ReactNode, useEffect } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
-import { FaCircleExclamation, FaCircleXmark, FaInfo, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
+import { FaCircleExclamation, FaCircleXmark, FaInfo, FaQuestion, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
 import { Button } from '@nextui-org/button';
 
 
 type AlertProps = {
-  severity: "success" | "info" | "warning" | "error";
-  title: string;
-  description?: string;
+  severity: "success" | "info" | "warning" | "error" | "question";
+  title: string | ReactNode;
+  description?: string | ReactNode;
   isDismissable?: boolean;
-  footer?: ReactNode;
+  footer?: ReactNode | ((onClose: () => void) => void);
 };
 
-type ShowAlert = (title: string, options?: Omit<AlertProps, 'title' | 'severity'>) => void
+type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
 
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
@@ -46,11 +46,17 @@ export const showAlert: Record<AlertProps['severity'], ShowAlert> = {
   error: (title, options) => {
     validateCallback();
     alertCallback!({ ...options, title, severity: 'error' })
+  },
+  question: (title, options) => {
+    validateCallback();
+    alertCallback!({ ...options, footer: options?.footer, title, severity: 'question' })
   }
 }
 
-
-
+// const question = (title: string, options: ShowAlert): Promise<{ isConfirmed: boolean }> => {
+//   validateCallback();
+//   alertCallback!({ ...options, title, severity: 'question' })
+// }
 
 export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
@@ -89,6 +95,7 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         onClose={() => setOpen(false)}
         {...alertProps}
         footer={
+          alertProps?.footer ||
           <Button
             onPress={closeAlert}
           >
@@ -105,10 +112,11 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 const CustomAlert = ({ severity, title, description = 'Descripción', footer, isDismissable = true, open = true, onClose }: AlertProps & { open: boolean, onClose: () => void }) => {
 
   const icons: Record<AlertProps['severity'], ReactNode> = {
-    success: <FaCheckCircle size={100} />,
-    info: <FaCircleExclamation size={100} />,
-    warning: <FaTriangleExclamation size={100} />,
-    error: <FaCircleXmark size={100} />
+    success: <FaCheckCircle size={100} className="text-green-500" />,
+    info: <FaCircleExclamation size={100} className="text-sky-500" />,
+    warning: <FaTriangleExclamation size={100} className="text-amber-500" />,
+    error: <FaCircleXmark size={100} className="text-red-500" />,
+    question: <FaQuestion size={100} className="text-blue-500" />
   }
 
 
@@ -120,7 +128,6 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
       onClose();
   }, [isOpen, onOpenChange])
 
-
   return (
     <Modal
       placement="center"
@@ -131,7 +138,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
       hideCloseButton
       closeButton={<Button isIconOnly color="default" variant="light" > <FaXmark size="1.2rem" /> </Button>}
       className="rounded-3xl bg-content2 mx-2"
-      classNames={{ closeButton: 'top-2 right-2'}}
+      classNames={{ closeButton: 'top-2 right-2' }}
       motionProps={{
         variants: {
           enter: {
@@ -159,16 +166,28 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
         </ModalHeader>
 
         <ModalBody className="gap-4">
-          <p className="text-2xl text-foreground-800 text-center font-medium">
-            {title}
-          </p>
-          <p className="text-lg text-foreground-500 text-center">
-            {description}
-          </p>
+          {
+            typeof title === 'string'
+              ? <p className="text-2xl text-foreground-800 text-center font-medium">
+                {title}
+              </p>
+              : <>{title}</>
+          }
+
+          {
+            typeof description === 'string'
+              ? <p className="text-lg text-foreground-500 text-center">
+                {description}
+              </p>
+              : <>{description}</>
+          }
+
         </ModalBody>
 
         <ModalFooter className="justify-center mt-6">
-          {footer}
+          {
+            typeof footer === 'function' ? <>{footer(onClose)}</> : <>{footer}</>
+          }
         </ModalFooter>
       </ModalContent>
     </Modal>

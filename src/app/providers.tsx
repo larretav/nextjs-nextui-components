@@ -9,7 +9,7 @@ import { IconContext } from "react-icons";
 import StyledComponentsRegistry from "@/lib/registry";
 import { cache as emotionCache } from '../lib/emotion-ssr';
 import { CacheProvider } from "@emotion/react";
-import { AlertProvider } from "@/lib/alerts-dialog/alertDialog";
+import { AlertProvider } from "@/lib/alert-dialog/alert-dialog";
 
 export interface ProvidersProps {
 	children: React.ReactNode;
