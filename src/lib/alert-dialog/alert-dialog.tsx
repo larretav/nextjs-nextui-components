@@ -20,6 +20,7 @@ type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title'
 
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
+let isConfirmed: boolean | null = null;
 
 const validateCallback = () => {
   if (!alertCallback)
@@ -49,24 +50,42 @@ export const showAlert: Record<AlertProps['severity'], ShowAlert> = {
   },
   question: (title, options) => {
     validateCallback();
-    alertCallback!({ ...options, footer: options?.footer, title, severity: 'question' })
+    alertCallback!({ ...options, title, severity: 'question' })
+
   }
 }
 
-// const question = (title: string, options: ShowAlert): Promise<{ isConfirmed: boolean }> => {
-//   validateCallback();
-//   alertCallback!({ ...options, title, severity: 'question' })
-// }
+
+
+export const question = (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
+  validateCallback();
+  alertCallback!({ ...options, title, severity: 'question' })
+  return new Promise((res) => {
+    const interval = setInterval(() => {
+      if (isConfirmed !== null) {
+        console.log(interval)
+        clearInterval(interval);
+        res({ isConfirmed })
+      }
+    }, 100)
+  });
+
+
+}
 
 export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   const [alertProps, setAlertProps] = useState<AlertProps | null>(null);
-  const [open, setOpen] = useState(false)
-
+  const [open, setOpen] = useState(false);
+  const [isConfirmedLocal, setIsConfirmedLocal] = useState<boolean | null>(null);
 
   const closeAlert = () => {
+    setOpen(false);
     setAlertProps(null);
-    setOpen(false)
+    setTimeout(() => {
+      isConfirmed = null;
+      setIsConfirmedLocal(null);
+    }, 400);
   };
 
 
@@ -83,6 +102,13 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   }, []);
 
+  useEffect(() => {
+    if (isConfirmedLocal !== null) {
+      isConfirmed = isConfirmedLocal;
+    }
+  }, [isConfirmedLocal])
+
+
   return (
     <>
       {children}
@@ -95,12 +121,30 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         onClose={() => setOpen(false)}
         {...alertProps}
         footer={
-          alertProps?.footer ||
-          <Button
-            onPress={closeAlert}
-          >
-            Cerrar
-          </Button>
+          <>
+            {
+              alertProps?.severity === 'question' && <div className="flex gap-4">
+                <Button color="danger" variant="solid" onPress={() => {
+                  setIsConfirmedLocal(false);
+                  closeAlert();
+                }}>Cancelar</Button>
+                <Button color="primary" onPress={() => {
+                  setIsConfirmedLocal(true);
+                  closeAlert();
+                }}>Aceptar</Button>
+              </div>
+            }
+
+            {
+              alertProps?.severity !== 'question' ? alertProps?.footer ||
+                <Button
+                  onPress={closeAlert}
+                >
+                  Cerrar
+                </Button>
+                : null
+            }
+          </>
         }
       />
     </>

@@ -1,5 +1,5 @@
 'use client';
-import { showAlert } from '@/lib/alert-dialog/alert-dialog';
+import { showAlert, question } from '@/lib/alert-dialog/alert-dialog';
 import { Button } from '@nextui-org/button';
 
 const AlertButton = () => {
@@ -24,16 +24,17 @@ const AlertButton = () => {
         showAlert.error("Error Alert", { description: 'Esta es una alerta error' })
       }}  >Info</Button>
 
-      <Button color="secondary" onPress={() => {
-        showAlert.question("Question Alert", {
-          description: 'Esta es una alerta question',
-          footer: (onClose) => {
-            return <div className="flex flex-col gap-3">
-              <Button variant="bordered" color="danger" onPress={onClose}>Cerrar</Button>
-            </div>
-          }
+      <Button color="secondary" onPress={async () => {
+        
+        const resp = await question("Question Alert", {
+          description: 'Estas seguro we?',
         })
-      }}  >Info</Button>
+
+        if (resp.isConfirmed) { 
+          showAlert.success('Exitoso')
+        }
+
+      }}  >Question</Button>
 
     </div>
   )
