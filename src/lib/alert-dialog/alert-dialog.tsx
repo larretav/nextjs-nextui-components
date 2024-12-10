@@ -58,18 +58,21 @@ export const showAlert: Record<AlertProps['severity'], ShowAlert> = {
 
 
 export const question = (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
+
   validateCallback();
   alertCallback!({ ...options, title, severity: 'question' })
+
   return new Promise((res) => {
     const interval = setInterval(() => {
       if (isConfirmed !== null) {
-        console.log(interval)
         clearInterval(interval);
-        res({ isConfirmed })
+        setTimeout(() => {
+          res({ isConfirmed: !!isConfirmed })
+          isConfirmed = null;
+        }, 200);
       }
     }, 100)
   });
-
 
 }
 
@@ -77,15 +80,10 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   const [alertProps, setAlertProps] = useState<AlertProps | null>(null);
   const [open, setOpen] = useState(false);
-  const [isConfirmedLocal, setIsConfirmedLocal] = useState<boolean | null>(null);
 
   const closeAlert = () => {
     setOpen(false);
     setAlertProps(null);
-    setTimeout(() => {
-      isConfirmed = null;
-      setIsConfirmedLocal(null);
-    }, 400);
   };
 
 
@@ -102,12 +100,12 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   }, []);
 
-  useEffect(() => {
-    if (isConfirmedLocal !== null) {
-      isConfirmed = isConfirmedLocal;
-    }
-  }, [isConfirmedLocal])
 
+  console.log({
+    alertProps,
+    open,
+    isConfirmed
+  })
 
   return (
     <>
@@ -125,11 +123,11 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
             {
               alertProps?.severity === 'question' && <div className="flex gap-4">
                 <Button color="danger" variant="solid" onPress={() => {
-                  setIsConfirmedLocal(false);
+                  isConfirmed = false;
                   closeAlert();
                 }}>Cancelar</Button>
                 <Button color="primary" onPress={() => {
-                  setIsConfirmedLocal(true);
+                  isConfirmed = true;
                   closeAlert();
                 }}>Aceptar</Button>
               </div>
