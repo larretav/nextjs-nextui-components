@@ -1,7 +1,7 @@
 // src/context/AlertContext.tsx
 'use client';
 
-import React, { useState, ReactNode, useEffect } from 'react';
+import React, { useState, ReactNode, useEffect, use } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCircleExclamation, FaCircleXmark, FaInfo, FaQuestion, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
@@ -65,13 +65,14 @@ export const question = (title: string, options: Omit<ShowAlert, 'title' | 'seve
   return new Promise((res) => {
     const interval = setInterval(() => {
       if (isConfirmed !== null) {
+        const resp = isConfirmed;
+        isConfirmed = null;
         clearInterval(interval);
         setTimeout(() => {
-          res({ isConfirmed: !!isConfirmed })
-          isConfirmed = null;
-        }, 200);
+          res({ isConfirmed: resp })
+        }, 300);
       }
-    }, 100)
+    },)
   });
 
 }
@@ -100,13 +101,6 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
   }, []);
 
-
-  console.log({
-    alertProps,
-    open,
-    isConfirmed
-  })
-
   return (
     <>
       {children}
@@ -116,7 +110,8 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         severity={alertProps?.severity ?? 'success'}
         description={alertProps?.description ?? 'success'}
         open={open}
-        onClose={() => setOpen(false)}
+        onClose={closeAlert}
+        isDismissable={alertProps?.severity === 'question' || alertProps?.isDismissable}
         {...alertProps}
         footer={
           <>
@@ -163,12 +158,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
 
 
   const { isOpen, onOpenChange } = useDisclosure({ isOpen: open });
-
-
-  useEffect(() => {
-    if (!isOpen)
-      onClose();
-  }, [isOpen, onOpenChange])
+  
 
   return (
     <Modal
@@ -181,6 +171,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
       closeButton={<Button isIconOnly color="default" variant="light" > <FaXmark size="1.2rem" /> </Button>}
       className="rounded-3xl bg-content2 mx-2"
       classNames={{ closeButton: 'top-2 right-2' }}
+
       motionProps={{
         variants: {
           enter: {
