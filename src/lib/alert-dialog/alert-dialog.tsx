@@ -17,7 +17,7 @@ type AlertProps = {
 };
 
 type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
-
+type ShowAlertOptions = Omit<AlertProps, 'title' | 'severity'>;
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
 let isConfirmed: boolean | null = null;
@@ -27,40 +27,30 @@ const validateCallback = () => {
     throw new Error('No se encontró un proveedor de alertas. Asegura que tu aplicación esté envuelta con AlertProvider. ');
 }
 
-
-export const showAlert: Record<AlertProps['severity'], ShowAlert> = {
-  success: (title, options) => {
-    validateCallback();
-    alertCallback!({ ...options, title, severity: 'success' })
-  },
-
-  info: (title, options) => {
-    validateCallback();
-    alertCallback!({ ...options, title, severity: 'info' })
-  },
-
-  warning: (title, options) => {
-    validateCallback();
-    alertCallback!({ ...options, title, severity: 'warning' })
-  },
-
-  error: (title, options) => {
-    validateCallback();
-    alertCallback!({ ...options, title, severity: 'error' })
-  },
-  question: (title, options) => {
-    validateCallback();
-    alertCallback!({ ...options, title, severity: 'question' })
-
-  }
+const success = (title: string, options?: ShowAlertOptions) => {
+  validateCallback();
+  alertCallback!({ ...options, title, severity: 'success' });
 }
 
+const info = (title: string, options?: ShowAlertOptions) => {
+  validateCallback();
+  alertCallback!({ ...options, title, severity: 'info' });
+}
 
+const warning = (title: string, options?: ShowAlertOptions) => {
+  validateCallback();
+  alertCallback!({ ...options, title, severity: 'warning' });
+}
 
-export const question = (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
+const error = (title: string, options?: ShowAlertOptions) => {
+  validateCallback();
+  alertCallback!({ ...options, title, severity: 'error' });
+}
+
+const question = (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
 
   validateCallback();
-  alertCallback!({ ...options, title, severity: 'question' })
+  alertCallback!({ ...options, title, severity: 'question' });
 
   return new Promise((res) => {
     const interval = setInterval(() => {
@@ -76,6 +66,16 @@ export const question = (title: string, options: Omit<ShowAlert, 'title' | 'seve
   });
 
 }
+
+export const showAlert = {
+  success,
+  info,
+  warning,
+  error,
+  question,
+}
+
+// --------------- Components ---------------
 
 export const AlertProvider = ({ children }: { children: ReactNode }) => {
 
@@ -158,7 +158,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
 
 
   const { isOpen, onOpenChange } = useDisclosure({ isOpen: open });
-  
+
 
   return (
     <Modal

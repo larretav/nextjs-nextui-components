@@ -1,5 +1,5 @@
 'use client';
-import { showAlert, question } from '@/lib/alert-dialog/alert-dialog';
+import { showAlert } from '@/lib/alert-dialog/alert-dialog';
 import { sleep } from '@/lib/utils';
 import { Button } from '@nextui-org/button';
 
@@ -27,7 +27,7 @@ const AlertButton = () => {
 
       <Button fullWidth color="secondary" onPress={async () => {
         
-        const resp = await question("Question Alert", {
+        const resp = await showAlert.question("Question Alert", {
           description: 'Estas seguro we?',
         })
 
