@@ -1,7 +1,7 @@
 // src/context/AlertContext.tsx
 'use client';
 
-import React, { useState, ReactNode, useEffect, use } from 'react';
+import React, { useState, ReactNode, useEffect, use, ReactElement } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCircleExclamation, FaCircleXmark, FaInfo, FaQuestion, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
@@ -13,7 +13,7 @@ type AlertProps = {
   title: string | ReactNode;
   description?: string | ReactNode;
   isDismissable?: boolean;
-  footer?: ReactNode | ((onClose: () => void) => void);
+  footer?: ReactNode | ((onClose: () => void) => ReactElement);
 };
 
 type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
@@ -21,6 +21,61 @@ type ShowAlertOptions = Omit<AlertProps, 'title' | 'severity'>;
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
 let isConfirmed: boolean | null = null;
+
+// Observer
+const waitForElementRemoval = (elementId: string, attributeName: string): Promise<HTMLElement> => {
+
+  return new Promise((res, rej) => {
+
+    // Busca el elemento inicialmente
+    const existingElement = document.querySelector<HTMLElement>(`section[${attributeName}="${elementId}"]`);
+
+    console.log(existingElement)
+    if (!existingElement) {
+      // Si el elemento no existe, resuelve la promesa inmediatamente
+      rej(new Error('El elemento no existe en el DOM desde el principio.'));
+      return;
+    }
+
+    // Selecciona el nodo raíz donde observar los cambios
+    const targetNode: HTMLElement = document.body;
+
+    // Configuración del observador
+    const config: MutationObserverInit = { childList: true, subtree: true };
+
+    // Crea una instancia de MutationObserver
+    const observer = new MutationObserver((mutationsList: MutationRecord[]) => {
+      mutationsList.forEach((mutation) => {
+        if (mutation.type === 'childList') {
+          // Detecta nodos eliminados
+          mutation.removedNodes.forEach((node) => {
+            if (node instanceof HTMLElement && node.getAttribute(attributeName) === elementId) {
+              res(node);
+              observer.disconnect();
+            }
+          });
+        }
+      })
+    });
+
+    // Inicia la observación
+    observer.observe(targetNode, config);
+
+    // Retorna el observador para que pueda detenerse si es necesario
+    return observer;
+  })
+}
+
+
+const sleep = (seconds: number) => {
+  return new Promise((res) => {
+    setTimeout(() => {
+      res(true)
+    }, seconds * 1000);
+  })
+}
+
+
 
 const validateCallback = () => {
   if (!alertCallback)
@@ -47,24 +102,22 @@ const error = (title: string, options?: ShowAlertOptions) => {
   alertCallback!({ ...options, title, severity: 'error' });
 }
 
-const question = (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
+const question = async (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
 
   validateCallback();
   alertCallback!({ ...options, title, severity: 'question' });
 
-  return new Promise((res) => {
-    const interval = setInterval(() => {
-      if (isConfirmed !== null) {
-        const resp = isConfirmed;
-        isConfirmed = null;
-        clearInterval(interval);
-        setTimeout(() => {
-          res({ isConfirmed: resp })
-        }, 300);
-      }
-    },)
-  });
+  try {
+    await sleep(0.3);
+    const hasBeenRemoved = await waitForElementRemoval('modal-question', 'itemid');
+    console.log(hasBeenRemoved)
 
+    const resp = !!isConfirmed;
+    isConfirmed = null;
+    return { isConfirmed: resp }
+  } catch (error: any) {
+    throw error
+  }
 }
 
 export const showAlert = {
@@ -120,23 +173,27 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
                 <Button color="danger" variant="solid" onPress={() => {
                   isConfirmed = false;
                   closeAlert();
-                }}>Cancelar</Button>
+                }}>
+                  Cancelar
+                </Button>
+
                 <Button color="primary" onPress={() => {
                   isConfirmed = true;
                   closeAlert();
-                }}>Aceptar</Button>
+                }}>
+                  Aceptar
+                </Button>
               </div>
             }
 
-            {
-              alertProps?.severity !== 'question' ? alertProps?.footer ||
-                <Button
-                  onPress={closeAlert}
-                >
-                  Cerrar
-                </Button>
-                : null
-            }
+            {/* {
+              alertProps?.footer ||
+              <Button
+                onPress={closeAlert}
+              >
+                Cerrar
+              </Button>
+            } */}
           </>
         }
       />
@@ -162,6 +219,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
 
   return (
     <Modal
+      itemID={severity === 'question' ? 'modal-question' : 'modal-alert'}
       placement="center"
       isDismissable={isDismissable}
       isOpen={isOpen}
@@ -171,7 +229,6 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
       closeButton={<Button isIconOnly color="default" variant="light" > <FaXmark size="1.2rem" /> </Button>}
       className="rounded-3xl bg-content2 mx-2"
       classNames={{ closeButton: 'top-2 right-2' }}
-
       motionProps={{
         variants: {
           enter: {
