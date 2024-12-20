@@ -1,6 +1,3 @@
-// src/context/AlertContext.tsx
-'use client';
-
 import React, { useState, ReactNode, useEffect, use, ReactElement } from 'react';
 import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
 import { FaCheckCircle } from 'react-icons/fa';
@@ -66,16 +63,9 @@ const waitForElementRemoval = (elementId: string, attributeName: string): Promis
   })
 }
 
-
 const sleep = (seconds: number) => {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res(true)
-    }, seconds * 1000);
-  })
-}
-
-
+  return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
+};
 
 const validateCallback = () => {
   if (!alertCallback)
@@ -107,17 +97,23 @@ const question = async (title: string, options: Omit<ShowAlert, 'title' | 'sever
   validateCallback();
   alertCallback!({ ...options, title, severity: 'question' });
 
-  try {
-    await sleep(0.3);
-    const hasBeenRemoved = await waitForElementRemoval('modal-question', 'itemid');
-    console.log(hasBeenRemoved)
+  return new Promise((resolve) => {
+    const interval = setInterval(async () => {
+      if (isConfirmed !== null) {
+        
+        clearInterval(interval);
+        const existingElement = document.querySelector<HTMLElement>('section[role="dialog"]');
+        
+        await sleep(0.2);
+        
+        if (existingElement)
+          await sleep(0.2);
 
-    const resp = !!isConfirmed;
-    isConfirmed = null;
-    return { isConfirmed: resp }
-  } catch (error: any) {
-    throw error
-  }
+        resolve({ isConfirmed });
+        isConfirmed = null; 
+      }
+    }, 50); 
+  });
 }
 
 export const showAlert = {

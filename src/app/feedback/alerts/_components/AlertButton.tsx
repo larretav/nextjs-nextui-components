@@ -23,23 +23,24 @@ const AlertButton = () => {
 
       <Button fullWidth color="danger" onPress={() => {
         showAlert.error("Error Alert", { description: 'Esta es una alerta error' })
-      }}  >Info</Button>
+      }}>Info</Button>
 
       <Button fullWidth color="secondary" onPress={async () => {
-        
-        const resp = await showAlert.question("Question Alert", {
+
+        const { isConfirmed } = await showAlert.question("Question Alert", {
           description: 'Estas seguro we?',
-        })
+        });
 
-        console.log({resp})
+        if (isConfirmed)
+          showAlert.success('Exitoso');
+
+        if (!isConfirmed)
+          showAlert.error('Cancelado', {description: 'Proceso cancelado'});
 
 
-        if (resp.isConfirmed) { 
-          showAlert.success('Exitoso')
-        }
+      }}>Question</Button>
 
-      }}  >Question</Button>
-
+      <Button className='text-white bg-pink-600'>Hola</Button>
     </div>
   )
 }
