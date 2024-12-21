@@ -16,52 +16,11 @@ type AlertProps = {
 type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
 type ShowAlertOptions = Omit<AlertProps, 'title' | 'severity'>;
 
+
+
 let alertCallback: ((props: AlertProps) => void) | null = null;
 let isConfirmed: boolean | null = null;
 
-// Observer
-const waitForElementRemoval = (elementId: string, attributeName: string): Promise<HTMLElement> => {
-
-  return new Promise((res, rej) => {
-
-    // Busca el elemento inicialmente
-    const existingElement = document.querySelector<HTMLElement>(`section[${attributeName}="${elementId}"]`);
-
-    console.log(existingElement)
-    if (!existingElement) {
-      // Si el elemento no existe, resuelve la promesa inmediatamente
-      rej(new Error('El elemento no existe en el DOM desde el principio.'));
-      return;
-    }
-
-    // Selecciona el nodo raíz donde observar los cambios
-    const targetNode: HTMLElement = document.body;
-
-    // Configuración del observador
-    const config: MutationObserverInit = { childList: true, subtree: true };
-
-    // Crea una instancia de MutationObserver
-    const observer = new MutationObserver((mutationsList: MutationRecord[]) => {
-      mutationsList.forEach((mutation) => {
-        if (mutation.type === 'childList') {
-          // Detecta nodos eliminados
-          mutation.removedNodes.forEach((node) => {
-            if (node instanceof HTMLElement && node.getAttribute(attributeName) === elementId) {
-              res(node);
-              observer.disconnect();
-            }
-          });
-        }
-      })
-    });
-
-    // Inicia la observación
-    observer.observe(targetNode, config);
-
-    // Retorna el observador para que pueda detenerse si es necesario
-    return observer;
-  })
-}
 
 const sleep = (seconds: number) => {
   return new Promise((resolve) => setTimeout(resolve, seconds * 1000));
@@ -92,7 +51,7 @@ const error = (title: string, options?: ShowAlertOptions) => {
   alertCallback!({ ...options, title, severity: 'error' });
 }
 
-const question = async (title: string, options: Omit<ShowAlert, 'title' | 'severity'>): Promise<{ isConfirmed: boolean }> => {
+const question = async (title: string, options: ShowAlertOptions): Promise<{ isConfirmed: boolean }> => {
 
   validateCallback();
   alertCallback!({ ...options, title, severity: 'question' });
@@ -100,19 +59,19 @@ const question = async (title: string, options: Omit<ShowAlert, 'title' | 'sever
   return new Promise((resolve) => {
     const interval = setInterval(async () => {
       if (isConfirmed !== null) {
-        
+
         clearInterval(interval);
         const existingElement = document.querySelector<HTMLElement>('section[role="dialog"]');
-        
+
         await sleep(0.2);
-        
+
         if (existingElement)
           await sleep(0.2);
 
         resolve({ isConfirmed });
-        isConfirmed = null; 
+        isConfirmed = null;
       }
-    }, 50); 
+    }, 50);
   });
 }
 
@@ -160,37 +119,26 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         description={alertProps?.description ?? 'success'}
         open={open}
         onClose={closeAlert}
-        isDismissable={alertProps?.severity === 'question' || alertProps?.isDismissable}
+        isDismissable={alertProps?.severity === 'question' ? false : alertProps?.isDismissable}
         {...alertProps}
         footer={
-          <>
-            {
-              alertProps?.severity === 'question' && <div className="flex gap-4">
-                <Button color="danger" variant="solid" onPress={() => {
-                  isConfirmed = false;
-                  closeAlert();
-                }}>
-                  Cancelar
-                </Button>
-
-                <Button color="primary" onPress={() => {
-                  isConfirmed = true;
-                  closeAlert();
-                }}>
-                  Aceptar
-                </Button>
-              </div>
-            }
-
-            {/* {
-              alertProps?.footer ||
-              <Button
-                onPress={closeAlert}
-              >
-                Cerrar
+          alertProps?.severity === 'question'
+            ? <div className="flex gap-4">
+              <Button color="danger" variant="solid" onPress={() => {
+                isConfirmed = false;
+                closeAlert();
+              }}>
+                Cancelar
               </Button>
-            } */}
-          </>
+
+              <Button color="primary" onPress={() => {
+                isConfirmed = true;
+                closeAlert();
+              }}>
+                Aceptar
+              </Button>
+            </div>
+            : alertProps?.footer || <Button onPress={closeAlert} >Cerrar</Button>
         }
       />
     </>
@@ -231,7 +179,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
             scale: 1,
             opacity: 1,
             transition: {
-              duration: 0.3,
+              duration: 0.2,
               ease: [.47, 1.64, .41, .8]
             }
           },
@@ -239,7 +187,7 @@ const CustomAlert = ({ severity, title, description = 'Descripción', footer, is
             scale: 0.8,
             opacity: 0,
             transition: {
-              duration: 0.2,
+              duration: 0.1,
               ease: 'easeInOut'
             },
           },
