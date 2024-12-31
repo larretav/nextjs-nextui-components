@@ -18,17 +18,18 @@ const AlertButton = () => {
       }}  >Info</Button>
 
       <Button fullWidth color="warning" onPress={() => {
-        showAlert.warning("Warning Alert", { description: 'Esta es una alerta warning' })
-      }}  >Info</Button>
+        showAlert.warning("Warning Alert", { description: "Esto es un alert warning"})
+      }}  >Warning</Button>
 
       <Button fullWidth color="danger" onPress={() => {
         showAlert.error("Error Alert", { description: 'Esta es una alerta error' })
-      }}>Info</Button>
+      }}>Error</Button>
 
       <Button fullWidth color="secondary" onPress={async () => {
 
         const { isConfirmed } = await showAlert.question("Question Alert", {
           description: 'Estas seguro we?',
+          confirmButton: <div >Confirmar</div>,
         });
 
         if (isConfirmed)

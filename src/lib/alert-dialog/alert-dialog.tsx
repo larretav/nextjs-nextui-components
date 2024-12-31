@@ -7,10 +7,12 @@ import { Button } from '@nextui-org/button';
 
 type AlertProps = {
   severity: "success" | "info" | "warning" | "error" | "question";
-  title: string | ReactNode;
-  description?: string | ReactNode;
+  title: ReactNode;
+  description?: ReactNode;
   isDismissable?: boolean;
   footer?: ReactNode | ((onClose: () => void) => ReactElement);
+  confirmButton?: ReactElement;
+  cancelButton?: ReactElement;
 };
 
 type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
@@ -124,19 +126,22 @@ export const AlertProvider = ({ children }: { children: ReactNode }) => {
         footer={
           alertProps?.severity === 'question'
             ? <div className="flex gap-4">
-              <Button color="danger" variant="solid" onPress={() => {
-                isConfirmed = false;
-                closeAlert();
-              }}>
-                Cancelar
-              </Button>
-
-              <Button color="primary" onPress={() => {
-                isConfirmed = true;
-                closeAlert();
-              }}>
-                Aceptar
-              </Button>
+              {
+                React.cloneElement(alertProps?.cancelButton || <Button color="danger" variant="solid" >Cancelar</Button>, {
+                  onClick: () => {
+                    isConfirmed = false;
+                    closeAlert();
+                  }
+                })
+              }
+              {
+                React.cloneElement(alertProps?.confirmButton || <Button color="primary" >Aceptar</Button>, {
+                  onClick: () => {
+                    isConfirmed = true;
+                    closeAlert();
+                  }
+                })
+              }
             </div>
             : alertProps?.footer || <Button onPress={closeAlert} >Cerrar</Button>
         }
