@@ -18,7 +18,7 @@ const AlertButton = () => {
       }}  >Info</Button>
 
       <Button fullWidth color="warning" onPress={() => {
-        showAlert.warning("Warning Alert", { description: "Esto es un alert warning"})
+        showAlert.warning("Warning Alert", { description: "Esto es un alert warning" })
       }}  >Warning</Button>
 
       <Button fullWidth color="danger" onPress={() => {
@@ -29,19 +29,28 @@ const AlertButton = () => {
 
         const { isConfirmed } = await showAlert.question("Question Alert", {
           description: 'Estas seguro we?',
-          confirmButton: <div >Confirmar</div>,
+          confirmButton: <Button color="warning" variant="bordered" >Confirmamesta</Button>,
         });
 
         if (isConfirmed)
           showAlert.success('Exitoso');
 
         if (!isConfirmed)
-          showAlert.error('Cancelado', {description: 'Proceso cancelado'});
+          showAlert.error('Cancelado', { description: 'Proceso cancelado' });
 
 
       }}>Question</Button>
 
-      <Button className='text-white bg-pink-600'>Hola</Button>
+      <Button
+        className='text-white bg-pink-600'
+        onPress={() => {
+          showAlert.success('Hola', {
+            footer: (onClose) => {
+            return <Button color='success' onPress={onClose}>Cerrar</Button>
+          } })
+
+        }}
+      >Hola</Button>
     </div>
   )
 }

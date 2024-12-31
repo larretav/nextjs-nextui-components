@@ -15,9 +15,7 @@ type AlertProps = {
   cancelButton?: ReactElement;
 };
 
-type ShowAlert = (title: AlertProps['title'], options?: Omit<AlertProps, 'title' | 'severity'>) => void
 type ShowAlertOptions = Omit<AlertProps, 'title' | 'severity'>;
-
 
 
 let alertCallback: ((props: AlertProps) => void) | null = null;
