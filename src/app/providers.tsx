@@ -9,6 +9,7 @@ import { IconContext } from "react-icons";
 import StyledComponentsRegistry from "@/lib/registry";
 import { cache as emotionCache } from '../lib/emotion-ssr';
 import { CacheProvider } from "@emotion/react";
+import { AlertProvider } from "@/lib/alert-dialog/alert-dialog";
 
 export interface ProvidersProps {
 	children: React.ReactNode;
@@ -24,8 +25,10 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 				<StyledComponentsRegistry >
 					<NextThemesProvider {...themeProps}>
 						<IconContext.Provider value={{ size: "1.5rem" }}>
-							{children}
-						</IconContext.Provider>
+							<AlertProvider>
+								{children}
+							</AlertProvider>
+						</IconContext.Provider>						
 					</NextThemesProvider>
 				</StyledComponentsRegistry>
 			</NextUIProvider>
