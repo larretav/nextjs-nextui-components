@@ -3,7 +3,7 @@ import { PageTitle } from "@/components";
 import { Card } from "@nextui-org/card";
 import { useRouter } from 'next/navigation';
 import { FaImage } from "react-icons/fa6";
-export default function SurfacesPage() {
+export default function TablesPage() {
   const router = useRouter();
   const categories = [
     {

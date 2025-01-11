@@ -425,7 +425,7 @@ const dataMock: Invoice[] = [
     ]
   }
 ]
-export default function Page() {
+export default function InvoicesTablePage() {
   const isDetailsOpen = useInvoiceTableStore.use.isDetailsOpen()
   const toggleDetails = useInvoiceTableStore.use.toggleDetails()
   const selectInvoice = useInvoiceTableStore.use.selectInvoice()

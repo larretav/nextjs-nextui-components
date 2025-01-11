@@ -11,14 +11,14 @@ type Props = {
 }
 
 export default function CustomerCatalogDesktop({ activeUsers, inactiveUsers }: Props) {
-    const isCustomerTablePageOpen = useCustomerCatalogStore.use.isCustomerTablePageOpen()    
+    const isCustomerTablePageOpen = useCustomerCatalogStore.use.isCustomerTablePageOpen()
     const isAddOrEditCustomerPageOpen = useCustomerCatalogStore.use.isAddOrEditCustomerPageOpen()
     const isCustomerDetailsPageOpen = useCustomerCatalogStore.use.isCustomerDetailsPageOpen()
     return (
         <>
-          {isCustomerTablePageOpen && <CustomersTable activeUsers={activeUsers} inactiveUsers={inactiveUsers} />}
-          {isAddOrEditCustomerPageOpen && <AddOrEditCustomerPage />}
-          {isCustomerDetailsPageOpen && <CustomerDetailsPage />}
-            </>
+            {isCustomerTablePageOpen && <CustomersTable activeUsers={activeUsers} inactiveUsers={inactiveUsers} />}
+            {isAddOrEditCustomerPageOpen && <AddOrEditCustomerPage />}
+            {isCustomerDetailsPageOpen && <CustomerDetailsPage />}
+        </>
     )
 }

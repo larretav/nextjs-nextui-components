@@ -25,7 +25,7 @@ export const OSSidebarFilters = () => {
   const isOpen = useComponentsStore.use.isOSSidebarFiltersOpen();
   const toggleSidebar = useComponentsStore.use.toggleOSSidebarFilters();
 
-  const [date, setDate] = useState<DateValue>(today(getLocalTimeZone()));
+  const [date, setDate] = useState<DateValue | null>(today(getLocalTimeZone()));
   const [state, setState] = useState('all');
 
   return (

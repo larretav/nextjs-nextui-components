@@ -27,7 +27,7 @@ export default function DetailsPDFModal() {
         if (!selectedShipmentOrder.id) return
         setIsLoading(true)       
         callViewPDFApi().finally(() => setIsLoading(false))
-    }, [])
+    }, [callViewPDFApi])
     return (
         <Modal isOpen={isOpen} onOpenChange={onOpenChange} classNames={{ closeButton: "opacity-0" }} >
             <ModalContent >

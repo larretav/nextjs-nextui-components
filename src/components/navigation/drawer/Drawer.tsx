@@ -4,13 +4,15 @@ import {
   Modal,
   ModalBody,
   ModalContent,
+  ModalContentProps,
   ModalFooter,
   ModalHeader,
   ModalProps,
-  useDisclosure
+  useDisclosure,
 } from '@nextui-org/modal'
+import { motion } from 'framer-motion';
 
-import React, { ReactNode, useCallback, useEffect } from 'react'
+import React, { forwardRef, ReactNode, useCallback, useEffect } from 'react'
 
 interface ModalPropsExtended {
   anchor: 'left' | 'right' | 'top' | 'bottom',
@@ -29,7 +31,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
   const anchors: Record<typeof anchor, any> = {
     left: {
       classNames: {
-        wrapper: "justify-start",
+        wrapper: 'justify-start',
         base: 'w-[300px] h-[100dvh] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none',
       },
       enter: {
@@ -41,8 +43,8 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     },
     right: {
       classNames: {
-        wrapper: "justify-end",
-        base: 'w-[300px] h-[100dvh] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none ',
+        wrapper: 'justify-end',
+        base: 'w-[300px] h-[100dvh] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none',
       },
       enter: {
         x: 0,
@@ -53,8 +55,8 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     },
     top: {
       classNames: {
-        wrapper: "w-screeen justify-center items-start sm:items-start",
-        base: 'max-w-full h-[300px] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none ',
+        wrapper: 'w-screeen justify-center items-start sm:items-start',
+        base: 'max-w-full h-[300px] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none',
       },
       enter: {
         y: 0,
@@ -65,8 +67,8 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     },
     bottom: {
       classNames: {
-        wrapper: "w-screen justify-center sm:items-end",
-        base: 'max-w-full h-[300px] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none ',
+        wrapper: 'w-screen justify-center sm:items-end',
+        base: 'max-w-full h-[300px] my-0 mx-0 sm:mx-0 sm:my-0 rounded-none',
       },
       enter: {
         y: 0,
@@ -109,7 +111,7 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
             enter: {
               opacity: 1,
               transition: {
-                duration: 0.2,
+                duration: 0.15,
                 ease: "easeOut",
               },
               ...anchors[anchor].enter
@@ -129,8 +131,8 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
 
         classNames={{
           ...props.classNames,
-          wrapper: anchors[anchor].classNames.wrapper + ' ' + props.classNames?.wrapper,
-          base: anchors[anchor].classNames.base + ' ' + props.classNames?.base,
+          wrapper: anchors[anchor].classNames.wrapper + ' ' + props.classNames?.wrapper || '',
+          base: anchors[anchor].classNames.base + ' ' + props.classNames?.base || '',
         }}
         as="aside"
       >
@@ -139,7 +141,6 @@ export const Drawer = ({ children, anchor = 'top', open = false, onOpen = () => 
     </>
   )
 }
-
 
 export const DrawerContent = ModalContent;
 export const DrawerHeader = ModalHeader;

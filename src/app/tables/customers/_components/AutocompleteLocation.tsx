@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { Avatar } from "@nextui-org/avatar";
 import { Select, SelectItem } from '@nextui-org/select';
 import {
@@ -17,7 +17,8 @@ export default function AutocompleteLocation() {
     const [locationList, setLocationList] = useState<LocationResponseMapper>()
     const setSelectedLocation = useCustomerCatalogStore.use.setSelectedLocation()
 
-    async function callGetLocationApi() {
+
+    const callGetLocationApi = useCallback(async () => {
         if (term.length < 4) return
         const country = Array.from(selectedCountry)[0]
         const response = await fetch(`https://onsite.pktuno.mx/ws2//Api/Cps/AutocompleteJSON?country=${country}&term=${term}`)
@@ -30,7 +31,9 @@ export default function AutocompleteLocation() {
         );
         mappedResponse.data = uniqueLocations
         setLocationList(mappedResponse)
-    }
+    }, [selectedCountry, setSelectedCountry])
+
+
     useEffect(() => {
         clearTimeout(debounceTimeout);
         if (term) {
@@ -74,7 +77,7 @@ export default function AutocompleteLocation() {
     return (
         <div className="flex">
             <Autocomplete
-                items={locationList?.data || []}                
+                items={locationList?.data || []}
                 placeholder='Ciudad o Código postal'
                 fullWidth
                 scrollShadowProps={{ isEnabled: false }}
@@ -89,7 +92,7 @@ export default function AutocompleteLocation() {
                     if (location) setSelectedLocation(location)
                 }}
             >
-                {(location) => <AutocompleteItem  key={`${location.value}`}>{location.label}</AutocompleteItem>}
+                {(location) => <AutocompleteItem key={`${location.value}`}>{location.label}</AutocompleteItem>}
             </Autocomplete>
 
         </div>

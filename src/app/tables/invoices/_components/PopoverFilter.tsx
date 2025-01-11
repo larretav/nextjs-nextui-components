@@ -18,7 +18,8 @@ export default function PopoverFilter() {
 
     const setPage = useInvoiceTableStore.use.setPage()
 
-    const onDateChange = useCallback((date: CalendarDate) => {
+    const onDateChange = useCallback((date: CalendarDate | null) => {
+        if (!date) return;
         setFilterDate(date.toString())
         setPage(1);
     }, [setPage, setFilterDate]);

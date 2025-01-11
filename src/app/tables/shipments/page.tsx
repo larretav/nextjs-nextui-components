@@ -3,7 +3,7 @@ import ShipmentsTable from './_components/ShipmentsTable'
 
 
 
-export default async function Page() {
+export default async function ShipmentsTablePage() {
   //Fetch documentadores
   try {
     const myHeaders = new Headers({
@@ -15,7 +15,8 @@ export default async function Page() {
     })
     const documenterJson = await documenterResponse.json()
     return (
-      <ShipmentsTable documenters={documenterJson} />
+      <div>ShipmentsTable</div>
+      // <ShipmentsTable documenters={documenterJson} />
     )
   } catch (error) {
     return <div>Error interno</div>

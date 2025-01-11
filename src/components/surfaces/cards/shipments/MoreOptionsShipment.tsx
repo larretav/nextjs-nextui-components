@@ -1,9 +1,8 @@
 'use client';
+import React from 'react'
 import { Button } from '@nextui-org/button'
 import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/dropdown'
-import React from 'react'
-import { FaEllipsisV, FaHandshake } from 'react-icons/fa'
-import { FaHandshakeSimple, FaMapLocationDot, FaReceipt, FaTrash } from 'react-icons/fa6';
+import { FaEllipsisVertical, FaHandshakeSimple, FaMapLocationDot, FaReceipt, FaTrash, } from 'react-icons/fa6';
 
 type Props = {}
 
@@ -17,7 +16,7 @@ export const MoreOptionsShipment = (props: Props) => {
           size="sm"
           isIconOnly
         >
-          <FaEllipsisV size={18} className="text-default-500" />
+          <FaEllipsisVertical size={18} className="text-default-500" />
         </Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Más acciones de envío" >
