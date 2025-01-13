@@ -41,7 +41,12 @@ const OSTabsFilters = () => {
 
 
   return (
-    <TabsFilters fullWidth items={tabsTest} selectedKey={selectedKey} onSelectionChange={handleChange} >
+    <TabsFilters
+      aria-label="Options"
+      selectedKey={selectedKey}
+      onSelectionChange={handleChange}
+      fullWidth
+    >
       <TabFilter key="photos" text="Todos" value={100} activeColor="primary" />
       <TabFilter key="delivered" text="Enviados" value={45} activeColor="red" />
       <TabFilter key="pendings" text="Pendientes" value={55} activeColor="cyan" />
