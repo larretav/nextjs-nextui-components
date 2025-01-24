@@ -29,14 +29,16 @@ export const StyledTabFilter = styled(Tab) <{ $activeColor: string }>`
     outline: 1px red solid;
   }
 `;
-//   styled(Tab).attrs<{ $activeColor: string }>((props) => ({
-//   $activeColor: props.$activeColor,
-//   className: "outline"
-// }))`
-//   &[data-slot="tab"]{
-//     outline: 1px red solid;
-//   }
-// `;
+export const StyledTabFilter2 = styled(Tab).attrs<{ $activeColor: string }>((props) => ({
+  $activeColor: props.$activeColor,
+  className: "outline",
+  title: <></>
+}))`
+  &>span{
+    outline: 1px red solid;
+  }
+`;
+
 type Props = {
   title: string;
   children: ReactNode

@@ -10,7 +10,7 @@ export const SvgIcon = ({
   height,
   children,
   viewBox = "0 0 24 24",
-  color = "neutral",
+  color = "inherit",
   ...props
 }: IconSvgProps) => {
 

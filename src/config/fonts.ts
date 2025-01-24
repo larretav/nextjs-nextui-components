@@ -1,7 +1,7 @@
 import {
   Fira_Code as FontMono,
   Inter as FontSans,
-  // Poppins as FontPoppins
+  Poppins as FontPoppins
 } from "next/font/google";
 
 export const fontSans = FontSans({
@@ -14,7 +14,7 @@ export const fontMono = FontMono({
   variable: "--font-mono",
 });
 
-// export const fontPoppins = FontPoppins({
-//   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-//   subsets: ['latin'],
-// })
+export const fontPoppins = FontPoppins({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  subsets: ['latin'],
+})

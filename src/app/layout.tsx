@@ -2,11 +2,11 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans, fontPoppins } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import { GlobalNavbar, SidebarComponents } from "@/components";
-import {  extractCriticalToChunks } from "@/lib/emotion-ssr";
+import { extractCriticalToChunks } from "@/lib/emotion-ssr";
 
 export const metadata: Metadata = {
 	title: {
@@ -47,7 +47,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			<body
 				className={clsx(
 					"bg-background font-sans antialiased",
-					fontSans.className
+					fontPoppins.className
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
