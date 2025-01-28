@@ -1,6 +1,6 @@
-import { Country } from "@/types";
 
-export const countries: Country[] = [
+
+export const countries = [
   {
     name: 'Andorra',
     isoCode: 'AD',
@@ -1441,4 +1441,4 @@ export const countries: Country[] = [
     flagUrl: 'https://flagcdn.com/za.svg',
     phoneCode: '+27'
   }
-]
+] as const;

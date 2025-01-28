@@ -1,3 +1,5 @@
+export {AutocompleteLocation} from "./inputs/autocomplete/AutocompleteLocation";
+
 export {AddressCardInput} from "./data-display/onsite/AddressCardInput";
 
 export { ImageRadio } from "./inputs/radio/ImageRadio";
