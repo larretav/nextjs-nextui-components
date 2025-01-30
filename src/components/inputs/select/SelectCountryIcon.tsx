@@ -1,6 +1,6 @@
 'use client';
 import { Select, SelectItem, SelectItemProps, SelectProps, SelectedItems } from "@nextui-org/select";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar, AvatarProps } from "@nextui-org/avatar";
 import clsx from "clsx";
 import { forwardRef, Key, useMemo, useRef } from "react";
 import { Country, IsoCode } from "@/types";
@@ -11,35 +11,41 @@ type Props = Omit<SelectProps, 'children' | 'onSelectionChange'> & {
   allowedCountries: IsoCode[];
   defaultSelectedCountry?: IsoCode;
   onSelectionChange?: (country: Country) => void;
+  avatarProps?: AvatarProps
 }
 
-const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onSelectionChange = () => { }, allowedCountries = ["MX"], defaultSelectedCountry, ...props }: Props, ref) => {
+const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onSelectionChange = () => { }, allowedCountries = ["MX"], defaultSelectedCountry, avatarProps, size = 'md', ...props }: Props, ref) => {
 
   return (
     <Select
       {...props}
+      size={size}
       ref={ref}
       aria-label="Seleccionar país"
       defaultSelectedKeys={[defaultSelectedCountry || allowedCountries[0]]}
       renderValue={(items) => {
-        return items.map((item) => (<Avatar
-          key={item.data?.isoCode || ''}
-          alt={item.data?.name || ''}
-          className={clsx({
-            "w-6 h-6": props.size === 'sm',
-            "w-10 h-10": props.size === 'md',
-          })}
-          src={item.data?.flagUrl || ''}
-        />
+        return items.map((item) => (
+          <Avatar
+            {...avatarProps}
+            key={item.data?.isoCode || ''}
+            alt={item.data?.name || ''}
+            size={size === 'lg' ? 'md' : size}
+            src={item.data?.flagUrl || ''}
+          />
         ));
       }}
       classNames={{
         ...props.classNames,
         base: 'w-fit ' + props.classNames?.base,
-        trigger: clsx('w-fit pr-8 ' + props.classNames?.trigger, {
-          'h-14': props.size !== 'sm',
-          'h-16': props.size === 'lg',
-        }),
+        trigger: clsx('w-fit pr-8 ', {
+          // Tamaños de inputs con label (son mas altos)
+          'h-16': size === 'lg',
+          'h-14': size === 'md',
+          'h-12': size === 'sm',
+
+        },
+          props.classNames?.trigger
+        ),
         innerWrapper: 'w-fit ' + props.classNames?.innerWrapper,
         popoverContent: 'w-fit ' + props.classNames?.popoverContent,
       }}
@@ -50,9 +56,7 @@ const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onS
       {(user) => <SelectItem
         key={user.isoCode}
         textValue={user.name}
-        startContent={<Avatar alt={user.name} src={user.flagUrl} size={props.size} className={clsx({
-          "w-6 h-6": props.size === 'sm',
-        })} />}
+        startContent={<Avatar {...avatarProps} alt={user.name} src={user.flagUrl} />}
         {...itemProps}
       >
         {user.name}

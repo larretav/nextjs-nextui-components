@@ -16,6 +16,7 @@ export const OSAutocompleteLocation = () => {
           setLocation(location);
         }}
         // grouped
+        radius='sm'
         size='lg'
       />
       md
@@ -26,9 +27,9 @@ export const OSAutocompleteLocation = () => {
           setLocation(location);
         }}
         // grouped
-        size="md"
+        // size="md"
       />
-sm
+      sm
       <AutocompleteLocation
         allowedCountries={["CL", "US", "MX"]}
         defaultSelectedCountry="MX"
@@ -37,10 +38,10 @@ sm
         }}
         // grouped
         size="sm"
+      // label="Location"
       />
-      <Input placeholder="Location" size='sm' variant='bordered' />
-      <Input label="Location" size='md' variant='bordered' />
-      <div className="p-3 bg-default-200 rounded-2xl">
+      <Input placeholder="Location" size='md' variant='bordered' />
+      <div className="p-3 bg-default-200 rounded-2xl overflow-auto no-scrollbar">
         <pre >{JSON.stringify(location, null, 3)}</pre>
       </div>
     </div>

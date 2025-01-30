@@ -18,7 +18,7 @@ type Props = Omit<AutocompleteProps<AutocompleteLocationModel>, "children"> & {
   defaultSelectedCountry?: IsoCode;
   grouped?: boolean;
 }
-export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, ...props }: Props) => {
+export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, size = 'md', ...props }: Props) => {
 
   const defaultLabel = "Buscar por código postal o ciudad...";
 
@@ -81,14 +81,16 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
     }
   };
 
+  console.log({ size })
 
   return (
     <div className="flex flex-col">
-      <div className={clsx("flex gap-2 justify-between items-center", {
+      <div className={clsx("flex gap-1.5 justify-between items-center", {
         "!gap-0": grouped
       })}>
 
         <SelectCountryIcon
+          radius={props?.radius}
           variant={props?.variant || "bordered"}
           defaultSelectedCountry={defaultSelectedCountry}
           allowedCountries={allowedCountries}
@@ -96,16 +98,30 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
             setSelectedCountry(country.isoCode);
             onInputChange("");
           }}
-          classNames={{ trigger: clsx({ 'rounded-r-none': grouped }) }}
+          classNames={{
+            trigger: clsx({
+              'rounded-r-none': grouped,
+              'h-12': size === 'lg' && !props?.label,
+              'h-10': size === 'md' && !props?.label,
+              'h-8': size === 'sm' && !props?.label,
+            })
+          }}
           isInvalid={isInvalid}
-          size={props?.size}
+          size={size}
+          avatarProps={{
+            className: clsx({
+              '!size-8': size === 'lg' && !props?.label,
+              '!size-7': size === 'md' && !props?.label,
+              '!size-5': size === 'sm' && !props?.label,
+            })
+          }}
         />
 
         <Autocomplete
           fullWidth
+          size={size}
           aria-label="Autocompletado de dirección"
-          label={props.size === "sm" ? undefined : defaultLabel}
-          placeholder={props.size !== "sm" ? undefined : defaultLabel}
+          placeholder={props?.placeholder || defaultLabel}
           variant={props?.variant || "bordered"}
           inputValue={inpValue}
           onInputChange={onInputChange}
@@ -114,7 +130,7 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
           selectedKey={selectedItem}
           onSelectionChange={onSelectionChange}
           onOpenChange={onOpenChange}
-          popoverProps={{ radius: 'sm', size: 'sm' }}
+          popoverProps={{ radius: props?.radius, size: 'sm' }}
           inputProps={{
             autoComplete: 'nel',
             classNames: {
