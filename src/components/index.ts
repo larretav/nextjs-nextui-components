@@ -24,4 +24,3 @@ export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { AddressCard } from "./surfaces/cards/addresses/AddressCard";
-

@@ -103,6 +103,7 @@ export const TabsFilters = ({ selectedKey, children, ...restProps }: Props) => {
               </Chip>
             </div>
           }
+          
         />
       )
       )}
