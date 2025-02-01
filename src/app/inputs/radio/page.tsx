@@ -2,6 +2,7 @@ import { PageTitle } from "@/components";
 import { OSStatusFilterRadio } from "./_components/OSStatusFilterRadio";
 import { OSQuotationRadio } from "./_components/OSQuotationRadio";
 import OSImageRadio from "./_components/OSImageRadio";
+import { OSBranchDeliverRadio } from "./_components/OSBranchDeliverRadio";
 
 export default function RadioPage() {
   return (
@@ -12,6 +13,7 @@ export default function RadioPage() {
         <OSQuotationRadio />
         <OSStatusFilterRadio />
         <OSImageRadio />
+        <OSBranchDeliverRadio />
       </div>
 
     </div>
