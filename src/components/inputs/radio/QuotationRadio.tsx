@@ -31,11 +31,10 @@ export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, del
     <Component
       {...getBaseProps()}
       className={clsx(
-        "group inline-flex items-center justify-between bg-content1 hover:bg-content2 shadow-md transition-background relative overflow-hidden",
-        "w-full cursor-pointer border border-transparent rounded-2xl gap-4 p-3 pr-2 z-0",
-        "data-[selected=true]:border-primary", {
-          'cursor-auto hover:bg-content1' : isDisabled
-        }
+        "group inline-flex items-center justify-between bg-content1 shadow-small transition-background relative overflow-hidden",
+        "w-full border border-transparent rounded-2xl gap-4 p-3 pr-2 z-0", {
+        'cursor-pointer hover:bg-content2 data-[selected=true]:border-primary': !isDisabled
+      }
       )}
 
     >
@@ -45,32 +44,37 @@ export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, del
 
       {errorContent && <div className="absolute top-0 left-0 w-full h-full z-50">{errorContent}</div>}
 
-      <div className="w-full flex items-center justify-between gap-2">
-        <div className="flex flex-col gap-4 w-full ">
-          <div className="flex gap-3 ">
-            <ShipperType shipper={shipper}/>
-            <div className="flex flex-col">
-              <div className="text-4xl font-semibold text-nowrap">${cost.toFixed(2)}<span className="text-base font-bold">MXN</span></div>
-              <span className="text-xs font-medium text-default-400">Precio normal: ${normalCost.toFixed(2)}</span>
+      <div className="w-full h-full flex items-center justify-between relative">
+        <div className="flex flex-col h-full gap-4 ">
+
+          <div className="flex gap-3">
+            <ShipperType shipper={shipper} />
+            <div className="flex flex-col flex-wrap">
+              <p className="font-semibold max-[320px]:text-2xl text-4xl">${cost.toFixed(2)}<span className="text-base font-bold">MXN</span></p>
+              <span className="text-sm font-semibold text-foreground-400">Precio normal: ${normalCost.toFixed(2)}</span>
             </div>
           </div>
 
           <div className="flex flex-col">
             <div className="text-base font-medium ">Entrega estimada: <span className="font-bold">{estimateDate}</span></div>
-            <span className="text-sm font-medium text-default-400">{deliveredType}</span>
+            <span className="text-sm font-semibold text-foreground-400">{deliveredType}</span>
           </div>
 
         </div>
 
         {
-          !isDisabled && <Checkbox
+          !isDisabled &&
+          <Checkbox
             isSelected={isSelected}
             color="primary"
             radius="sm"
-            className="-z-10 "
+            className="-z-10 -m-0 p-1 absolute top-0 bottom-0 right-0"
+            classNames={{
+              wrapper: "me-0"
+            }}
           />
         }
       </div>
-    </Component>
+    </Component >
   );
 };

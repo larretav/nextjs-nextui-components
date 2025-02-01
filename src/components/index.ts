@@ -1,3 +1,4 @@
+export { TagsInput } from "./inputs/TagsInput";
 export { ImageRadio } from "./inputs/radio/ImageRadio";
 export { BottomSheet } from "./navigation/bottom-sheet/BottomSheet";
 export { SidebarFilterDivider } from "./data-display/divider/SidebarFilterDivider";
