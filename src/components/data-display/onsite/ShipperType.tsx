@@ -3,6 +3,7 @@ import React from 'react'
 import { Shippers } from '@/types';
 import { BagClickSolid } from '@/components/icons';
 import clsx from 'clsx';
+import { cn } from '@/lib/utils';
 
 type Props = {
   shipper: Shippers,
@@ -21,7 +22,7 @@ const shippers: Record<Shippers, any> = {
 
 export const ShipperType = ({ shipper, isEcommerce = false, className }: Props) => {
   return (
-    <div className={"w-20 h-9 relative overflow-hidden rounded-lg " + className}>
+    <div className={cn("w-20 h-9 relative overflow-hidden rounded-lg ", className)}>
       <Image
         src={shippers[shipper]}
         alt={shipper}

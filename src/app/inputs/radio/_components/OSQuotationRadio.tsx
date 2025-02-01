@@ -68,7 +68,7 @@ export const OSQuotationRadio = () => {
       deliveredType: "Standard",
       estimateDate: "Miercoles 8 de septiembre",
       shipper: "paquetexpress",
-      isDisabled: false,
+      isDisabled: true,
       errors: null
     },
     {

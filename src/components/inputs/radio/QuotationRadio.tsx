@@ -16,9 +16,19 @@ type Props = RadioProps & {
   deliveredType?: string;
   shipper: Shippers;
   errorContent?: ReactNode;
+  radius?: "none" | "sm" | "md" | "lg" | "full";
 }
 
-export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, deliveredType, shipper, errorContent, ...restProps }: Props) => {
+export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, deliveredType, shipper, errorContent, radius = 'md', ...restProps }: Props) => {
+
+  const radiusClasses = {
+    none: "rounded-none",
+    sm: "rounded-small",
+    md: "rounded-medium",
+    lg: "rounded-large",
+    full: "rounded-full",
+  };
+
   const {
     Component,
     isSelected,
@@ -30,13 +40,12 @@ export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, del
   return (
     <Component
       {...getBaseProps()}
-      className={clsx(
-        "group inline-flex items-center justify-between bg-content1 shadow-small transition-background relative overflow-hidden",
+      className={cn(clsx(
+        "group inline-flex items-center justify-between bg-content1 shadow-small transition-background relative overflow-hidden opacity-50",
         "w-full border border-transparent rounded-2xl gap-4 p-3 pr-2 z-0", {
-        'cursor-pointer hover:bg-content2 data-[selected=true]:border-primary': !isDisabled
+        'cursor-pointer hover:bg-content2 data-[selected=true]:border-primary opacity-100 rounded': !isDisabled
       }
-      )}
-
+      ), radiusClasses[radius], restProps?.className)}
     >
       <VisuallyHidden>
         <input {...getInputProps()} />

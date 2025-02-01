@@ -9,7 +9,7 @@ import React, { useState } from 'react'
 
 export const OSBranchDeliverRadio = () => {
 
-  const shipper: Shippers = "paquetexpress";
+  const shipper: Shippers = "dhl";
 
   const branches = [
     {
@@ -65,10 +65,13 @@ export const OSBranchDeliverRadio = () => {
         {
           branches.map(({key, name, branchType, ...address}) => (
             <BranchDeliverRadio
+              key={key}
               value={key}
               shipper={shipper}
               branchName={name}
               address={address}
+              isDisabled={key === 'LMM05'}
+              
             />
           ))
         }
