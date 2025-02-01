@@ -1,5 +1,5 @@
 import React from 'react'
-import type {ShipmentStatus} from "@/types/shipments.types"
+import type {ShipmentStatus} from "@/types/shipments.type"
 import { Status } from './Status'
 type Props = {
     status: ShipmentStatus

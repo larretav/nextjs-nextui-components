@@ -1,5 +1,5 @@
 import { EcommercePlatforms } from "./ecommerce-platform.type"
-import { ShipmentStatus } from "./shipments.types"
+import { ShipmentStatus } from "./shipments.type"
 import {Shippers} from "./shippers.type"
 type ShipmentItem = {
     title: string,

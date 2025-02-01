@@ -1,0 +1,1 @@
+export type PackageType = "box" | "envelope" | "pallet"
