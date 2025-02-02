@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react'
 import Image from 'next/image'
 import type { PackageType as TypePackageType } from '@/types'
+import { cn } from '@/lib/utils'
 
 type Props = {
   type: TypePackageType
@@ -32,7 +33,7 @@ export const PackageType = ({ type, width = 40, height = 40, className = "" }: P
       alt={packages[type].alt}
       width={width}
       height={height}
-      className={className}
+      className={cn('object-contain', className)}
     />
   )
 }
