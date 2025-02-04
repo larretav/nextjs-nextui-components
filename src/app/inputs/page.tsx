@@ -1,5 +1,5 @@
 
-import { PackageContentAdjust, PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
+import { PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
 import BoxCounter from "@/components/inputs/BoxCounter";
 import SimpleCounter from "@/components/inputs/SimpleCounter";
 import { Switch } from "@nextui-org/switch";
