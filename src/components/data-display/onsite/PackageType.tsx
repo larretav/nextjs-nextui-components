@@ -1,39 +1,39 @@
 import React, { useMemo } from 'react'
 import Image from 'next/image'
-import box from "../../../../public/assets/package-type/box.png"
-import envelope from "../../../../public/assets/package-type/envelope.png"
-import pallet from "../../../../public/assets/package-type/pallet.png"
+import type { PackageType as TypePackageType } from '@/types'
+import { cn } from '@/lib/utils'
 
 type Props = {
-    type: "box" | "envelope" | "pallet"
-    width?: number,
-    height?: number
-    className?: string
+  type: TypePackageType
+  width?: number,
+  height?: number
+  className?: string
 }
 
-export default function PackageType({ type, width = 40, height = 40, className = "" }: Props) {
-    const imageSrc = useMemo(() => {
-        switch (type) {
-            case "box":
-                return box
-            case "envelope":
-                return envelope
-            case "pallet":
-                return pallet
-            default:
-                return box // Fallback to a default image
-        }
-    }, [type])
+const packages: Record<TypePackageType, { src: string, alt: string }> = {
+  box: {
+    src: '/assets/package-type/box.png',
+    alt: 'box.png'
+  },
+  envelope: {
+    src: '/assets/package-type/envelope.png',
+    alt: 'envelope.png'
+  },
+  pallet: {
+    src: '/assets/package-type/pallet.png',
+    alt: 'pallet.png'
+  }
+}
 
-    const altText = useMemo(() => {
-        return `Image of a ${type}`
-    }, [type])
+export const PackageType = ({ type, width = 40, height = 40, className = "" }: Props) => {
 
-    return (
-        <Image src={imageSrc} alt={altText}
-            width={width}
-            height={height}
-            className={className}
-        />
-    )
+  return (
+    <Image
+      src={packages[type].src}
+      alt={packages[type].alt}
+      width={width}
+      height={height}
+      className={cn('object-contain', className)}
+    />
+  )
 }

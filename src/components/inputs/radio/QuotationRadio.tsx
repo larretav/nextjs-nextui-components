@@ -17,9 +17,10 @@ type Props = RadioProps & {
   shipper: Shippers;
   errorContent?: ReactNode;
   radius?: "none" | "sm" | "md" | "lg" | "full";
+  shadow?: "none" | "sm" | "md" | "lg";
 }
 
-export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, deliveredType, shipper, errorContent, radius = 'md', ...restProps }: Props) => {
+export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, deliveredType, shipper, errorContent, shadow = 'md', radius = 'md', ...restProps }: Props) => {
 
   const radiusClasses = {
     none: "rounded-none",
@@ -27,6 +28,13 @@ export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, del
     md: "rounded-medium",
     lg: "rounded-large",
     full: "rounded-full",
+  };
+
+  const shadowClasses = {
+    none: "shadow-none",
+    sm: "shadow-small",
+    md: "shadow-medium",
+    lg: "shadow-large",
   };
 
   const {
@@ -45,7 +53,7 @@ export const QuotationRadio = ({ cost = 0.0, normalCost = 0.0, estimateDate, del
         "w-full border border-transparent rounded-2xl gap-4 p-3 pr-2 z-0", {
         'cursor-pointer hover:bg-content2 data-[selected=true]:border-primary opacity-100 rounded': !isDisabled
       }
-      ), radiusClasses[radius], restProps?.className)}
+      ), shadowClasses[shadow], radiusClasses[radius], restProps?.className)}
     >
       <VisuallyHidden>
         <input {...getInputProps()} />
