@@ -1,5 +1,5 @@
 'use client';
-import { AutocompleteProductSAT, AutocompleteProductSATCard, PackageContentAdjustCard } from '@/components'
+import { ProductSATCard, PackageContentAdjustCard } from '@/components'
 import clsx from 'clsx';
 import React, { useState } from 'react'
 
@@ -26,7 +26,7 @@ export const OSPackageContentAdjust = () => {
           isInvalid={isInvalid}
         />
 
-        <AutocompleteProductSATCard
+        <ProductSATCard
           packageType="box"
           description="Decoraciones de navidad"
           dimensions="20cm x 20cm x 3cm"
@@ -34,7 +34,7 @@ export const OSPackageContentAdjust = () => {
           weight={4}
           radius="sm"
           isInvalid={isInvalid}
-          onSelectedItem={(productSAT) => console.log({productSAT})}
+          onSelectedItem={(productSAT) => console.log({ productSAT })}
         />
 
         <p className={clsx({

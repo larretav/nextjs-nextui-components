@@ -2,6 +2,9 @@
 import { getAutoProductSAT } from '@/actions'
 import ProductSATModel from '@/models/sat/product-sat.model'
 import { Autocomplete, AutocompleteItem, AutocompleteProps, MenuTriggerAction } from '@nextui-org/autocomplete'
+import { Skeleton } from '@nextui-org/skeleton';
+import { useIsSSR } from '@react-aria/ssr';
+import clsx from 'clsx';
 import { get } from 'http';
 import React, { forwardRef, Key, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
@@ -20,6 +23,7 @@ const AutocompleteProductSAT = forwardRef<HTMLInputElement, AutocompleteProductS
   const [selectedItem, setSelectedItem] = useState<string | null>(null);
   const [inpValue, setInpValue] = useState('');
   const [isLoading, setIsLoading] = useState(false)
+  const isSSR = useIsSSR()
 
   const getProducSATItems = async (search: string) => {
     setIsLoading(true);
@@ -82,7 +86,7 @@ const AutocompleteProductSAT = forwardRef<HTMLInputElement, AutocompleteProductS
   useEffect(() => {
     if (defaultValue) {
       getProducSATItems(defaultValue).then((data) => {
-        
+
         if (!data) return
 
         setInpValue(data[0].description);
@@ -93,6 +97,7 @@ const AutocompleteProductSAT = forwardRef<HTMLInputElement, AutocompleteProductS
     }
   }, [])
 
+  if (isSSR) return <AutocompleteProductSATSkeleton radius={props?.radius} />
 
   return (
     <Autocomplete
@@ -121,6 +126,15 @@ const AutocompleteProductSAT = forwardRef<HTMLInputElement, AutocompleteProductS
   )
 })
 
-AutocompleteProductSAT.displayName = "AutocompleteProductSAT";
 
+const AutocompleteProductSATSkeleton = ({ radius = 'sm' }: Pick<AutocompleteProductSATProps, 'radius'>) => {
+  return <Skeleton className={clsx("w-full h-10", {
+    "rounded-sm": radius === 'none',
+    "rounded-small": radius === 'sm',
+    "rounded-medium": radius === 'md',
+    "rounded-large": radius === 'lg',
+  })} />
+}
+
+AutocompleteProductSAT.displayName = "AutocompleteProductSAT";
 export { AutocompleteProductSAT };

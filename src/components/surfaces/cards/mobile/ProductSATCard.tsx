@@ -1,16 +1,11 @@
 'use client';
-import { getAutoProductSAT } from '@/actions'
 import { PackageType } from '@/components/data-display/onsite/PackageType'
 import { ListTile } from '@/components/surfaces/cards/mobile/ListTile'
 import { cn } from '@/lib/utils'
-import ProductSATModel from '@/models/sat/product-sat.model'
 import { PackageType as TypePackageType } from '@/types'
-import { AutocompleteProps, MenuTriggerAction } from '@nextui-org/autocomplete'
 import { Card, CardBody, CardHeader, CardProps } from '@nextui-org/card'
-import { Input, InputProps } from '@nextui-org/input'
-import React, { forwardRef, Key, useRef, useState } from 'react'
-import { toast } from 'sonner'
-import { AutocompleteProductSAT, AutocompleteProductSATProps } from './AutocompleteProductSAT';
+import React, { forwardRef } from 'react'
+import { AutocompleteProductSAT, AutocompleteProductSATProps } from '../../../inputs/autocomplete/AutocompleteProductSAT';
 
 
 type Props = Pick<CardProps, 'className' | 'shadow' | 'radius'> & Pick<AutocompleteProductSATProps, 'onSelectedItem' | 'isInvalid' | 'errorMessage'> & {
@@ -27,7 +22,7 @@ type Props = Pick<CardProps, 'className' | 'shadow' | 'radius'> & Pick<Autocompl
   },
 }
 
-const AutocompleteProductSATCard = forwardRef<HTMLInputElement, Props>(({ description, dimensions, packageType, quantity, weight, classNames, className, radius, shadow, ...inputProps }: Props, ref) => {
+const ProductSATCard = forwardRef<HTMLInputElement, Props>(({ description, dimensions, packageType, quantity, weight, classNames, className, radius, shadow, ...inputProps }: Props, ref) => {
 
   const productSATDefualtValue = "31181701";
 
@@ -65,6 +60,6 @@ const AutocompleteProductSATCard = forwardRef<HTMLInputElement, Props>(({ descri
   )
 })
 
-AutocompleteProductSATCard.displayName = "AutocompleteProductSATCard";
+ProductSATCard.displayName = "AutocompleteProductSATCard";
 
-export { AutocompleteProductSATCard };
+export { ProductSATCard };
