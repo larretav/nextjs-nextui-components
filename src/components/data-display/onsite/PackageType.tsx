@@ -1,35 +1,39 @@
 import React, { useMemo } from 'react'
 import Image from 'next/image'
+import type { PackageType as TypePackageType } from '@/types'
+import { cn } from '@/lib/utils'
 
 type Props = {
-  type: "box" | "envelope" | "pallet"
+  type: TypePackageType
   width?: number,
   height?: number
   className?: string
 }
 
-export default function PackageType({ type, width = 40, height = 40, className = "" }: Props) {
+const packages: Record<TypePackageType, { src: string, alt: string }> = {
+  box: {
+    src: '/assets/package-type/box.png',
+    alt: 'box.png'
+  },
+  envelope: {
+    src: '/assets/package-type/envelope.png',
+    alt: 'envelope.png'
+  },
+  pallet: {
+    src: '/assets/package-type/pallet.png',
+    alt: 'pallet.png'
+  }
+}
 
-  const imageSrc: Record<Props['type'], { src: string, alt: string }> = useMemo(() => (({
-    box: {
-      src: '/assets/package-type/box.png',
-      alt: 'caja.png'
-    },
-    envelope: {
-      src: '/assets/package-type/envelope.png',
-      alt: 'sobre.png'
-    },
-    pallet: {
-      src: '/assets/package-type/pallet.png',
-      alt: 'tarima.png'
-    }
-  })), [type]);
+export const PackageType = ({ type, width = 40, height = 40, className = "" }: Props) => {
 
   return (
-    <Image src={imageSrc[type].src} alt={imageSrc[type].alt}
+    <Image
+      src={packages[type].src}
+      alt={packages[type].alt}
       width={width}
       height={height}
-      className={className}
+      className={cn('object-contain', className)}
     />
   )
 }

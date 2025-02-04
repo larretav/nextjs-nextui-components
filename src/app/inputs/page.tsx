@@ -1,5 +1,5 @@
 
-import { AutocompleteLocation, PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
+import {  PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
 import BoxCounter from "@/components/inputs/BoxCounter";
 import SimpleCounter from "@/components/inputs/SimpleCounter";
 import { Switch } from "@nextui-org/switch";
@@ -15,36 +15,23 @@ export default function InputsPage() {
     <div className="flex flex-col gap-10 py-3 px-6">
       <PageTitle text="Input Components" />
 
-      <div className={baseClassname} id="counters">
-        <p>Counters</p>
-        <div className="flex gap-4 items-center mx-6">
-          <SimpleCounter />
-          <BoxCounter />
-        </div>
+      <p className="p-2 font-medium">SimpleCounter</p>
+      <div className="w-min">
+        <SimpleCounter />
       </div>
 
-
-      <div className={baseClassname} id="radio">
-        <p>Radios</p>
-        <div className="mx-6">
-          <SwitchInputs />
-        </div>
+      <p className="p-2 font-medium">Box Counter</p>
+      <div className="w-min">
+        <BoxCounter />
       </div>
 
-
-      <div className={baseClassname} id="switch">
-        <p>Switch</p>
-        <div className="mx-6">
-          <RadioInputs />
-        </div>
+      <p className="p-2 font-medium">Switch</p>
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-12">
+        <div className="container-component-item"><ThemeSwitch /></div>
+        <div className="container-component-item"><Switch /></div>
+        <div className="col-span-2 container-component-item"><ThemeSwitchTabs /></div>
       </div>
 
-      <div className={baseClassname} id="autocomplete">
-        <p >Autocomplete</p>
-        <div className="sm:mx-6">
-          <AutocompleteInputs />
-        </div>
-      </div>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 "use client"
-import PackageType from '@/components/data-display/onsite/PackageType'
+import { PackageType } from '@/components/data-display/onsite/PackageType'
 import { Card, CardBody } from '@nextui-org/card'
 import { Input } from "@nextui-org/input";
 import React from 'react'
@@ -30,7 +30,7 @@ export default function PackageItemMobileCard({ content, packageType }: Props) {
                 <Divider orientation="vertical" className="h-3/5" />
                 <div className="pt-8 ml-auto">
                     <SimpleCounter />
-                </div>               
+                </div>
             </CardBody>
 
         </Card>

@@ -45,9 +45,9 @@ const AlertButton = () => {
         className='text-white bg-pink-600'
         onPress={() => {
           showAlert.success('Hola', {
-            footer: (onClose) => {
-            return <Button color='success' onPress={onClose}>Cerrar</Button>
-          } })
+            footer: <></>,
+            // isDismissable: false
+          })
 
         }}
       >Hola</Button>

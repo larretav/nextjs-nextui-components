@@ -3,7 +3,6 @@ import React, { createElement, forwardRef, useState } from 'react'
 import { Drawer, DrawerBody, DrawerContent } from '../drawer/Drawer'
 import { Divider } from '@nextui-org/divider';
 import { AnimatePresence, motion, PanInfo } from 'framer-motion';
-import { ModalContentProps, useDraggable, useModal } from '@nextui-org/modal';
 
 type Props = {
   open: boolean,

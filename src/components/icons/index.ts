@@ -29,3 +29,4 @@ export * from './ShipmentsSolid';
 export * from './ShipOutputSolid';
 export * from './SvgIcon';
 export * from './ZipCodeSolid';
+export * from './CircleExclamationOutlined';

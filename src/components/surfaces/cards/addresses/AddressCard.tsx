@@ -32,7 +32,7 @@ export const AddressCard = ({
         </CardHeader>
       }
 
-      <CardBody >
+      <CardBody>
         <span className="text-sm font-medium">{addressInstance.name}</span>
         <span className="text-sm font-light">{addressInstance.street} #{addressInstance.number}</span>
         <span className="text-sm font-light">{addressInstance.suburb}</span>
