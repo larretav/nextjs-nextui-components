@@ -1,10 +1,10 @@
 "use client"
 import { PackageType } from '@/components/data-display/onsite/PackageType'
-import { Card, CardBody } from '@nextui-org/card'
-import { Input } from "@nextui-org/input";
+import { Card, CardBody } from "@heroui/card"
+import { Input } from "@heroui/input";
 import React from 'react'
 import SimpleCounter from '@/components/inputs/SimpleCounter';
-import { Divider } from '@nextui-org/divider';
+import { Divider } from "@heroui/divider";
 
 type Props = {
     content: string,

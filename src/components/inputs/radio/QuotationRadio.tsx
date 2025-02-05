@@ -2,8 +2,8 @@
 import { ShipperType } from "@/components/data-display/onsite/ShipperType";
 import { cn } from "@/lib/utils";
 import { Shippers } from "@/types";
-import { Checkbox } from "@nextui-org/checkbox";
-import { RadioProps, useRadio } from "@nextui-org/radio";
+import { Checkbox } from "@heroui/checkbox";
+import { RadioProps, useRadio } from "@heroui/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import clsx from "clsx";
 import { get } from "http";

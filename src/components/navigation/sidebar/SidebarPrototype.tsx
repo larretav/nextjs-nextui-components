@@ -1,8 +1,8 @@
 'use client';
 import { useUIStore } from '@/store';
-import { Badge } from '@nextui-org/badge';
-import { Button } from '@nextui-org/button';
-import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
+import { Badge } from "@heroui/badge";
+import { Button } from "@heroui/button";
+import { Listbox, ListboxItem, ListboxSection } from "@heroui/listbox"
 import clsx from 'clsx';
 import React from 'react'
 import { FaTwitch, FaTwitter } from 'react-icons/fa6';

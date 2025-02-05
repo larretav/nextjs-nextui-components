@@ -5,7 +5,7 @@ import TabFilter from '../tabs/TabFilter';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { FaEye, FaFilter } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa";
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import EnviosFilterMenu from '../menu/EnviosFilterMenu';
 import EnviosShowMoreColumnsMenu from '../menu/EnviosShowMoreColumnsMenu';
 

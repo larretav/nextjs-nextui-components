@@ -1,12 +1,12 @@
 "use client"
 
 import React, { useCallback, useEffect, useState } from 'react'
-import { Avatar } from "@nextui-org/avatar";
-import { Select, SelectItem } from '@nextui-org/select';
+import { Avatar } from "@heroui/avatar";
+import { Select, SelectItem } from "@heroui/select";
 import {
     Autocomplete,
     AutocompleteItem
-} from "@nextui-org/autocomplete";
+} from "@heroui/autocomplete";
 import { LocationItem, LocationResponseMapper } from '@/models/shipments/locationService.model';
 import { useCustomerCatalogStore } from '@/store/tables/customer-catalog-store';
 

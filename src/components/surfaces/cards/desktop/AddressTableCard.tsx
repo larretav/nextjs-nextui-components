@@ -1,6 +1,6 @@
-import { Button } from '@nextui-org/button'
-import { Card, CardBody, CardFooter } from '@nextui-org/card'
-import { Divider } from '@nextui-org/divider'
+import { Button } from "@heroui/button"
+import { Card, CardBody, CardFooter } from "@heroui/card"
+import { Divider } from "@heroui/divider"
 import React from 'react'
 import { FaPenToSquare, FaTrashCan } from 'react-icons/fa6'
 

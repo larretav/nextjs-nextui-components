@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react'
-import { Popover, PopoverTrigger, PopoverContent, } from "@nextui-org/popover"
-import { Button } from '@nextui-org/button'
+import { Popover, PopoverTrigger, PopoverContent, } from "@heroui/popover"
+import { Button } from "@heroui/button"
 import { FaFilter } from 'react-icons/fa6'
-import { DatePicker } from '@nextui-org/date-picker'
-import { Input } from '@nextui-org/input'
+import { DatePicker } from "@heroui/date-picker"
+import { Input } from "@heroui/input"
 import { IoIosSearch } from 'react-icons/io'
 import { CalendarDate, parseDate } from '@internationalized/date';
 import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'

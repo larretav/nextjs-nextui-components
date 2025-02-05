@@ -2,10 +2,10 @@
 import { ShipperType } from "@/components/data-display/onsite/ShipperType";
 import { cn } from "@/lib/utils";
 import { Shippers } from "@/types";
-import { Button } from "@nextui-org/button";
-import { Checkbox } from "@nextui-org/checkbox";
-import { Link } from "@nextui-org/link";
-import { RadioProps, useRadio } from "@nextui-org/radio";
+import { Button } from "@heroui/button";
+import { Checkbox } from "@heroui/checkbox";
+import { Link } from "@heroui/link";
+import { RadioProps, useRadio } from "@heroui/radio";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import clsx from "clsx";
 import { ReactNode } from "react";

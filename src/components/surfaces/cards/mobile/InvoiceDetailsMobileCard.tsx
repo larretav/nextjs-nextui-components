@@ -1,5 +1,5 @@
 "use client"
-import { Card, CardBody } from '@nextui-org/card'
+import { Card, CardBody } from "@heroui/card"
 import React from 'react'
 
 type Props = {

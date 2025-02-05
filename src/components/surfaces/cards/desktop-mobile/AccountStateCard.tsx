@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card'
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card"
 import React from 'react'
 import { IoIosAlert } from "react-icons/io";
 import { MdOutlineSdCardAlert } from "react-icons/md";

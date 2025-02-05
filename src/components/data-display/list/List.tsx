@@ -1,4 +1,4 @@
-import { Listbox, ListboxProps } from '@nextui-org/listbox'
+import { Listbox, ListboxProps } from "@heroui/listbox"
 import React from 'react'
 
 type Props = ListboxProps

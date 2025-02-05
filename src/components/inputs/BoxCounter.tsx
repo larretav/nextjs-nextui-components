@@ -1,9 +1,9 @@
 "use client"
 import React, { useState } from 'react'
-import { Badge } from '@nextui-org/badge'
+import { Badge } from "@heroui/badge"
 import Image from 'next/image'
 import { FaMinus, FaPlus } from 'react-icons/fa6'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 export default function BoxCounter() {
     const [count, setCount] = useState(0)
     return (

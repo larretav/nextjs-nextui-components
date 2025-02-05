@@ -1,7 +1,7 @@
 import InvoiceDetailsMobileCard from '@/components/surfaces/cards/mobile/InvoiceDetailsMobileCard'
 import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'
-import { Button } from '@nextui-org/button'
-import { Card, CardHeader } from '@nextui-org/card'
+import { Button } from "@heroui/button"
+import { Card, CardHeader } from "@heroui/card"
 import React from 'react'
 import { FaXmark } from 'react-icons/fa6'
 export default function InvoiceDetails() {

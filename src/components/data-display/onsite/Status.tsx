@@ -1,6 +1,6 @@
 'use client';
-import { Chip } from '@nextui-org/chip'
-import { extendVariants } from '@nextui-org/system'
+import { Chip } from "@heroui/chip"
+import { extendVariants } from "@heroui/system"
 
 export const Status = extendVariants(Chip, {
   variants: {

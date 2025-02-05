@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
+import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from "@heroui/modal"
 import { useShipmentListStore } from '@/store/tables/shipment-list-store';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import toast from 'react-hot-toast';
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 export default function DetailsPDFModal() {
     const { onOpenChange } = useDisclosure();
     const isOpen = useShipmentListStore.use.isDetailsPDFModalOpen()

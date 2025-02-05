@@ -1,9 +1,9 @@
 "use client"
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import React from 'react'
 import { FaMoneyBillTransfer } from "react-icons/fa6";
 import { FaMoneyBillWave, FaRegCreditCard } from "react-icons/fa";
-import { Button, } from '@nextui-org/button';
+import { Button, } from "@heroui/button";
 import BadgeIcon from '@/components/data-display/badge/BoxBadge';
 
 type paymentMethods = "card" | "cash" | "transfer"

@@ -1,6 +1,6 @@
 'use client';
-import { Card, CardBody } from "@nextui-org/card";
-import { Tab, Tabs } from "@nextui-org/tabs";
+import { Card, CardBody } from "@heroui/card";
+import { Tab, Tabs } from "@heroui/tabs";
 import { useIsSSR } from "@react-aria/ssr";
 import { useTheme } from "next-themes";
 import { Key, useEffect, useState } from "react";

@@ -1,6 +1,6 @@
 "use client"
 import { PageTitle } from '@/components';
-import { Card } from '@nextui-org/card';
+import { Card } from "@heroui/card";
 import { useRouter } from 'next/navigation';
 import React from 'react'
 import { FaImage } from 'react-icons/fa6';

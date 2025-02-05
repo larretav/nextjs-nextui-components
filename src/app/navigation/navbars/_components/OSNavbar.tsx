@@ -1,11 +1,11 @@
 'use client';
 import React from 'react'
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from '@nextui-org/navbar';
+import { Navbar, NavbarBrand, NavbarContent, NavbarItem } from "@heroui/navbar";
 import { OnSiteIconSolid, OnSiteLogoSolid, OnSiteLogoSolid2 } from '@/components/icons';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
-import { Avatar } from '@nextui-org/avatar';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
+import { Avatar } from "@heroui/avatar";
 import { FaBars, FaBell, FaUser } from 'react-icons/fa6';
-import { Badge } from '@nextui-org/badge';
+import { Badge } from "@heroui/badge";
 import Link from 'next/link';
 import { OSHamburguerButton } from '../../_components/OSHamburguerButton';
 

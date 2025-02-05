@@ -1,6 +1,6 @@
 
-import { Badge, BadgeProps } from '@nextui-org/badge';
-import { extendVariants } from '@nextui-org/system';
+import { Badge, BadgeProps } from "@heroui/badge";
+import { extendVariants } from "@heroui/system";
 
 export const CBadge = (props: Omit<BadgeProps, 'children'>) => {
   return (

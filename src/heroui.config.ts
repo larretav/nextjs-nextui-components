@@ -1,16 +1,16 @@
-import { ColorScale, ConfigThemes, NextUIPluginConfig, ThemeColors } from "@nextui-org/theme";
+import { ColorScale, ConfigThemes, HeroUIPluginConfig, ThemeColors } from "@heroui/theme";
 
 // type ExtendedColors = Partial<ThemeColors> & Record<string, Record<number | string, string> & { DEFAULT?: string }>;
 type ExtendedColors = Partial<ThemeColors> & Record<string, ColorScale>;
 
-type NextUIPluginConfigExtended = NextUIPluginConfig & {
+type NextUIPluginConfigExtended = HeroUIPluginConfig & {
   themes: ConfigThemes & {
     light: { colors: ExtendedColors },
     dark: { colors: ExtendedColors }
   }
 }
 
-export const nextuiConfig: NextUIPluginConfig = {
+export const nextuiConfig: HeroUIPluginConfig = {
   themes: {
     light: {
       colors: {

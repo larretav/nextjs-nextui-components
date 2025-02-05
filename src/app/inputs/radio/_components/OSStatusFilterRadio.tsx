@@ -1,6 +1,6 @@
 'use client';
 import { StatusFilterRadio } from '@/components';
-import { RadioGroup } from '@nextui-org/radio'
+import { RadioGroup } from "@heroui/radio"
 import React, { useState } from 'react'
 
 export const OSStatusFilterRadio = () => {

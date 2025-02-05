@@ -3,7 +3,7 @@ import createSelectors from "../selectors"
 import { Key } from "react"
 import { ShipmentItem } from "@/models/shipments/shipments.model"
 import { ShipmentsDocumenterMapper } from "@/models/shipments/shipmentsDocumenter.model"
-import { Selection } from "@nextui-org/table"
+import { Selection } from "@heroui/table"
 type State = {
     isDetailsOpen: boolean
     selectedShipmentOrder: ShipmentItem

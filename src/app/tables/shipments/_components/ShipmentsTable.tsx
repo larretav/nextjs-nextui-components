@@ -1,18 +1,18 @@
 "use client"
 import React, { useCallback, useEffect, useState } from 'react'
 import { useShipmentListStore } from '@/store/tables/shipment-list-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue, } from "@nextui-org/table"
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue, } from "@heroui/table"
 import { IconEcommerce, PageTitle, ShipperType, } from '@/components'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
 import ShipmentDetails from './ShipmentDetails'
 import ShipmentsPopoverFilter from './ShipmentsPopoverFilter'
 import OsStatus from '@/components/data-display/onsite/OsStatus'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
 import { ShipmentsMapper } from '@/models/shipments/shipments.model';
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types';
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown';
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import TablePagination from '../../../../components/pagination/TablePagination';
 import DetailsPDFModal from './DetailsPDFModal'
 import { FaFileExport, FaLocationDot, FaFileContract } from "react-icons/fa6";
@@ -20,13 +20,13 @@ import LabelPDFModal from './LabelPDFModal'
 import toast, { Toaster } from 'react-hot-toast';
 import { BsFiletypeXml } from "react-icons/bs";
 import { ShipmentsDocumenterMapper } from '@/models/shipments/shipmentsDocumenter.model'
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 import PaqueteExpressMap from './PaqueteExpressMap'
 import { TbTruckDelivery } from 'react-icons/tb'
 import DeliveryDetailsModal from './DeliveryDetailsModal'
 import { IoFootstepsSharp } from 'react-icons/io5'
 import TrackingModal from './TrackingModal'
-import { Input } from '@nextui-org/input'
+import { Input } from "@heroui/input"
 import { IoIosSearch } from 'react-icons/io'
 import clsx from 'clsx'
 type Props = {

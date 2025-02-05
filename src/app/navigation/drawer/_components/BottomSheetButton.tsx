@@ -1,7 +1,7 @@
 'use client';
 import { BottomSheet } from '@/components'
-import { Button } from '@nextui-org/button'
-import { Listbox, ListboxItem } from '@nextui-org/listbox'
+import { Button } from "@heroui/button"
+import { Listbox, ListboxItem } from "@heroui/listbox"
 import React, { useState } from 'react'
 import { FaTrashAlt } from 'react-icons/fa'
 import { FaEllipsisVertical, FaCopy, FaImage } from 'react-icons/fa6'

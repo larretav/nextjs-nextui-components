@@ -1,7 +1,7 @@
 import PackageMobileCard from '@/components/surfaces/cards/mobile/PackageMobileCard'
 import { ShipmentDetailsMapper } from '@/models/shipments/shipmentsDetails.model'
 import { useShipmentListStore } from '@/store/tables/shipment-list-store'
-import { Card, CardHeader } from '@nextui-org/card'
+import { Card, CardHeader } from "@heroui/card"
 import React, { useEffect, useState } from 'react'
 import { ShipmentDetailsItem } from "@/models/shipments/shipmentsDetails.model"
 import toast from 'react-hot-toast'

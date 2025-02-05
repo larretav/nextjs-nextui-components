@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import {
   Modal,
   ModalBody,
@@ -9,7 +9,7 @@ import {
   ModalHeader,
   ModalProps,
   useDisclosure,
-} from '@nextui-org/modal'
+} from "@heroui/modal"
 import { motion } from 'framer-motion';
 
 import React, { forwardRef, ReactNode, useCallback, useEffect } from 'react'

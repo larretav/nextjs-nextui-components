@@ -1,5 +1,5 @@
 import { PageTitle } from "@/components";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar } from "@heroui/avatar";
 
 export default function AvatarPage() {
   return (

@@ -3,10 +3,10 @@
 import { QuotationRadio, TagsInput } from '@/components'
 import { CircleExclamationOutlined } from '@/components/icons';
 import { Shippers } from '@/types';
-import { Button } from '@nextui-org/button';
-import { Checkbox } from '@nextui-org/checkbox';
-import { Popover, PopoverContent, PopoverTrigger } from '@nextui-org/popover';
-import { RadioGroup } from '@nextui-org/radio'
+import { Button } from "@heroui/button";
+import { Checkbox } from "@heroui/checkbox";
+import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
+import { RadioGroup } from "@heroui/radio"
 import clsx from 'clsx';
 import React, { useState } from 'react'
 import { FaCircleExclamation } from 'react-icons/fa6';

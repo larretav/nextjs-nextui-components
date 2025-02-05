@@ -1,6 +1,6 @@
 'use client';
 import { useComponentsStore } from '@/store';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import React from 'react'
 import { TbLayoutSidebarRightFilled } from 'react-icons/tb';
 import { OSSidebarFilters } from './onsite-sidebar-filters/OSSidebarFilters';

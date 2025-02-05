@@ -1,8 +1,8 @@
 'use client';
 import { getNextUiColor, getTailwindColorHex } from '@/utils'
-import { Button } from '@nextui-org/button'
-import { Skeleton } from '@nextui-org/skeleton';
-import { colors, semanticColors } from '@nextui-org/theme'
+import { Button } from "@heroui/button"
+import { Skeleton } from "@heroui/skeleton";
+import { colors, semanticColors } from "@heroui/theme"
 import clsx from 'clsx'
 import { useTheme } from 'next-themes'
 import React, { cloneElement, ReactElement, useEffect, useState } from 'react'

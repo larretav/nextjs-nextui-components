@@ -1,7 +1,7 @@
 'use client';
 import { IconEcommerce } from '@/components/data-display/onsite/IconEcommerce'
 import { EcommercePlatforms, ShipmentStatus, Shippers } from '@/types'
-import { Card, CardBody, CardHeader } from '@nextui-org/card'
+import { Card, CardBody, CardHeader } from "@heroui/card"
 import React from 'react'
 import { MoreOptionsShipment } from './MoreOptionsShipment'
 import { Status } from '@/components/data-display/onsite/Status';

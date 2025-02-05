@@ -1,6 +1,6 @@
 'use client';
 import { useUIStore } from '@/store';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import React, { ReactNode } from 'react'
 import { FaBars, FaXmark } from 'react-icons/fa6';
 

@@ -1,6 +1,6 @@
 "use client"
-import { Button } from '@nextui-org/button';
-import { Card, CardBody, CardFooter } from '@nextui-org/card'
+import { Button } from "@heroui/button";
+import { Card, CardBody, CardFooter } from "@heroui/card"
 import React from 'react'
 import { FaTrashAlt } from "react-icons/fa";
 import { FaEdit } from "react-icons/fa";
