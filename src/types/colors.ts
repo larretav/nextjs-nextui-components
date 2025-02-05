@@ -1,4 +1,4 @@
-import { BaseColors, ThemeColors } from "@nextui-org/theme";
+import { BaseColors, ThemeColors } from "@heroui/theme";
 import type { DefaultColors as DefaulTailwindtColors } from 'tailwindcss/types/generated/colors'
 
 

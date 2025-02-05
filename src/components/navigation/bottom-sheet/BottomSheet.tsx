@@ -1,7 +1,7 @@
 'use client';
 import React, { createElement, forwardRef, useState } from 'react'
 import { Drawer, DrawerBody, DrawerContent } from '../drawer/Drawer'
-import { Divider } from '@nextui-org/divider';
+import { Divider } from "@heroui/divider";
 import { AnimatePresence, motion, PanInfo } from 'framer-motion';
 
 type Props = {

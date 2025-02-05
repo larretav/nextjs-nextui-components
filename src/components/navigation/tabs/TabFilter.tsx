@@ -1,8 +1,8 @@
 'use client';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { getNextUIOrTailwindColor, ThemeName } from '@/utils';
-import { Chip } from '@nextui-org/chip'
-import { TabItemProps, Tab as NextUITab } from '@nextui-org/tabs'
+import { Chip } from "@heroui/chip"
+import { TabItemProps, Tab as NextUITab } from "@heroui/tabs"
 import { useTheme } from 'styled-components';
 
 export type TabFilterProps = TabItemProps & {

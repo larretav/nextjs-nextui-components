@@ -1,8 +1,8 @@
 "use client"
 import React, { useCallback } from 'react'
 import { useCustomerCatalogStore } from '@/store/tables/customer-catalog-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Selection } from "@nextui-org/table"
-import { Button } from '@nextui-org/button'
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, getKeyValue, Selection } from "@heroui/table"
+import { Button } from "@heroui/button"
 import { FaEllipsisVertical, FaFilePdf } from 'react-icons/fa6'
 import { IoPerson } from "react-icons/io5";
 import { BsBuildingsFill } from "react-icons/bs";
@@ -15,7 +15,7 @@ import CustomerPopoverFilter from './CustomerPopoverFilter'
 import { filterCustomer } from '../functions/filterCustomer'
 import { Customer, CustomersMapper } from '@/models/shipments/customer.model'
 import TablePagination from '@/components/pagination/TablePagination'
-import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@nextui-org/dropdown'
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown"
 import { FaEdit } from "react-icons/fa";
 import { useSwitchPage } from '../functions/useSwitchPage'
 

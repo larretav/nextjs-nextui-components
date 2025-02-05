@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Card, CardBody } from '@nextui-org/card';
+import { Card, CardBody } from "@heroui/card";
 import { FaMapLocationDot } from "react-icons/fa6";
 type Props = {
     type: "en sitio" | "en transito" | "entregados" | "cancelados"

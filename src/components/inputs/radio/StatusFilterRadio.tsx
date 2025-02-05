@@ -3,7 +3,7 @@ import { cn } from '@/lib/utils';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { getNextUIOrTailwindColor } from '@/utils';
 import { css } from '@emotion/css';
-import { Radio, RadioProps } from '@nextui-org/radio'
+import { Radio, RadioProps } from "@heroui/radio"
 import { useIsSSR } from '@react-aria/ssr';
 import { useTheme } from 'next-themes';
 import React from 'react'

@@ -1,7 +1,7 @@
 import { PageTitle } from "@/components";
-import { Button } from "@nextui-org/button";
-import { Card } from "@nextui-org/card";
-import { Link } from "@nextui-org/link";
+import { Button } from "@heroui/button";
+import { Card } from "@heroui/card";
+import { Link } from "@heroui/link";
 import { FaChevronLeft, FaImage } from "react-icons/fa6";
 
 export default function FeedBackPage() {

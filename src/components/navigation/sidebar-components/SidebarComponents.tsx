@@ -3,8 +3,8 @@ import { Drawer, ThemeSwitch } from '@/components'
 import { OnSiteLogoSolid } from '@/components/icons';
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useComponentsStore, useUIStore } from '@/store'
-import { Button } from '@nextui-org/button'
-import { User } from '@nextui-org/user';
+import { Button } from "@heroui/button"
+import { User } from "@heroui/user";
 import React from 'react'
 import { FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
 import { SidebarComponentsList } from './SidebarComponentsList';

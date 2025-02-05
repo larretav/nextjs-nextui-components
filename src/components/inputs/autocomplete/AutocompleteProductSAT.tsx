@@ -1,8 +1,8 @@
 'use client';
 import { getAutoProductSAT } from '@/actions'
 import ProductSATModel from '@/models/sat/product-sat.model'
-import { Autocomplete, AutocompleteItem, AutocompleteProps, MenuTriggerAction } from '@nextui-org/autocomplete'
-import { Skeleton } from '@nextui-org/skeleton';
+import { Autocomplete, AutocompleteItem, AutocompleteProps, MenuTriggerAction } from "@heroui/autocomplete"
+import { Skeleton } from "@heroui/skeleton";
 import { useIsSSR } from '@react-aria/ssr';
 import clsx from 'clsx';
 import { get } from 'http';

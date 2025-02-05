@@ -1,6 +1,6 @@
 'use client';
 import { ImageRadio } from '@/components'
-import { RadioGroup } from '@nextui-org/radio'
+import { RadioGroup } from "@heroui/radio"
 import React from 'react'
 
 const OSImageRadio = () => {

@@ -1,9 +1,9 @@
 "use client"
 import React from 'react'
-import { Card, CardHeader, CardFooter, CardBody } from '@nextui-org/card'
+import { Card, CardHeader, CardFooter, CardBody } from "@heroui/card"
 import { RiUserSearchFill } from "react-icons/ri";
 import { MdNotListedLocation } from "react-icons/md";
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 
 type Props = {
     title: string,

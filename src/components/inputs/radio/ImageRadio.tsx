@@ -1,7 +1,7 @@
 'use client';
 import { cn } from "@/lib/utils";
-import { RadioGroup, useRadio, RadioProps } from "@nextui-org/radio";
-import { Image, ImageProps } from "@nextui-org/image";
+import { RadioGroup, useRadio, RadioProps } from "@heroui/radio";
+import { Image, ImageProps } from "@heroui/image";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import clsx from "clsx";
 import { useState } from "react";

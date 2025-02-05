@@ -1,5 +1,5 @@
 'use client';
-import { Button, ButtonProps } from '@nextui-org/button'
+import { Button, ButtonProps } from "@heroui/button"
 import React from 'react'
 
 export const IconButton = ({ children, ...props }: ButtonProps) => {

@@ -1,7 +1,7 @@
 'use client';
 import { IconButton, PackageType } from '@/components'
 import { ListTile } from '@/components/surfaces/cards/mobile/ListTile'
-import { Avatar } from '@nextui-org/avatar'
+import { Avatar } from "@heroui/avatar"
 import React from 'react'
 import { FaEllipsisVertical, FaUser } from 'react-icons/fa6'
 

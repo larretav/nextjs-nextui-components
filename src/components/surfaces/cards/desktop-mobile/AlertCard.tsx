@@ -1,6 +1,6 @@
 "use client"
-import { Button } from '@nextui-org/button';
-import { Card } from '@nextui-org/card'
+import { Button } from "@heroui/button";
+import { Card } from "@heroui/card"
 import React from 'react'
 import { FaCheck } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";

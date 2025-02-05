@@ -1,6 +1,6 @@
-import { Button } from '@nextui-org/button'
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card'
-import { Input } from '@nextui-org/input'
+import { Button } from "@heroui/button"
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card"
+import { Input } from "@heroui/input"
 
 import React from 'react'
 import { MdAttachMoney } from 'react-icons/md'

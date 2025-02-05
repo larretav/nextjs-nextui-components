@@ -1,6 +1,6 @@
 "use client"
 import { FaImage,  } from "react-icons/fa6";
-import { Card } from "@nextui-org/card";
+import { Card } from "@heroui/card";
 import { useRouter } from "next/navigation";
 
 export default function NavigationPage() {

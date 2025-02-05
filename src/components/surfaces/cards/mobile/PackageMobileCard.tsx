@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { Card, CardBody } from "@nextui-org/card";
+import { Card, CardBody } from "@heroui/card";
 import { PackageType } from '@/components/data-display/onsite/PackageType';
 type Props = {
     leadingIcon: "box" | "envelope" | "pallet"

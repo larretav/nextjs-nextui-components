@@ -1,4 +1,4 @@
-import { Navbar } from "@nextui-org/navbar";
+import { Navbar } from "@heroui/navbar";
 
 export default function NavigationLayout({
   children

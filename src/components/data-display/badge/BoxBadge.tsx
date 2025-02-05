@@ -1,4 +1,4 @@
-import { Badge } from "@nextui-org/badge"
+import { Badge } from "@heroui/badge"
 import { BsFillBoxSeamFill } from "react-icons/bs"
 
 type Props = {

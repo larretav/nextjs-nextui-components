@@ -2,10 +2,10 @@
 import { Drawer, SidebarFilterDivider, SidebarFilterTitle, StatusFilterRadio, ThemeSwitchTabs } from '@/components'
 import { DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@/components/navigation/drawer/Drawer'
 import { useUIStore } from '@/store'
-import { Button } from '@nextui-org/button'
-import { Input } from '@nextui-org/input';
-import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox';
-import { User } from '@nextui-org/user';
+import { Button } from "@heroui/button"
+import { Input } from "@heroui/input";
+import { Listbox, ListboxItem, ListboxSection } from "@heroui/listbox";
+import { User } from "@heroui/user";
 import clsx from 'clsx';
 import React, { useState } from 'react'
 import { FaCalendar, FaChevronLeft, FaMagnifyingGlass } from 'react-icons/fa6'
@@ -13,11 +13,11 @@ import { useComponentsStore } from '@/store/ui/components-store';
 import { OnSiteLogoSolid2 } from '@/components/icons';
 import { IoLogOut } from "react-icons/io5";
 import { MdLogout } from 'react-icons/md';
-import { DatePicker } from '@nextui-org/date-picker';
+import { DatePicker } from "@heroui/date-picker";
 import { TbCalendarFilled } from 'react-icons/tb';
 import { DateValue, getLocalTimeZone, today } from '@internationalized/date';
-import { Select, SelectItem } from '@nextui-org/select';
-import { RadioGroup } from '@nextui-org/radio';
+import { Select, SelectItem } from "@heroui/select";
+import { RadioGroup } from "@heroui/radio";
 
 
 export const OSSidebarFilters = () => {

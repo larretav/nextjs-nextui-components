@@ -1,9 +1,9 @@
 'use client';
 import { NextUIColorKeys, TailwindColorKeys } from '@/types';
 import { getNextUiColor, getNextUIOrTailwindColor, getTailwindColorHex, ThemeName } from '@/utils';
-import { Button } from '@nextui-org/button';
-import { Chip } from '@nextui-org/chip';
-import { Tab, TabItemProps, Tabs } from '@nextui-org/tabs';
+import { Button } from "@heroui/button";
+import { Chip } from "@heroui/chip";
+import { Tab, TabItemProps, Tabs } from "@heroui/tabs";
 import { useIsSSR } from '@react-aria/ssr';
 import { useTheme } from 'next-themes';
 import React, { FC, ReactNode } from 'react';

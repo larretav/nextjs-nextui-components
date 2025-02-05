@@ -1,9 +1,9 @@
 "use client"
-import { Card, CardBody } from '@nextui-org/card'
+import { Card, CardBody } from "@heroui/card"
 import { BsBuildingsFill } from 'react-icons/bs'
 import { IoEllipsisHorizontal } from 'react-icons/io5'
 import React from 'react'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 type Props = {
     customerName: string,

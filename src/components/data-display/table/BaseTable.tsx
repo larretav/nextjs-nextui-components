@@ -1,6 +1,6 @@
 'use client';
 import { ITableCol } from '@/interfaces/table/table-col.interface';
-import { getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableProps, TableRow } from '@nextui-org/table'
+import { getKeyValue, Table, TableBody, TableCell, TableColumn, TableHeader, TableProps, TableRow } from "@heroui/table"
 import React from 'react'
 
 type Props = {

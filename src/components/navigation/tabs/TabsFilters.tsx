@@ -1,12 +1,12 @@
 "use client";
-import { Chip } from "@nextui-org/chip";
+import { Chip } from "@heroui/chip";
 import {
   Tabs as NextUITabs,
   Tab,
   TabItemProps,
   Tabs,
   TabsProps,
-} from "@nextui-org/tabs";
+} from "@heroui/tabs";
 import React, {
   Children,
   cloneElement,

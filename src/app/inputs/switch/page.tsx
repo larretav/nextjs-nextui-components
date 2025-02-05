@@ -1,5 +1,5 @@
 import { PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
-import { Switch } from "@nextui-org/switch";
+import { Switch } from "@heroui/switch";
 
 export default function SwitchPage() {
   return (

@@ -1,7 +1,7 @@
 import tailwindColors from 'tailwindcss/colors'
-import { semanticColors } from '@nextui-org/theme'
+import { semanticColors } from "@heroui/theme"
 import tailwindTheme from '@/tailwind-theme'
-import { nextuiConfig } from '@/nextui.config';
+import { nextuiConfig } from '@/heroui.config';
 
 export type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 export type Type = "hex" | "rgba";

@@ -1,6 +1,6 @@
 'use client';
-import { Select, SelectItem, SelectItemProps, SelectProps, SelectedItems } from "@nextui-org/select";
-import { Avatar } from "@nextui-org/avatar";
+import { Select, SelectItem, SelectItemProps, SelectProps, SelectedItems } from "@heroui/select";
+import { Avatar } from "@heroui/avatar";
 import clsx from "clsx";
 import { forwardRef, Key, useMemo, useRef } from "react";
 import { Country, IsoCode } from "@/types";
@@ -12,7 +12,7 @@ type Props = Omit<SelectProps, 'children' | 'onSelectionChange'> & {
   onSelectionChange?: (country: Country) => void;
 }
 
-const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onSelectionChange = () => { }, allowedCountries: disableCountries = [], ...props }: Props, ref) => {
+const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>( ({ itemProps, onSelectionChange = () => { }, allowedCountries: disableCountries = [], ...props }: Props, ref) => {
 
   const defaultValue = useMemo(() => countries[0].isoCode, [])
 

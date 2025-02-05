@@ -1,7 +1,7 @@
 'use client';
 import { TabFilter, TabFilter2 } from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
-import { Tab } from '@nextui-org/tabs';
+import { Tab } from "@heroui/tabs";
 import React, { cloneElement, Key, useState } from 'react'
 
 type TabsExample = {

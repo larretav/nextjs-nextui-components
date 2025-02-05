@@ -1,8 +1,8 @@
 import React, { useState, ReactNode, useEffect, use, ReactElement } from 'react';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@heroui/modal";
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCircleExclamation, FaCircleXmark, FaInfo, FaQuestion, FaTriangleExclamation, FaXmark } from 'react-icons/fa6';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 
 
 type AlertProps = {

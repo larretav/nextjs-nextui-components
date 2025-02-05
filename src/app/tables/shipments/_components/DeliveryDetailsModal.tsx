@@ -1,12 +1,12 @@
 "use client"
 import { PaqueteExpressDeliveryMapper } from '@/models/shipments/paquetexpressDelivery.model';
 import { useShipmentListStore } from '@/store/tables/shipment-list-store';
-import { Button } from '@nextui-org/button'
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from '@nextui-org/modal'
+import { Button } from "@heroui/button"
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal"
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react'
 import toast from 'react-hot-toast';
-import { Spinner } from "@nextui-org/spinner"
+import { Spinner } from "@heroui/spinner"
 
 
 export default function DeliveryDetailsModal() {

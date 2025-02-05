@@ -2,17 +2,17 @@
 import { useCustomerCatalogStore } from '@/store/tables/customer-catalog-store'
 import React from 'react'
 import { useSwitchPage } from "../functions/useSwitchPage"
-import { Button } from '@nextui-org/button'
-import { Switch } from '@nextui-org/switch'
+import { Button } from "@heroui/button"
+import { Switch } from "@heroui/switch"
 import { IoPerson } from "react-icons/io5";
 import { BsBuildingsFill } from "react-icons/bs";
-import { Input, Textarea } from '@nextui-org/input'
-import { Avatar  } from "@nextui-org/avatar";
-import { Select, SelectItem } from '@nextui-org/select';
+import { Input, Textarea } from "@heroui/input"
+import { Avatar  } from "@heroui/avatar";
+import { Select, SelectItem } from "@heroui/select";
 import {
   Autocomplete,  
   AutocompleteItem
-} from "@nextui-org/autocomplete";
+} from "@heroui/autocomplete";
 import { LocationItem, LocationResponseMapper } from '@/models/shipments/locationService.model';
 import AutocompleteLocation from './AutocompleteLocation'
 

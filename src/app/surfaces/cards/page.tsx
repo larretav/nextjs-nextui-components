@@ -17,7 +17,7 @@ import DashAlertCard from "@/components/surfaces/cards/desktop-mobile/DashAlertC
 import AlertCard from "@/components/surfaces/cards/desktop-mobile/AlertCard";
 import { FaEllipsisVertical, FaUser } from "react-icons/fa6";
 import { ListTile } from "@/components/surfaces/cards/mobile/ListTile";
-import { Avatar } from "@nextui-org/avatar";
+import { Avatar } from "@heroui/avatar";
 import { OSListTiles } from "./_components/OSListTiles";
 
 export default function CardsPage() {
