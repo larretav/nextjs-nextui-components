@@ -107,7 +107,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
             onInputChange("");
           }}
           classNames={{
-            trigger: cn("bg-white", clsx({
+            trigger: cn("bg-content1", clsx({
               'rounded-r-none': grouped,
               'h-12': size === 'lg' && !props?.label,
               'h-10': size === 'md' && !props?.label,
@@ -138,7 +138,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               value={inpValue}
               onValueChange={onInputChange}
               classNames={{
-                inputWrapper: cn("bg-content1",clsx({
+                inputWrapper: cn("bg-content1", clsx({
                   'rounded-l-none ': grouped
                 })),
               }}
@@ -171,7 +171,6 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               inputProps={{
                 autoComplete: 'nel',
                 classNames: {
-
                   inputWrapper: cn(clsx({
                     'rounded-l-none bg-content1': grouped
                   }))
