@@ -1,5 +1,5 @@
 'use client';
-import { AddressCardInput, Drawer } from '@/components'
+import { AddressCardInput, AutocompleteLocation, Drawer } from '@/components'
 import { DrawerBody, DrawerContent, DrawerFooter } from '@/components/navigation/drawer/Drawer';
 import { Button } from '@nextui-org/button';
 import React, { useState } from 'react'
@@ -18,21 +18,26 @@ const OSSetAddressCard = () => {
         onClose={() => setOpen(false)}
         classNames={{
           base: 'bg-transparent shadow-none',
-          backdrop: 'bg-content1/80',
+          // backdrop: 'bg-content1/80',
+          backdrop: 'bg-red-200',
         }}
       >
         <DrawerContent className="p-4 ">
           {(onClose) => <>
-            <DrawerBody className="bg-content1 rounded-lg  ">
-              <h3>Esto es un modal</h3>
+            <DrawerBody className="p-0 pb-8 h-fit mb-4 overflow-auto">
+              <AutocompleteLocation
+                allowedCountries={["CL", "US", "MX"]}
+                defaultSelectedCountry="MX"
+                onSelectedLocation={(location) => {
+                  console.log(location);
+                }}
+                size="md"
+                radius="sm"
+                separateResults
+              />
             </DrawerBody>
-
-            <DrawerFooter>
-              <Button onPress={onClose}>Cerrar</Button>
-            </DrawerFooter>
           </>}
         </DrawerContent>
-
       </Drawer>
     </>
   )

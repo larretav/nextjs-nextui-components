@@ -106,14 +106,13 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
             setSelectedCountry(country.isoCode);
             onInputChange("");
           }}
-          className="bg-content1"
           classNames={{
-            trigger: clsx({
+            trigger: cn("bg-white", clsx({
               'rounded-r-none': grouped,
               'h-12': size === 'lg' && !props?.label,
               'h-10': size === 'md' && !props?.label,
               'h-8': size === 'sm' && !props?.label,
-            })
+            }))
           }}
           isInvalid={isInvalid}
           size={size}
@@ -138,11 +137,10 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               variant={props?.variant || "bordered"}
               value={inpValue}
               onValueChange={onInputChange}
-              className="bg-content1"
               classNames={{
-                inputWrapper: clsx({
-                  'rounded-l-none': grouped
-                }),
+                inputWrapper: cn("bg-content1",clsx({
+                  'rounded-l-none ': grouped
+                })),
               }}
               isClearable
               endContent={<div className="flex gap-1 items-center">
@@ -173,9 +171,10 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               inputProps={{
                 autoComplete: 'nel',
                 classNames: {
-                  inputWrapper: clsx({
-                    'rounded-l-none': grouped
-                  }),
+
+                  inputWrapper: cn(clsx({
+                    'rounded-l-none bg-content1': grouped
+                  }))
                 }
               }}
               listboxProps={{ emptyContent: "Buscar por código postal o ciudad..." }}
@@ -211,9 +210,8 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               key={item.id}
               aria-label="Listado de direcciones"
               onPress={() => { onSelectionChange(item.id) }}
-              endContent={<FaImage size={20} />}
               className={cn(clsx({
-                "[&>span]:text-medium": size !== 'sm',
+                "[&>span]:text-medium": size === 'lg',
               }))}>
               {item.completeAddress}
             </ListboxItem>
