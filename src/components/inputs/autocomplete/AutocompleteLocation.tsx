@@ -7,18 +7,27 @@ import { AutocompleteLocationModel } from "@/models";
 import { getAutocompleteLocation } from "@/actions/autocomplete/get-auto-location";
 import { IsoCode } from "@/types";
 import clsx from "clsx";
+import { Input } from "@nextui-org/input";
+import { Listbox, ListboxItem } from "@nextui-org/listbox";
+import { FaImage, FaXmark } from "react-icons/fa6";
+import { cn } from "@/lib/utils";
+import { IconButton } from "../buttons/IconButton";
+import { Spinner } from "@nextui-org/spinner";
 
 
 type AutocompleteLocation = AutocompleteLocationModel & { selectedCode: string }
 
 type Props = Omit<AutocompleteProps<AutocompleteLocationModel>, "children"> & {
-  setSelectedLocation: (location: AutocompleteLocation | null) => void,
+  onSelectedLocation: (location: AutocompleteLocation | null) => void,
+  startContent?: React.ReactNode,
   errorMessage?: string,
   allowedCountries: IsoCode[];
   defaultSelectedCountry?: IsoCode;
   grouped?: boolean;
+  separateResults?: boolean;
 }
-export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, size = 'md', ...props }: Props) => {
+
+export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, size = 'md', radius = 'md', separateResults = false, "aria-label": ariaLabel = "Seleccionar ubicación", ...props }: Props) => {
 
   const defaultLabel = "Buscar por código postal o ciudad...";
 
@@ -32,21 +41,21 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
 
   const onSelectionChange = (key: Key | null) => {
     if (!key) {
-      setSelectedLocation(null);
+      onSelectedLocation(null);
       setSelectedItem(null);
       return;
     };
 
     const country = items.find(item => item.id === key)!;
-    setSelectedLocation({ ...country, selectedCode: country.country } as AutocompleteLocation)
+    onSelectedLocation({ ...country, selectedCode: country.country } as AutocompleteLocation)
     setSelectedItem(country.id);
     setInpValue(country.completeAddress);
   }
 
   const onInputChange = (newValue: string) => {
-    if (!newValue || !newValue?.trim()) {
+    if (!newValue?.trim()) {
       setInpValue(newValue);
-      setItems([]);
+      // setItems([]);
       setSelectedItem(null);
       return;
     };
@@ -59,11 +68,11 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
     debounceRef.current = setTimeout(async () => {
       setIsLoading(true);
       try {
-        const { ok, data, error } = await getAutocompleteLocation(selectedCountry, newValue);
+        const { ok, data = [], error } = await getAutocompleteLocation(selectedCountry, newValue);
         if (!ok)
           throw error;
 
-        setItems(data!);
+        setItems(data);
 
       } catch (error: any) {
         toast.error(error)
@@ -81,16 +90,15 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
     }
   };
 
-  console.log({ size })
-
   return (
-    <div className="flex flex-col">
-      <div className={clsx("flex gap-1.5 justify-between items-center", {
+    <div aria-label={ariaLabel} className="flex flex-col">
+      <div aria-label={ariaLabel} className={clsx("flex gap-1.5 justify-between items-center", {
         "!gap-0": grouped
       })}>
 
         <SelectCountryIcon
-          radius={props?.radius}
+          aria-label="Selección de país"
+          radius={radius}
           variant={props?.variant || "bordered"}
           defaultSelectedCountry={defaultSelectedCountry}
           allowedCountries={allowedCountries}
@@ -98,6 +106,7 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
             setSelectedCountry(country.isoCode);
             onInputChange("");
           }}
+          className="bg-content1"
           classNames={{
             trigger: clsx({
               'rounded-r-none': grouped,
@@ -117,41 +126,100 @@ export const AutocompleteLocation = ({ setSelectedLocation, isInvalid, errorMess
           }}
         />
 
-        <Autocomplete
-          fullWidth
-          size={size}
-          aria-label="Autocompletado de dirección"
-          placeholder={props?.placeholder || defaultLabel}
-          variant={props?.variant || "bordered"}
-          inputValue={inpValue}
-          onInputChange={onInputChange}
-          isLoading={isLoading}
-          items={items}
-          selectedKey={selectedItem}
-          onSelectionChange={onSelectionChange}
-          onOpenChange={onOpenChange}
-          popoverProps={{ radius: props?.radius, size: 'sm' }}
-          inputProps={{
-            autoComplete: 'nel',
-            classNames: {
-              inputWrapper: clsx({
-                'rounded-l-none': grouped
-              }),
-            }
-          }}
-          listboxProps={{ emptyContent: "Coloque un código postal o ciudad valida" }}
-          isInvalid={isInvalid}
+        {
+          separateResults && <>
+            <Input
+              aria-label="Autocompletado de dirección"
+              fullWidth
+              size={size}
+              radius={radius}
+              placeholder={props?.placeholder || defaultLabel}
+              label={props?.label}
+              variant={props?.variant || "bordered"}
+              value={inpValue}
+              onValueChange={onInputChange}
+              className="bg-content1"
+              classNames={{
+                inputWrapper: clsx({
+                  'rounded-l-none': grouped
+                }),
+              }}
+              isClearable
+              endContent={<div className="flex gap-1 items-center">
+                <IconButton onPress={() => setInpValue('')}  ><FaXmark size="1rem" className="text-foreground-500" /></IconButton>
+                {isLoading && <Spinner size="sm" color="default" />}
+              </div>}
+            />
+          </>
+        }
 
-          {...props}
-        >
-          {(item) => (
-            <AutocompleteItem key={item.id}  >
-              {item.completeAddress}
-            </AutocompleteItem>
-          )}
-        </Autocomplete>
+        {
+          !separateResults && <>
+            <Autocomplete
+              fullWidth
+              size={size}
+              radius={radius}
+              aria-label="Autocompletado de dirección"
+              placeholder={props?.placeholder || defaultLabel}
+              variant={props?.variant || "bordered"}
+              inputValue={inpValue}
+              onInputChange={onInputChange}
+              isLoading={isLoading}
+              items={items}
+              selectedKey={selectedItem}
+              onSelectionChange={onSelectionChange}
+              onOpenChange={onOpenChange}
+              popoverProps={{ size, radius }}
+              inputProps={{
+                autoComplete: 'nel',
+                classNames: {
+                  inputWrapper: clsx({
+                    'rounded-l-none': grouped
+                  }),
+                }
+              }}
+              listboxProps={{ emptyContent: "Buscar por código postal o ciudad..." }}
+              isInvalid={isInvalid}
+              className="bg-content1"
+
+              {...props}
+            >
+              {(item) => (
+                <AutocompleteItem key={item.id}  >
+                  {item.completeAddress}
+                </AutocompleteItem>
+              )}
+            </Autocomplete>
+          </>
+        }
+
+
       </div>
       {isInvalid && <span className="p-1 text-tiny text-danger">{errorMessage}</span>}
-    </div>
+      {separateResults && <>
+        <Listbox className={clsx("bg-content1 p-3 mt-3 max-h-[300px] overflow-auto no-scrollbar", {
+          "rounded-sm": radius === 'none',
+          "rounded-small": radius === 'sm',
+          "rounded-medium": radius === 'md',
+          "rounded-large": radius === 'lg',
+        })}
+          emptyContent="Sin resultados"
+        >
+
+          {separateResults && items.map((item) => (
+            <ListboxItem
+              key={item.id}
+              aria-label="Listado de direcciones"
+              onPress={() => { onSelectionChange(item.id) }}
+              endContent={<FaImage size={20} />}
+              className={cn(clsx({
+                "[&>span]:text-medium": size !== 'sm',
+              }))}>
+              {item.completeAddress}
+            </ListboxItem>
+          ))}
+        </Listbox>
+      </>}
+    </div >
   );
 }

@@ -46,14 +46,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 			<body
 				className={clsx(
-					"bg-background font-sans antialiased",
+					"font-sans antialiased",
 					fontPoppins.className
 				)}
 			>
 				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
 					<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
 						<GlobalNavbar />
-						<main className="">
+						<main className="overflow-y-auto h-full text-foreground bg-zinc-50 dark:bg-zinc-950">
 							{children}
 						</main>
 

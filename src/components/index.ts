@@ -1,3 +1,6 @@
+export { AutocompleteLocation } from "./inputs/autocomplete/AutocompleteLocation";
+export { SelectCountryIcon } from "./inputs/select/SelectCountryIcon";
+
 export { AutocompleteProductSAT } from "./inputs/autocomplete/AutocompleteProductSAT";
 export { ProductSATCard } from "./surfaces/cards/mobile/ProductSATCard";
 export { Button } from "./inputs/buttons/Button";

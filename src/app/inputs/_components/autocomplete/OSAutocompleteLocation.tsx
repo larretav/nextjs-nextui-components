@@ -7,40 +7,46 @@ import React, { useState } from 'react'
 export const OSAutocompleteLocation = () => {
   const [location, setLocation] = useState<AutocompleteLocationModel | null>()
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-3" >
       lg
+
       <AutocompleteLocation
         allowedCountries={["CL", "US", "MX"]}
         defaultSelectedCountry="MX"
-        setSelectedLocation={(location) => {
+        onSelectedLocation={(location) => {
           setLocation(location);
         }}
         // grouped
-        radius='sm'
-        size='lg'
+        // separateResults
+        radius="sm"
+        size="lg"
       />
       md
       <AutocompleteLocation
         allowedCountries={["CL", "US", "MX"]}
         defaultSelectedCountry="MX"
-        setSelectedLocation={(location) => {
+        onSelectedLocation={(location) => {
           setLocation(location);
         }}
-        // grouped
-        // size="md"
+        grouped
+        size="md"
+        radius="sm"
+        separateResults
+
       />
       sm
       <AutocompleteLocation
         allowedCountries={["CL", "US", "MX"]}
         defaultSelectedCountry="MX"
-        setSelectedLocation={(location) => {
+        onSelectedLocation={(location) => {
           setLocation(location);
         }}
         // grouped
         size="sm"
-      // label="Location"
+        radius="sm"
+        separateResults
+        // label="Dirección"
       />
-      <Input placeholder="Location" size='md' variant='bordered' />
       <div className="p-3 bg-default-200 rounded-2xl overflow-auto no-scrollbar">
         <pre >{JSON.stringify(location, null, 3)}</pre>
       </div>
