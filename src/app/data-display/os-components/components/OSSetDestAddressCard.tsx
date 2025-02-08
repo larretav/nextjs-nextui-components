@@ -24,18 +24,18 @@ export const OSSetDestAddressCard = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        closeButton={<IconButton className="hidden sm:flex" ><FaXmark size="1.25rem" className="text-default-400 " /></IconButton>}
+        closeButton={<IconButton tabIndex={-1} ><FaXmark size="1.25rem" className="text-default-400 " /></IconButton>}
         size='2xl'
         classNames={{
           base: 'bg-transparent shadow-none sm:bg-content1 sm:shadow-small relative',
-          backdrop: 'bg-content1/80 sm:bg-overlay/50',
+          backdrop: 'bg-content1/90 sm:bg-overlay/50',
           wrapper: '[--slide-enter:0px] [--slide-exit:-100px] justify-start items-start sm:justify-center sm:items-center ',
-          closeButton: 'top-2 right-2'
+          closeButton: 'top-2 right-2 hidden sm:flex'
         }}
       >
-        <ModalContent className="p-0 m-0 bg-red-200">
+        <ModalContent className="p-0 m-0 ">
           {(onClose) => <>
-            
+
             <ModalHeader className="hidden sm:flex">
               Direccion destino
             </ModalHeader>
@@ -44,8 +44,8 @@ export const OSSetDestAddressCard = () => {
               aria-label="Pestañas de direcciones"
               selectedKey={selectedTab.toString()}
               onSelectionChange={setSelectedTab}
-              classNames={{ tabList: 'w-full', base: "w-full p-4" }}
-              radius="none"
+              classNames={{ tabList: 'w-full', base: "w-full p-4 pb-2 pb-0" }}
+              radius="sm"
             >
               <Tab
                 key="addressess"
@@ -55,8 +55,8 @@ export const OSSetDestAddressCard = () => {
                     <span>Direcciones</span>
                   </div>}
               >
-
-                <ModalBody className="p-4 sm:pt-0 h-fit ">
+                {/* flex flex-1 flex-col gap-3 p-4 pt-0 sm:pt-0 h-fit */}
+                <div className="flex flex-1 flex-col gap-3 p-4 pt-0 sm:pt-0 h-fit ">
                   <AutocompleteLocation
                     allowedCountries={["CL", "US", "MX"]}
                     defaultSelectedCountry="MX"
@@ -71,7 +71,7 @@ export const OSSetDestAddressCard = () => {
                     radius="sm"
                     separateResults
                   />
-                </ModalBody>
+                </div>
               </Tab>
 
 
@@ -81,7 +81,9 @@ export const OSSetDestAddressCard = () => {
                   <span>Clientes</span>
                 </div>}
               >
-                Clientes
+                <div className="flex flex-1 flex-col gap-3 p-4 pt-0 sm:pt-0 h-fit bg-red-300 ">
+                  Esto es de customers
+                </div>
               </Tab>
             </Tabs>
 
@@ -90,8 +92,6 @@ export const OSSetDestAddressCard = () => {
           </>}
         </ModalContent>
       </Modal >
-
-
     </>
   )
 }

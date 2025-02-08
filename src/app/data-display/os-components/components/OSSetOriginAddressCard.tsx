@@ -36,9 +36,11 @@ export const OSSetOriginnAddressCard = () => {
       >
         <ModalContent className="p-0 m-0">
           {(onClose) => <>
+            
             <ModalHeader className="hidden sm:flex">
-              Direcciones origen
+              Dirección origen
             </ModalHeader>
+
             <ModalBody className="p-4 sm:pt-0 h-fit ">
               <AutocompleteLocation
                 allowedCountries={["CL", "US", "MX"]}
@@ -72,6 +74,7 @@ export const OSSetOriginnAddressCard = () => {
                 </Accordion>}
               />
             </ModalBody>
+            
           </>}
         </ModalContent>
       </Modal >

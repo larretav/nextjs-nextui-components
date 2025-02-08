@@ -200,7 +200,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
       {startContent}
 
       {separateResults && <>
-        <Listbox className={clsx("bg-content1 dark:bg-content2 shadow p-3 max-h-[300px] overflow-auto no-scrollbar", {
+        <Listbox aria-label="Listado de direcciones" className={clsx("bg-content1 dark:bg-content2 shadow p-3 max-h-[300px] overflow-auto no-scrollbar", {
           "rounded-sm": radius === 'none',
           "rounded-small": radius === 'sm',
           "rounded-medium": radius === 'md',
