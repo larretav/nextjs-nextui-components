@@ -5,6 +5,7 @@ import clsx from "clsx";
 import { forwardRef, Key, useMemo, useRef } from "react";
 import { Country, IsoCode } from "@/types";
 import { countries } from "@/constants";
+import { cn } from "@/lib/utils";
 
 type Props = Omit<SelectProps, 'children' | 'onSelectionChange'> & {
   itemProps?: SelectItemProps;
@@ -36,7 +37,7 @@ const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onS
       }}
       classNames={{
         ...props.classNames,
-        base: 'w-fit ' + props.classNames?.base,
+        base: cn('w-fit ', props.classNames?.base),
         trigger: clsx('w-fit pr-8 ', {
           // Tamaños de inputs con label (son mas altos)
           'h-16': size === 'lg',
@@ -46,8 +47,8 @@ const SelectCountryIcon = forwardRef<HTMLSelectElement, Props>(({ itemProps, onS
         },
           props.classNames?.trigger
         ),
-        innerWrapper: 'w-fit ' + props.classNames?.innerWrapper,
-        popoverContent: 'w-fit ' + props.classNames?.popoverContent,
+        innerWrapper: cn('w-fit', props.classNames?.innerWrapper),
+        popoverContent: cn('w-fit', props.classNames?.popoverContent),
       }}
       onSelectionChange={(key) => onSelectionChange(countries.find(item => item.isoCode === key.currentKey)!)}
       disallowEmptySelection

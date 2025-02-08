@@ -107,7 +107,8 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
             onInputChange("");
           }}
           classNames={{
-            trigger: cn("bg-content1", clsx({
+            popoverContent: 'dark:bg-content2',
+            trigger: cn("bg-content1 dark:bg-content2", clsx({
               'rounded-r-none': grouped,
               'h-12': size === 'lg' && !props?.label,
               'h-10': size === 'md' && !props?.label,
@@ -138,7 +139,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               value={inpValue}
               onValueChange={onInputChange}
               classNames={{
-                inputWrapper: cn("bg-content1", clsx({
+                inputWrapper: cn("bg-content1 dark:bg-content2", clsx({
                   'rounded-l-none ': grouped
                 })),
               }}
@@ -199,7 +200,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
       {startContent}
 
       {separateResults && <>
-        <Listbox className={clsx("bg-content1 shadow p-3 max-h-[300px] overflow-auto no-scrollbar", {
+        <Listbox className={clsx("bg-content1 dark:bg-content2 shadow p-3 max-h-[300px] overflow-auto no-scrollbar", {
           "rounded-sm": radius === 'none',
           "rounded-small": radius === 'sm',
           "rounded-medium": radius === 'md',

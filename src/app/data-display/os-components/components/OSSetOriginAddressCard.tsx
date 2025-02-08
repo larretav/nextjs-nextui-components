@@ -25,13 +25,13 @@ export const OSSetOriginnAddressCard = () => {
       <Modal
         isOpen={isOpen}
         onClose={onClose}
-        closeButton={<IconButton className="hidden sm:flex" ><FaXmark size="1.25rem" className="text-default-400 " /></IconButton>}
+        closeButton={<IconButton tabIndex={-1} ><FaXmark size="1.25rem" className="text-default-400 " /></IconButton>}
         size='2xl'
         classNames={{
           base: 'bg-transparent shadow-none sm:bg-content1 sm:shadow-small relative',
-          backdrop: 'bg-content1/80 sm:bg-overlay/50',
+          backdrop: 'bg-content1/90 sm:bg-overlay/50',
           wrapper: '[--slide-enter:0px] [--slide-exit:-100px] justify-start items-start sm:justify-center sm:items-center ',
-          closeButton: 'top-2 right-2'
+          closeButton: 'top-2 right-2 hidden sm:flex'
         }}
       >
         <ModalContent className="p-0 m-0">
@@ -54,8 +54,8 @@ export const OSSetOriginnAddressCard = () => {
                 radius="sm"
                 separateResults
                 startContent={<Accordion variant="splitted" className="px-0">
-                  <AccordionItem key="my-addressess" aria-label="Mis direcciones" title="Mis direcciones" >
-                    <Listbox className="max-h-[300px] overflow-auto no-scrollbar" emptyContent="Sin resultados">
+                  <AccordionItem key="my-addressess" aria-label="Mis direcciones" title="Mis direcciones" classNames={{base: "px-2 shadow rounded-small dark:bg-content2",title: 'px-2', indicator: 'px-2'}}>
+                    <Listbox className="max-h-52 sm:max-h-72 overflow-auto no-scrollbar  " emptyContent="Sin resultados">
                       {myAddressess.map((item) => (
                         <ListboxItem
                           key={item.id}
