@@ -1,4 +1,5 @@
 'use client';
+import { cn } from '@/lib/utils';
 import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 import { Input } from '@nextui-org/input';
 import { Tooltip } from '@nextui-org/tooltip';
@@ -16,7 +17,7 @@ type Props = {
 
 export const AddressCardInput = ({ title, postalCode, address, errorMessage, isDisabled = false, onPress, className = '' }: Props) => {
   return (
-    <Card radius="md" shadow="none" isPressable disableRipple onPress={onPress} className={"p-1.5 relative shadow max-w-[160px] " + className}>
+    <Card radius="md" shadow="none" isPressable disableRipple onPress={onPress} className={cn("p-1.5 relative shadow max-w-[160px]", className)}>
       <CardHeader className=" text-default-500 font-semibold text-small">
         {title}
       </CardHeader>

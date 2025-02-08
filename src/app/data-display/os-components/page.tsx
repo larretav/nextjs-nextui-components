@@ -1,7 +1,8 @@
 import React from "react";
-import { AddressCardInput, IconEcommerce, PageTitle, ShipperType } from "@/components";
-import OSSetAddressCard from "./components/OSSetAddressCard";
+import {  IconEcommerce, PageTitle, ShipperType } from "@/components";
 import { Input } from "@nextui-org/input";
+import { OSSetDestAddressCard } from "./components/OSSetDestAddressCard";
+import { OSSetOriginnAddressCard } from "./components/OSSetOriginAddressCard";
 
 
 export default function OSComponentsPage() {
@@ -30,8 +31,8 @@ export default function OSComponentsPage() {
         </div>
 
         <div className="flex gap-2">
-          <OSSetAddressCard />
-          <OSSetAddressCard />
+          <OSSetOriginnAddressCard />
+          <OSSetDestAddressCard />
         </div>
 
       </div>

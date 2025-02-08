@@ -19,7 +19,7 @@ type AutocompleteLocation = AutocompleteLocationModel & { selectedCode: string }
 
 type Props = Omit<AutocompleteProps<AutocompleteLocationModel>, "children"> & {
   onSelectedLocation: (location: AutocompleteLocation | null) => void,
-  startContent?: React.ReactNode,
+  startContent?: React.ReactElement,
   errorMessage?: string,
   allowedCountries: IsoCode[];
   defaultSelectedCountry?: IsoCode;
@@ -27,7 +27,7 @@ type Props = Omit<AutocompleteProps<AutocompleteLocationModel>, "children"> & {
   separateResults?: boolean;
 }
 
-export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, size = 'md', radius = 'md', separateResults = false, "aria-label": ariaLabel = "Seleccionar ubicación", ...props }: Props) => {
+export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessage, allowedCountries, defaultSelectedCountry, grouped = false, size = 'md', radius = 'md', separateResults = false, "aria-label": ariaLabel = "Seleccionar ubicación", startContent, ...props }: Props) => {
 
   const defaultLabel = "Buscar por código postal o ciudad...";
 
@@ -91,7 +91,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
   };
 
   return (
-    <div aria-label={ariaLabel} className="flex flex-col">
+    <div aria-label={ariaLabel} className="flex flex-col gap-2">
       <div aria-label={ariaLabel} className={clsx("flex gap-1.5 justify-between items-center", {
         "!gap-0": grouped
       })}>
@@ -193,9 +193,13 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
 
 
       </div>
+      
       {isInvalid && <span className="p-1 text-tiny text-danger">{errorMessage}</span>}
+
+      {startContent}
+
       {separateResults && <>
-        <Listbox className={clsx("bg-content1 p-3 mt-3 max-h-[300px] overflow-auto no-scrollbar", {
+        <Listbox className={clsx("bg-content1 shadow p-3 max-h-[300px] overflow-auto no-scrollbar", {
           "rounded-sm": radius === 'none',
           "rounded-small": radius === 'sm',
           "rounded-medium": radius === 'md',
@@ -203,16 +207,18 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
         })}
           emptyContent="Sin resultados"
         >
-
           {separateResults && items.map((item) => (
             <ListboxItem
               key={item.id}
               aria-label="Listado de direcciones"
+              description={`${item.city}, ${item.municipality}, ${item.state}, ${item.country}`}
               onPress={() => { onSelectionChange(item.id) }}
               className={cn(clsx({
                 "[&>span]:text-medium": size === 'lg',
-              }))}>
-              {item.completeAddress}
+              }))}
+              classNames={{ title: 'font-medium' }}
+            >
+              {item.postalCode} - {item.neighborhood}
             </ListboxItem>
           ))}
         </Listbox>

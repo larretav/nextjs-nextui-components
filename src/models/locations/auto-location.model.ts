@@ -41,11 +41,16 @@ export class AutocompleteLocationModel {
       municipality: this.municipality,
       state: this.state,
       country: this.country,
-      completeAddress: this.completeAddress
+      completeAddress: this.completeAddress,
+      address: this.address
     }
   }
 
   get completeAddress(): string { 
     return `${this.postalCode} - ${this.neighborhood}, ${this.city}, ${this.municipality}, ${this.state}, ${this.country}`
+  }
+
+  get address(): string { 
+    return `${this.neighborhood}, ${this.city}, ${this.state}, ${this.country}`
   }
 }

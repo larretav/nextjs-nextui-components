@@ -18,7 +18,7 @@ export const SidebarComponents = () => {
   const isOpen = useUIStore.use.isSideMenuOpen();
   const toggleSidebar = useUIStore.use.toggleSidebar();
 
-  const desktopMatch = useBreakpoint('sm')
+  const desktopMatch = useBreakpoint('sm', 'up')
 
   return (
     <Drawer
