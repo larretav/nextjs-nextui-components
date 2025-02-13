@@ -3,6 +3,8 @@ import {  IconEcommerce, PageTitle, ShipperType } from "@/components";
 import { Input } from "@nextui-org/input";
 import { OSSetDestAddressCard } from "./components/OSSetDestAddressCard";
 import { OSSetOriginnAddressCard } from "./components/OSSetOriginAddressCard";
+import { ModalWithTabs } from "./components/ModalWithTabs";
+import SwipperTest from "./components/SwipperTest";
 
 
 export default function OSComponentsPage() {

@@ -1,5 +1,3 @@
-
-
 export { AddressCard } from "./surfaces/cards/addresses/AddressCard";
 export { AddressCardInput } from "./data-display/onsite/AddressCardInput";
 export { AutocompleteLocation } from "./inputs/autocomplete/AutocompleteLocation";
@@ -37,3 +35,4 @@ export { TabsFilters as Tabs } from "./navigation/tabs/TabsFilters";
 export { TagsInput } from "./inputs/TagsInput";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
+export {IconTitleTab} from "./navigation/tabs/IconTitleTab";
