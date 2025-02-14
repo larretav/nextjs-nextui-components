@@ -3,11 +3,11 @@ import { AddressCardInput, AutocompleteLocation, Drawer, IconButton, IconTitleTa
 import { cn } from '@/lib/utils';
 import { AutocompleteLocationModel } from '@/models';
 import { removeAccents } from '@/utils';
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
-import { Input } from '@nextui-org/input';
-import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox';
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@nextui-org/modal';
-import { Tab, Tabs } from '@nextui-org/tabs';
+import { Accordion, AccordionItem } from "@heroui/accordion";
+import { Input } from "@heroui/input";
+import { Listbox, ListboxItem, ListboxSection } from "@heroui/listbox";
+import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
+import { Tab, Tabs } from "@heroui/tabs";
 import React, { forwardRef, Key, ReactElement, ReactHTMLElement, useEffect, useRef, useState } from 'react'
 import { FaArrowLeft, FaChevronLeft, FaMagnifyingGlass, FaMapLocationDot, FaUserGroup, FaXmark } from 'react-icons/fa6';
 import { Swiper, SwiperRef, SwiperSlide } from 'swiper/react';
@@ -15,11 +15,11 @@ import { customersDataTest } from '../helpers/customers-data.helper';
 import { addressessDataTest } from '../helpers/addressess-data.helper';
 // Import Swiper styles
 import "swiper/css";
-import { Popover, PopoverTrigger, PopoverContent, PopoverProps } from '@nextui-org/popover';
+import { Popover, PopoverTrigger, PopoverContent, PopoverProps } from "@heroui/popover";
 import { CircleExclamationOutlined } from '@/components/icons';
-import { Link } from '@nextui-org/link';
+import { Link } from "@heroui/link";
 import clsx from 'clsx';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import { VisuallyHidden } from '@react-aria/visually-hidden';
 
 type Customer = typeof customersDataTest[0];

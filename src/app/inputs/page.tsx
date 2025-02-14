@@ -2,7 +2,7 @@
 import {  PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
 import BoxCounter from "@/components/inputs/BoxCounter";
 import SimpleCounter from "@/components/inputs/SimpleCounter";
-import { Switch } from "@nextui-org/switch";
+import { Switch } from "@heroui/switch";
 import { SwitchInputs } from "./_components/SwitchInputs";
 import { AutocompleteInputs } from "./_components/AutocompleteInputs";
 import { RadioInputs } from "./_components/RadioInputs";

@@ -1,6 +1,6 @@
 'use client';
-import { Select, SelectItem, SelectItemProps, SelectProps, SelectedItems } from "@nextui-org/select";
-import { Avatar, AvatarProps } from "@nextui-org/avatar";
+import { Select, SelectItem, SelectItemProps, SelectProps, SelectedItems } from "@heroui/select";
+import { Avatar, AvatarProps } from "@heroui/avatar";
 import clsx from "clsx";
 import { forwardRef, Key, useMemo, useRef } from "react";
 import { Country, IsoCode } from "@/types";

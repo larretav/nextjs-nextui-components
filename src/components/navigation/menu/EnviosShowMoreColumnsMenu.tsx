@@ -1,8 +1,8 @@
 "use client"
-import { Card } from '@nextui-org/card'
-import { Input } from '@nextui-org/input'
+import { Card } from "@heroui/card"
+import { Input } from "@heroui/input"
 import React, { useState } from 'react'
-import { Switch } from "@nextui-org/switch";
+import { Switch } from "@heroui/switch";
 type Props = {}
 const switchesList = [
   { option: "Orden", isActive: true },

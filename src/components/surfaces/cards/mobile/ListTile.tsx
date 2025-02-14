@@ -1,9 +1,9 @@
 "use client"
-import { Card, CardBody, CardFooter, CardHeader, CardProps } from '@nextui-org/card'
+import { Card, CardBody, CardFooter, CardHeader, CardProps } from "@heroui/card"
 import React, { isValidElement, ReactElement, ReactNode } from 'react'
 import { cn } from '@/lib/utils';
 import { useIsSSR } from '@react-aria/ssr';
-import { Skeleton } from '@nextui-org/skeleton';
+import { Skeleton } from "@heroui/skeleton";
 import clsx from 'clsx';
 
 

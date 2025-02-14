@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			{
 				typeof window !== 'undefined'
-					? <head />
+					? <head ></head>
 					: <head>
 						{extractCriticalToChunks(children).styles.map((style) => (
 							<style

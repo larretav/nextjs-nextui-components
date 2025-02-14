@@ -1,9 +1,9 @@
 'use client';
-import { Button } from '@nextui-org/button'
-import { Checkbox } from '@nextui-org/checkbox'
-import { Input } from '@nextui-org/input'
-import { Link } from '@nextui-org/link'
-import { Select, SelectItem } from '@nextui-org/select'
+import { Button } from "@heroui/button"
+import { Checkbox } from "@heroui/checkbox"
+import { Input } from "@heroui/input"
+import { Link } from "@heroui/link"
+import { Select, SelectItem } from "@heroui/select"
 import React from 'react'
 
 

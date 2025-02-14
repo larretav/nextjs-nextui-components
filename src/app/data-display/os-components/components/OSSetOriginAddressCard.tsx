@@ -1,9 +1,9 @@
 'use client';
 import { AddressCardInput, AutocompleteLocation, Drawer, IconButton } from '@/components'
 import { AutocompleteLocationModel } from '@/models';
-import { Accordion, AccordionItem } from '@nextui-org/accordion';
-import { Listbox, ListboxItem } from '@nextui-org/listbox';
-import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from '@nextui-org/modal';
+import { Accordion, AccordionItem } from "@heroui/accordion";
+import { Listbox, ListboxItem } from "@heroui/listbox";
+import { Modal, ModalBody, ModalContent, ModalHeader, useDisclosure } from "@heroui/modal";
 import React, { useState } from 'react'
 import { FaXmark } from 'react-icons/fa6';
 import { addressessDataTest } from '../helpers/addressess-data.helper';

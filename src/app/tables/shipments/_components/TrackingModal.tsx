@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
+import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from "@heroui/modal"
 import { useShipmentListStore } from '@/store/tables/shipment-list-store';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import toast from 'react-hot-toast';
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 import { ShipmentTrackingMapper } from '@/models/shipments/shipmentTracking.model';
-import { Accordion, AccordionItem } from "@nextui-org/accordion"
+import { Accordion, AccordionItem } from "@heroui/accordion"
 import Image from 'next/image';
 import { VerticalTimeline, VerticalTimelineElement } from 'react-vertical-timeline-component';
 import 'react-vertical-timeline-component/style.min.css';

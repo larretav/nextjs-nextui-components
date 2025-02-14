@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { ClassNames } from '@emotion/react';
-import { Button } from '@nextui-org/button';
-import { Navbar, NavbarContent, NavbarItem } from '@nextui-org/navbar';
+import { Button } from "@heroui/button";
+import { Navbar, NavbarContent, NavbarItem } from "@heroui/navbar";
 import React, { ReactNode } from 'react'
 import { FaChevronLeft } from 'react-icons/fa6';
 

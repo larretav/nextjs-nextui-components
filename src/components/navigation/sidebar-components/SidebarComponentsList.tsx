@@ -2,8 +2,8 @@
 import useDebounce from '@/hooks/useDebounce';
 import { useUIStore } from '@/store';
 import { removeAccents } from '@/utils/strings.utils';
-import { Input } from '@nextui-org/input'
-import { Listbox, ListboxItem, ListboxSection } from '@nextui-org/listbox'
+import { Input } from "@heroui/input"
+import { Listbox, ListboxItem, ListboxSection } from "@heroui/listbox"
 import clsx from 'clsx'
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';

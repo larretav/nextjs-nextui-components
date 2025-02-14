@@ -1,6 +1,6 @@
 import React from "react";
 import {  IconEcommerce, PageTitle, ShipperType } from "@/components";
-import { Input } from "@nextui-org/input";
+import { Input } from "@heroui/input";
 import { OSSetDestAddressCard } from "./components/OSSetDestAddressCard";
 import { OSSetOriginnAddressCard } from "./components/OSSetOriginAddressCard";
 import RoutingTabs from "./components/RoutingTabs";

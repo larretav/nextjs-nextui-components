@@ -1,8 +1,8 @@
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card'
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card"
 import BoxBadge from '@/components/data-display/badge/BoxBadge'
 import React from 'react'
 import { FaMoneyBillTransfer, FaMoneyBillWave, FaRegCreditCard } from 'react-icons/fa6'
-import { Button } from '@nextui-org/button'
+import { Button } from "@heroui/button"
 
 
 type paymentMethods = "card" | "cash" | "transfer"

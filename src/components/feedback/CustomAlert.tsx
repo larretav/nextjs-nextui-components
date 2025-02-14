@@ -1,5 +1,5 @@
 'use client';
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from '@nextui-org/modal';
+import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter, useDisclosure } from "@heroui/modal";
 import React, { ReactElement, ReactNode } from 'react'
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaCircleExclamation, FaCircleXmark, FaInfo, FaTriangleExclamation } from 'react-icons/fa6';

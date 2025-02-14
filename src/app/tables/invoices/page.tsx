@@ -1,8 +1,8 @@
 "use client"
 import React, { useCallback } from 'react'
 import { useInvoiceTableStore } from '@/store/tables/invoice-table-store'
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue } from "@nextui-org/table"
-import { Button } from '@nextui-org/button'
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Selection, getKeyValue } from "@heroui/table"
+import { Button } from "@heroui/button"
 import { FaEllipsisVertical } from 'react-icons/fa6'
 import TabFilter from '@/components/navigation/tabs/TabFilter'
 import { TabsFilters } from '@/components/navigation/tabs/TabsFilters'
@@ -12,9 +12,9 @@ import InvoiceDetails from './_components/InvoiceDetails'
 import PopoverFilter from './_components/PopoverFilter'
 import { DateFormatter } from '@internationalized/date'
 import { filterInvoice } from './functions/filterInvoices'
-import { SharedSelection } from '@nextui-org/system'
-import { Select, SelectItem } from '@nextui-org/select'
-import { Pagination } from '@nextui-org/pagination'
+import { SharedSelection } from "@heroui/system"
+import { Select, SelectItem } from "@heroui/select"
+import { Pagination } from "@heroui/pagination"
 const dataMock: Invoice[] = [
   {
     folio: "LMAO-71",

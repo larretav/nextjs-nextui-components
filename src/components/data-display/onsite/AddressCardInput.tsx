@@ -1,8 +1,8 @@
 'use client';
 import { cn } from '@/lib/utils';
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
-import { Input } from '@nextui-org/input';
-import { Tooltip } from '@nextui-org/tooltip';
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
+import { Input } from "@heroui/input";
+import { Tooltip } from "@heroui/tooltip";
 import React, { ReactNode } from 'react'
 
 type Props = {

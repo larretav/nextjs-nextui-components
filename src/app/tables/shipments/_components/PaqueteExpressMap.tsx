@@ -1,13 +1,13 @@
 
 "use client"
 import React, { useEffect, useState } from 'react'
-import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from '@nextui-org/modal'
+import { Modal, ModalFooter, ModalBody, ModalContent, useDisclosure } from "@heroui/modal"
 import { useShipmentListStore } from '@/store/tables/shipment-list-store';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 import { MappedPaqueteExpressOffice } from '@/models/shipments/paqueteExpressOffice.model';
 import toast from 'react-hot-toast';
 import { APIProvider, Map, Pin, AdvancedMarker } from '@vis.gl/react-google-maps';
-import { Spinner } from '@nextui-org/spinner';
+import { Spinner } from "@heroui/spinner";
 export default function PaqueteExpressMap() {
     const { onOpenChange } = useDisclosure();
     const selectedShipmentOrder = useShipmentListStore.use.selectedShipmentOrder()

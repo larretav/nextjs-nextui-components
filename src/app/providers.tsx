@@ -1,7 +1,7 @@
 
 "use client";
 import * as React from "react";
-import { NextUIProvider } from "@nextui-org/system";
+import { HeroUIProvider } from "@heroui/system";
 import { useRouter } from 'next/navigation'
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { ThemeProviderProps } from "next-themes/dist/types";
@@ -23,7 +23,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 	return (
 		<CacheProvider value={emotionCache}>
-			<NextUIProvider navigate={router.push} >
+			<HeroUIProvider navigate={router.push}>
 				<StyledComponentsRegistry >
 					<NextThemesProvider {...themeProps}>
 						<IconContext.Provider value={{ size: "1.5rem" }}>
@@ -33,7 +33,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 						</IconContext.Provider>
 					</NextThemesProvider>
 				</StyledComponentsRegistry>
-			</NextUIProvider>
+			</HeroUIProvider>
 		</CacheProvider>
 	);
 }

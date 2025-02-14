@@ -1,7 +1,7 @@
 "use client"
-import { Pagination } from '@nextui-org/pagination'
-import { Select, SelectItem } from '@nextui-org/select'
-import { SharedSelection } from '@nextui-org/system'
+import { Pagination } from "@heroui/pagination"
+import { Select, SelectItem } from "@heroui/select"
+import { SharedSelection } from "@heroui/system"
 import React, { useCallback } from 'react'
 
 type Props = {

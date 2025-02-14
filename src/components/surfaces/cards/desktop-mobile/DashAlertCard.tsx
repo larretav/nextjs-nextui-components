@@ -1,5 +1,5 @@
 "use client"
-import { Card } from '@nextui-org/card';
+import { Card } from "@heroui/card";
 import React from 'react'
 import { SiCashapp } from "react-icons/si";
 import { FaFileInvoice } from "react-icons/fa";

@@ -1,5 +1,5 @@
 'use client';
-import { Autocomplete, AutocompleteItem, AutocompleteProps, MenuTriggerAction } from "@nextui-org/autocomplete";
+import { Autocomplete, AutocompleteItem, AutocompleteProps, MenuTriggerAction } from "@heroui/autocomplete";
 import { Key, useRef, useState } from "react";
 import { SelectCountryIcon } from "../select/SelectCountryIcon";
 import { toast } from "sonner";
@@ -7,12 +7,12 @@ import { AutocompleteLocationModel } from "@/models";
 import { getAutocompleteLocation } from "@/actions/autocomplete/get-auto-location";
 import { IsoCode } from "@/types";
 import clsx from "clsx";
-import { Input } from "@nextui-org/input";
-import { Listbox, ListboxItem } from "@nextui-org/listbox";
+import { Input } from "@heroui/input";
+import { Listbox, ListboxItem } from "@heroui/listbox";
 import { FaImage, FaXmark } from "react-icons/fa6";
 import { cn } from "@/lib/utils";
 import { IconButton } from "../buttons/IconButton";
-import { Spinner } from "@nextui-org/spinner";
+import { Spinner } from "@heroui/spinner";
 
 
 type AutocompleteLocation = AutocompleteLocationModel & { selectedCode: string }

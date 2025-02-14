@@ -1,7 +1,7 @@
 "use client";
 
-import { Chip } from "@nextui-org/chip";
-import { Input } from "@nextui-org/input";
+import { Chip } from "@heroui/chip";
+import { Input } from "@heroui/input";
 import { useState } from "react";
 
 export const TagsInput = () => {

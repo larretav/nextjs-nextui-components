@@ -4,8 +4,8 @@ import clsx from 'clsx'
 import React, { useCallback, useEffect, useState } from 'react'
 import { FaDashcube, FaHouse } from 'react-icons/fa6'
 import { BsHouse, BsFillHouseFill } from "react-icons/bs";
-import { Navbar } from '@nextui-org/navbar';
-import { Button } from '@nextui-org/button';
+import { Navbar } from "@heroui/navbar";
+import { Button } from "@heroui/button";
 import { MdHome } from 'react-icons/md';
 
 export const BottomNavigation = () => {

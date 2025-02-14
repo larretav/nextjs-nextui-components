@@ -1,9 +1,9 @@
 'use client';
 import Address from '@/models/shipments/shipment.model';
-import { Button } from '@nextui-org/button'
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card'
-import { Chip } from '@nextui-org/chip'
-import { Divider } from '@nextui-org/divider'
+import { Button } from "@heroui/button"
+import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card"
+import { Chip } from "@heroui/chip"
+import { Divider } from "@heroui/divider"
 import clsx from 'clsx';
 import React from 'react'
 import { FaPenToSquare, FaTrashCan } from 'react-icons/fa6'

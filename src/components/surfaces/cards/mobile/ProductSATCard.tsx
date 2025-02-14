@@ -3,7 +3,7 @@ import { PackageType } from '@/components/data-display/onsite/PackageType'
 import { ListTile } from '@/components/surfaces/cards/mobile/ListTile'
 import { cn } from '@/lib/utils'
 import { PackageType as TypePackageType } from '@/types'
-import { Card, CardBody, CardHeader, CardProps } from '@nextui-org/card'
+import { Card, CardBody, CardHeader, CardProps } from "@heroui/card"
 import React, { forwardRef } from 'react'
 import { AutocompleteProductSAT, AutocompleteProductSATProps } from '../../../inputs/autocomplete/AutocompleteProductSAT';
 

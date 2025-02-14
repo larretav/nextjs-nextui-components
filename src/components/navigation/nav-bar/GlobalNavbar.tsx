@@ -5,12 +5,12 @@ import {
 	NavbarContent,
 	NavbarBrand,
 	NavbarItem,
-} from "@nextui-org/navbar";
+} from "@heroui/navbar";
 
 import NextLink from "next/link";
 import { FaBars, FaBell, FaUser } from "react-icons/fa6";
-import { Badge } from "@nextui-org/badge";
-import { Avatar } from "@nextui-org/avatar";
+import { Badge } from "@heroui/badge";
+import { Avatar } from "@heroui/avatar";
 import { HamburguerButton } from "./HamburguerButton";
 import { ThemeSwitch } from "@/components/inputs/ThemeSwitch";
 import { usePathname } from "next/navigation";

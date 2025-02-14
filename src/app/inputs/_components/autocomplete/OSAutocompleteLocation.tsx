@@ -1,7 +1,7 @@
 'use client';
 import { AutocompleteLocation } from '@/components';
 import { AutocompleteLocationModel } from '@/models';
-import { Input } from '@nextui-org/input';
+import { Input } from "@heroui/input";
 import React, { useState } from 'react'
 
 export const OSAutocompleteLocation = () => {

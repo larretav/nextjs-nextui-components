@@ -1,7 +1,7 @@
 'use client';
 import { showAlert } from '@/lib/alert-dialog/alert-dialog';
 import { sleep } from '@/lib/utils';
-import { Button } from '@nextui-org/button';
+import { Button } from "@heroui/button";
 
 const AlertButton = () => {
 
