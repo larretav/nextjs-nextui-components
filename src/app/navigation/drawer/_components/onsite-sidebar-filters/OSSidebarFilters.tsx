@@ -15,9 +15,10 @@ import { IoLogOut } from "react-icons/io5";
 import { MdLogout } from 'react-icons/md';
 import { DatePicker } from '@nextui-org/date-picker';
 import { TbCalendarFilled } from 'react-icons/tb';
-import { DateValue, getLocalTimeZone, today } from '@internationalized/date';
+import { CalendarDate, DateValue, getLocalTimeZone, parseDate } from '@internationalized/date';
 import { Select, SelectItem } from '@nextui-org/select';
 import { RadioGroup } from '@nextui-org/radio';
+import { useDateFormatter } from '@react-aria/i18n';
 
 
 export const OSSidebarFilters = () => {
@@ -25,8 +26,10 @@ export const OSSidebarFilters = () => {
   const isOpen = useComponentsStore.use.isOSSidebarFiltersOpen();
   const toggleSidebar = useComponentsStore.use.toggleOSSidebarFilters();
 
-  const [date, setDate] = useState<DateValue | null>(today(getLocalTimeZone()));
+  // const [date, setDate] = useState<DateValue | null >(parseDate("2024-04-04"));
   const [state, setState] = useState('all');
+
+  let formatter = useDateFormatter({ dateStyle: "full" });
 
   return (
     <Drawer
@@ -46,7 +49,19 @@ export const OSSidebarFilters = () => {
             <DrawerBody className="overflow-y-auto no-scrollbar p-0">
               <SidebarFilterDivider text="Buscar" />
               <div className="flex flex-col gap-3 px-5 pt-2 pb-7">
-                <DatePicker label="Fecha" size="sm" endContent={<FaCalendar size={18} />} value={date} onChange={setDate} />
+                <DatePicker
+                  className="max-w-[284px]"
+                  label="Date (controlled)"
+                // value={date}
+                // onChange={setDate}
+                />
+                <DatePicker
+                  label="Fecha"
+                  size="sm"
+                  endContent={<FaCalendar size={18} />}
+                  // value={date}
+                  // onChange={setDate}
+                />
                 <Select
                   label="Plataforma"
                   size="sm"
