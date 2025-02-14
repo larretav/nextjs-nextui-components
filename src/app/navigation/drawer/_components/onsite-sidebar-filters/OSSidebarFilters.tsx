@@ -26,7 +26,7 @@ export const OSSidebarFilters = () => {
   const isOpen = useComponentsStore.use.isOSSidebarFiltersOpen();
   const toggleSidebar = useComponentsStore.use.toggleOSSidebarFilters();
 
-  // const [date, setDate] = useState<DateValue | null >(parseDate("2024-04-04"));
+  const [date, setDate] = useState<DateValue | null>(parseDate("2024-04-04"));
   const [state, setState] = useState('all');
 
   let formatter = useDateFormatter({ dateStyle: "full" });
@@ -52,15 +52,15 @@ export const OSSidebarFilters = () => {
                 <DatePicker
                   className="max-w-[284px]"
                   label="Date (controlled)"
-                // value={date}
-                // onChange={setDate}
+                  value={date}
+                  onChange={setDate}
                 />
                 <DatePicker
                   label="Fecha"
                   size="sm"
                   endContent={<FaCalendar size={18} />}
-                  // value={date}
-                  // onChange={setDate}
+                  value={date}
+                  onChange={setDate}
                 />
                 <Select
                   label="Plataforma"

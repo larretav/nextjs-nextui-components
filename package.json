@@ -14,7 +14,7 @@
 		"@emotion/css": "^11.13.0",
 		"@emotion/react": "^11.13.3",
 		"@emotion/server": "^11.11.0",
-		"@internationalized/date": "^3.7.0",
+		"@internationalized/date": "^3.6.0",
 		"@nextui-org/accordion": "^2.0.38",
 		"@nextui-org/autocomplete": "^2.1.7",
 		"@nextui-org/avatar": "^2.0.32",
