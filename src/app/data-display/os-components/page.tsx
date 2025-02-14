@@ -3,8 +3,7 @@ import {  IconEcommerce, PageTitle, ShipperType } from "@/components";
 import { Input } from "@nextui-org/input";
 import { OSSetDestAddressCard } from "./components/OSSetDestAddressCard";
 import { OSSetOriginnAddressCard } from "./components/OSSetOriginAddressCard";
-import { ModalWithTabs } from "./components/ModalWithTabs";
-import SwipperTest from "./components/SwipperTest";
+import RoutingTabs from "./components/RoutingTabs";
 
 
 export default function OSComponentsPage() {
@@ -36,6 +35,10 @@ export default function OSComponentsPage() {
           <OSSetOriginnAddressCard />
           <OSSetDestAddressCard />
         </div>
+
+        {/* <div className="flex gap-2">
+          <RoutingTabs />
+        </div> */}
 
       </div>
     </div>

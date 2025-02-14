@@ -50,16 +50,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					fontPoppins.className
 				)}
 			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
-						<GlobalNavbar />
-						<main className="overflow-y-auto h-full text-foreground bg-zinc-50 dark:bg-zinc-950">
-							{children}
-						</main>
+					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+						<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
+							<GlobalNavbar />
+							<main className="overflow-y-auto h-full text-foreground bg-zinc-50 dark:bg-zinc-950">
+								{children}
+							</main>
 
-						<SidebarComponents />
-					</div>
-				</Providers>
+							<SidebarComponents />
+						</div>
+					</Providers>
 			</body>
 		</html>
 	);
