@@ -86,19 +86,19 @@ export const SidebarComponentsList = () => {
       description: 'Inputs, Toggles, etc.',
       items: [
         {
-          key: "textfields",
-          label: "Textfields",
-          path: '/inputs/textfields'
-        },
-        {
           key: "switch",
           label: "Switch",
-          path: '/inputs/switch'
+          path: '/inputs#switch'
         },
         {
           key: "radio",
           label: "Radio",
-          path: '/inputs/radio'
+          path: '/inputs#radio'
+        },
+        {
+          key: "autocomplete",
+          label: "Autocomplete",
+          path: '/inputs#autocomplete'
         }
       ]
     },

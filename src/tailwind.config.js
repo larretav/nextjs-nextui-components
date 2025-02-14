@@ -59,16 +59,16 @@ module.exports = {
         ".no-arrows input[type='number']::-webkit-outer-spin-button": {
           '-webkit-appearance': 'none',
           margin: '0',
-        },         
-         ".scrollbar-minimalist::-webkit-scrollbar": {
+        },
+        ".scrollbar-minimalist::-webkit-scrollbar": {
           width: '6px',
           height: '6px',
         },
         ".scrollbar-minimalist::-webkit-scrollbar-thumb": {
-          backgroundColor: "#5b6069", 
+          backgroundColor: "#5b6069",
           borderRadius: '10px',
-        },      
-      
+        },
+
       }
       addUtilities(newUtilities)
     }

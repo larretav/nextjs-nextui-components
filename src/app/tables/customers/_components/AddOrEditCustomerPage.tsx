@@ -14,7 +14,6 @@ import {
   AutocompleteItem
 } from "@nextui-org/autocomplete";
 import { LocationItem, LocationResponseMapper } from '@/models/shipments/locationService.model';
-import AutocompleteLocation from './AutocompleteLocation'
 
 export default function AddOrEditCustomerPage() {
   const selectedCustomer = useCustomerCatalogStore.use.selectedCustomer()
@@ -56,7 +55,6 @@ export default function AddOrEditCustomerPage() {
 
           <div className="flex  flex-col bg-neutral-50 rounded-lg shadow-md px-2">
             <span className='text-sm font-semibold p-2'>Domicilio</span>
-            <AutocompleteLocation/>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 my-3">
             <Input placeholder='Calle' variant='faded' autoComplete='nel'/>

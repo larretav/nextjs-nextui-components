@@ -15,7 +15,7 @@ const MySwitch = extendVariants(Switch, {
   }
 })
 
-export const OSSidebarThemeSwitch = (props: SwitchProps) => {
+export const OSSidebarThemeSwitch = (props: typeof MySwitch) => {
 
   const { theme, setTheme } = useTheme();
 

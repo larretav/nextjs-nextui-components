@@ -3,7 +3,7 @@ import { ProductSATCard, PackageContentAdjustCard } from '@/components'
 import clsx from 'clsx';
 import React, { useState } from 'react'
 
-export const OSPackageContentAdjust = () => {
+export const OSCardInputs = () => {
 
   const [value, setValue] = useState('');
   const [isInvalid, setIsInvalid] = useState(false);
