@@ -1,31 +1,56 @@
 
-import { PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
+import {  PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
 import BoxCounter from "@/components/inputs/BoxCounter";
 import SimpleCounter from "@/components/inputs/SimpleCounter";
 import { Switch } from "@heroui/switch";
+import { SwitchInputs } from "./_components/SwitchInputs";
+import { AutocompleteInputs } from "./_components/AutocompleteInputs";
+import { RadioInputs } from "./_components/RadioInputs";
+import { OSCardInputs } from "./_components/OSCardInputs";
 
 export default function InputsPage() {
+
+  const baseClassname = "sm:p-2 flex flex-col gap-3 font-medium";
+
   return (
-    <div className="flex flex-col gap-3 py-3 px-6">
+    <div className="flex flex-col gap-10 px-2 py-3 sm:px-6">
       <PageTitle text="Input Components" />
 
-      <p className="p-2 font-medium">SimpleCounter</p>
-      <div className="w-min">
-        <SimpleCounter />
+      <div className={baseClassname} id="counters">
+        <p>Counters</p>
+        <div className="flex gap-4 items-center mx-3">
+          <SimpleCounter />
+          <BoxCounter />
+        </div>
       </div>
 
-      <p className="p-2 font-medium">Box Counter</p>
-      <div className="w-min">
-        <BoxCounter />
+      <div className={baseClassname} id="switch">
+        <p>Switch</p>
+        <div className="mx-6">
+          <SwitchInputs />
+        </div>
       </div>
 
-      <p className="p-2 font-medium">Switch</p>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-12">
-        <div className="container-component-item"><ThemeSwitch /></div>
-        <div className="container-component-item"><Switch /></div>
-        <div className="col-span-2 container-component-item"><ThemeSwitchTabs /></div>
+      <div className={baseClassname} id="card-inputs">
+        <p>Card inputs</p>
+        <div className="flex gap-4 items-center mx-3">
+          <OSCardInputs />
+        </div>
       </div>
 
+      <div className={baseClassname} id="radios">
+        <p>Radios</p>
+        <div className="sm:mx-6">
+          <RadioInputs />
+        </div>
+      </div>
+
+      <div className={baseClassname} id="autocomplete">
+        <p >Autocomplete</p>
+        <div className="sm:mx-6">
+          <AutocompleteInputs />
+        </div>
+      </div>
     </div>
   );
 }

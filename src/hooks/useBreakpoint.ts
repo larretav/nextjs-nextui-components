@@ -8,7 +8,7 @@ const screens = { xs: '0px', ...tailwindThemeConfig.screens };
 
 type Breakpoints = keyof typeof screens
 
-function useBreakpoint(key: Breakpoints) {
+function useBreakpoint(key: Breakpoints, direction: 'up' | 'down' = 'down') {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
@@ -16,7 +16,9 @@ function useBreakpoint(key: Breakpoints) {
 
     if (!mediaQuery) return;
 
-    const query = `(min-width: ${mediaQuery})`;
+    const query = direction === "up"
+      ? `(min-width: ${mediaQuery})`  // Después del breakpoint
+      : `(max-width: ${+mediaQuery.replaceAll("px", "") - 1}px)`; // Antes del breakpoint
 
     if (typeof window !== 'undefined') {
       const media = window.matchMedia(query);

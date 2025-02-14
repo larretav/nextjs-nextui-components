@@ -2,11 +2,11 @@
 import "@/styles/globals.css";
 import { Metadata, Viewport } from "next";
 import { siteConfig } from "@/config/site";
-import { fontSans } from "@/config/fonts";
+import { fontSans, fontPoppins } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import { GlobalNavbar, SidebarComponents } from "@/components";
-import {  extractCriticalToChunks } from "@/lib/emotion-ssr";
+import { extractCriticalToChunks } from "@/lib/emotion-ssr";
 
 export const metadata: Metadata = {
 	title: {
@@ -32,7 +32,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en" suppressHydrationWarning>
 			{
 				typeof window !== 'undefined'
-					? <head />
+					? <head ></head>
 					: <head>
 						{extractCriticalToChunks(children).styles.map((style) => (
 							<style
@@ -46,20 +46,20 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 			<body
 				className={clsx(
-					"bg-background font-sans antialiased",
-					fontSans.className
+					"font-sans antialiased",
+					fontPoppins.className
 				)}
 			>
-				<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
-					<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
-						<GlobalNavbar />
-						<main className="">
-							{children}
-						</main>
+					<Providers themeProps={{ attribute: "class", defaultTheme: "dark" }}>
+						<div className="flex overflow-auto relative flex-col h-dvh w-dvw">
+							<GlobalNavbar />
+							<main className="overflow-y-auto h-full text-foreground bg-zinc-50 dark:bg-zinc-950">
+								{children}
+							</main>
 
-						<SidebarComponents />
-					</div>
-				</Providers>
+							<SidebarComponents />
+						</div>
+					</Providers>
 			</body>
 		</html>
 	);

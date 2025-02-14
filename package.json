@@ -14,7 +14,6 @@
     "@emotion/css": "^11.13.0",
     "@emotion/react": "^11.13.3",
     "@emotion/server": "^11.11.0",
-    "@internationalized/date": "^3.5.5",
     "@heroui/accordion": "2.2.8",
     "@heroui/autocomplete": "2.3.11",
     "@heroui/avatar": "2.2.7",
@@ -37,21 +36,25 @@
     "@heroui/pagination": "2.2.9",
     "@heroui/popover": "2.3.10",
     "@heroui/radio": "2.3.9",
+    "@heroui/scroll-shadow": "2.3.6",
     "@heroui/select": "2.4.10",
     "@heroui/skeleton": "2.2.6",
     "@heroui/snippet": "2.2.11",
+    "@heroui/spinner": "2.2.7",
     "@heroui/switch": "2.2.9",
     "@heroui/system": "2.4.7",
     "@heroui/table": "2.2.9",
     "@heroui/tabs": "2.2.8",
     "@heroui/theme": "2.4.6",
+    "@heroui/tooltip": "2.2.8",
     "@heroui/user": "2.2.7",
-    "@react-aria/i18n": "^3.12.2",
+    "@internationalized/date": "3.6.0",
+    "@react-aria/i18n": "^3.12.4",
     "@react-aria/ssr": "3.9.4",
     "@react-aria/visually-hidden": "3.8.12",
     "@vis.gl/react-google-maps": "^1.3.0",
     "clsx": "2.1.1",
-    "framer-motion": "~11.1.1",
+    "framer-motion": "~11.18.1",
     "immer": "^10.1.1",
     "intl-messageformat": "^10.5.0",
     "next": "14.2.4",
@@ -61,10 +64,14 @@
     "react-hook-form": "^7.53.0",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
+    "react-router": "^7.1.5",
+    "react-router-dom": "^7.1.5",
     "react-vertical-timeline-component": "^3.6.0",
     "sonner": "^1.7.4",
     "styled-components": "^6.1.13",
+    "swiper": "^11.2.2",
     "tailwind-merge": "^2.5.5",
+    "uuid": "^11.0.5",
     "zod": "^3.23.8",
     "zustand": "^4.5.4"
   },
@@ -91,5 +98,10 @@
     "tailwind-variants": "0.1.20",
     "tailwindcss": "3.4.3",
     "typescript": "5.0.4"
+  },
+  "pnpm": {
+    "ignoredBuiltDependencies": [
+      "react-vertical-timeline-component"
+    ]
   }
 }

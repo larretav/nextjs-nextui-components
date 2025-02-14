@@ -1,4 +1,3 @@
-import { Country } from "@/types";
 
 export const countries = [
   {

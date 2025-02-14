@@ -10,6 +10,7 @@ import StyledComponentsRegistry from "@/lib/registry";
 import { cache as emotionCache } from '../lib/emotion-ssr';
 import { CacheProvider } from "@emotion/react";
 import { AlertProvider } from "@/lib/alert-dialog/alert-dialog";
+// import { HashRouter, useNavigate, useHref } from "react-router-dom";
 
 export interface ProvidersProps {
 	children: React.ReactNode;
@@ -18,6 +19,7 @@ export interface ProvidersProps {
 
 export function Providers({ children, themeProps }: ProvidersProps) {
 	const router = useRouter();
+	// const navigate = useNavigate();
 
 	return (
 		<CacheProvider value={emotionCache}>
@@ -28,7 +30,7 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 							<AlertProvider>
 								{children}
 							</AlertProvider>
-						</IconContext.Provider>						
+						</IconContext.Provider>
 					</NextThemesProvider>
 				</StyledComponentsRegistry>
 			</HeroUIProvider>
