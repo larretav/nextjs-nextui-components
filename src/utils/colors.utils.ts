@@ -1,11 +1,11 @@
 import tailwindColors from 'tailwindcss/colors'
 import { semanticColors } from "@heroui/theme"
 import tailwindTheme from '@/tailwind-theme'
-import { nextuiConfig } from '@/heroui.config';
+import { herouiConfig } from '@/heroui.config';
 
 export type ColorScale = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800 | 900 | 950;
 export type Type = "hex" | "rgba";
-export type ThemeName = keyof NonNullable<typeof nextuiConfig.themes>;
+export type ThemeName = keyof NonNullable<typeof herouiConfig.themes>;
 
 export const getTailwindColorHex = (colorName: string, scale: ColorScale = 500, type: Type = "hex", opacity: number = 100): string => {
   const colors = { ...tailwindColors } as Record<string, any>
@@ -27,7 +27,7 @@ export const getNextUiColor = (
   const colors = { ...semanticColors } as Record<string, any>;
 
   let colorFromConfigObj: string | undefined = undefined;
-  const colorsFromConfigObj = nextuiConfig.themes?.[theme]?.colors;
+  const colorsFromConfigObj = herouiConfig.themes?.[theme]?.colors;
 
   // Existe el nombre?
   if (colorsFromConfigObj && colorName in colorsFromConfigObj) {

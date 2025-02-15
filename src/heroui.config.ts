@@ -3,14 +3,14 @@ import { ColorScale, ConfigThemes, HeroUIPluginConfig, ThemeColors } from "@hero
 // type ExtendedColors = Partial<ThemeColors> & Record<string, Record<number | string, string> & { DEFAULT?: string }>;
 type ExtendedColors = Partial<ThemeColors> & Record<string, ColorScale>;
 
-type NextUIPluginConfigExtended = HeroUIPluginConfig & {
+type HeroUIPluginConfigExtended = HeroUIPluginConfig & {
   themes: ConfigThemes & {
     light: { colors: ExtendedColors },
     dark: { colors: ExtendedColors }
   }
 }
 
-export const nextuiConfig: HeroUIPluginConfig = {
+export const herouiConfig: HeroUIPluginConfig = {
   themes: {
     light: {
       colors: {

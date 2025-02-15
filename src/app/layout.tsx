@@ -6,7 +6,6 @@ import { fontSans, fontPoppins } from "@/config/fonts";
 import { Providers } from "./providers";
 import clsx from "clsx";
 import { GlobalNavbar, SidebarComponents } from "@/components";
-import { extractCriticalToChunks } from "@/lib/emotion-ssr";
 
 export const metadata: Metadata = {
 	title: {
@@ -30,19 +29,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
 	return (
 		<html lang="en" suppressHydrationWarning>
-			{
-				typeof window !== 'undefined'
-					? <head ></head>
-					: <head>
-						{extractCriticalToChunks(children).styles.map((style) => (
-							<style
-								key={style.key}
-								data-emotion={`${style.key} ${style.ids.join(' ')}`}
-								dangerouslySetInnerHTML={{ __html: style.css }}
-							/>
-						))}
-					</head>
-			}
+			<head />
 
 			<body
 				className={clsx(

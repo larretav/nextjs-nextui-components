@@ -1,5 +1,5 @@
 import { heroui } from "@heroui/theme"
-import { nextuiConfig } from './heroui.config'
+import { herouiConfig } from './heroui.config'
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -33,7 +33,7 @@ module.exports = {
   },
   darkMode: "class",
   plugins: [
-    heroui(nextuiConfig),
+    heroui(herouiConfig),
 
     ({ addUtilities }) => {
       const newUtilities = {

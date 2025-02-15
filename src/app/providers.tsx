@@ -3,13 +3,14 @@
 import * as React from "react";
 import { HeroUIProvider } from "@heroui/system";
 import { useRouter } from 'next/navigation'
+
 import { ThemeProvider as NextThemesProvider } from "next-themes";
-import { ThemeProviderProps } from "next-themes/dist/types";
-import { IconContext } from "react-icons";
+import type { ThemeProviderProps} from "next-themes";
+
 import StyledComponentsRegistry from "@/lib/registry";
-import { cache as emotionCache } from '../lib/emotion-ssr';
-import { CacheProvider } from "@emotion/react";
 import { AlertProvider } from "@/lib/alert-dialog/alert-dialog";
+
+import { IconContext } from "react-icons";
 // import { HashRouter, useNavigate, useHref } from "react-router-dom";
 
 export interface ProvidersProps {
@@ -17,23 +18,29 @@ export interface ProvidersProps {
 	themeProps?: ThemeProviderProps;
 }
 
+declare module "@react-types/shared" {
+  interface RouterConfig {
+    routerOptions: NonNullable<
+      Parameters<ReturnType<typeof useRouter>["push"]>[1]
+    >;
+  }
+}
+
 export function Providers({ children, themeProps }: ProvidersProps) {
 	const router = useRouter();
 	// const navigate = useNavigate();
 
 	return (
-		<CacheProvider value={emotionCache}>
 			<HeroUIProvider navigate={router.push}>
-				<StyledComponentsRegistry >
+				{/* <StyledComponentsRegistry > */}
 					<NextThemesProvider {...themeProps}>
 						<IconContext.Provider value={{ size: "1.5rem" }}>
-							<AlertProvider>
+							{/* <AlertProvider> */}
 								{children}
-							</AlertProvider>
+							{/* </AlertProvider> */}
 						</IconContext.Provider>
 					</NextThemesProvider>
-				</StyledComponentsRegistry>
+				{/* </StyledComponentsRegistry> */}
 			</HeroUIProvider>
-		</CacheProvider>
 	);
 }
