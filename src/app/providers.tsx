@@ -32,15 +32,15 @@ export function Providers({ children, themeProps }: ProvidersProps) {
 
 	return (
 			<HeroUIProvider navigate={router.push}>
-				{/* <StyledComponentsRegistry > */}
+				<StyledComponentsRegistry >
 					<NextThemesProvider {...themeProps}>
 						<IconContext.Provider value={{ size: "1.5rem" }}>
-							{/* <AlertProvider> */}
+							<AlertProvider>
 								{children}
-							{/* </AlertProvider> */}
+							</AlertProvider>
 						</IconContext.Provider>
 					</NextThemesProvider>
-				{/* </StyledComponentsRegistry> */}
+				</StyledComponentsRegistry>
 			</HeroUIProvider>
 	);
 }
