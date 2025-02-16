@@ -6,7 +6,7 @@ import { Radio, RadioProps } from '@heroui/radio';
 import styled, { css } from 'styled-components';
 
 
-export const StyledStatusFilterRadio2 = styled(Radio).attrs<{ activeColor: NextUIColorKeys | TailwindColorKeys, theme: ThemeName }>((props) => ({
+export const StyledStatusFilterRadioTest = styled(Radio).attrs<{ activeColor: NextUIColorKeys | TailwindColorKeys, theme: ThemeName }>((props) => ({
   classNames: {
     label: "font-medium text-default-600",
     base: cn(
