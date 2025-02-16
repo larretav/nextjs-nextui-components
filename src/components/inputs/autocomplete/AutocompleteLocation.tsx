@@ -145,7 +145,7 @@ export const AutocompleteLocation = ({ onSelectedLocation, isInvalid, errorMessa
               }}
               isClearable
               endContent={<div className="flex gap-1 items-center">
-                <IconButton onPress={() => setInpValue('')}  ><FaXmark size="1rem" className="text-foreground-500" /></IconButton>
+                <IconButton as="div" onPress={() => setInpValue('')}  ><FaXmark size="1rem" className="text-foreground-500" /></IconButton>
                 {isLoading && <Spinner size="sm" color="default" />}
               </div>}
               ref={props.ref}

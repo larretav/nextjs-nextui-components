@@ -1,5 +1,6 @@
 import { Button, IconButton } from "@/components"
 import { FaXmark } from "react-icons/fa6"
+import { ModalWithTabs } from "./_components/ModalWithTabs"
 
 
 type Props = {}
@@ -18,6 +19,7 @@ export default function page({ }: Props) {
             <Button variant="solid" size="lg" radius="full" fullWidth className="bg-zinc-950 dark:bg-zinc-800  text-zinc-50 dark:text-zinc-200" >Comenzar</Button>
           </div>
         </div>
+        <ModalWithTabs />
       </div>
     </div>
   )

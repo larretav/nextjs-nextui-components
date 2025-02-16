@@ -58,6 +58,7 @@ const question = async (title: string, options: ShowAlertOptions): Promise<{ isC
 
   return new Promise((resolve) => {
     const interval = setInterval(async () => {
+      console.log("Hola we")
       if (isConfirmed !== null) {
 
         clearInterval(interval);
