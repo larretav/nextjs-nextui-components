@@ -3,7 +3,7 @@ import {  IconEcommerce, PageTitle, ShipperType } from "@/components";
 import { Input } from "@heroui/input";
 import { OSSetDestAddressCard } from "./components/OSSetDestAddressCard";
 import { OSSetOriginnAddressCard } from "./components/OSSetOriginAddressCard";
-import RoutingTabs from "./components/RoutingTabs";
+import RoutingTabs from "../../navigation/tabs/_components/RoutingTabs";
 
 
 export default function OSComponentsPage() {
@@ -36,9 +36,7 @@ export default function OSComponentsPage() {
           <OSSetDestAddressCard />
         </div>
 
-        {/* <div className="flex gap-2">
-          <RoutingTabs />
-        </div> */}
+
 
       </div>
     </div>
