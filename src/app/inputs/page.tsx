@@ -1,5 +1,5 @@
 
-import {  PageTitle, ThemeSwitch, ThemeSwitchTabs } from "@/components";
+import { PageTitle, SwipperSelect, ThemeSwitch, ThemeSwitchTabs } from "@/components";
 import BoxCounter from "@/components/inputs/BoxCounter";
 import SimpleCounter from "@/components/inputs/SimpleCounter";
 import { Switch } from "@heroui/switch";
@@ -7,6 +7,7 @@ import { SwitchInputs } from "./_components/SwitchInputs";
 import { AutocompleteInputs } from "./_components/AutocompleteInputs";
 import { RadioInputs } from "./_components/RadioInputs";
 import { OSCardInputs } from "./_components/OSCardInputs";
+import { FaCircle, FaImage } from "react-icons/fa6";
 
 export default function InputsPage() {
 
@@ -28,6 +29,36 @@ export default function InputsPage() {
         <p>Switch</p>
         <div className="mx-6">
           <SwitchInputs />
+        </div>
+      </div>
+
+      <div className={baseClassname} id="select">
+        <p>Selects</p>
+        <div className="mx-6 flex gap-4">
+          <SwipperSelect direction="vertical" items={[
+            {
+              icon: '/assets/package-type/envelope.png'
+            },
+            {
+              icon: '/assets/package-type/box.png'
+            },
+            {
+              icon: '/assets/package-type/pallet.png'
+            },
+
+          ]} />
+          <SwipperSelect direction="horizontal" items={[
+            {
+              icon: '/assets/package-type/envelope.png'
+            },
+            {
+              icon: '/assets/package-type/box.png'
+            },
+            {
+              icon: '/assets/package-type/pallet.png'
+            },
+
+          ]} />
         </div>
       </div>
 
