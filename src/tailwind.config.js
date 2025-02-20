@@ -69,6 +69,13 @@ module.exports = {
           borderRadius: '10px',
         },
 
+        ".layout-container": {
+          "@apply w-full flex flex-col items-center": {},
+        },
+        ".page-container": {
+          "@apply w-full flex flex-col gap-4 px-4 sm:px-10 2xl:max-w-[1536px]": {},
+        },
+
       }
       addUtilities(newUtilities)
     }

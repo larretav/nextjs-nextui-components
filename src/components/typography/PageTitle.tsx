@@ -1,9 +1,12 @@
+import { cn } from "@/lib/utils"
+
 type Props = {
-  text: string
+  text: string;
+  className?: string;
 }
 
-export const PageTitle = ({ text }: Props) => {
+export const PageTitle = ({ text, className }: Props) => {
   return (
-    <span className="text-3xl font-semibold text-default-800">{text}</span>
+    <span className={cn("text-2xl font-semibold text-foreground-700", className)}>{text}</span>
   )
 }
