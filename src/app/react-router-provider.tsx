@@ -1,6 +1,6 @@
 'use client';
 
-import { BrowserRouter, HashRouter } from "react-router-dom";
+import { BrowserRouter, HashRouter } from "react-router";
 
 type Props = {
   children: React.ReactNode;
