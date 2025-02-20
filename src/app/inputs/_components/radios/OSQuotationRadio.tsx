@@ -122,7 +122,7 @@ const QuotationWarnings = ({ errors, keepOpen }: { keepOpen?: boolean, errors: s
   const [hidden, setHidden] = useState(!keepOpen);
 
   return (
-    <div className="w-full h-full flex flex-row-reverse bg-content1/85 p-4 box-border text-warning-500">
+    <div className="w-full h-full flex flex-row-reverse bg-content1/85 p-4 box-border text-warning">
       {!keepOpen && <div className="flex justify-end " > <CircleExclamationOutlined size="1.5rem" className="cursor-pointer" onClick={() => setHidden(!hidden)}  /> </div>}
 
       <div className="w-full h-full overflow-y-auto no-scrollbar px-4">
