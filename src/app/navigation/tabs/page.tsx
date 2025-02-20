@@ -2,6 +2,8 @@ import { PageTitle } from "@/components";
 import OSTabsFilters from "./_components/OSTabsFilters";
 import { TabsExample } from "@/components/navigation/tabs/TabsExample";
 import StyledTabsExample from "@/components/navigation/tabs/StyledTabsExample";
+import RoutingTabs from "./_components/RoutingTabs";
+import RoutingTabs2 from "./_components/RoutingTabs2";
 
 export default function TabsPage() {
   return (
@@ -16,6 +18,13 @@ export default function TabsPage() {
         </div>
         <div className="">
           <StyledTabsExample />
+        </div>
+
+        <div className="">
+          <RoutingTabs />
+        </div>
+        <div className="">
+          <RoutingTabs2 />
         </div>
       </div>
     </div>
