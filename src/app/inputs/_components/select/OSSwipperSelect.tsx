@@ -27,8 +27,8 @@ const OSSwipperSelect = () => {
 
   return (
     <>
-      <SwipperSelect direction="vertical" items={items} onChange={(item) => { console.log(item) }} />
-      <SwipperSelect direction="horizontal" items={items} onChange={(item) => { console.log(item) }} />
+      <SwipperSelect direction="vertical" items={items} onChange={(item) => { console.log(item) }} inverseControls />
+      <SwipperSelect direction="horizontal" items={items} onChange={(item) => { console.log(item) }} inverseControls />
     </>
   )
 }

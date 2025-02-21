@@ -91,6 +91,11 @@ export const SidebarComponentsList = () => {
           path: '/inputs#switch'
         },
         {
+          key: "select",
+          label: "Select",
+          path: '/inputs#select'
+        },
+        {
           key: "radio",
           label: "Radio",
           path: '/inputs#radio'
