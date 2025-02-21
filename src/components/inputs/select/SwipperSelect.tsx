@@ -12,20 +12,21 @@ import "swiper/css";
 import { IconButton } from '../buttons/IconButton';
 import { FaChevronDown, FaChevronRight, FaChevronUp } from 'react-icons/fa6';
 
-interface SwipperSelecItem {
+interface SwiperSelectItem {
   id: number | string;
   icon: React.ReactElement | string;
   label?: string;
 }
 
 type Props = {
-  items: SwipperSelecItem[];
+  items: SwiperSelectItem[];
   direction?: 'vertical' | 'horizontal';
   className?: string;
-  onChange?: (value: SwipperSelecItem) => void;
+  onChange?: (value: SwiperSelectItem) => void;
+  inverseControls?: boolean
 }
 
-export const SwipperSelect = ({ items = [], direction = 'vertical', onChange, className }: Props) => {
+export const SwiperSelect = ({ items = [], direction = 'vertical', onChange, inverseControls = false, className }: Props) => {
 
   const someHasLabel = items.some(({ label }) => label);
 
@@ -57,7 +58,7 @@ export const SwipperSelect = ({ items = [], direction = 'vertical', onChange, cl
       }), className)}
     >
 
-      <ArrowComponent action="prev" direction={direction} onPress={handlePrev} />
+      <ArrowComponent action="prev" direction={direction} onPress={inverseControls ? handleNext : handlePrev} />
 
       <Swiper
         ref={swiperRef}
@@ -93,7 +94,7 @@ export const SwipperSelect = ({ items = [], direction = 'vertical', onChange, cl
         })}
       </Swiper>
 
-      <ArrowComponent action="next" direction={direction} onPress={handleNext} />
+      <ArrowComponent action="next" direction={direction} onPress={inverseControls ? handlePrev : handleNext} />
 
     </div>
   )

@@ -1,4 +1,4 @@
-export { SwipperSelect } from "./inputs/select/SwipperSelect";
+export { SwiperSelect as SwipperSelect } from "./inputs/select/SwipperSelect";
 export { StyledStatusFilterRadioTest } from "./inputs/radio/StyledStatusFilterRadioTest";
 export { StatusFilterRadio } from "./inputs/radio/StatusFilterRadio";
 export { AddressCard } from "./surfaces/cards/addresses/AddressCard";
