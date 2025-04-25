@@ -10,6 +10,7 @@ export const IconButton = ({ children, ...props }: ButtonProps) => {
       radius="full"
       size="sm"
       color="default"
+    
       {...props}
     >
       {children}
