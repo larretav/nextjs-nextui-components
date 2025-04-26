@@ -31,6 +31,7 @@
     "@heroui/navbar": "2.2.8",
     "@heroui/pagination": "2.2.9",
     "@heroui/popover": "2.3.10",
+    "@heroui/progress": "^2.2.13",
     "@heroui/radio": "2.3.9",
     "@heroui/scroll-shadow": "2.3.6",
     "@heroui/select": "2.4.10",

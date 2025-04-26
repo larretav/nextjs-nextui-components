@@ -25,6 +25,12 @@ export default function NavigationPage() {
       subtitle: 'Menus',
       url: '/navigation/menus'
     },
+    {
+      icon: <FaImage size={40} />,
+      title: 'Stepper',
+      subtitle: 'Stepper',
+      url: '/navigation/stepper'
+    },
 
   ];
 

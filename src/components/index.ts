@@ -1,3 +1,6 @@
+export { Step } from "./navigation/stepper/Step";
+export { Stepper } from "./navigation/stepper/Stepper";
+
 export { StyledStatusFilterRadioTest } from "./inputs/radio/StyledStatusFilterRadioTest";
 export { StatusFilterRadio } from "./inputs/radio/StatusFilterRadio";
 export { AddressCard } from "./surfaces/cards/addresses/AddressCard";
@@ -37,5 +40,4 @@ export { TagsInput } from "./inputs/TagsInput";
 export { ThemeSwitch } from "./inputs/ThemeSwitch";
 export { ThemeSwitchTabs } from "./inputs/ThemeSwitchTabs";
 export { IconTitleTab } from "./navigation/tabs/IconTitleTab";
-
 
