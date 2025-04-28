@@ -1,8 +1,9 @@
 'use client';
 import { Button, Step, Stepper } from '@/components'
+import { Avatar } from '@heroui/avatar';
 import React from 'react'
 import { FaCalendarPlus } from 'react-icons/fa'
-import { FaAddressBook } from 'react-icons/fa6'
+import { FaAddressBook, FaAmazon, FaPerson } from 'react-icons/fa6'
 
 export const HorizontalStepper = () => {
 
@@ -19,15 +20,42 @@ export const HorizontalStepper = () => {
 
       <div className="flex flex-col gap-3">
         <Stepper activeStep={activeStep} >
-          <Step onPress={() => { setActiveStep(0) }}>1</Step>
-          {/* <Step onPress={() => { setActiveStep(1) }}>2</Step> */}
-          {/* <Step onPress={() => { setActiveStep(2) }}>3</Step> */}
+          <Step onPress={() => { setActiveStep(0) }}>1. Esto es la opcion 1</Step>
+          <Step onPress={() => { setActiveStep(1) }}>2</Step>
+          <Step onPress={() => { setActiveStep(2) }}>3</Step>
         </Stepper>
 
-        <Stepper activeStep={activeStep}>
-          <Step><FaCalendarPlus /></Step>
-          <Step><FaAddressBook /></Step>
-          <Step><FaAddressBook /></Step>
+        <Stepper activeStep={activeStep} >
+          <Step isIconOnly><FaCalendarPlus /></Step>
+          <Step isIconOnly><FaAddressBook /></Step>
+          <Step isIconOnly><FaAddressBook /></Step>
+        </Stepper>
+
+        <Stepper activeStep={activeStep} >
+          <Step onPress={() => { setActiveStep(0) }} className="flex flex-col gap-2 p-4 rounded-2xl  bg-content2">
+            <Avatar fallback={<FaAmazon />} />
+
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold">Esta es la opcion 1</p>
+              <p className="text-small text-foreground-400">Esto es un subtitulo o algo asi</p>
+            </div>
+          </Step>
+          <Step onPress={() => { setActiveStep(1) }} className="flex flex-col gap-2 p-4 rounded-2xl  bg-content2">
+            <Avatar fallback={<FaPerson />} />
+
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold">Esta es la opcion 2</p>
+              <p className="text-small text-foreground-400">Esto es un subtitulo o algo asi</p>
+            </div>
+          </Step>
+          <Step onPress={() => { setActiveStep(2) }} className="flex flex-col gap-2 p-4 rounded-2xl  bg-content2">
+            <Avatar fallback={<FaCalendarPlus />} />
+
+            <div className="flex flex-col gap-1">
+              <p className="font-semibold">Esta es la opcion 4</p>
+              <p className="text-small text-foreground-400">Esto es un subtitulo o algo asi</p>
+            </div>
+          </Step>
         </Stepper>
       </div>
 

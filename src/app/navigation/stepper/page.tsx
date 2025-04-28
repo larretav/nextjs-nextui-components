@@ -8,7 +8,7 @@ export default function StepperPage() {
     <div className="flex flex-col gap-3 py-3 px-6">
       <PageTitle text="Stepper Components" />
       <p>Horizontal</p>
-      <div className="max-w-[400px]">
+      <div className="max-w-[900px]">
         <HorizontalStepper />
       </div>
     </div>
