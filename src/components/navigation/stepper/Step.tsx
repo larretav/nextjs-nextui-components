@@ -22,8 +22,6 @@ export const Step = ({ isIconOnly, onPress, children, ...props }: Props) => {
 
   }, [isIconOnly])
 
-  console.log(children)
-
   return (
     <>
       {!isValidElement && <div onClick={onPress} className={cn(props?.className, clsx("relative z-10 grid place-items-center min-w-10 min-h-10 p-2 box-border bg-content2 rounded-full font-bold transition-all duration-300", {
@@ -39,6 +37,7 @@ export const Step = ({ isIconOnly, onPress, children, ...props }: Props) => {
       
 
       {isValidElement && isIconOnly && <Button
+        as="div"
         isIconOnly
         disableRipple={!onPress}
         radius="full"

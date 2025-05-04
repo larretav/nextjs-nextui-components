@@ -22,23 +22,39 @@ export const Stepper = ({ activeStep = 0, className, classNames, children }: Pro
   }, [activeStep, children])
 
   return (
-    <div className={cn(clsx("w-full relative flex items-center justify-between ", {
-      "justify-center": !Array.isArray(children)
-    }))}>
+    <div className="w-full relative">
       <Progress
         aria-label="Progress"
         value={value}
         maxValue={100}
         size="sm"
-        className={cn("w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0", className, clsx({
+        className={cn("w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 ", className, clsx({
           "hidden": !Array.isArray(children)
         }))}
         classNames={{
           ...classNames,
-          indicator: cn("bg-default-800", classNames?.indicator),
+          indicator: cn("bg-default-800 z-0", classNames?.indicator),
         }}
       />
-      {children}
+      {/* <div className={cn(clsx("flex items-center justify-between bg-red-900 *:bg-blue-700", {
+        "justify-center": !Array.isArray(children)
+      }))}>
+        {children}
+      </div> */}
+      <div className={cn(clsx("grid grid-flow-col auto-cols-fr", {
+        "justify-center": !Array.isArray(children)
+      }))}>
+        {!Array.isArray(children)
+          ? children
+          : children.map((child, index) => (
+            <div key={index} className={cn(clsx("z-10  flex items-center justify-center", {
+              "justify-start": index === 0,
+              "justify-end": index === children.length - 1
+            }))}>
+              {child}
+            </div>
+          ))}
+      </div>
     </div>
   )
 }
